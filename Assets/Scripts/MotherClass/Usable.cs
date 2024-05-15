@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Usable : MonoBehaviour
 {
-    protected UsableSO SO;
+    public UsableSO SO;
+
     virtual public void Use()
     {
 

@@ -8,7 +8,7 @@ public class StaticChestSO : ScriptableObject
 {
     [Header("List of usable in chest")]
     [Space(10)]
-    public List<Usable> ToFindInChest = new List<Usable>();
+    public List<UsableSO> ToFindInChest = new List<UsableSO>();
     [Header("Drop Pourcentage")]
     [Space(10)]
     public int communLootPct;

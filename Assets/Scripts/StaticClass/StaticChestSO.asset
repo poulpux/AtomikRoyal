@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bb5e2972d7eed4e8ba98425116c977, type: 3}
   m_Name: StaticChestSO
   m_EditorClassIdentifier: 
+  ToFindInChest: []
+  communLootPct: 0
+  rareLootPct: 0
+  legendaryLootPct: 0
+  minGoldInChest: 0
+  maxGoldInChest: 0
