@@ -18,8 +18,8 @@ MonoBehaviour:
   nbRecolted: 0
   sprite: {fileID: 0}
   rarity: 0
-  script: {fileID: 0}
-  baseDammage: 0
+  script: {fileID: 11500000, guid: 9a3712da25b7b8449a1a89a61874e551, type: 3}
+  baseDamage: 0
   owner: {fileID: 0}
   objectToInstantiate: {fileID: 0}
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}

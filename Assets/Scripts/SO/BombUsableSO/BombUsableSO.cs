@@ -20,8 +20,11 @@ public class BombUsableSO : UsableSO
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
     private void VerifExplosionPrefabComponent()
     {
+        if(explosionPrefab ==  null) 
+            throw new System.Exception("explosionPrefab is null");
         Explosion explo = explosionPrefab.GetComponent<Explosion>();
         if (explo == null)
         {
