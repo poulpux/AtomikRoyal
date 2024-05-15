@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BombUsableSO", menuName = "SO/BombUsableSO")]
 public class BombUsableSO : UsableSO
 {
-    PlayerInfos owner;
-    GameObject objectToInstantiate;
-    GameObject explosionPrefab;
+    [Header("BombUsableSO")]
+    [Space(10)]
+    public int baseDamage;
+    public PlayerInfos owner;
+    public GameObject objectToInstantiate;
+    public GameObject explosionPrefab;
 
     private void OnValidate()
     {

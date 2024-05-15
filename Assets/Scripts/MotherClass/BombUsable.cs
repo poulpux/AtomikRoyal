@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class BombUsable : Usable
 {
-    GameObject objectToInstantiate;
     public override void Use(PlayerInfos playerInfos)
     {
         base.Use();
+    }
+
+    public override void AddSO(UsableSO SO)
+    {
+        if (SO.GetType() == typeof(BombUsableSO))
+            this.SO = SO;
+        else
+            Debug.Log("Try to add the SO variable but it's not the right type");
     }
 }

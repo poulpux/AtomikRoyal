@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Usable : MonoBehaviour
 {
+    protected UsableSO SO;
     virtual public void Use()
     {
 
@@ -11,5 +12,11 @@ public abstract class Usable : MonoBehaviour
     virtual public void Use(PlayerInfos playerInfos)
     {
 
+    }
+
+    virtual public void AddSO(UsableSO SO)
+    {
+        if (SO.GetType() == typeof(UsableSO))
+            this.SO = SO;
     }
 }

@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UsableSO", menuName = "SO/UsableSO")]
 public class UsableSO : ScriptableObject
 {
-    public string nameUsable, description;
+    [Header("UsableSO")]
+    [Space(10)]
+    public string nameUsable;
+    public string description;
     public int nbMaxInventory, nbRecolted;
     public SpriteRenderer sprite;
     public RARITY rarity;
