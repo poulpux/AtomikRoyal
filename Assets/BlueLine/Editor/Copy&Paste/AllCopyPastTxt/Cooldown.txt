@@ -1,0 +1,14 @@
+[SerializeField]
+private float cldwnDura = 3f;
+
+private float timer = 0f;
+
+private void TimerGestion()
+{
+    timer += Time.deltaTime;
+    if(timer > cldwnDura )
+    {
+        timer = 0f;
+        //Use fonction
+    }
+}

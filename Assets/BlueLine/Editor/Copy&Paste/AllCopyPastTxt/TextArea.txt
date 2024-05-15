@@ -1,0 +1,2 @@
+[TextArea]
+private string = "";
