@@ -14,6 +14,13 @@ public class UsableSO : ScriptableObject
 
     private void OnValidate()
     {
+        VerifType<Usable>();
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    protected void VerifType<T>()
+    {
         if (script == null)
             throw new System.Exception("No reference on item script");
 
@@ -25,7 +32,7 @@ public class UsableSO : ScriptableObject
             throw new System.Exception("The referenced asset is not a script");
         }
 
-        if (t.BaseType != typeof(Usable))
+        if (t.BaseType != typeof(T))
         {
             script = null;
             throw new System.Exception("The referenced script is not an Item");
