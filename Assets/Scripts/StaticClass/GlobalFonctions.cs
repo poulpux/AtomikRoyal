@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class GlobalFonctions 
 {
-    static void CopyFields<TSource, TTarget>(TSource source,ref TTarget target)
+    static public void CopyFields<TSource, TTarget>(TSource source,TTarget target)
     {
         if (source == null || target == null) return;
 
