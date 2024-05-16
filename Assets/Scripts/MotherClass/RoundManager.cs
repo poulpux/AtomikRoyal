@@ -9,6 +9,7 @@ public abstract class RoundManager : Singleton<RoundManager>
     List<Vector2> allChestPos = new List<Vector2>();
     public Action gameStartEvent;
     public Action gameEndEvent;
+
     protected virtual void Start()
     {
         gameStartEvent += MakeChestSpawn;
