@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StaticPlayerSO", menuName = "SO/StaticPlayerSO")]
+[CreateAssetMenu(fileName = "StaticPlayerSO", menuName = "Static/StaticPlayerSO")]
 public class StaticPlayerSO : ScriptableObject
 {
     [Header("All curves")]

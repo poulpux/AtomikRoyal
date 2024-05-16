@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "StaticChestSO", menuName = "SO/StaticChestSO")]
+[CreateAssetMenu(fileName = "StaticChestSO", menuName = "Static/StaticChestSO")]
 public class StaticChestSO : ScriptableObject
 {
     [Header("List of usable in chest")]

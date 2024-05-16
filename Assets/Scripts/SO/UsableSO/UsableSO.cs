@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UsableSO", menuName = "SO/UsableSO")]
@@ -25,7 +26,7 @@ public class UsableSO : ScriptableObject
     protected void VerifType<T>()
     {
         if (script == null)
-            throw new System.Exception("No reference on item script");
+            throw new System.Exception("No reference on "+ typeof(T)+" script");
 
         System.Type t = System.Type.GetType(script.name.Replace(".cs", ""));
 
@@ -38,7 +39,7 @@ public class UsableSO : ScriptableObject
         if (t.BaseType != typeof(T))
         {
             script = null;
-            throw new System.Exception("The referenced script is not an Item");
+            throw new System.Exception("The referenced script is not an "+ typeof(T));
         }
     }
 }

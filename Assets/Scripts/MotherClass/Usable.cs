@@ -4,13 +4,10 @@ using UnityEngine;
 
 public abstract class Usable : MonoBehaviour
 {
-    public UsableSO SO;
+    [HideInInspector] public UsableSO SO;
+    [HideInInspector] public PlayerInfos playerInfos;
 
     virtual public void Use()
-    {
-
-    }
-    virtual public void Use(PlayerInfos playerInfos)
     {
 
     }
@@ -19,5 +16,7 @@ public abstract class Usable : MonoBehaviour
     {
         if (SO.GetType() == typeof(UsableSO))
             this.SO = SO;
+        else
+            Debug.LogError("Not good type");
     }
 }

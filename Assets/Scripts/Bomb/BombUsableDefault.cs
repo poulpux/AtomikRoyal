@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BombUsableDefault : BombUsable
 {
-    public override void Use(PlayerInfos playerInfos)
+    public override void Use()
     {
-        base.Use(playerInfos);
+        base.Use();
     }
 }
