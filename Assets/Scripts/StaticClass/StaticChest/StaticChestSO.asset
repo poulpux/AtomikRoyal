@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StaticChestSO
   m_EditorClassIdentifier: 
   ToFindInChest: []
-  communLootPct: 0
+  communLootPct: 60
   rareLootPct: 0
   legendaryLootPct: 0
   minGoldInChest: 0
