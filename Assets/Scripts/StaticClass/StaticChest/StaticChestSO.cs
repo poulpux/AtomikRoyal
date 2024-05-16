@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StaticChestSO", menuName = "Static/StaticChestSO")]
 public class StaticChestSO : ScriptableObject
 {
-    [Header("List of usable in chest")]
+    [Header("All usable")]
     [Space(10)]
     public List<UsableSO> ToFindInChest = new List<UsableSO>();
     [Header("Drop Pourcentage")]
