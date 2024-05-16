@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e6034cba3ce1f46a59f647e851752e, type: 3}
   m_Name: StaticSkinsSO
   m_EditorClassIdentifier: 
+  allSkins: []
