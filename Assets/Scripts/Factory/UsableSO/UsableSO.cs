@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UsableSO", menuName = "SO/UsableSO")]
+[CreateAssetMenu(fileName = "UsableSO_filename", menuName = "SO/UsableSO")]
 public class UsableSO : ScriptableObject
 {
     [Header("UsableSO")]

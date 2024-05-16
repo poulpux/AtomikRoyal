@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkinsSO", menuName = "SO/SkinsSO")]
+[CreateAssetMenu(fileName = "SkinsSO_filename", menuName = "SO/SkinsSO")]
 public class SkinSO : ScriptableObject
 {
     public SpriteDirection idle1, idle2, walk1, walk2;
