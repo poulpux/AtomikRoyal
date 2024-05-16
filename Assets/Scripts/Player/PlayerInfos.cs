@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerInfos : MonoBehaviour
     public int nbKill;
     public bool isDead;
     [SerializeField] private Collider2D colliderr;
+    [HideInInspector] public Action<PlayerInfos> isDeadEvent;
 
     void Start()
     {
