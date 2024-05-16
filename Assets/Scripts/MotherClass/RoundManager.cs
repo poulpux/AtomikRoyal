@@ -9,15 +9,9 @@ public abstract class RoundManager : Singleton<RoundManager>
     List<Vector2> allChestPos = new List<Vector2>();
     public Action gameStartEvent;
     public Action gameEndEvent;
-    void Start()
+    protected virtual void Start()
     {
         gameStartEvent += MakeChestSpawn;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void MakeChestSpawn()
