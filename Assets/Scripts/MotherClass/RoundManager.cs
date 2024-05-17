@@ -14,8 +14,7 @@ public enum GAMEMODE
 
 public abstract class RoundManager : Singleton<RoundManager>
 {
-    List<PlayerInfos> allPlayer = new List<PlayerInfos>();
-    List<Vector2> allChestPos = new List<Vector2>();
+    protected List<PlayerInfos> allPlayerAlife = new List<PlayerInfos>();
     public Action gameStartEvent;
     public Action gameEndEvent;
 
@@ -25,9 +24,18 @@ public abstract class RoundManager : Singleton<RoundManager>
         gameStartEvent += MakeChestSpawn;
     }
 
+    protected virtual void Update()
+    {
+        EndCondition();
+    }
+
     private void MakeChestSpawn()
     {
-
+        foreach (var item in _StaticChest.allChestPos)
+        {
+            //MakeSpawnChest
+        }
+        _StaticChest.allChestPos.Clear();
     }
 
     protected virtual bool EndCondition()
@@ -38,11 +46,11 @@ public abstract class RoundManager : Singleton<RoundManager>
     public void AddPlayer(PlayerInfos infos)
     {
         infos.isDeadEvent += RemovePlayer;
-        allPlayer.Add(infos);
+        allPlayerAlife.Add(infos);
     }
 
     private void RemovePlayer(PlayerInfos infos)
     {
-        allPlayer.Remove(infos);
+        allPlayerAlife.Remove(infos);
     }
 }

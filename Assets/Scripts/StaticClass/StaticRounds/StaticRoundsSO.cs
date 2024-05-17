@@ -8,5 +8,5 @@ public class StaticRoundsSO : ScriptableObject
 {
     [Header("All GameMods")]
     [Space(10)]
-    public List<GameModSO> allGameMods = new List<GameModSO>();
+    public List<RoundRulesSO> allGameMods = new List<RoundRulesSO>();
 }
