@@ -9,6 +9,7 @@ public class GameModSO : ScriptableObjectWithScript
     public bool test;
     public int nb;
     [ConditionalField("nb", 10, "==")]
+    [ConditionalField("test", true)]
     public float supTen;
     
 }

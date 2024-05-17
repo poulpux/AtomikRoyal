@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 
+
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class ConditionalFieldAttribute : PropertyAttribute
 {
     public string ConditionPath { get; }
