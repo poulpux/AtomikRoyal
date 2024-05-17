@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72bf645b44851c646aa0ddef93da7bec, type: 3}
-  m_Name: GameModSO_filename
+  m_Name: GameModSO_SOLO
   m_EditorClassIdentifier: 
   script: {fileID: 0}
   test: 0

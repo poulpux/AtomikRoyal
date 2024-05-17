@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class StaticManager : MonoBehaviour
 {
+    [SerializeField] private StaticRoundsSO roundsSO;
     [SerializeField] private StaticSkinsSO skinsSO;
-    [SerializeField] private StaticChestSO chestSO;
     [SerializeField] private StaticPlayerSO playerSO;
     [SerializeField] private StaticCardsSO cardsSO;
+    private StaticChestSO chestSO;
     void Awake()
     {
+        GetGameMod();
+
         _StaticSkins.Init(skinsSO);
         _StaticChest.Init(chestSO);
         _StaticPlayer.Init(playerSO);
         _StaticCards.Init(cardsSO);
+    }
 
-        print(_StaticChest.communLootPct);
+    private void GetGameMod()
+    {
+       // roundsSO.allGameMods[PlayerPrefs.GetInt("gamemod")];
     }
 }

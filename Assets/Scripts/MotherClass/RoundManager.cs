@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GAMEMODE
+{
+    SOLO,
+    DUO,
+    TRIO,
+    QUATUOR,
+    BLUEVSRED
+}
+
 public abstract class RoundManager : Singleton<RoundManager>
 {
     List<PlayerInfos> allPlayer = new List<PlayerInfos>();
@@ -10,8 +19,9 @@ public abstract class RoundManager : Singleton<RoundManager>
     public Action gameStartEvent;
     public Action gameEndEvent;
 
-    protected virtual void Start()
+    protected override void Awake()
     {
+        base.Awake();
         gameStartEvent += MakeChestSpawn;
     }
 
