@@ -24,11 +24,6 @@ public abstract class RoundManager : Singleton<RoundManager>
         gameStartEvent += MakeChestSpawn;
     }
 
-    protected virtual void Update()
-    {
-        EndCondition();
-    }
-
     private void MakeChestSpawn()
     {
         foreach (var item in _StaticChest.allChestPos)
@@ -52,5 +47,7 @@ public abstract class RoundManager : Singleton<RoundManager>
     private void RemovePlayer(PlayerInfos infos)
     {
         allPlayerAlife.Remove(infos);
+        if (EndCondition())
+            gameEndEvent.Invoke();
     }
 }

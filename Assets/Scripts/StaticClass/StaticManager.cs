@@ -21,7 +21,7 @@ public class StaticManager : MonoBehaviour
 
     private void GetGameMod()
     {
-        GameModSO gameMod = roundsSO.allGameMods[PlayerPrefs.GetInt("gamemod")];
+        RoundRulesSO gameMod = roundsSO.allGameMods[PlayerPrefs.GetInt("gamemod")];
         TextAsset currentGameModeScript = gameMod.script;
         GF.SetGameMod<RoundManager>(currentGameModeScript, GameManager.Instance.gameObject);
 
