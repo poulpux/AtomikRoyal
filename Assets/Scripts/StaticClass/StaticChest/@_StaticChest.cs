@@ -22,6 +22,12 @@ public static class _StaticChest
 
     static public void Init(StaticChestSO SO)
     {
+        if (SO == null)
+        {
+            Debug.LogError("No SO");
+            return;
+        }
+
         ToFindInChest = SO.ToFindInChest;
         communLootPct = SO.communLootPct;
         rareLootPct = SO.rareLootPct;

@@ -7,4 +7,5 @@ using UnityEngine;
 public class GameModSO : ScriptableObjectWithScript
 {
     public GAMEMODE gameMode;
+    public StaticChestSO chestSO;
 }

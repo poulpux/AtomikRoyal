@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bf645b44851c646aa0ddef93da7bec, type: 3}
   m_Name: GameModSO_SOLO
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
-  test: 0
-  testTRue: 0
-  testFalse: 0
+  script: {fileID: 11500000, guid: d8eb68e48f5f7db4da19bd9239ad82fb, type: 3}
+  gameMode: 0
