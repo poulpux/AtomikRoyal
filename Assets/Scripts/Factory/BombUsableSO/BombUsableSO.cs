@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BombUsableSO", menuName = "SO/BombUsableSO")]
+[CreateAssetMenu(fileName = "BombUsableSO_fileName", menuName = "SO/BombUsableSO")]
 public class BombUsableSO : UsableSO
 {
     [Header("BombUsableSO")]

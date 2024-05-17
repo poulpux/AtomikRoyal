@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardSO", menuName = "SO/CardSO")]
+[CreateAssetMenu(fileName = "CardSO_filename", menuName = "SO/CardSO")]
 public class CardSO : ScriptableObject
 {
     [Header("CardSO")]

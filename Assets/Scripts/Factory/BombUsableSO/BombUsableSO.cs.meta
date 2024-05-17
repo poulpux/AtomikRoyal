@@ -3,7 +3,12 @@ guid: 09d9246ad3c335847a94ffd8154581ad
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sprite: {instanceID: 0}
+  - script: {instanceID: 0}
+  - owner: {instanceID: 0}
+  - objectToInstantiate: {instanceID: 0}
+  - explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
