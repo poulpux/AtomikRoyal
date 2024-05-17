@@ -11,7 +11,7 @@ public class StaticManager : MonoBehaviour
     private StaticChestSO chestSO;
     void Awake()
     {
-        GetGameMod();
+        SetGameMod();
 
         _StaticSkins.Init(skinsSO);
         _StaticChest.Init(chestSO);
@@ -19,12 +19,12 @@ public class StaticManager : MonoBehaviour
         _StaticCards.Init(cardsSO);
     }
 
-    private void GetGameMod()
+    private void SetGameMod()
     {
         RoundRulesSO gameMod = roundsSO.allGameMods[PlayerPrefs.GetInt("gamemod")];
         TextAsset currentGameModeScript = gameMod.script;
         GF.SetGameMod<RoundManager>(currentGameModeScript, GameManager.Instance.gameObject);
-
+        GameManager.Instance.GetRound();
         chestSO = gameMod.chestSO;
     }
 }

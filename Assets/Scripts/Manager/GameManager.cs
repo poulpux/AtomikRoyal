@@ -5,4 +5,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [HideInInspector] public RoundManager gameRules;
+
+    public void GetRound()
+    {
+        gameRules = GetComponent<RoundManager>();
+    }
 }
