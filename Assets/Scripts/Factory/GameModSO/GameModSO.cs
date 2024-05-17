@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameModSO_filename", menuName = "SO/GameModSO")]
 public class GameModSO : ScriptableObjectWithScript
 {
-    public SpriteDirection idle1, idle2, walk1, walk2;
+    public GAMEMODE gameMode;
 }

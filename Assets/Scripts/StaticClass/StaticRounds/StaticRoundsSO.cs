@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "StaticRoundsSO", menuName = "Static/StaticRoundsSO")]
-public class StaticRoundsSO : ScriptableObject
+public class StaticRoundsSO : ScriptableObjectWithScript
 {
-    //[Header("All GameMods")]
-    //[Space(10)]
-    //public List<UsableSO> allGameMods = new List<UsableSO>();
+    [Header("All GameMods")]
+    [Space(10)]
+    public List<GameModSO> allGameMods = new List<GameModSO>();
 }

@@ -13,7 +13,7 @@ public static class _StaticChest
 {
     static public List<UsableSO> ToFindInChest = new List<UsableSO>();
     static public int communLootPct, rareLootPct, legendaryLootPct;
-    static public int minGoldInChest, maxGoldInChest;
+    static public int minGoldInChest, maxGoldInChest, chestDropRate;
 
     static void OpenChest(Vector3 position)
     {
@@ -27,6 +27,7 @@ public static class _StaticChest
         rareLootPct = SO.rareLootPct;
         legendaryLootPct = SO.legendaryLootPct;
         minGoldInChest = SO.minGoldInChest;
-        maxGoldInChest= SO.maxGoldInChest;
+        maxGoldInChest = SO.maxGoldInChest;
+        chestDropRate = SO.chestDropRate;
     }
 }
