@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public static class GlobalFonctions 
+public static class GF 
 {
     static public void CopyFields<TSource, TTarget>(TSource source,TTarget target)
     {
@@ -19,6 +19,18 @@ public static class GlobalFonctions
             {
                 targetField.SetValue(target, sourceField.GetValue(source));
             }
+        }
+    }
+
+    static public void SetGameMod<T>(TextAsset roundScript, GameObject target) where T : MonoBehaviour
+    {
+        System.Type t = System.Type.GetType(roundScript.name.Replace(".cs", ""));
+        T component = target.AddComponent(t) as T;
+
+        if (component == null)
+        {
+            Debug.LogError("Failed to add component of type: " + typeof(T).Name);
+            return;
         }
     }
 }
