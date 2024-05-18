@@ -260,6 +260,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &583549745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583549747}
+  - component: {fileID: 583549746}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &583549746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583549745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5a2a6e70cf8844cb76e88711690c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pseudo: 
+  nbKill: 0
+  isDead: 0
+  colliderr: {fileID: 0}
+  currentLife: 0
+  maxLife: 0
+  dmgCAC: 0
+  dmgBomb: 0
+  spd: 0
+  cdwThrow: 0
+  throwForce: 0
+  range: 0
+  exploSize: 0
+  spd_Stat: 0
+  maxLife_Stat: 0
+  exploSize_Stat: 0
+  dmgCAC_Stat: 0
+  dmgBomb_Stat: 0
+  cdwThrow_Stat: 0
+  throwForce_Stat: 0
+  range_Stat: 0
+--- !u!4 &583549747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583549745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,3 +529,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 6476343800857055878}
   - {fileID: 4403987486771264288}
+  - {fileID: 583549747}
