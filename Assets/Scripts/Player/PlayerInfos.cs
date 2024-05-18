@@ -38,7 +38,7 @@ public class PlayerInfos : MonoBehaviour
 
     void Start()
     {
-        
+        SetAllStats();
     }
 
     
