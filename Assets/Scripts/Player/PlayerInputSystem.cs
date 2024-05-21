@@ -14,9 +14,10 @@ public class PlayerInputSystem : MonoBehaviour
     //Toutes les variables interressantes
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
-    [HideInInspector] public Vector2 direction;
+    [HideInInspector] public Vector2 direction, mousePos;
+    [HideInInspector] public float scrollMouse;
     [HideInInspector] public bool isInteracting;
-
+    Camera cam;
     class Button
     {
         public string name;
@@ -29,6 +30,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     void Awake()
     {
+        this.cam = GetComponent<PlayerInfos>().cam;
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
 
@@ -50,6 +52,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void OnDisable()
     {
+        DisableActionMap(DefaultActions);
     }
 
     private void SetButtonInventoryList()
@@ -71,6 +74,10 @@ public class PlayerInputSystem : MonoBehaviour
         action["Move"].canceled += MoveSleep;
         action["Interact"].performed += InteractAct;
         action["Interact"].canceled += InteractSleep;
+        action["ScrollMouse"].performed += ScrollMouseAct;
+        action["ScrollMouse"].canceled += ScrollMousSleep;
+        action["MousePosition"].performed += MousePositionAct;
+        action["MousePosition"].canceled += MousePositionSleep;
 
 
         //All buttons
@@ -100,6 +107,10 @@ public class PlayerInputSystem : MonoBehaviour
         action["Move"].canceled -= MoveSleep;
         action["Interact"].performed -= InteractAct;
         action["Interact"].canceled -= InteractSleep;
+        action["ScrollMouse"].performed -= ScrollMouseAct;
+        action["ScrollMouse"].canceled -= ScrollMousSleep;
+        action["MousePosition"].performed -= MousePositionAct;
+        action["MousePosition"].canceled -= MousePositionSleep;
 
 
         //All buttons
@@ -123,6 +134,26 @@ public class PlayerInputSystem : MonoBehaviour
         action["Inventory6"].canceled -= Inventory6Sleep;
     }
 
+    private void MousePositionAct(InputAction.CallbackContext value)
+    {
+        mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+    }
+    
+    private void MousePositionSleep(InputAction.CallbackContext value)
+    {
+        mousePos = Vector2.zero;
+    }
+    
+    private void ScrollMouseAct(InputAction.CallbackContext value)
+    {
+        scrollMouse = value.ReadValue<float>();
+    }
+    
+    private void ScrollMousSleep(InputAction.CallbackContext value)
+    {
+        scrollMouse = 0f;
+    }
+    
     private void MoveAct(InputAction.CallbackContext value)
     {
         direction = value.ReadValue<Vector2>();

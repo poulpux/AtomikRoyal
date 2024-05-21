@@ -511,6 +511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 904896354936606816, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 1611475779650270423, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: playerInput
       value: 

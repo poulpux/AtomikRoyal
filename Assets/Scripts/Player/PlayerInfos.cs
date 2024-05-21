@@ -17,6 +17,7 @@ public class PlayerInfos : MonoBehaviour
     public bool isDead;
     List<string> isInvincibleList = new List<string>();
     [SerializeField] private Collider2D colliderr;
+    public Camera cam;
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
 
