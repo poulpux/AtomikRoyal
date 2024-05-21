@@ -11,7 +11,8 @@ public class PlayerInfos : MonoBehaviour
     [Space(10)]
     public string pseudo;
     public int nbKill;
-    public bool isDead, isInvincible;
+    public bool isDead;
+    List<string> isInvincibleList = new List<string>();
     [SerializeField] private Collider2D colliderr;
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
@@ -64,7 +65,7 @@ public class PlayerInfos : MonoBehaviour
 
     public void DecreaseLife(int damage)
     {
-        if (isInvincible)
+        if (isInvincibleList.Count>=1)
             return;
 
         currentLife -= damage;
@@ -99,6 +100,6 @@ public class PlayerInfos : MonoBehaviour
 
     private void EndOfTheGame()
     {
-        isInvincible = true;
+        isInvincibleList.Add("EndGame");
     }
 }
