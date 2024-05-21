@@ -12,3 +12,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c385319dd82534d4cbee4ccc56781e92, type: 3}
   m_Name: StaticPlayerSO
   m_EditorClassIdentifier: 
+  spd:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 3
+    statsParLv: 2
+  pvMax:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  explosionSize:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  dmgCAC:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  dmgBomb:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  cdwThrow:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  throwForce:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  range:
+    CostCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startValue: 0
+    statsParLv: 0
+  rangeInteractible: 0

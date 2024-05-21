@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,24 @@ public class StaticPlayerSO : ScriptableObject
 {
     [Header("All curves")]
     [Space(10)]
-    public AnimationCurve spdCostCurve;
-    public AnimationCurve pvMaxCostCurve;
-    public AnimationCurve explosionSizeCostCurve;
-    public AnimationCurve dmgCaCCostCurve;
-    public AnimationCurve dmgExplosionCostCurve;
-    public AnimationCurve cooldownThrowCostCurve;
-    public AnimationCurve grenadeSpdCost;
-    public AnimationCurve rangeCostCurve;
+    public UpgradeCurves spd;
+    public UpgradeCurves pvMax;
+    public UpgradeCurves explosionSize;
+    public UpgradeCurves dmgCAC;
+    public UpgradeCurves dmgBomb;
+    public UpgradeCurves cdwThrow;
+    public UpgradeCurves throwForce;
+    public UpgradeCurves range;
 
     [Header("GeneralValues")]
     [Space(10)]
     public float rangeInteractible;
+
+    [Serializable]
+    public class UpgradeCurves
+    {
+        public AnimationCurve CostCurve;
+        public float startValue;
+        public float statsParLv;
+    }
 }
