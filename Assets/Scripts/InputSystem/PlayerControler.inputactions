@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Map",
+                    "name": "OpenMap",
                     "type": "Button",
                     "id": "08f5ebb4-ef92-40a7-b319-09c1e7553459",
                     "expectedControlType": "Button",
@@ -103,6 +103,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollMouse",
+                    "type": "Value",
+                    "id": "559e6a36-85b8-453b-9de5-885d718ef55c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "05a131ab-a77d-4333-9de4-e15fc601bfe6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -201,7 +219,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Map",
+                    "action": "OpenMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -268,6 +286,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventory6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "ebbeae1d-9057-43f4-90ac-464b57fe530b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollMouse",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b425c924-e7f2-4a39-b22a-b6004ad6bc77",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8b466250-5ff4-4a92-950f-0f6f55815a5b",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "107b9f18-0279-415e-95d2-f9530d5339e1",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

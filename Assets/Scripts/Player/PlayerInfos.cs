@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInventory))]
 [RequireComponent(typeof(PlayerInputSystem))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInfos : MonoBehaviour
 {
     [Header("Main infos")]

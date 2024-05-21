@@ -377,6 +377,18 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}
+--- !u!114 &1118049756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118049750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b72cd1d28a10546a1b1873a37b8034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4403987486771264288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,6 +511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1611475779650270423, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 1118049755}
     - target: {fileID: 2219060685180976245, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -550,6 +566,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8690522875517513036, guid: e815686220177d848a17f924ad2864b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1118049755}
+    - targetCorrespondingSourceObject: {fileID: 8690522875517513036, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1118049756}
   m_SourcePrefab: {fileID: 100100000, guid: e815686220177d848a17f924ad2864b7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

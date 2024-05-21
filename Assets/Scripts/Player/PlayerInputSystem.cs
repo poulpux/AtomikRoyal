@@ -14,8 +14,8 @@ public class PlayerInputSystem : MonoBehaviour
     //Toutes les variables interressantes
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
-    public Vector2 direction;
-    public bool isInteracting;
+    [HideInInspector] public Vector2 direction;
+    [HideInInspector] public bool isInteracting;
 
     class Button
     {
