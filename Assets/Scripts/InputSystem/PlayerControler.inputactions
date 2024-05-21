@@ -24,18 +24,81 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InventoryLeft",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "67b293b5-d052-4a9c-89aa-c6b6bc10ac00",
+                    "id": "50fc76dc-a272-4dcb-81c4-f84e9d02e65a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InventoryRight",
+                    "name": "OpenInventory",
                     "type": "Button",
-                    "id": "a1522feb-8821-44ac-92c9-a9ffe95729f4",
+                    "id": "0bf147c1-1498-41c2-a20b-ba1e3871898c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "08f5ebb4-ef92-40a7-b319-09c1e7553459",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory1",
+                    "type": "Button",
+                    "id": "8c03288d-4c62-4da1-8c17-d0be0f76a411",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory2",
+                    "type": "Button",
+                    "id": "0b9c1a41-396b-46e7-a1a7-69844c4ba9b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory3",
+                    "type": "Button",
+                    "id": "d8c0660d-623f-4cb6-ac13-2445bf9ca85e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory4",
+                    "type": "Button",
+                    "id": "21b232ec-9e8a-4fb5-852d-8e4072f206ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory5",
+                    "type": "Button",
+                    "id": "fe6cba70-12ef-43eb-8555-1e52c0c16cb8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory6",
+                    "type": "Button",
+                    "id": "848d9621-290c-42f7-9b95-17a8ba8d8309",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -111,45 +174,100 @@
                 },
                 {
                     "name": "",
-                    "id": "d3446283-b67f-484a-9a97-556664587bf8",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InventoryLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "993df2b0-16eb-46ea-adff-23e286d1b2f5",
-                    "path": "<Mouse>/backButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InventoryLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "48447273-49c5-49ee-9b1a-35c56dc5c34e",
+                    "id": "26f7eeab-9e9c-4ac9-a5ba-f85d77cd87ad",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryRight",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "35c99445-c695-4b9d-85fb-75563f9f4d2f",
-                    "path": "<Mouse>/forwardButton",
+                    "id": "77b50baa-716a-4f5b-9fce-fdfcf59a7d5b",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryRight",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff122325-9f9d-41b9-9c1d-cf743462df90",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cb9385f-ae0d-4ac3-8bf5-ca3de8aa9095",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a3d3ce7-f8b4-4955-ae90-913cffaff68b",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e7c7d9f-47c9-4a85-b54d-91b1c8ec22bc",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c940307-7574-490b-ae18-d17629cbec20",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc01c835-78d8-4f58-ba2f-2cb65fcad6f8",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3666453-bfe9-422f-8a9c-ebee7aa8580a",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory6",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
