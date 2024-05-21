@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInventory))]
+[RequireComponent(typeof(PlayerInputSystem))]
 public class PlayerInfos : MonoBehaviour
 {
     [Header("Main infos")]

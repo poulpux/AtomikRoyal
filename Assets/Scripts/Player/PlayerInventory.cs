@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -57,6 +58,7 @@ public class PlayerInventory : MonoBehaviour
     {
         Inventory.Add(usable);
         nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
+        GF.SetScripts<Usable>(usable.SO.script, gameObject);
     }
 
     private void EchangeInventoryItem(Usable usable, int nb)
