@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public int cursorPos, nbCoins;
-    List<Usable> Inventory;
-    List<int> nbInInventory;
-    List<string> cantThrowItem;
+    List<Usable> Inventory = new List<Usable>();
+    List<int> nbInInventory = new List<int>();
+    List<string> cantThrowItem = new List<string>();
     int nbCasesInventory;
     void Start()
     {
