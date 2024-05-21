@@ -13,6 +13,7 @@ public class PlayerInfos : MonoBehaviour
     public bool isDead;
     [SerializeField] private Collider2D colliderr;
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
+    private List<PlayerInfos> team;
 
     [Header("Stats")]
     [Space(10)]
@@ -40,6 +41,7 @@ public class PlayerInfos : MonoBehaviour
     void Start()
     {
         SetAllStats();
+        AddTeamate(this);
     }
 
     
@@ -83,5 +85,10 @@ public class PlayerInfos : MonoBehaviour
         cdwThrow = _StaticPlayer.GetValue(PLAYERSTATS.COOLDOWNTHROW, cdwThrow_Stat);
         throwForce = _StaticPlayer.GetValue(PLAYERSTATS.THROWFORCE, throwForce_Stat);
         range = _StaticPlayer.GetValue(PLAYERSTATS.RANGE, range_Stat);
+    }
+
+    public void AddTeamate(PlayerInfos playerInfos)
+    {
+        team.Add(playerInfos);
     }
 }

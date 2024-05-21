@@ -44,7 +44,7 @@ public abstract class RoundManager : Singleton<RoundManager>
         allPlayerAlife.Add(infos);
     }
 
-    private void RemovePlayer(PlayerInfos infos)
+    protected virtual void RemovePlayer(PlayerInfos infos)
     {
         allPlayerAlife.Remove(infos);
         if (EndCondition())
