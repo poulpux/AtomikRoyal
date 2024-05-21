@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInventory))]
@@ -11,6 +12,7 @@ public class PlayerInfos : MonoBehaviour
     public string pseudo;
     public int nbKill;
     public bool isDead;
+    List<string> isInvincibleList = new List<string>();
     [SerializeField] private Collider2D colliderr;
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
@@ -29,7 +31,6 @@ public class PlayerInfos : MonoBehaviour
     [Space(10)]
     public int spd_Stat;
     public int maxLife_Stat, exploSize_Stat, dmgCAC_Stat, dmgBomb_Stat, cdwThrow_Stat, throwForce_Stat, range_Stat;
-
     ////// Pourquoi pas ajouter les médailles ici aussi
     /// 
     /// 
@@ -41,7 +42,9 @@ public class PlayerInfos : MonoBehaviour
     void Start()
     {
         SetAllStats();
-        AddTeamate(this);
+        GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
+
+        //AddTeamate(this);
     }
 
     
@@ -62,6 +65,9 @@ public class PlayerInfos : MonoBehaviour
 
     public void DecreaseLife(int damage)
     {
+        if (isInvincibleList.Count>=1)
+            return;
+
         currentLife -= damage;
         if (currentLife <= 0)
         {
@@ -90,5 +96,10 @@ public class PlayerInfos : MonoBehaviour
     public void AddTeamate(PlayerInfos playerInfos)
     {
         team.Add(playerInfos);
+    }
+
+    private void EndOfTheGame()
+    {
+        isInvincibleList.Add("EndGame");
     }
 }
