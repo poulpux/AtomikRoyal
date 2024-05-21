@@ -10,14 +10,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInfos : MonoBehaviour
 {
+    [SerializeField] private Collider2D colliderr;
+    public Camera cam;
+
+    [SerializeField] bool activeAll;
     [Header("Main infos")]
     [Space(10)]
     public string pseudo;
     public int nbKill;
     public bool isDead;
     List<string> isInvincibleList = new List<string>();
-    [SerializeField] private Collider2D colliderr;
-    public Camera cam;
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
 
