@@ -22,7 +22,7 @@ public static class GF
         }
     }
 
-    static public void SetScripts<T>(TextAsset roundScript, GameObject target) where T : MonoBehaviour
+    static public T SetScripts<T>(TextAsset roundScript, GameObject target) where T : MonoBehaviour
     {
         System.Type t = System.Type.GetType(roundScript.name.Replace(".cs", ""));
         T component = target.AddComponent(t) as T;
@@ -30,7 +30,9 @@ public static class GF
         if (component == null)
         {
             Debug.LogError("Failed to add component of type: " + typeof(T).Name);
-            return;
+            return null;
         }
+
+        return component;
     }
 }
