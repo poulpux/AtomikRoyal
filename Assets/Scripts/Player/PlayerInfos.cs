@@ -41,7 +41,7 @@ public class PlayerInfos : MonoBehaviour
     void Start()
     {
         SetAllStats();
-        /*GameManager.Instance.GetGameRulesEvent.AddListener(() => */GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame/*)*/;
+        GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         //AddTeamate(this);
     }
