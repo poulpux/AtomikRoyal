@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -17,7 +20,6 @@ public class PlayerInventory : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     public void DontThrowItem(string nameOfInterdiction)
@@ -55,7 +57,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void AddInVoidCases(Usable usable, int nb)
     {
-        Inventory.Add(usable);
+        Inventory.Add(GF.SetScripts<Usable>(usable.SO.script, gameObject));
         nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
     }
 
@@ -71,6 +73,14 @@ public class PlayerInventory : MonoBehaviour
         Inventory[cursorPos].Use();
         nbInInventory[cursorPos]--;
         if (nbInInventory[cursorPos] <= 0)
-            Inventory[cursorPos] = null;
+        {
+            DestroyCurrentItem();
+        }
+    }
+
+    private void DestroyCurrentItem()
+    {
+        Destroy(Inventory[cursorPos]);
+        Inventory[cursorPos] = null;
     }
 }

@@ -29,7 +29,7 @@ public class StaticManager : MonoBehaviour
         chestSO = gameMod.chestSO;
 
         GameManager gameManager = FindObjectOfType<GameManager>();
-        GF.SetGameMod<RoundManager>(currentGameModeScript, gameManager.gameObject);
+        GF.SetScripts<RoundManager>(currentGameModeScript, gameManager.gameObject);
         gameManager.GetRound();
     }
 }
