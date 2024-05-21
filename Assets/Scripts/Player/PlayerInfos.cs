@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInventory))]
 public class PlayerInfos : MonoBehaviour
 {
     [Header("Main infos")]
