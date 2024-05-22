@@ -10,4 +10,8 @@ public class StaticPhysicsSO : ScriptableObject
     [Space(10)]
     public float onGroundDrag;
     public float onGroundImpulseForce;
+    
+    [Header("Chest")]
+    [Space(10)]
+    public float chestRadius;
 }

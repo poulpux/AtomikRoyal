@@ -114,7 +114,7 @@ public static class _StaticChest
 
     static private Vector2 RandomSpawnPos(Vector2 chestPos)
     {
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * 0.2f;//radius
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * _StaticPhysics.chestRadius;//radius
         Vector2 teleportPosition = new Vector2(randomDirection.x, randomDirection.y) + chestPos;
 
         return teleportPosition;
