@@ -13,12 +13,15 @@ public class PlayerInfos : MonoBehaviour
     [SerializeField] private Collider2D colliderr;
     public Camera cam;
 
-    [SerializeField] bool activeAll;
+    [SerializeField] bool seeAll;
+
     [Header("Main infos")]
     [Space(10)]
-    public string pseudo;
-    public int nbKill;
-    public bool isDead;
+    [ConditionalField("seeAll", true)] public string pseudo;
+
+    [ConditionalField("seeAll", true)] public int nbKill;
+    [ConditionalField("seeAll", true)] public bool isDead;
+
     List<string> isInvincibleList = new List<string>();
     [HideInInspector] public Action<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
@@ -26,17 +29,17 @@ public class PlayerInfos : MonoBehaviour
     [Header("Stats")]
     [Space(10)]
     //LIFE
-    public int currentLife;
-    public int maxLife;
+    [ConditionalField("seeAll", true)] public int currentLife;
+    [ConditionalField("seeAll", true)] public int maxLife;
     //DAMAGES
-    public int dmgCAC, dmgBomb;
+    [ConditionalField("seeAll", true)] public int dmgCAC, dmgBomb;
     //OTHERS
-    public float spd, cdwThrow, throwForce, range, exploSize;
+    [ConditionalField("seeAll", true)] public float spd, cdwThrow, throwForce, range, exploSize;
 
     [Header("Stats points")]
     [Space(10)]
-    public int spd_Stat;
-    public int maxLife_Stat, exploSize_Stat, dmgCAC_Stat, dmgBomb_Stat, cdwThrow_Stat, throwForce_Stat, range_Stat;
+    [ConditionalField("seeAll", true)] public int spd_Stat;
+    [ConditionalField("seeAll", true)] public int maxLife_Stat, exploSize_Stat, dmgCAC_Stat, dmgBomb_Stat, cdwThrow_Stat, throwForce_Stat, range_Stat;
     ////// Pourquoi pas ajouter les médailles ici aussi
     /// 
     /// 

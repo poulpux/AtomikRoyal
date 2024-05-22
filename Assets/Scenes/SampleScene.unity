@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b72cd1d28a10546a1b1873a37b8034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputSystem: {fileID: 0}
 --- !u!1001 &4403987486771264288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,6 +516,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 904896354936606816, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: seeAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904896354936606816, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: activeAll
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1611475779650270423, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: playerInput
       value: 
