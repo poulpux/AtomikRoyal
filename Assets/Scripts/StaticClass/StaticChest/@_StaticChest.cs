@@ -33,10 +33,12 @@ public static class _StaticChest
             objet.GetComponent<OnGroundItem>().Init(item);
             //TODO : faire spawn les items sur une position aléatoire
             objet.transform.position = position;
+            objet.GetComponent<OnGroundPhysics>().Init(position);
         }
 
         GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
         coins.GetComponent<OnGroundCoins>().nb = Random.Range(minGoldInChest, maxGoldInChest);
+        coins.GetComponent<OnGroundPhysics>().Init(position);
         //TODO : faire spawn les items sur une position aléatoire
         coins.transform.position = position;
     }
