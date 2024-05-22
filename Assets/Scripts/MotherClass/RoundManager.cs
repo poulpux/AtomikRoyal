@@ -40,7 +40,7 @@ public abstract class RoundManager : Singleton<RoundManager>
 
     public void AddPlayer(PlayerInfos infos)
     {
-        infos.isDeadEvent += RemovePlayer;
+        infos.isDeadEvent.AddListener((infos)=>RemovePlayer(infos));
         allPlayerAlife.Add(infos);
     }
 
