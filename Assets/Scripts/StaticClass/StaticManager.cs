@@ -10,12 +10,14 @@ public class StaticManager : MonoBehaviour
     [SerializeField] private StaticSkinsSO skinsSO;
     [SerializeField] private StaticPlayerSO playerSO;
     [SerializeField] private StaticCardsSO cardsSO;
+    [SerializeField] private StaticPhysicsSO physicsSO;
     private StaticChestSO chestSO;
 
     void Awake()
     {
         SetGameMod();
 
+        _StaticPhysics.Init(physicsSO);
         _StaticSkins.Init(skinsSO);
         _StaticChest.Init(chestSO);
         _StaticPlayer.Init(playerSO);

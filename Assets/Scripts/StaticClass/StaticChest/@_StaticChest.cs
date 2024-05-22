@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
+using UnityEngine.UIElements;
 
 public enum RARITY
 {
@@ -15,11 +15,10 @@ public static class _StaticChest
 {
     static public List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     static public List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
-    //static public int communLootPct, rareLootPct, legendaryLootPct;
     static public int minGoldInChest, maxGoldInChest, chestDropRate;
     static public List<Vector2> allChestPos = new List<Vector2>();
     static public GameObject objectOnGroundPrefab, coinsOnGroundPrefab;
-    static public int nbUtility, nbBomb;
+    static public int nbUtility, nbBomb, nbCoins;
 
     static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
@@ -28,19 +27,10 @@ public static class _StaticChest
         List<UsableSO> list = RandomUsable();
 
         foreach (var item in list)
-        {
-            GameObject objet = Object.Instantiate(objectOnGroundPrefab);
-            objet.GetComponent<OnGroundItem>().Init(item);
-            //TODO : faire spawn les items sur une position aléatoire
-            objet.transform.position = position;
-            objet.GetComponent<OnGroundPhysics>().Init(position);
-        }
+            InstantiateUsable(item, position);
 
-        GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
-        coins.GetComponent<OnGroundCoins>().nb = Random.Range(minGoldInChest, maxGoldInChest);
-        coins.GetComponent<OnGroundPhysics>().Init(position);
-        //TODO : faire spawn les items sur une position aléatoire
-        coins.transform.position = position;
+        for (int i = 0; i < nbCoins; i++)
+            InstantiateCoin(position);
     }
 
     static public void Init(StaticChestSO SO)
@@ -60,6 +50,7 @@ public static class _StaticChest
         coinsOnGroundPrefab = SO.coinsOnGroundPrefab;
         nbUtility = SO.nbUtilty;
         nbBomb = SO.nbBomb;
+        nbCoins = SO.nbCoins;
 
         communLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
         communLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
@@ -119,5 +110,29 @@ public static class _StaticChest
 
         int randomIndex = Random.Range(0, filteredList.Count);
         return filteredList[randomIndex];
+    }
+
+    static private Vector2 RandomSpawnPos(Vector2 chestPos)
+    {
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * 1f;
+        Vector2 teleportPosition = new Vector2(randomDirection.x, randomDirection.y) + chestPos;
+
+        return teleportPosition;
+    }
+
+    static private void InstantiateUsable(UsableSO model, Vector2 position)
+    {
+        GameObject objet = Object.Instantiate(objectOnGroundPrefab);
+        objet.GetComponent<OnGroundItem>().Init(model);
+        objet.transform.position = RandomSpawnPos(position);
+        objet.GetComponent<OnGroundPhysics>().Init(position);
+    }
+
+    static private void InstantiateCoin(Vector2 position)
+    {
+        GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
+        coins.GetComponent<OnGroundCoins>().nb = Random.Range(minGoldInChest, maxGoldInChest);
+        coins.transform.position = RandomSpawnPos(position);
+        coins.GetComponent<OnGroundPhysics>().Init(position);
     }
 }
