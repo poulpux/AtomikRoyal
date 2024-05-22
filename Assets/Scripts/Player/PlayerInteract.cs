@@ -24,16 +24,23 @@ public class PlayerInteract : MonoBehaviour
 
     private void Interact()
     {
-        //TODO : prendre le plus proche, etc.
         Collider2D[] tabColli = Physics2D.OverlapCircleAll(transform.position, _StaticPlayer.rangeInteractible);
         float minDistance = 100f;
-        GameObject nearestInteractible = null;
+        Interactible nearestInteractible = null;
         for (int i = 0; i < tabColli.Length; i++)
         {
             if (!(Vector2.Distance(tabColli[i].transform.position, transform.position) < minDistance))
                 return;
 
-            Interactible interactible = tabColli[i].GetComponent<Interactible>();
+            Interactible test = tabColli[i].GetComponent<Interactible>();
+            if (test != null)
+            {
+                minDistance = Vector2.Distance(tabColli[i].transform.position, transform.position);
+                nearestInteractible = test;
+            }
         }
+
+        if (nearestInteractible != null) 
+            nearestInteractible.Interact();
     }
 }
