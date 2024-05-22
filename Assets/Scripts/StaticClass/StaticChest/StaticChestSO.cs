@@ -28,4 +28,5 @@ public class StaticChestSO : ScriptableObject
     [Header("ObjectOnGround")]
     [Space(10)]
     public GameObject objectOnGroundPrefab;
+    public GameObject coinsOnGroundPrefab;
 }

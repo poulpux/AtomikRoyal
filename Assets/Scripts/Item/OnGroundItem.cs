@@ -6,14 +6,6 @@ public class OnGroundItem : MonoBehaviour
 {
     UsableSO SO;
     public int nb;
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void Init(UsableSO SO)
     {

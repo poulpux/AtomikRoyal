@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public enum RARITY
 {
@@ -17,7 +18,7 @@ public static class _StaticChest
     //static public int communLootPct, rareLootPct, legendaryLootPct;
     static public int minGoldInChest, maxGoldInChest, chestDropRate;
     static public List<Vector2> allChestPos = new List<Vector2>();
-    static public GameObject objectOnGroundPrefab;
+    static public GameObject objectOnGroundPrefab, coinsOnGroundPrefab;
     static public int nbUtility, nbBomb;
 
     static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
@@ -33,6 +34,11 @@ public static class _StaticChest
             //TODO : faire spawn les items sur une position aléatoire
             objet.transform.position = position;
         }
+
+        GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
+        coins.GetComponent<OnGroundCoins>().nb = Random.Range(minGoldInChest, maxGoldInChest);
+        //TODO : faire spawn les items sur une position aléatoire
+        coins.transform.position = position;
     }
 
     static public void Init(StaticChestSO SO)
@@ -49,6 +55,7 @@ public static class _StaticChest
         maxGoldInChest = SO.maxGoldInChest;
         chestDropRate = SO.chestDropRate;
         objectOnGroundPrefab = SO.objectOnGroundPrefab;
+        coinsOnGroundPrefab = SO.coinsOnGroundPrefab;
         nbUtility = SO.nbUtilty;
         nbBomb = SO.nbBomb;
 
