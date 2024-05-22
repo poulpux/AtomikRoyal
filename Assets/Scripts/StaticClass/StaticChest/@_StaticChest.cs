@@ -12,7 +12,7 @@ public enum RARITY
 
 public static class _StaticChest
 {
-    static public List<UsableSO> ToFindInChestUsable = new List<UsableSO>();
+    static public List<UtilitySO> ToFindInChestUtility = new List<UtilitySO>();
     static public List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
     //static public int communLootPct, rareLootPct, legendaryLootPct;
     static public int minGoldInChest, maxGoldInChest, chestDropRate;
@@ -26,7 +26,7 @@ public static class _StaticChest
     {
         //TODU
         GameObject objet = Object.Instantiate(objectOnGroundPrefab);
-        objet.GetComponent<OnGroundItem>().Init(ToFindInChestUsable[0]);
+        objet.GetComponent<OnGroundItem>().Init(ToFindInChestUtility[0]);
         objet.transform.position = position;
     }
 
@@ -38,7 +38,7 @@ public static class _StaticChest
             return;
         }
 
-        ToFindInChestUsable = SO.ToFindInChestUsable;
+        ToFindInChestUtility = SO.ToFindInChestUsable;
         ToFindInChestBomb = SO.ToFindInChestBomb;
         minGoldInChest = SO.minGoldInChest;
         maxGoldInChest = SO.maxGoldInChest;
@@ -47,13 +47,13 @@ public static class _StaticChest
         nbUsable = SO.nbUsable;
         nbBomb = SO.nbBomb;
 
-        legendaryLootPctUsable = ToFindInChestUsable.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
+        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
 
-        legendaryLootPctUsable = ToFindInChestUsable.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
+        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
         
-        legendaryLootPctUsable = ToFindInChestUsable.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
+        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
     }
 }

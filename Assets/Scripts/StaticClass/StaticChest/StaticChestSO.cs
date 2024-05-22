@@ -8,7 +8,7 @@ public class StaticChestSO : ScriptableObject
 {
     [Header("All usable")]
     [Space(10)]
-    public List<UsableSO> ToFindInChestUsable = new List<UsableSO>();
+    public List<UtilitySO> ToFindInChestUsable = new List<UtilitySO>();
     public List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
 
     [Header("Drop Pourcentage between 0 and 100")]

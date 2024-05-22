@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UsableDefault : Usable
+public class UtilityDefault : UtilityUsable
 {
     public override void Use()
     {

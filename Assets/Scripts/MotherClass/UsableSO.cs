@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UsableSO_filename", menuName = "SO/UsableSO")]
 public class UsableSO : ScriptableObjectWithScript
 {
     [Header("UsableSO")]
@@ -13,11 +11,4 @@ public class UsableSO : ScriptableObjectWithScript
     public int nbMaxInventory, nbRecolted;
     public Sprite sprite;
     public RARITY rarity;
-
-    private void OnValidate()
-    {
-        VerifType<Usable>();
-    }
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
