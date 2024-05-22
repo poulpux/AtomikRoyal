@@ -20,7 +20,7 @@ public static class _StaticChest
     static public GameObject objectOnGroundPrefab;
     static public int nbUsable, nbBomb;
 
-    static private int communLootPctUsable, rareLootPctUsable, legendaryLootPctUsable;
+    static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
     static public void OpenChest(Vector3 position)
     {
@@ -47,13 +47,13 @@ public static class _StaticChest
         nbUsable = SO.nbUsable;
         nbBomb = SO.nbBomb;
 
-        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
+        legendaryLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
 
-        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
+        legendaryLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.RARE) ? SO.rareLootPct : 0;
         
-        legendaryLootPctUsable = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
+        legendaryLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
     }
 }
