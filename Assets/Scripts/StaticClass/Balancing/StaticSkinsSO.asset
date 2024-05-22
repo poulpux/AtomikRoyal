@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allSkins:
   - {fileID: 11400000, guid: 5fdd4fecd69bee04ab5e9c19427c9af1, type: 2}
+  idleCldAnim: 0.5
+  walkCldAnim: 0.3

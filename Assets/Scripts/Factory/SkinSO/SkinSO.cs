@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkinsSO_filename", menuName = "SO/SkinsSO")]
 public class SkinSO : ScriptableObject
 {
-    public SpriteDirection idle1, idle2, walk1, walk2;
+    public List<SpriteDirection> idle = new List<SpriteDirection>(), walk = new List<SpriteDirection>();
 }
 
 [Serializable]

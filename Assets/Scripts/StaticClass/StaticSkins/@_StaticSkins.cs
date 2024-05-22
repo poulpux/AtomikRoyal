@@ -5,9 +5,12 @@ using UnityEngine;
 public static class _StaticSkins 
 {
     static public List<SkinSO> allSkins = new List<SkinSO>();
+    static public float idleCldAnim, walkCldAnim;
 
     static public void Init(StaticSkinsSO SO)
     {
         allSkins = SO.allSkins;
+        idleCldAnim = SO.idleCldAnim;
+        walkCldAnim = SO.walkCldAnim;
     }
 }
