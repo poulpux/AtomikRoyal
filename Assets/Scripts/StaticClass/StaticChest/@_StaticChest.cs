@@ -24,15 +24,15 @@ public static class _StaticChest
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
     static public void OpenChest(Vector3 position)
     {
-        //TODU
         List<UsableSO> list = RandomUsable();
+
         foreach (var item in list)
         {
-            Debug.Log(item);
+            GameObject objet = Object.Instantiate(objectOnGroundPrefab);
+            objet.GetComponent<OnGroundItem>().Init(item);
+            //TODO : faire spawn les items sur une position aléatoire
+            objet.transform.position = position;
         }
-        GameObject objet = Object.Instantiate(objectOnGroundPrefab);
-        objet.GetComponent<OnGroundItem>().Init(ToFindInChestUtility[0]);
-        objet.transform.position = position;
     }
 
     static public void Init(StaticChestSO SO)
