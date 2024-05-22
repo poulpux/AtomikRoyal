@@ -6,8 +6,12 @@ public abstract class Interactible : MonoBehaviour
 {
     [SerializeField] protected float timeToInteract;
     private float timer;
+
     public void Interact()
     {
+        StopCoroutine(ResetCoroutine());
+        StartCoroutine(ResetCoroutine());
+
         timer += Time.deltaTime;
         if(timer > timeToInteract )
         {
@@ -19,5 +23,11 @@ public abstract class Interactible : MonoBehaviour
     protected virtual void Use()
     {
 
+    }
+
+    private IEnumerator ResetCoroutine()
+    {
+        yield return new WaitForSeconds(_StaticPlayer.timeInteractibleBecomeZero);
+        timer = 0f;
     }
 }
