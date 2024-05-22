@@ -9,17 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d9246ad3c335847a94ffd8154581ad, type: 3}
-  m_Name: BombUsableSOTest
+  m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
+  m_Name: UtilitySO_2
   m_EditorClassIdentifier: 
-  script: {fileID: 11500000, guid: 9a3712da25b7b8449a1a89a61874e551, type: 3}
+  script: {fileID: 11500000, guid: fbd580c090117d84eb8b547f07854250, type: 3}
   nameUsable: 
   description: 
   nbMaxInventory: 0
   nbRecolted: 0
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  rarity: 0
-  baseDamage: 0
-  owner: {fileID: 0}
-  objectToInstantiate: {fileID: 0}
-  explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}
+  rarity: 1

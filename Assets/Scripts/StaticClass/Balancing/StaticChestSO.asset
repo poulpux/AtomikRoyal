@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bb5e2972d7eed4e8ba98425116c977, type: 3}
   m_Name: StaticChestSO
   m_EditorClassIdentifier: 
-  ToFindInChest:
-  - {fileID: 11400000, guid: 79af277f14c32654bb6f7bc7ab7e341a, type: 2}
-  - {fileID: 11400000, guid: 79af277f14c32654bb6f7bc7ab7e341a, type: 2}
-  - {fileID: 11400000, guid: 79af277f14c32654bb6f7bc7ab7e341a, type: 2}
+  ToFindInChestUtility:
+  - {fileID: 11400000, guid: c1ecaf926f2aa0c4381d004c903baea8, type: 2}
+  - {fileID: 11400000, guid: 7daaf09fb8a32a444bb35089555c2f51, type: 2}
+  - {fileID: 11400000, guid: d031883315ef2e444acead0c45faa77e, type: 2}
+  ToFindInChestBomb:
   - {fileID: 11400000, guid: 79af277f14c32654bb6f7bc7ab7e341a, type: 2}
   communLootPct: 60
-  rareLootPct: 30
+  rareLootPct: 20
   legendaryLootPct: 10
-  minGoldInChest: 0
-  maxGoldInChest: 0
+  chestDropRate: 0
+  minGoldInChest: 12
+  maxGoldInChest: 15
+  nbUtilty: 1
+  nbBomb: 1
+  allChestPos: []
+  objectOnGroundPrefab: {fileID: 101801510844995690, guid: 5583cd3737ef04c45b0278636b55fed4, type: 3}
+  coinsOnGroundPrefab: {fileID: 8372495750878818164, guid: ce71452952d335943a4c74cc3b15e91b, type: 3}
