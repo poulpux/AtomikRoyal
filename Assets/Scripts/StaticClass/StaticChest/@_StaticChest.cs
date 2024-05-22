@@ -15,10 +15,14 @@ public static class _StaticChest
     static public int communLootPct, rareLootPct, legendaryLootPct;
     static public int minGoldInChest, maxGoldInChest, chestDropRate;
     static public List<Vector2> allChestPos = new List<Vector2>();
+    static public GameObject objectOnGroundPrefab;
 
-    static void OpenChest(Vector3 position)
+    static public void OpenChest(Vector3 position)
     {
         //TODU
+        GameObject objet = Object.Instantiate(objectOnGroundPrefab);
+        objet.GetComponent<OnGroundItem>().Init(ToFindInChest[0]);
+        objet.transform.position = position;
     }
 
     static public void Init(StaticChestSO SO)
@@ -36,5 +40,6 @@ public static class _StaticChest
         minGoldInChest = SO.minGoldInChest;
         maxGoldInChest = SO.maxGoldInChest;
         chestDropRate = SO.chestDropRate;
+        objectOnGroundPrefab = SO.objectOnGroundPrefab;
     }
 }

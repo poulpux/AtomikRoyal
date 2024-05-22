@@ -11,7 +11,7 @@ public class UsableSO : ScriptableObjectWithScript
     public string nameUsable;
     public string description;
     public int nbMaxInventory, nbRecolted;
-    public SpriteRenderer sprite;
+    public Sprite sprite;
     public RARITY rarity;
 
     private void OnValidate()

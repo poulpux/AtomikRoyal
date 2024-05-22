@@ -23,4 +23,8 @@ public class StaticChestSO : ScriptableObject
     [Header("Positions")]
     [Space(10)]
     public List<Vector2> allChestPos = new List<Vector2>();
+    
+    [Header("ObjectOnGround")]
+    [Space(10)]
+    public GameObject objectOnGroundPrefab;
 }
