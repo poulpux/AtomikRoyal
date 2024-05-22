@@ -8,4 +8,10 @@ public class Test : MonoBehaviour
     {
         _StaticChest.OpenChest(transform.position);
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            _StaticChest.OpenChest(transform.position);
+    }
 }
