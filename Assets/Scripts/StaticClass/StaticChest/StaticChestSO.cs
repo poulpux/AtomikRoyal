@@ -19,7 +19,7 @@ public class StaticChestSO : ScriptableObject
     [Header("Nb earning")]
     [Space(10)]
     public int minGoldInChest;
-    public int maxGoldInChest, nbUtilty, nbBomb;
+    public int maxGoldInChest, nbUtilty, nbBomb, nbCoins;
 
     [Header("Positions")]
     [Space(10)]

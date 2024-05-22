@@ -26,6 +26,7 @@ MonoBehaviour:
   maxGoldInChest: 15
   nbUtilty: 1
   nbBomb: 1
+  nbCoins: 1
   allChestPos: []
   objectOnGroundPrefab: {fileID: 101801510844995690, guid: 5583cd3737ef04c45b0278636b55fed4, type: 3}
   coinsOnGroundPrefab: {fileID: 8372495750878818164, guid: ce71452952d335943a4c74cc3b15e91b, type: 3}

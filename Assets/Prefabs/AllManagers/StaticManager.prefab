@@ -48,3 +48,4 @@ MonoBehaviour:
   skinsSO: {fileID: 11400000, guid: 2f5a484469d77e346beafa16132a6dbf, type: 2}
   playerSO: {fileID: 11400000, guid: 8a4ffd57f844fe7478bd31f59ca6c249, type: 2}
   cardsSO: {fileID: 11400000, guid: 473d84610556a0642a89dd705dfd1172, type: 2}
+  physicsSO: {fileID: 11400000, guid: ffdb71cb653ccd643913b385a8d1b689, type: 2}
