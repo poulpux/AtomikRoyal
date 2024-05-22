@@ -103,10 +103,6 @@ public class PlayerVisuel : MonoBehaviour
         //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].northWest;
         //else if (currentSpriteDirection == 4)
         //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].north;
-
-        print("index anim : "+indexAnim);
-        print("CurrentSpriteDirection : "+currentSpriteDirection);
-        print("currentAnim : " + currentAnim);
     }
 
     private void SetDirection()

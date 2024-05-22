@@ -58,6 +58,7 @@ public static class _StaticPlayer
         cdwThrow = SO.cdwThrow;
         throwForce = SO.throwForce;
         range = SO.range;
+        rangeInteractible = SO.rangeInteractible;
         timeInteractibleBecomeZero = SO.timeInteractibleBecomeZero;
     }
 
