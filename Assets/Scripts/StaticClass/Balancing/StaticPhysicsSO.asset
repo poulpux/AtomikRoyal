@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onGroundDrag: 3
   onGroundImpulseForce: 1.5
+  chestRadius: 0.2

@@ -3,16 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInventory))]
 [RequireComponent(typeof(PlayerInputSystem))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
     public Camera cam;
 
+    public Rigidbody2D rb;
+
+    [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     [SerializeField] bool seeAll;
 
     [Header("Main infos")]
@@ -23,7 +31,7 @@ public class PlayerInfos : MonoBehaviour
     [ConditionalField("seeAll", true)] public bool isDead;
 
     List<string> isInvincibleList = new List<string>();
-    [HideInInspector] public Action<PlayerInfos> isDeadEvent;
+    [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
 
     [Header("Stats")]
@@ -40,6 +48,8 @@ public class PlayerInfos : MonoBehaviour
     [Space(10)]
     [ConditionalField("seeAll", true)] public int spd_Stat;
     [ConditionalField("seeAll", true)] public int maxLife_Stat, exploSize_Stat, dmgCAC_Stat, dmgBomb_Stat, cdwThrow_Stat, throwForce_Stat, range_Stat;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     ////// Pourquoi pas ajouter les médailles ici aussi
     /// 
     /// 
@@ -50,6 +60,7 @@ public class PlayerInfos : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         SetAllStats();
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
@@ -64,6 +75,8 @@ public class PlayerInfos : MonoBehaviour
 
     public void UpgradeStat(PLAYERSTATS stats)
     {
+        if (isDead)
+            return;
         //TODO
     }
 
@@ -100,6 +113,8 @@ public class PlayerInfos : MonoBehaviour
         cdwThrow = _StaticPlayer.GetValue(PLAYERSTATS.COOLDOWNTHROW, cdwThrow_Stat);
         throwForce = _StaticPlayer.GetValue(PLAYERSTATS.THROWFORCE, throwForce_Stat);
         range = _StaticPlayer.GetValue(PLAYERSTATS.RANGE, range_Stat);
+
+        UpdateStatsEvent.Invoke();
     }
 
     public void AddTeamate(PlayerInfos playerInfos)
