@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UtilitySO_filename", menuName = "SO/UtilitySO")]
-public class UtilitySO : UsableSO
+public class UtilityUsableSO : UsableSO
 {
     private void OnValidate()
     {

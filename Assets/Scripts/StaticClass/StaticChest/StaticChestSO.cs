@@ -8,7 +8,7 @@ public class StaticChestSO : ScriptableObject
 {
     [Header("All usable")]
     [Space(10)]
-    public List<UtilitySO> ToFindInChestUsable = new List<UtilitySO>();
+    public List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     public List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
 
     [Header("Drop Pourcentage between 0 and 100")]
@@ -19,7 +19,7 @@ public class StaticChestSO : ScriptableObject
     [Header("Nb earning")]
     [Space(10)]
     public int minGoldInChest;
-    public int maxGoldInChest, nbUsable, nbBomb;
+    public int maxGoldInChest, nbUtilty, nbBomb;
 
     [Header("Positions")]
     [Space(10)]
