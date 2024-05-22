@@ -11,12 +11,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
     public Camera cam;
 
-    public Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
 
@@ -61,6 +63,8 @@ public class PlayerInfos : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         SetAllStats();
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
