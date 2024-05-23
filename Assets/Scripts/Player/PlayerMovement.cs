@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     PlayerInfos infos;
 
     public List<string> canMove = new List<string>();
-    [SerializeField] private float glueSpdModifier, waterSpdModifier, deadSpd;
     private float currentSpd, currentSpdModifier;
 
     void Start()
@@ -18,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpdModifier = 1f;
 
         infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.spd);
-        infos.isDeadEvent.AddListener((infos) => currentSpd = deadSpd);
+        infos.isDeadEvent.AddListener((infos) => currentSpd = _StaticPlayer.deadSpd);
     }
 
     void Update()

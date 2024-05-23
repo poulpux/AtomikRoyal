@@ -34,6 +34,11 @@ public static class _StaticPlayer
     [Space(10)]
     static public float rangeInteractible, timeInteractibleBecomeZero, scrollCdwCursor;
 
+    [Header("Speed")]
+    [Space(10)]
+    static public float glueSpdModifier;
+    static public float waterSpdModifier, deadSpd;
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static public int GetPrice(PLAYERSTATS stat, int currentNbUpgrade)
@@ -61,6 +66,9 @@ public static class _StaticPlayer
         rangeInteractible = SO.rangeInteractible;
         timeInteractibleBecomeZero = SO.timeInteractibleBecomeZero;
         scrollCdwCursor = SO.scrollCdwCursor;
+        glueSpdModifier = SO.glueSpdModifier;
+        waterSpdModifier = SO.waterSpdModifier;
+        deadSpd = SO.deadSpd;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)
