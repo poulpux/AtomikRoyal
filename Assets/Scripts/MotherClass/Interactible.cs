@@ -9,6 +9,7 @@ public class Interactible : MonoBehaviour
 
     public void Interact()
     {
+        print("interact : " + name);
         StopCoroutine(ResetCoroutine());
         StartCoroutine(ResetCoroutine());
 
