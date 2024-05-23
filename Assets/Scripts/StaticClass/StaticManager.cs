@@ -26,10 +26,12 @@ public class StaticManager : MonoBehaviour
 
     private void SetGameMod()
     {
+        //Get chestSO
         RoundRulesSO gameMod = roundsSO.allGameMods[PlayerPrefs.GetInt("gamemod")];
         TextAsset currentGameModeScript = gameMod.script;
         chestSO = gameMod.chestSO;
 
+        //Set gameManager
         GameManager gameManager = FindObjectOfType<GameManager>();
         GF.SetScripts<RoundManager>(currentGameModeScript, gameManager.gameObject);
         gameManager.GetRound();
