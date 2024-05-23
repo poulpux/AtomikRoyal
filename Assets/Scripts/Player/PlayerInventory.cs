@@ -20,7 +20,6 @@ public class PlayerInventory : MonoBehaviour
     }
     void Update()
     {
-        print(cursorPos);
     }
 
     public void DontThrowItem(string nameOfInterdiction)
