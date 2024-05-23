@@ -6,15 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInfos infos;
-    PlayerInputSystem inputSystem;
 
     public List<string> canMove = new List<string>();
     [SerializeField] private float glueSpdModifier, waterSpdModifier, deadSpd;
     private float currentSpd, currentSpdModifier;
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
-        inputSystem = GetComponent<PlayerInputSystem>();
 
         currentSpdModifier = 1f;
 
@@ -29,6 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        infos.rb.velocity = inputSystem.direction * currentSpd * currentSpdModifier;
+        infos.rb.velocity = infos.inputSystem.direction * currentSpd * currentSpdModifier;
     }
 }

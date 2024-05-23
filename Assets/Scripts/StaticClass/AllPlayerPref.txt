@@ -1,1 +1,2 @@
 GameMods depuis le menu : gamemod
+Skin depuis le menu : skin

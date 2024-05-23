@@ -9,4 +9,6 @@ public class StaticSkinsSO : ScriptableObject
     [Header("All skins")]
     [Space(10)]
     public List<SkinSO> allSkins = new List<SkinSO>();
+
+    public float idleCldAnim, walkCldAnim;
 }

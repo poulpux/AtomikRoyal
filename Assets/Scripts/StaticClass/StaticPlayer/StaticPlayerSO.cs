@@ -20,6 +20,7 @@ public class StaticPlayerSO : ScriptableObject
     [Header("GeneralValues")]
     [Space(10)]
     public float rangeInteractible;
+    public float timeInteractibleBecomeZero;
 
     [Serializable]
     public class UpgradeCurves

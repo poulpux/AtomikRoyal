@@ -12,26 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e235ccdbff394479937150fb41b75a, type: 3}
   m_Name: SkinsSOTest
   m_EditorClassIdentifier: 
-  idle1:
-    south: {fileID: 0}
+  idle:
+  - south: {fileID: 0}
     south_west: {fileID: 0}
     west: {fileID: 0}
     northWest: {fileID: 0}
     north: {fileID: 0}
-  idle2:
-    south: {fileID: 0}
+  - south: {fileID: 0}
     south_west: {fileID: 0}
     west: {fileID: 0}
     northWest: {fileID: 0}
     north: {fileID: 0}
-  walk1:
-    south: {fileID: 0}
+  walk:
+  - south: {fileID: 0}
     south_west: {fileID: 0}
     west: {fileID: 0}
     northWest: {fileID: 0}
     north: {fileID: 0}
-  walk2:
-    south: {fileID: 0}
+  - south: {fileID: 0}
     south_west: {fileID: 0}
     west: {fileID: 0}
     northWest: {fileID: 0}

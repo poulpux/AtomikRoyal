@@ -12,11 +12,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(PlayerInteract))]
+[RequireComponent(typeof(PlayerVisuel))]
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
     public Camera cam;
 
+    [HideInInspector] public PlayerInputSystem inputSystem;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
@@ -62,6 +65,7 @@ public class PlayerInfos : MonoBehaviour
 
     void Start()
     {
+        inputSystem = GetComponent<PlayerInputSystem>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -69,12 +73,6 @@ public class PlayerInfos : MonoBehaviour
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         //AddTeamate(this);
-    }
-
-    
-    void Update()
-    {
-        
     }
 
     public void UpgradeStat(PLAYERSTATS stats)

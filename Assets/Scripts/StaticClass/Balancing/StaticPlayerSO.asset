@@ -102,4 +102,5 @@ MonoBehaviour:
       m_RotationOrder: 4
     startValue: 0
     statsParLv: 0
-  rangeInteractible: 0
+  rangeInteractible: 2
+  timeInteractibleBecomeZero: 2
