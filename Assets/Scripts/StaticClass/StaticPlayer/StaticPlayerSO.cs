@@ -30,6 +30,8 @@ public class StaticPlayerSO : ScriptableObject
     [Space(10)]
     public float glueSpdModifier;
     public float waterSpdModifier, deadSpd;
+    public AnimationCurve beginEndMoveCurve;
+    public float beginEndMoveCurveDuration = 0.1f;
 
     [Serializable]
     public class UpgradeCurves

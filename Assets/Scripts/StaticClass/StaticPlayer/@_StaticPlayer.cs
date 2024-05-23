@@ -38,6 +38,8 @@ public static class _StaticPlayer
     [Space(10)]
     static public float glueSpdModifier;
     static public float waterSpdModifier, deadSpd;
+    static public AnimationCurve beginEndMoveCurve;
+    static public float beginEndMoveCurveDuration = 0.1f;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -69,6 +71,9 @@ public static class _StaticPlayer
         glueSpdModifier = SO.glueSpdModifier;
         waterSpdModifier = SO.waterSpdModifier;
         deadSpd = SO.deadSpd;
+
+        beginEndMoveCurve = SO.beginEndMoveCurve;
+        beginEndMoveCurveDuration = SO.beginEndMoveCurveDuration;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)

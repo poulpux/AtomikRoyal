@@ -8,18 +8,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerInfos infos;
 
     public List<string> canMove = new List<string>();
-    private float currentSpd, currentSpdModifier;
-
-
-    public AnimationCurve curve;
-    public float curveDuration = 0.1f;
-    public float helpDir = 0.3f;
-    private float timerCurve;
-    private Vector2 lastDirection;
-
-    private Vector2 direction;
-    private Vector2 saveDir;
+    private float currentSpd, currentSpdModifier, timerCurve;
+    private Vector2 lastDirection, saveDir;
     private bool twoActiv;
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -37,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void Move()
     {
         if (canMove.Count != 0)
@@ -45,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         float currentSpd = this.currentSpd;
         PlayCurve();
 
-        currentSpd = curve.Evaluate(timerCurve * (1f/curveDuration)) * currentSpd;
+        currentSpd = _StaticPlayer.beginEndMoveCurve.Evaluate(timerCurve * (1f/_StaticPlayer.beginEndMoveCurveDuration)) * currentSpd;
         infos.rb.velocity = lastDirection * currentSpd * currentSpdModifier;
     }
 
@@ -75,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         twoActiv = true;
         float timer = 0f;
 
-        while (timer < 0.2f)
+        while (timer < 0.3f)
         {
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -89,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (infos.inputSystem.direction != Vector2.zero)
         {
-            if (timerCurve < curveDuration)
+            if (timerCurve < _StaticPlayer.beginEndMoveCurveDuration)
                 timerCurve += Time.deltaTime;
         }
         else
