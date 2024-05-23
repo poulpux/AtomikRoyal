@@ -16,11 +16,11 @@ public class PlayerInventory : MonoBehaviour
     {
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
-        infos.inputSystem.mouseScrollEvent.AddListener((side) => print("passe ! " + side));
+        infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
     }
     void Update()
     {
-        
+        print(cursorPos);
     }
 
     public void DontThrowItem(string nameOfInterdiction)
@@ -46,6 +46,11 @@ public class PlayerInventory : MonoBehaviour
     private void SetCursorInventory(int nb)
     {
         cursorPos = nb;
+    }
+
+    private void CursorMoveLogic(int sub)
+    {
+        cursorPos = (cursorPos + sub) % 6 + ((cursorPos + sub) % 6 < 0f ? 6 : 0);
     }
 
     private void CompleteACase(Usable usable, int nb)
