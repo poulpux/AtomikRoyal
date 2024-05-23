@@ -32,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        CalculateDirection();
+        Help2DirectionWhenStop();
+        LastDirection();
         Move();
     }
 
@@ -42,37 +43,30 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         float currentSpd = this.currentSpd;
-
-        if (infos.inputSystem.direction != Vector2.zero)
-        {
-            if (timerCurve < curveDuration)
-                timerCurve += Time.deltaTime;
-        }
-        else
-            timerCurve = timerCurve - Time.deltaTime > 0f ? timerCurve - Time.deltaTime : 0f;
+        PlayCurve();
 
         currentSpd = curve.Evaluate(timerCurve * (1f/curveDuration)) * currentSpd;
-
-        if (infos.inputSystem.direction != Vector2.zero)
-            lastDirection = infos.inputSystem.direction;
-
         infos.rb.velocity = lastDirection * currentSpd * currentSpdModifier;
     }
 
-    private void CalculateDirection()
+    private void LastDirection()
+    {
+        if (infos.inputSystem.direction != Vector2.zero)
+            lastDirection = infos.inputSystem.direction;
+        else if (twoActiv)
+        {
+            twoActiv = false;
+            lastDirection = saveDir;
+        }
+    }
+
+    private void Help2DirectionWhenStop()
     {
         if (infos.inputSystem.direction.y != 0f && infos.inputSystem.direction.x != 0f)
         {
             StopCoroutine(PlaySaveCoroutine());
             StartCoroutine(PlaySaveCoroutine());
             saveDir = infos.inputSystem.direction;
-        }
-
-        if (infos.inputSystem.direction == Vector2.zero && twoActiv)
-        {
-            twoActiv = false;
-            print("change dir");
-            lastDirection = saveDir;
         }
     }
 
@@ -89,5 +83,16 @@ public class PlayerMovement : MonoBehaviour
         twoActiv = false;
 
         yield break;
+    }
+
+    private void PlayCurve()
+    {
+        if (infos.inputSystem.direction != Vector2.zero)
+        {
+            if (timerCurve < curveDuration)
+                timerCurve += Time.deltaTime;
+        }
+        else
+            timerCurve = timerCurve - Time.deltaTime > 0f ? timerCurve - Time.deltaTime : 0f;
     }
 }
