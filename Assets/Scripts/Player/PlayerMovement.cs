@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AnimationCurve curve;
     public float curveDuration = 0.1f;
-    public float helpDir = 0.2f;
+    public float helpDir = 0.3f;
     private float timerCurve;
     private Vector2 lastDirection;
 
