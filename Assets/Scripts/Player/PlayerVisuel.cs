@@ -42,10 +42,6 @@ public class PlayerVisuel : MonoBehaviour
         SetDirection();
         SetSpriteDirection();
         AnimateSprite();
-
-        print("currentSpriteDirection : " + currentSpriteDirection);
-        print("indexAnim : " + indexAnim);
-        print("currentAnim : " + currentAnim);
     }
 
     private void SetSpriteDirection()

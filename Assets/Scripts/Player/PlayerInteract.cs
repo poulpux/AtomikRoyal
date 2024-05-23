@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     PlayerInfos infos;
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -18,29 +19,29 @@ public class PlayerInteract : MonoBehaviour
 
     private void TryInteract()
     {
-        if(infos.inputSystem.isInteracting)
+        if (infos.inputSystem.isInteracting)
             Interact();
     }
 
     private void Interact()
     {
         Collider2D[] tabColli = Physics2D.OverlapCircleAll(transform.position, _StaticPlayer.rangeInteractible);
-        float minDistance = 100f;
+        float minDistance = 63f;
         Interactible nearestInteractible = null;
+
         for (int i = 0; i < tabColli.Length; i++)
         {
-            if (!(Vector2.Distance(tabColli[i].transform.position, transform.position) < minDistance))
-                return;
-
+            float distance = Vector2.Distance(tabColli[i].transform.position, transform.position);
             Interactible test = tabColli[i].GetComponent<Interactible>();
-            if (test != null)
+
+            if (test != null && distance < minDistance)
             {
-                minDistance = Vector2.Distance(tabColli[i].transform.position, transform.position);
+                minDistance = distance;
                 nearestInteractible = test;
             }
         }
 
-        if (nearestInteractible != null) 
+        if (nearestInteractible != null)
             nearestInteractible.Interact();
     }
 }
