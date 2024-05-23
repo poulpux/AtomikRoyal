@@ -9,7 +9,6 @@ public class Interactible : MonoBehaviour
 
     public void Interact()
     {
-        print(gameObject);
         StopCoroutine(ResetCoroutine());
         StartCoroutine(ResetCoroutine());
 
