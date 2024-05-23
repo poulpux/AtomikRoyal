@@ -32,7 +32,7 @@ public static class _StaticPlayer
 
     [Header("GeneralValues")]
     [Space(10)]
-    static public float rangeInteractible, timeInteractibleBecomeZero;
+    static public float rangeInteractible, timeInteractibleBecomeZero, scrollCdwCursor;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -60,6 +60,7 @@ public static class _StaticPlayer
         range = SO.range;
         rangeInteractible = SO.rangeInteractible;
         timeInteractibleBecomeZero = SO.timeInteractibleBecomeZero;
+        scrollCdwCursor = SO.scrollCdwCursor;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)
