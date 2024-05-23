@@ -63,12 +63,12 @@ public class PlayerInfos : MonoBehaviour
     /// 
     //////
 
+    private void Awake()
+    {
+        InstantiateAll();
+    }
     void Start()
     {
-        inputSystem = GetComponent<PlayerInputSystem>();
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         SetAllStats();
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
@@ -127,5 +127,12 @@ public class PlayerInfos : MonoBehaviour
     private void EndOfTheGame()
     {
         isInvincibleList.Add("EndGame");
+    }
+
+    private void InstantiateAll()
+    {
+        inputSystem = GetComponent<PlayerInputSystem>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

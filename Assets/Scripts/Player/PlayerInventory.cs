@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerInventory : MonoBehaviour
 {
+    PlayerInfos infos;
     public int cursorPos, nbCoins;
     List<Usable> Inventory = new List<Usable>();
     List<int> nbInInventory = new List<int>();
@@ -15,9 +14,10 @@ public class PlayerInventory : MonoBehaviour
     int nbCasesInventory;
     void Start()
     {
-        
+        infos = GetComponent<PlayerInfos>();
+        SetCursorEvent();
+        infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
     }
-
     void Update()
     {
     }
@@ -40,6 +40,16 @@ public class PlayerInventory : MonoBehaviour
             AddInVoidCases(usable, usable.SO.nbRecolted /* remplacerParLeNbDobjetsAuSOl*/);
         else
             EchangeInventoryItem(usable, usable.SO.nbRecolted/* remplacerParLeNbDobjetsAuSOl*/);
+    }
+
+    private void SetCursorInventory(int nb)
+    {
+        cursorPos = nb;
+    }
+
+    private void CursorMoveLogic(int sub)
+    {
+        cursorPos = (cursorPos + sub) % 6 + ((cursorPos + sub) % 6 < 0f ? 6 : 0);
     }
 
     private void CompleteACase(Usable usable, int nb)
@@ -82,5 +92,14 @@ public class PlayerInventory : MonoBehaviour
     {
         Destroy(Inventory[cursorPos]);
         Inventory[cursorPos] = null;
+    }
+
+    private void SetCursorEvent()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            int index = i;
+            infos.inputSystem.inventoryEvent[index].AddListener(() => SetCursorInventory(index));
+        }
     }
 }

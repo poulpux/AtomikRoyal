@@ -17,10 +17,19 @@ public class StaticPlayerSO : ScriptableObject
     public UpgradeCurves throwForce;
     public UpgradeCurves range;
 
-    [Header("GeneralValues")]
+    [Header("Interact")]
     [Space(10)]
     public float rangeInteractible;
     public float timeInteractibleBecomeZero;
+
+    [Header("Control")]
+    [Space(10)]
+    public float scrollCdwCursor;
+    
+    [Header("Speed")]
+    [Space(10)]
+    public float glueSpdModifier;
+    public float waterSpdModifier, deadSpd;
 
     [Serializable]
     public class UpgradeCurves

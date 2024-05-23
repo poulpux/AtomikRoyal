@@ -13,10 +13,11 @@ public class PlayerInputSystem : MonoBehaviour
 {
     //Toutes les variables interressantes
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
     [HideInInspector] public Vector2 direction, mousePos;
-    [HideInInspector] public float scrollMouse;
     [HideInInspector] public bool isInteracting;
+    private float scrollMouse, scrollMouseTimer;
     Camera cam;
     class Button
     {
@@ -43,6 +44,23 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void Update()
     {
+        ThrowScrollMouseEvent();
+    }
+
+    private void ThrowScrollMouseEvent()
+    {
+        if (scrollMouse == 0)
+            return;
+
+        scrollMouseTimer = scrollMouse > 0f && scrollMouseTimer >= 0f? scrollMouseTimer + Time.fixedDeltaTime : 
+                           scrollMouse > 0f ? 0f : 
+                           scrollMouse < 0f && scrollMouseTimer <= 0f ? scrollMouseTimer - Time.fixedDeltaTime : 0f;
+
+        if(Mathf.Abs( scrollMouseTimer) > _StaticPlayer.scrollCdwCursor)
+        {
+            scrollMouseTimer = 0;
+            mouseScrollEvent.Invoke(scrollMouse > 0 ? 1 : -1);
+        }
     }
 
     private void OnEnable()
@@ -303,8 +321,6 @@ public class PlayerInputSystem : MonoBehaviour
         else if (index == 2)
             return isOpeningMapEvent;
         else
-        {
             return inventoryEvent[index - 3];
-        }
     }
 }

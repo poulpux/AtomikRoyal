@@ -552,6 +552,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: helpDir
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: curve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3742026689667410040, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_Camera
       value: 
