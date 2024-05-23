@@ -42,25 +42,37 @@ public class PlayerVisuel : MonoBehaviour
         SetDirection();
         SetSpriteDirection();
         AnimateSprite();
+
+        print("currentSpriteDirection : " + currentSpriteDirection);
+        print("indexAnim : " + indexAnim);
+        print("currentAnim : " + currentAnim);
     }
 
     private void SetSpriteDirection()
     {
-        if (direction == DIRECTION.SOUTH)
-            currentSpriteDirection = 0;
-        else if(direction == DIRECTION.SOUTH_WEST || direction == DIRECTION.SOUTH_EAST)
-            currentSpriteDirection = 1;
-        else if (direction == DIRECTION.WEST || direction == DIRECTION.EAST)
-            currentSpriteDirection = 2;
-        else if (direction == DIRECTION.NORTH_WEST || direction == DIRECTION.NORTH_EAST)
-            currentSpriteDirection = 3;
-        else if(direction == DIRECTION.NORTH)
-            currentSpriteDirection = 4;
+        switch (direction)
+        {
+            case DIRECTION.SOUTH:
+                currentSpriteDirection = 0;
+                break;
+            case DIRECTION.SOUTH_WEST:
+            case DIRECTION.SOUTH_EAST:
+                currentSpriteDirection = 1;
+                break;
+            case DIRECTION.WEST:
+            case DIRECTION.EAST:
+                currentSpriteDirection = 2;
+                break;
+            case DIRECTION.NORTH_WEST:
+            case DIRECTION.NORTH_EAST:
+                currentSpriteDirection = 3;
+                break;
+            case DIRECTION.NORTH:
+                currentSpriteDirection = 4;
+                break;
+        }
 
-        if(direction == DIRECTION.SOUTH_EAST || direction == DIRECTION.EAST || direction == DIRECTION.NORTH_EAST)
-            infos.spriteRenderer.flipX = true;
-        else
-            infos.spriteRenderer.flipX = false;
+        infos.spriteRenderer.flipX = direction == DIRECTION.SOUTH_EAST || direction == DIRECTION.EAST || direction == DIRECTION.NORTH_EAST;
     }
 
     private void AnimateSprite()
@@ -69,10 +81,7 @@ public class PlayerVisuel : MonoBehaviour
 
         STATEANIM lastAnim = currentAnim;
 
-        if (infos.inputSystem.direction == Vector2.zero)
-            currentAnim = STATEANIM.IDLE;
-        else
-            currentAnim = STATEANIM.WALK;
+        currentAnim = infos.inputSystem.direction == Vector2.zero ? STATEANIM.IDLE : STATEANIM.WALK;
 
         if (lastAnim != currentAnim)
         {
@@ -80,57 +89,35 @@ public class PlayerVisuel : MonoBehaviour
             timerAnim = 0f;
         }
 
-        if(currentAnim == STATEANIM.IDLE && timerAnim > _StaticSkins.idleCldAnim)
+        float animCooldown = currentAnim == STATEANIM.IDLE ? _StaticSkins.idleCldAnim : _StaticSkins.walkCldAnim;
+        if (timerAnim > animCooldown)
         {
             timerAnim = 0f;
-            indexAnim = indexAnim + 1 == 3 ? 0 : indexAnim + 1;
-        }
-        else if(currentAnim == STATEANIM.WALK && timerAnim > _StaticSkins.walkCldAnim)
-        {
-            timerAnim = 0f;
-            indexAnim = indexAnim + 1 == 3 ? 0 : indexAnim + 1;
+            indexAnim = (indexAnim + 1) % 3;
         }
 
-        //En attendant
-
-        //if (currentSpriteDirection == 0)
-        //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].south;
-        //else if(currentSpriteDirection == 1)
-        //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].south_west;
-        //else if (currentSpriteDirection == 2)
-        //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].west;
-        //else if (currentSpriteDirection == 3)
-        //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].northWest;
-        //else if (currentSpriteDirection == 4)
-        //    infos.spriteRenderer.sprite = currentSkin.idle[indexAnim].north;
+        // En attendant
+        // infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
     }
 
     private void SetDirection()
     {
-        if(infos.inputSystem.direction.x > 0)
+        Vector2 directionInput = infos.inputSystem.direction;
+
+        if (directionInput.x > 0)
         {
-            if (infos.inputSystem.direction.y > 0)
-                direction = DIRECTION.NORTH_EAST;
-            else if (infos.inputSystem.direction.y < 0)
-                direction = DIRECTION.SOUTH_EAST;
-            else
-                direction = DIRECTION.EAST;
+            direction = directionInput.y > 0 ? DIRECTION.NORTH_EAST :
+                        directionInput.y < 0 ? DIRECTION.SOUTH_EAST : DIRECTION.EAST;
         }
-        else if(infos.inputSystem.direction.x < 0)
+        else if (directionInput.x < 0)
         {
-            if (infos.inputSystem.direction.y > 0)
-                direction = DIRECTION.NORTH_WEST;
-            else if (infos.inputSystem.direction.y < 0)
-                direction = DIRECTION.SOUTH_WEST;
-            else
-                direction = DIRECTION.WEST;
+            direction = directionInput.y > 0 ? DIRECTION.NORTH_WEST :
+                        directionInput.y < 0 ? DIRECTION.SOUTH_WEST : DIRECTION.WEST;
         }
         else
         {
-            if (infos.inputSystem.direction.y > 0)
-                direction = DIRECTION.NORTH;
-            else if((infos.inputSystem.direction.y < 0))
-                direction = DIRECTION.SOUTH;
+            direction = directionInput.y > 0 ? DIRECTION.NORTH :
+                        directionInput.y < 0 ? DIRECTION.SOUTH : direction;
         }
     }
 }
