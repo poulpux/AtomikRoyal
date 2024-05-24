@@ -22,6 +22,8 @@ public class PlayerInventory : MonoBehaviour
     {
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     public void DontThrowItem(string nameOfInterdiction)
     {
         cantThrowItem.Add(nameOfInterdiction);
@@ -41,6 +43,15 @@ public class PlayerInventory : MonoBehaviour
         else
             EchangeInventoryItem(usable, usable.SO.nbRecolted/* remplacerParLeNbDobjetsAuSOl*/);
     }
+    public void UseAnItem()
+    {
+        Inventory[cursorPos].Use();
+        nbInInventory[cursorPos]--;
+        if (nbInInventory[cursorPos] <= 0)
+            DestroyCurrentItem();
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void SetCursorInventory(int nb)
     {
@@ -78,15 +89,6 @@ public class PlayerInventory : MonoBehaviour
         //Jouer la logique pour poser l'autre object au sol
     }
 
-    public void UseAnItem()
-    {
-        Inventory[cursorPos].Use();
-        nbInInventory[cursorPos]--;
-        if (nbInInventory[cursorPos] <= 0)
-        {
-            DestroyCurrentItem();
-        }
-    }
 
     private void DestroyCurrentItem()
     {

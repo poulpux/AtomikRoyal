@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public List<string> canMove = new List<string>();
     private float currentSpd, currentSpdModifier, timerCurve;
     private Vector2 lastDirection, saveDir;
-    private bool twoActiv;
+    private bool twoActiv, smoothRota;
 
     void Start()
     {
@@ -45,13 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void LastDirection()
     {
-        if (infos.inputSystem.direction != Vector2.zero)
+        if (infos.inputSystem.direction != Vector2.zero && !twoActiv)//Pour quand tu touches pas le clavier
             lastDirection = infos.inputSystem.direction;
-        else if (twoActiv)
-        {
-            twoActiv = false;
+        else if (smoothRota) //Pour pas faire d'accout quand tu passes de 2 à 1 directions
             lastDirection = saveDir;
-        }
     }
 
     private void Help2DirectionWhenStop()
@@ -71,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         while (timer < 0.3f)
         {
+            smoothRota = timer < 0.1f;
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
