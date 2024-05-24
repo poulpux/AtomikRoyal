@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCard : MonoBehaviour, ActiveWhenPlayerIsDead
+public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int nbPiece;

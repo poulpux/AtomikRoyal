@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int cursorPos, nbCoins;
@@ -17,7 +17,6 @@ public class PlayerInventory : MonoBehaviour
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
-        infos.isDeadEvent.AddListener((info) => DesactivateScript());
     }
     void Update()
     {
@@ -107,12 +106,10 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void DesactivateScript()
+    public void WhenDead()
     {
         foreach (var item in Inventory)
-        {
             Destroy(item);
-            enabled = false;
-        }
+        enabled = false;
     }
 }

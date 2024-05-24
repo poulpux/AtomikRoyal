@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour, DesactiveWhenPlayerIsDead
+public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
 
@@ -45,4 +45,6 @@ public class PlayerInteract : MonoBehaviour, DesactiveWhenPlayerIsDead
         if (nearestInteractible != null)
             nearestInteractible.Interact();
     }
+
+    public void WhenDead() { }
 }

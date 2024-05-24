@@ -15,7 +15,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInteract))]
 [RequireComponent(typeof(PlayerVisuel))]
 [RequireComponent(typeof(PlayerCard))]
-[RequireComponent(typeof(WhenPlayerDied))]
+[RequireComponent(typeof(when))]
 
 public class PlayerInfos : MonoBehaviour
 {
