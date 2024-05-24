@@ -8,5 +8,5 @@ public class StaticCardsSO : ScriptableObject
 {
     [Header("All Cards")]
     [Space(10)]
-    public List<UsableSO> allCards = new List<UsableSO>();
+    public List<CardSO> allCards = new List<CardSO>();
 }

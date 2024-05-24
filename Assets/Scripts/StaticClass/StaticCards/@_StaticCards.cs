@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class _StaticCards
 {
-    static public List<UsableSO> allCards = new List<UsableSO>();
+    static public List<CardSO> allCards = new List<CardSO>();
 
     static public void Init(StaticCardsSO SO)
     {

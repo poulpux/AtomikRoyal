@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e39f7404ca4554f857f17c9646c335, type: 3}
   m_Name: StaticCardsSO
   m_EditorClassIdentifier: 
-  allCards: []
+  allCards:
+  - {fileID: 11400000, guid: 8930fc3819efb6f42867a51a0f66a23a, type: 2}

@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour
     }
     void Update()
     {
+        print(cursorPos);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,7 +61,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void CursorMoveLogic(int sub)
     {
-        cursorPos = (cursorPos + sub) % 6 + ((cursorPos + sub) % 6 < 0f ? 6 : 0);
+        cursorPos = (cursorPos + sub) % _StaticPlayer.nbCaseInventory + ((cursorPos + sub) % _StaticPlayer.nbCaseInventory < 0f ? _StaticPlayer.nbCaseInventory : 0);
     }
 
     private void CompleteACase(Usable usable, int nb)
@@ -98,10 +99,15 @@ public class PlayerInventory : MonoBehaviour
 
     private void SetCursorEvent()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
         {
             int index = i;
             infos.inputSystem.inventoryEvent[index].AddListener(() => SetCursorInventory(index));
         }
+    }
+
+    public void DesactivateScript()
+    {
+
     }
 }

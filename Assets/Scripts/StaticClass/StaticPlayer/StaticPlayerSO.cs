@@ -37,6 +37,11 @@ public class StaticPlayerSO : ScriptableObject
     [Space(10)]
     public int pieceByKill;
     public float cdwPiece;
+    public int nbCardInDeck;
+
+    [Header("Inventory")]
+    [Space(10)]
+    public int nbCaseInventory;
 
     [Serializable]
     public class UpgradeCurves
