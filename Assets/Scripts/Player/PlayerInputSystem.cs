@@ -91,14 +91,14 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void ButtonAct(int index)
     {
-        if (buttonList[0].canUpdate)
+        if (buttonList[index].canUpdate)
             GetEvent(index).Invoke();
-        buttonList[0].canUpdate = false;
+        buttonList[index].canUpdate = false;
     }
 
     private void ButtonSleep(int index)
     {
-        buttonList[0].canUpdate = true;
+        buttonList[index].canUpdate = true;
     }
 
     private void SetAllButton()
@@ -118,7 +118,9 @@ public class PlayerInputSystem : MonoBehaviour
     {
         Button button = new Button();
         button.name = name;
+        button.canUpdate = true;
         buttonList.Add(button);
+
     }
 
     private UnityEvent GetEvent(int index)
