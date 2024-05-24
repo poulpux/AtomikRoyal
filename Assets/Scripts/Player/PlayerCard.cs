@@ -21,8 +21,6 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-            UseCard(0);
     }
 
     public void UseCard(int index)
@@ -50,10 +48,11 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 
     private void GetDeck()
     {
+        CheckIfItFirstTime();
         for (int i = 0; i < _StaticPlayer.nbCardInDeck; i++)
         {
-            Card card = GF.SetScripts<Card>(_StaticCards.allCards[/*PlayerPrefs.GetInt("card" + i)*/i].script, gameObject);
-            card.SO = _StaticCards.allCards[/*PlayerPrefs.GetInt("card" + i)*/i];
+            Card card = GF.SetScripts<Card>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
+            card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
             deck.Add(card);
         }
     }
@@ -71,6 +70,15 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
                 inPile.Add(deck[index]);
 
             deck.RemoveAt(index);
+        }
+    }
+
+    private void CheckIfItFirstTime()
+    {
+        if (PlayerPrefs.GetInt("card" + 1) == 0 && PlayerPrefs.GetInt("card" + 2) == 0)
+        {
+            for (int i = 1; i < _StaticPlayer.nbCardInDeck; i++)
+                PlayerPrefs.SetInt("card" + 1, i);
         }
     }
 }
