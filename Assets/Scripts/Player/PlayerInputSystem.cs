@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
@@ -40,6 +41,8 @@ public class PlayerInputSystem : MonoBehaviour
         EnableActionMap(DefaultActions);
         SetAllButton();
         SetButtonInventoryList();
+
+        print(_StaticPlayer.nbCaseInventory);
     }
 
     private void Update()
@@ -107,11 +110,11 @@ public class PlayerInputSystem : MonoBehaviour
         SetButton("OpenInventory");
         SetButton("OpenMap");
         SetButton("Inventory1");
-        SetButton("Inventory2");
-        SetButton("Inventory3");
-        SetButton("Inventory4");
-        SetButton("Inventory5");
-        SetButton("Inventory6");
+        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        {
+            int index = i;
+            SetButton("Inventory" + index);
+        }
     }
 
     private void SetButton(string name)
@@ -150,24 +153,19 @@ public class PlayerInputSystem : MonoBehaviour
 
 
         //All buttons
-        action["UseUsable"].started += UseUsableAct;
-        action["UseUsable"].canceled += UseUsableSleep;
-        action["OpenInventory"].started += OpenInventoryAct;
-        action["OpenInventory"].canceled += OpenInventorySleep;
-        action["OpenMap"].started += OpenMapAct;
-        action["OpenMap"].canceled += OpenMapSleep;
-        action["Inventory1"].started += Inventory1Act;
-        action["Inventory1"].canceled += Inventory1Sleep;
-        action["Inventory2"].started += Inventory2Act;
-        action["Inventory2"].canceled += Inventory2Sleep;
-        action["Inventory3"].started += Inventory3Act;
-        action["Inventory3"].canceled += Inventory3Sleep;
-        action["Inventory4"].started += Inventory4Act;
-        action["Inventory4"].canceled += Inventory4Sleep;
-        action["Inventory5"].started += Inventory5Act;
-        action["Inventory5"].canceled += Inventory5Sleep;
-        action["Inventory6"].started += Inventory6Act;
-        action["Inventory6"].canceled += Inventory6Sleep;
+        action["UseUsable"].started += test => InventoryAct(0);
+        action["UseUsable"].canceled += test => InventorySleep(0);
+        action["OpenInventory"].started += test => InventoryAct(1);
+        action["OpenInventory"].canceled += test => InventorySleep(1);
+        action["OpenMap"].started += test => InventoryAct(2);
+        action["OpenMap"].canceled += test => InventorySleep(2);
+
+        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        {
+            int index = i;
+            action["Inventory"+(index+1).ToString()].started += test => InventoryAct(index+3);
+            action["Inventory"+(index+1).ToString()].canceled += test => InventorySleep(index+3);
+        }
     }
 
     private void DisableActionMap(InputActionMap action)
@@ -183,24 +181,19 @@ public class PlayerInputSystem : MonoBehaviour
 
 
         //All buttons
-        action["UseUsable"].started -= UseUsableAct;
-        action["UseUsable"].canceled -= UseUsableSleep;
-        action["OpenInventory"].started -= OpenInventoryAct;
-        action["OpenInventory"].canceled -= OpenInventorySleep;
-        action["OpenMap"].started -= OpenMapAct;
-        action["OpenMap"].canceled -= OpenMapSleep;
-        action["Inventory1"].started -= Inventory1Act;
-        action["Inventory1"].canceled -= Inventory1Sleep;
-        action["Inventory2"].started -= Inventory2Act;
-        action["Inventory2"].canceled -= Inventory2Sleep;
-        action["Inventory3"].started -= Inventory3Act;
-        action["Inventory3"].canceled -= Inventory3Sleep;
-        action["Inventory4"].started -= Inventory4Act;
-        action["Inventory4"].canceled -= Inventory4Sleep;
-        action["Inventory5"].started -= Inventory5Act;
-        action["Inventory5"].canceled -= Inventory5Sleep;
-        action["Inventory6"].started -= Inventory6Act;
-        action["Inventory6"].canceled -= Inventory6Sleep;
+        action["UseUsable"].started -= test => InventoryAct(0);
+        action["UseUsable"].canceled -= test => InventorySleep(0);
+        action["OpenInventory"].started -= test => InventoryAct(1);
+        action["OpenInventory"].canceled -= test => InventorySleep(1);
+        action["OpenMap"].started -= test => InventoryAct(2);
+        action["OpenMap"].canceled -= test => InventorySleep(2);
+
+        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        {
+            int index = i;
+            action["Inventory" + (index + 1).ToString()].started -= test => InventoryAct(index + 3);
+            action["Inventory" + (index + 1).ToString()].canceled -= test => InventorySleep(index + 3);
+        }
     }
 
     private void MousePositionAct(InputAction.CallbackContext value)
@@ -243,91 +236,13 @@ public class PlayerInputSystem : MonoBehaviour
         isInteracting = false;
     }
 
-    private void UseUsableAct(InputAction.CallbackContext value)
+    private void InventoryAct(int index)
     {
-        ButtonAct(0);
-    }
-
-    private void UseUsableSleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(0);
-    }
-
-    private void OpenInventoryAct(InputAction.CallbackContext value)
-    {
-        ButtonAct(1);
+        ButtonAct(index);
     }
     
-    private void OpenInventorySleep(InputAction.CallbackContext value)
+    private void InventorySleep(int index)
     {
-        ButtonSleep(1);
-    }
-    
-    private void OpenMapAct(InputAction.CallbackContext value)
-    {
-        ButtonAct(2);
-    }
-    
-    private void OpenMapSleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(2);
-    }
-    
-    private void Inventory1Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(3);
-    }
-    
-    private void Inventory1Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(3);
-    }
-    private void Inventory2Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(4);
-    }
-    
-    private void Inventory2Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(4);
-    }
-    private void Inventory3Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(5);
-    }
-    
-    private void Inventory3Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(5);
-    }
-
-    private void Inventory4Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(6);
-    }
-    
-    private void Inventory4Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(6);
-    }
-    
-    private void Inventory5Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(7);
-    }
-    
-    private void Inventory5Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(7);
-    }
-    
-    private void Inventory6Act(InputAction.CallbackContext value)
-    {
-        ButtonAct(8);
-    }
-    
-    private void Inventory6Sleep(InputAction.CallbackContext value)
-    {
-        ButtonSleep(8);
+        ButtonSleep(index);
     }
 }
