@@ -17,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
+        infos.isDeadEvent.AddListener((info) => DesactivateScript());
     }
     void Update()
     {
@@ -108,6 +109,10 @@ public class PlayerInventory : MonoBehaviour
 
     public void DesactivateScript()
     {
-
+        foreach (var item in Inventory)
+        {
+            Destroy(item);
+            enabled = false;
+        }
     }
 }

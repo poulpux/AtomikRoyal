@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCard : MonoBehaviour
+public class PlayerCard : MonoBehaviour, ActiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int nbPiece;
 
-    List<Card> deck = new List<Card>();
+    public List<Card> deck = new List<Card>();
     public List<Card> inHand = new List<Card>();
     public List<Card> inPile = new List<Card>();
     void Start()

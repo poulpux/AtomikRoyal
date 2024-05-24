@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviour, DesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
 
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
-        infos.isDeadEvent.AddListener((infos) => Destroy(this));
     }
 
     void Update()

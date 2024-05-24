@@ -15,6 +15,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInteract))]
 [RequireComponent(typeof(PlayerVisuel))]
 [RequireComponent(typeof(PlayerCard))]
+[RequireComponent(typeof(WhenPlayerDied))]
+
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
@@ -25,6 +27,7 @@ public class PlayerInfos : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     [SerializeField] bool seeAll;
@@ -37,7 +40,6 @@ public class PlayerInfos : MonoBehaviour
     [ConditionalField("seeAll", true)] public bool isDead;
 
     List<string> isInvincibleList = new List<string>();
-    [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent;
     private List<PlayerInfos> team;
 
     [Header("Stats")]
@@ -74,6 +76,12 @@ public class PlayerInfos : MonoBehaviour
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         //AddTeamate(this);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            isDeadEvent.Invoke(this);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

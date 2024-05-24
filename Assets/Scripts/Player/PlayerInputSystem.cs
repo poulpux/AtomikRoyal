@@ -37,12 +37,6 @@ public class PlayerInputSystem : MonoBehaviour
         DefaultActions = playerInput.actions.FindActionMap("Default");
 
         isUsingUsableEvent.AddListener(() => print("marche"));
-
-        EnableActionMap(DefaultActions);
-        SetAllButton();
-        SetButtonInventoryList();
-
-        print(_StaticPlayer.nbCaseInventory);
     }
 
     private void Update()
@@ -53,7 +47,9 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        EnableActionMap(DefaultActions);
+        SetAllButton();
+        SetButtonInventoryList();
     }
 
     private void OnDisable()
