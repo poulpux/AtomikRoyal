@@ -33,6 +33,11 @@ public class StaticPlayerSO : ScriptableObject
     public AnimationCurve beginEndMoveCurve;
     public float beginEndMoveCurveDuration = 0.1f;
 
+    [Header("Card")]
+    [Space(10)]
+    public int pieceByKill;
+    public float cdwPiece;
+
     [Serializable]
     public class UpgradeCurves
     {

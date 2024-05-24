@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3250045138376785932}
   - component: {fileID: 7043167855168728304}
   - component: {fileID: 7993331483163384446}
+  - component: {fileID: 2293952395289508141}
   - component: {fileID: 8268710908916365624}
   - component: {fileID: 3742026689667410040}
   - component: {fileID: 5562169977164505229}
@@ -119,10 +120,12 @@ MonoBehaviour:
   isOpeningMapEvent:
     m_PersistentCalls:
       m_Calls: []
+  mouseScrollEvent:
+    m_PersistentCalls:
+      m_Calls: []
   inventoryEvent: []
   direction: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
-  scrollMouse: 0
   isInteracting: 0
 --- !u!114 &3250045138376785932
 MonoBehaviour:
@@ -137,9 +140,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: []
-  glueSpdModifier: 0
-  waterSpdModifier: 0
-  deadSpd: 0
 --- !u!114 &7043167855168728304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +164,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96cba4116c38c149b88a405a2b35131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2293952395289508141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690522875517513036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699eb9078a1865f47b093c779cc788f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbPiece: 0
 --- !u!50 &8268710908916365624
 Rigidbody2D:
   serializedVersion: 4

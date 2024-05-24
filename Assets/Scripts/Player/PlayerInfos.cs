@@ -14,6 +14,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerInteract))]
 [RequireComponent(typeof(PlayerVisuel))]
+[RequireComponent(typeof(PlayerCard))]
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
