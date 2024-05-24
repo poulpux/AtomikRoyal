@@ -16,4 +16,4 @@ MonoBehaviour:
   description: 
   cost: 0
   spriteCard: {fileID: 0}
-  script: {fileID: 11500000, guid: 284f6f6f13292e64799e1c8a0804b20c, type: 3}
+  script: {fileID: 11500000, guid: 17a2981bcaab6a44f9edcbb104845548, type: 3}
