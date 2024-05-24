@@ -136,4 +136,5 @@ MonoBehaviour:
   pieceByKill: 2
   cdwPiece: 10
   nbCardInDeck: 5
+  nbCardInHand: 3
   nbCaseInventory: 6

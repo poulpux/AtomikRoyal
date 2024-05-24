@@ -45,7 +45,7 @@ public static class _StaticPlayer
     [Space(10)]
     static public int pieceByKill;
     static public float cdwPiece;
-    static public int nbCardInDeck;
+    static public int nbCardInDeck, nbCardInHand;
 
 
     [Header("Inventory")]
@@ -91,6 +91,7 @@ public static class _StaticPlayer
         nbCardInDeck = SO.nbCardInDeck;
 
         nbCaseInventory = SO.nbCaseInventory;
+        nbCardInHand = SO.nbCardInHand;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)

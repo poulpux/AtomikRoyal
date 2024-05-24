@@ -37,7 +37,7 @@ public class StaticPlayerSO : ScriptableObject
     [Space(10)]
     public int pieceByKill;
     public float cdwPiece;
-    public int nbCardInDeck;
+    public int nbCardInDeck, nbCardInHand;
 
     [Header("Inventory")]
     [Space(10)]
