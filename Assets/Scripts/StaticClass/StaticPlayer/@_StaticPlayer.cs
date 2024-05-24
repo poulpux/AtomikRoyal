@@ -41,6 +41,17 @@ public static class _StaticPlayer
     static public AnimationCurve beginEndMoveCurve;
     static public float beginEndMoveCurveDuration = 0.1f;
 
+    [Header("Card")]
+    [Space(10)]
+    static public int pieceByKill;
+    static public float cdwPiece;
+    static public int nbCardInDeck, nbCardInHand;
+
+
+    [Header("Inventory")]
+    [Space(10)]
+    static public int nbCaseInventory;
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static public int GetPrice(PLAYERSTATS stat, int currentNbUpgrade)
@@ -74,6 +85,13 @@ public static class _StaticPlayer
 
         beginEndMoveCurve = SO.beginEndMoveCurve;
         beginEndMoveCurveDuration = SO.beginEndMoveCurveDuration;
+
+        pieceByKill = SO.pieceByKill;
+        cdwPiece = SO.cdwPiece;
+        nbCardInDeck = SO.nbCardInDeck;
+
+        nbCaseInventory = SO.nbCaseInventory;
+        nbCardInHand = SO.nbCardInHand;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)

@@ -133,3 +133,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   beginEndMoveCurveDuration: 0.1
+  pieceByKill: 2
+  cdwPiece: 10
+  nbCardInDeck: 5
+  nbCardInHand: 3
+  nbCaseInventory: 6

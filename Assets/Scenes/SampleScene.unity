@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 904896354936606816, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: seeAll
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2219060685180976245, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -507,6 +511,14 @@ PrefabInstance:
     - target: {fileID: 2219060685180976245, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293952395289508141, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: ShowAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293952395289508141, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3250045138376785932, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: helpDir

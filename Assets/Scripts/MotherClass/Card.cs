@@ -4,10 +4,6 @@ using UnityEngine;
 
 public abstract class Card : MonoBehaviour
 {
-    public string namee;
-    public string description;
-    public int cost;
-    public Sprite spriteCard;
     public PlayerInfos owner;
     public CardSO SO;
     public virtual void Interact()

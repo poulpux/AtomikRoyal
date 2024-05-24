@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
 
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
-        infos.isDeadEvent.AddListener((infos) => Destroy(this));
     }
 
     void Update()
@@ -46,4 +45,6 @@ public class PlayerInteract : MonoBehaviour
         if (nearestInteractible != null)
             nearestInteractible.Interact();
     }
+
+    public void WhenDead() { }
 }
