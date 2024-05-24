@@ -6,6 +6,13 @@ public class WhenPlayerDied : MonoBehaviour
 {
     private void Awake()
     {
+        MonoBehaviour[] tabMono = GetComponents<MonoBehaviour>();
+        foreach (var item in tabMono)
+        {
+            if (item is IActiveWhenPlayerIsDead)
+                item.enabled = false;
+        }
+
         GetComponent<PlayerInfos>().isDeadEvent.AddListener((infos) => PlayerDied());
     }
 

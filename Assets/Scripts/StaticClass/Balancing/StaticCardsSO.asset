@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: StaticCardsSO
   m_EditorClassIdentifier: 
   allCards:
-  - {fileID: 11400000, guid: 8930fc3819efb6f42867a51a0f66a23a, type: 2}
+  - {fileID: 11400000, guid: 377bdbef5be699044976899a2a83a092, type: 2}
+  - {fileID: 11400000, guid: c71650ccacfe7924791a620b72ddd8d0, type: 2}
+  - {fileID: 11400000, guid: e392386bbbfe7194daacc1e67e6b92bb, type: 2}
+  - {fileID: 11400000, guid: 82a9108fc2960ac4b907784c56d5d2c7, type: 2}
+  - {fileID: 11400000, guid: 3e45d2a28a852724f91535215ff2e379, type: 2}

@@ -7,11 +7,9 @@ using UnityEngine;
 public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 {
     PlayerInfos infos;
-    public int nbPiece;
 
-    public List<Card> deck = new List<Card>();
-    public List<Card> inHand = new List<Card>();
-    public List<Card> inPile = new List<Card>();
+    [HideInInspector] public int nbPiece;
+    [HideInInspector] public List<Card> deck = new List<Card>(), inHand = new List<Card>(), inPile = new List<Card>();
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -23,7 +21,8 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Space))
+            UseCard(0);
     }
 
     public void UseCard(int index)
@@ -37,7 +36,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         inPile.Add(inHand[index]);
         inHand.RemoveAt(index);
         inHand.Add(inPile[0]);
-
+        inPile.RemoveAt(0);
     }
 
     private IEnumerator PieceCdwCoroutine()
@@ -52,7 +51,11 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
     private void GetDeck()
     {
         for (int i = 0; i < _StaticPlayer.nbCardInDeck; i++)
-            deck.Add(GF.SetScripts<Card>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject));
+        {
+            Card card = GF.SetScripts<Card>(_StaticCards.allCards[/*PlayerPrefs.GetInt("card" + i)*/i].script, gameObject);
+            card.SO = _StaticCards.allCards[/*PlayerPrefs.GetInt("card" + i)*/i];
+            deck.Add(card);
+        }
     }
 
     private void Melange()
