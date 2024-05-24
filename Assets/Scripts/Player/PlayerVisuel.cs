@@ -44,6 +44,8 @@ public class PlayerVisuel : MonoBehaviour
         AnimateSprite();
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void SetSpriteDirection()
     {
         switch (direction)

@@ -47,6 +47,19 @@ public class PlayerInputSystem : MonoBehaviour
         ThrowScrollMouseEvent();
     }
 
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        DisableActionMap(DefaultActions);
+    }
+
+    //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
     private void ThrowScrollMouseEvent()
     {
         if (scrollMouse == 0)
@@ -63,16 +76,6 @@ public class PlayerInputSystem : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        DisableActionMap(DefaultActions);
-    }
-
     private void SetButtonInventoryList()
     {
         for (int i = 0; i < 6; i++)
@@ -85,6 +88,52 @@ public class PlayerInputSystem : MonoBehaviour
         playerInput.SwitchCurrentActionMap(config.ToString());
         playerInput.currentActionMap.Enable();
     }
+
+    private void ButtonAct(int index)
+    {
+        if (buttonList[0].canUpdate)
+            GetEvent(index).Invoke();
+        buttonList[0].canUpdate = false;
+    }
+
+    private void ButtonSleep(int index)
+    {
+        buttonList[0].canUpdate = true;
+    }
+
+    private void SetAllButton()
+    {
+        SetButton("UseUsable");
+        SetButton("OpenInventory");
+        SetButton("OpenMap");
+        SetButton("Inventory1");
+        SetButton("Inventory2");
+        SetButton("Inventory3");
+        SetButton("Inventory4");
+        SetButton("Inventory5");
+        SetButton("Inventory6");
+    }
+
+    private void SetButton(string name)
+    {
+        Button button = new Button();
+        button.name = name;
+        buttonList.Add(button);
+    }
+
+    private UnityEvent GetEvent(int index)
+    {
+        if (index == 0)
+            return isUsingUsableEvent;
+        else if (index == 1)
+            return isOpeningInventoryEvent;
+        else if (index == 2)
+            return isOpeningMapEvent;
+        else
+            return inventoryEvent[index - 3];
+    }
+
+    //2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 
     private void EnableActionMap(InputActionMap action)
     {
@@ -278,49 +327,5 @@ public class PlayerInputSystem : MonoBehaviour
     private void Inventory6Sleep(InputAction.CallbackContext value)
     {
         ButtonSleep(8);
-    }
-
-    private void ButtonAct(int index)
-    {
-        if (buttonList[0].canUpdate)
-            GetEvent(index).Invoke();
-        buttonList[0].canUpdate = false;
-    }
-
-    private void ButtonSleep(int index)
-    {
-        buttonList[0].canUpdate = true;
-    }
-
-    private void SetAllButton()
-    {
-        SetButton("UseUsable");
-        SetButton("OpenInventory");
-        SetButton("OpenMap");
-        SetButton("Inventory1");
-        SetButton("Inventory2");
-        SetButton("Inventory3");
-        SetButton("Inventory4");
-        SetButton("Inventory5");
-        SetButton("Inventory6");
-    }
-
-    private void SetButton(string name)
-    {
-        Button button = new Button();
-        button.name = name;
-        buttonList.Add(button);
-    }
-
-    private UnityEvent GetEvent(int index)
-    {
-        if (index == 0)
-            return isUsingUsableEvent;
-        else if (index == 1)
-            return isOpeningInventoryEvent;
-        else if (index == 2)
-            return isOpeningMapEvent;
-        else
-            return inventoryEvent[index - 3];
     }
 }

@@ -75,6 +75,8 @@ public class PlayerInfos : MonoBehaviour
         //AddTeamate(this);
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     public void UpgradeStat(PLAYERSTATS stats)
     {
         if (isDead)
@@ -100,6 +102,13 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
+    public void AddTeamate(PlayerInfos playerInfos)
+    {
+        team.Add(playerInfos);
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void GetAKill()
     {
         nbKill++;
@@ -117,11 +126,6 @@ public class PlayerInfos : MonoBehaviour
         range = _StaticPlayer.GetValue(PLAYERSTATS.RANGE, range_Stat);
 
         UpdateStatsEvent.Invoke();
-    }
-
-    public void AddTeamate(PlayerInfos playerInfos)
-    {
-        team.Add(playerInfos);
     }
 
     private void EndOfTheGame()

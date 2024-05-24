@@ -17,6 +17,8 @@ public class PlayerInteract : MonoBehaviour
         TryInteract();
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void TryInteract()
     {
         if (infos.inputSystem.isInteracting)
