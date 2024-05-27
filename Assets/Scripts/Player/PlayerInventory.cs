@@ -36,14 +36,14 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         cantThrowItem.RemoveAll(delete => delete == nameOfInterdiction);
     }
 
-    public void AddObject(Usable usable)
+    public void AddObject(UsableSO SO, int nbOnGround)
     {
-        if (Inventory.Contains(usable))
-            CompleteACase(usable, usable.SO.nbRecolted /* remplacerParLeNbDobjetsAuSOl*/);
+        if (Inventory.Contains(GF.GetScript<Usable>(SO.script)))
+            CompleteACase(SO, nbOnGround);
         else if (Inventory.Count <= _StaticPlayer.nbCasesInventory)
-            AddInVoidCases(usable, usable.SO.nbRecolted /* remplacerParLeNbDobjetsAuSOl*/);
+            AddInVoidCases(SO, nbOnGround);
         else
-            EchangeInventoryItem(usable, usable.SO.nbRecolted/* remplacerParLeNbDobjetsAuSOl*/);
+            EchangeInventoryItem(SO, nbOnGround);
     }
     public void UseItem()
     {
@@ -64,25 +64,25 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory + ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f ? _StaticPlayer.nbCasesInventory : 0);
     }
 
-    private void CompleteACase(Usable usable, int nb)
+    private void CompleteACase(UsableSO SO, int nb)
     {
-        int index = Inventory.FindIndex(listIndex => listIndex == usable);
-        if (nbInInventory[index]+nb <= usable.SO.nbMaxInventory)
+        int index = Inventory.FindIndex(listIndex => listIndex == GF.GetScript<Usable>(SO.script));
+        if (nbInInventory[index]+nb <= SO.nbMaxInventory)
             nbInInventory[index] += nb;
         else
         {
-            nbInInventory[index] = usable.SO.nbMaxInventory;
+            nbInInventory[index] = SO.nbMaxInventory;
             //Play Logic Of put down item
         }
        
     }
 
-    private void AddInVoidCases(Usable usable, int nb)
+    private void AddInVoidCases(UsableSO SO, int nb)
     {
-        Inventory.Add(GF.SetScripts<Usable>(usable.SO.script, gameObject));
-        nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
+        Inventory.Add(GF.SetScripts<Usable>(SO.script, gameObject));
+        nbInInventory.Add(nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory);
         Inventory[Inventory.Count-1].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
-        Inventory[Inventory.Count - 1].SO = usable.SO;
+        Inventory[Inventory.Count - 1].SO = SO;
     }
 
     private void SubstractOneItem(int index)
@@ -95,12 +95,12 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         }
     }
 
-    private void EchangeInventoryItem(Usable usable, int nb)
+    private void EchangeInventoryItem(UsableSO SO, int nb)
     {
 
         print("echange : ");
-        Inventory[cursorPos] = usable;
-        nbInInventory[cursorPos] = nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory;
+        Inventory[cursorPos] = GF.GetScript<Usable>(SO.script);
+        nbInInventory[cursorPos] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
         //Jouer la logique pour poser l'autre object au sol
     }
 
