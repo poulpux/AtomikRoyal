@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class HealUsableMother : UtilityUsable
+public abstract class UsableCDWMother : UtilityUsable
 {
-    UtilityUsableSO realSO;
-    PlayerInfos infos;
+    protected UtilityUsableSO realSO;
     private float timer;
     private void Start()
     {

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Usable : MonoBehaviour
 {
     [HideInInspector] public UsableSO SO;
-    [HideInInspector] public PlayerInfos playerInfos;
+    [HideInInspector] public PlayerInfos infos;
+    [HideInInspector] public UnityEvent UseEvent = new UnityEvent();
 
 
     virtual public void TryUse()
@@ -15,7 +17,7 @@ public abstract class Usable : MonoBehaviour
     }
     virtual protected void Use()
     {
-
+        UseEvent.Invoke();
     }
 
     virtual protected bool UseCondition()

@@ -21,5 +21,10 @@ MonoBehaviour:
   rarity: 2
   type: 0
   nbHeal: 0
+  nbShield: 0
+  spdModifier: 0
   timeUse: 0
+  cdw: 0
+  objectToInstantiate: {fileID: 0}
+  explosionPrefab: {fileID: 0}
   otherScript: {fileID: 0}

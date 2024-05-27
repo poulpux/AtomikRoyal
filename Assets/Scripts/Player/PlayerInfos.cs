@@ -37,9 +37,9 @@ public class PlayerInfos : MonoBehaviour
 
     [Header("Main infos")]
     [Space(10)]
-    [ConditionalField("seeAll", true)] public string pseudo;
+    [ConditionalField("seeAll", true, "==")] public string pseudo;
 
-    [ConditionalField("seeAll", true)] public int nbKill;
+    [ConditionalField("seeAll", true, "==")] public int nbKill;
     [ConditionalField("seeAll", true)] public bool isDead;
 
     List<string> isInvincibleList = new List<string>();
@@ -76,6 +76,7 @@ public class PlayerInfos : MonoBehaviour
     void Start()
     {
         SetAllStats();
+        currentLife = maxLife;
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         //AddTeamate(this);
