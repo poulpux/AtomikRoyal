@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     public int cursorPos, nbCoins;
     public List<Usable> Inventory = new List<Usable>();
     public List<int> nbInInventory = new List<int>();
-    List<string> cantThrowItem = new List<string>();
+    public List<string> cantThrowItem = new List<string>();
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -23,22 +23,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
             nbInInventory.Add(0);
     }
-    void Update()
-    {
-        
-    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public void DontThrowItem(string nameOfInterdiction)
-    {
-        cantThrowItem.Add(nameOfInterdiction);
-    }
-
-    public void CanThrowItem(string nameOfInterdiction)
-    {
-        cantThrowItem.RemoveAll(delete => delete == nameOfInterdiction);
-    }
 
     public void AddObject(UsableSO SO, int nbOnGround, UsableOnGround usableOnGround)
     {
@@ -52,9 +38,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
     public void UseItem()
     {
-        print(cursorPos);
-        if (Inventory[cursorPos] == null) return;
-        
+        if (Inventory[cursorPos] == null || cantThrowItem.Count != 0) return;
             Inventory[cursorPos].TryUse();
     }
 
@@ -109,12 +93,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         {
             int place = SO.nbMaxInventory - nbInInventory[index]; //positif
             nbInInventory[index] = SO.nbMaxInventory;
-
             usableOnGround.nb = nb - place;
-            //if(Inventory.Count <= _StaticPlayer.nbCasesInventory)
-            //    AddInVoidCases(SO, nb);
-            //else
-            //Play Logic Of put down item
         }
        
     }

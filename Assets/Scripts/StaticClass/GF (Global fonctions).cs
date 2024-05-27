@@ -70,4 +70,9 @@ public static class GF
 
         return instance;
     }
+
+    static public void RemoveInterdiction(ref List<string> listOfInterdiction, string interdictionName)
+    {
+        listOfInterdiction.RemoveAll(item => item == interdictionName);
+    }
 }
