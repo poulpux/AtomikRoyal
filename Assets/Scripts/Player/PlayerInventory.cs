@@ -47,7 +47,6 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
     public void UseItem()
     {
-        print("cursor pos : " + cursorPos + "Inventory.Count+ 1 : " + Inventory.Count + 1);
         if(Inventory.Count - 1 >= cursorPos && Inventory[cursorPos] != null)
             Inventory[cursorPos].TryUse();
     }
