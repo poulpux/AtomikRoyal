@@ -23,11 +23,14 @@ public class PlayerInfos : MonoBehaviour
     public Camera cam;
 
     [HideInInspector] public PlayerInputSystem inputSystem;
+    [HideInInspector] public PlayerMovement movement;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent;
+
+    [HideInInspector] public bool isMoving;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     [SerializeField] bool seeAll;
@@ -80,10 +83,15 @@ public class PlayerInfos : MonoBehaviour
 
     private void Update()
     {
-      
+        SetIsMoving();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void SetIsMoving()
+    {
+        isMoving = movement.canMove.Count == 0 && inputSystem.direction != Vector2.zero;
+    }
 
     public void UpgradeStat(PLAYERSTATS stats)
     {
@@ -146,5 +154,6 @@ public class PlayerInfos : MonoBehaviour
         inputSystem = GetComponent<PlayerInputSystem>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        movement = GetComponent<PlayerMovement>();
     }
 }

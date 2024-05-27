@@ -46,7 +46,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
     public void UseAnItem()
     {
-        Inventory[cursorPos].Use();
+        Inventory[cursorPos].TryUse();
         nbInInventory[cursorPos]--;
         if (nbInInventory[cursorPos] <= 0)
             DestroyCurrentItem();

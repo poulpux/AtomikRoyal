@@ -7,9 +7,20 @@ public abstract class Usable : MonoBehaviour
     [HideInInspector] public UsableSO SO;
     [HideInInspector] public PlayerInfos playerInfos;
 
-    virtual public void Use()
+
+    virtual public void TryUse()
+    {
+        if (UseCondition())
+            Use();
+    }
+    virtual protected void Use()
     {
 
+    }
+
+    virtual protected bool UseCondition()
+    {
+        return true;
     }
 
     virtual public void AddSO(UsableSO SO)
