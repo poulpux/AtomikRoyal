@@ -122,8 +122,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     private void EchangeInventoryItem(UsableSO SO, int nb)
     {
         Destroy(Inventory[cursorPos]);
-        Inventory[cursorPos] = GF.SetScripts<Usable>(SO.script, gameObject);
         GameObject objet = _StaticChest.InstantiateUsable(transform.position, Inventory[cursorPos].SO, nbInInventory[cursorPos]);
+        Inventory[cursorPos] = GF.SetScripts<Usable>(SO.script, gameObject);
         objet.GetComponent<UsableOnGround>().nb = nbInInventory[cursorPos];
         nbInInventory[cursorPos] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
     }
