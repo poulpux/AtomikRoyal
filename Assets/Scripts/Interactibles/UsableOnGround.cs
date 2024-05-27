@@ -5,15 +5,16 @@ using UnityEngine;
 public class UsableOnGround : Interactible
 {
     public UsableSO SO;
+    public int nb;
 
     private void Start()
     {
-        print(SO.script.name);
+        nb = SO.nbRecolted;
     }
     protected override void Use(PlayerInfos infos)
     {
         base.Use(infos);
-        infos.inventory.AddObject(SO,SO.nbRecolted);
+        infos.inventory.AddObject(SO,nb);
         Destroy(gameObject);
     }
 }
