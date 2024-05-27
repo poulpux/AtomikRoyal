@@ -41,15 +41,15 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         int index = 0;
         if (CheckIfObjectInCase(SO, ref index))
             CompleteACase(SO, nbOnGround, index, usableOnGround);
-        else if (Inventory.Count <= _StaticPlayer.nbCasesInventory)
+        else if (Inventory.Count < _StaticPlayer.nbCasesInventory)
             AddInVoidCases(SO, nbOnGround);
         else
             EchangeInventoryItem(SO, nbOnGround);
     }
     public void UseItem()
     {
-        if(Inventory.Count - 1 >= cursorPos && Inventory[cursorPos] != null)
-            Inventory[cursorPos].TryUse();
+        if(Inventory.Count - 1 >= cursorPos && Inventory[cursorPos-1] != null)
+            Inventory[cursorPos-1].TryUse();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,6 +61,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         int counter = 0;
         foreach (var item in Inventory)
         {
+            if(item == null || item.SO == null) continue;
             if (nbInInventory[counter] != Inventory[counter].SO.nbMaxInventory && !itemNames.Add(item.SO.name) )
             {
                 index = counter;
@@ -120,11 +121,11 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void EchangeInventoryItem(UsableSO SO, int nb)
     {
-
-        print("echange : ");
-        Inventory[cursorPos] = GF.GetScript<Usable>(SO.script);
+        Destroy(Inventory[cursorPos]);
+        Inventory[cursorPos] = GF.SetScripts<Usable>(SO.script, gameObject);
+        GameObject objet = _StaticChest.InstantiateUsable(transform.position, Inventory[cursorPos].SO, nbInInventory[cursorPos]);
+        objet.GetComponent<UsableOnGround>().nb = nbInInventory[cursorPos];
         nbInInventory[cursorPos] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
-        //Jouer la logique pour poser l'autre object au sol
     }
 
 

@@ -22,15 +22,30 @@ public static class _StaticChest
 
     static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
+
     static public void OpenChest(Vector3 position)
     {
         List<UsableSO> list = RandomUsable();
 
         foreach (var item in list)
-            InstantiateUsable(item, position);
+            InstantiateUsable(position, item, item.nbRecolted);
 
         for (int i = 0; i < nbCoins; i++)
             InstantiateCoin(position);
+    }
+
+    static public GameObject InstantiateUsable(Vector2 position, UsableSO model, int nbRecolted)
+    {
+        GameObject objet = Object.Instantiate(objectOnGroundPrefab);
+        objet.GetComponent<OnGroundItem>().Init(model);
+        objet.transform.position = RandomSpawnPos(position);
+        objet.GetComponent<OnGroundPhysics>().Init(position);
+
+        UsableOnGround onGround = objet.GetComponent<UsableOnGround>();
+        onGround.SO = model;
+        onGround.nb = nbRecolted;
+
+        return objet;
     }
 
     static public void Init(StaticChestSO SO)
@@ -118,17 +133,6 @@ public static class _StaticChest
         Vector2 teleportPosition = new Vector2(randomDirection.x, randomDirection.y) + chestPos;
 
         return teleportPosition;
-    }
-
-    static private void InstantiateUsable(UsableSO model, Vector2 position)
-    {
-        GameObject objet = Object.Instantiate(objectOnGroundPrefab);
-        objet.GetComponent<OnGroundItem>().Init(model);
-        objet.transform.position = RandomSpawnPos(position);
-        objet.GetComponent<OnGroundPhysics>().Init(position);
-        
-        UsableOnGround onGround = objet.GetComponent<UsableOnGround>();
-        onGround.SO = model;
     }
 
     static private void InstantiateCoin(Vector2 position)
