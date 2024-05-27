@@ -106,7 +106,7 @@ public class PlayerInputSystem : MonoBehaviour
         SetButton("OpenInventory");
         SetButton("OpenMap");
         SetButton("Inventory1");
-        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
         {
             int index = i;
             SetButton("Inventory" + index);
@@ -156,7 +156,7 @@ public class PlayerInputSystem : MonoBehaviour
         action["OpenMap"].started += test => InventoryAct(2);
         action["OpenMap"].canceled += test => InventorySleep(2);
 
-        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
         {
             int index = i;
             action["Inventory"+(index+1).ToString()].started += test => InventoryAct(index+3);
@@ -184,7 +184,7 @@ public class PlayerInputSystem : MonoBehaviour
         action["OpenMap"].started -= test => InventoryAct(2);
         action["OpenMap"].canceled -= test => InventorySleep(2);
 
-        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
         {
             int index = i;
             action["Inventory" + (index + 1).ToString()].started -= test => InventoryAct(index + 3);

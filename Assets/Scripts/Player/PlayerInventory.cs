@@ -8,10 +8,9 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int cursorPos, nbCoins;
-    List<Usable> Inventory = new List<Usable>();
-    List<int> nbInInventory = new List<int>();
+    public List<Usable> Inventory = new List<Usable>();
+    public List<int> nbInInventory = new List<int>();
     List<string> cantThrowItem = new List<string>();
-    int nbCasesInventory;
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -39,7 +38,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     {
         if (Inventory.Contains(usable))
             CompleteACase(usable, usable.SO.nbRecolted /* remplacerParLeNbDobjetsAuSOl*/);
-        else if (Inventory.Count < nbCasesInventory)
+        else if (Inventory.Count <= _StaticPlayer.nbCasesInventory)
             AddInVoidCases(usable, usable.SO.nbRecolted /* remplacerParLeNbDobjetsAuSOl*/);
         else
             EchangeInventoryItem(usable, usable.SO.nbRecolted/* remplacerParLeNbDobjetsAuSOl*/);
@@ -58,7 +57,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void CursorMoveLogic(int sub)
     {
-        cursorPos = (cursorPos + sub) % _StaticPlayer.nbCaseInventory + ((cursorPos + sub) % _StaticPlayer.nbCaseInventory < 0f ? _StaticPlayer.nbCaseInventory : 0);
+        cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory + ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f ? _StaticPlayer.nbCasesInventory : 0);
     }
 
     private void CompleteACase(Usable usable, int nb)
@@ -77,8 +76,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     private void AddInVoidCases(Usable usable, int nb)
     {
         Inventory.Add(GF.SetScripts<Usable>(usable.SO.script, gameObject));
-        Inventory[Inventory.Count].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count));
         nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
+        Inventory[Inventory.Count-1].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
     }
 
     private void SubstractOneItem(int index)
@@ -93,6 +92,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void EchangeInventoryItem(Usable usable, int nb)
     {
+
+        print("echange : ");
         Inventory[cursorPos] = usable;
         nbInInventory[cursorPos] = nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory;
         //Jouer la logique pour poser l'autre object au sol
@@ -107,7 +108,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void SetCursorEvent()
     {
-        for (int i = 0; i < _StaticPlayer.nbCaseInventory; i++)
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
         {
             int index = i;
             infos.inputSystem.inventoryEvent[index].AddListener(() => SetCursorInventory(index));

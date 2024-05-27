@@ -9,7 +9,7 @@ public abstract class UsableCDWMother : UtilityUsable
     private float timer;
     private void Start()
     {
-        realSO = GetComponent<UtilityUsableSO>();
+        realSO = SO as UtilityUsableSO;
         infos = GetComponent<PlayerInfos>();
     }
 

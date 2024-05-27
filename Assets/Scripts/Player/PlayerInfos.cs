@@ -24,6 +24,7 @@ public class PlayerInfos : MonoBehaviour
 
     [HideInInspector] public PlayerInputSystem inputSystem;
     [HideInInspector] public PlayerMovement movement;
+    [HideInInspector] public PlayerInventory inventory;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
@@ -156,5 +157,6 @@ public class PlayerInfos : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         movement = GetComponent<PlayerMovement>();
+        inventory = GetComponent<PlayerInventory>();
     }
 }
