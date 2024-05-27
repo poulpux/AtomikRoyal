@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
         }
 
         if (nearestInteractible != null)
-            nearestInteractible.Interact();
+            nearestInteractible.Interact(infos);
     }
 
     public void WhenDead() { }

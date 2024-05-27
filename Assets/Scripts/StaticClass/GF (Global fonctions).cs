@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -34,5 +35,39 @@ public static class GF
         }
 
         return component;
+    }
+
+    public static T GetScript<T>(TextAsset textAsset) where T : class
+    {
+        if (textAsset == null)
+        {
+            Debug.LogError("TextAsset is null.");
+            return null;
+        }
+
+        Type type = System.Type.GetType(textAsset.name.Replace(".cs", ""));
+
+        if (type == null)
+        {
+            Debug.LogError("Type not found: " + type);
+            return null;
+        }
+
+        // Check if the type can be cast to T
+        if (!typeof(T).IsAssignableFrom(type))
+        {
+            Debug.LogError("Type " + type + " is not assignable to " + typeof(T).Name);
+            return null;
+        }
+
+        // Create an instance of the type
+        T instance = Activator.CreateInstance(type) as T;
+
+        if (instance == null)
+        {
+            Debug.LogError("Failed to create an instance of: " + type);
+        }
+
+        return instance;
     }
 }

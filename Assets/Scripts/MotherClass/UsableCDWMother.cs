@@ -9,12 +9,14 @@ public abstract class UsableCDWMother : UtilityUsable
     private float timer;
     private void Start()
     {
-        realSO = GetComponent<UtilityUsableSO>();
+        realSO = SO as UtilityUsableSO;
+        print(realSO.name);
         infos = GetComponent<PlayerInfos>();
     }
 
     override public void TryUse()
     {
+        if (timer != 0) return;
         StopCoroutine(UseCoroutine());
         StartCoroutine(UseCoroutine());
         base.TryUse();
@@ -31,16 +33,16 @@ public abstract class UsableCDWMother : UtilityUsable
 
     protected IEnumerator UseCoroutine()
     {
-        while (!UseCondition() || !infos.isMoving)
+        while (!UseCondition() && !infos.isMoving)
         {
+            print(timer + " timer : "+timer +" timeUse : "+realSO.timeUse+" : "+UseCondition());
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        if (infos.isMoving)
-            timer = 0;
-        else
+        if (!infos.isMoving)
             Use();
+        timer = 0f;
     }
 
 }

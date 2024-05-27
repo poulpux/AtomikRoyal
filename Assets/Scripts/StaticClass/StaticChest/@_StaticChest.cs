@@ -126,6 +126,9 @@ public static class _StaticChest
         objet.GetComponent<OnGroundItem>().Init(model);
         objet.transform.position = RandomSpawnPos(position);
         objet.GetComponent<OnGroundPhysics>().Init(position);
+        
+        UsableOnGround onGround = objet.GetComponent<UsableOnGround>();
+        onGround.SO = model;
     }
 
     static private void InstantiateCoin(Vector2 position)

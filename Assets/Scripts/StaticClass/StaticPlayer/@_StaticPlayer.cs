@@ -50,7 +50,7 @@ public static class _StaticPlayer
 
     [Header("Inventory")]
     [Space(10)]
-    static public int nbCaseInventory;
+    static public int nbCasesInventory;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -90,7 +90,7 @@ public static class _StaticPlayer
         cdwPiece = SO.cdwPiece;
         nbCardInDeck = SO.nbCardInDeck;
 
-        nbCaseInventory = SO.nbCaseInventory;
+        nbCasesInventory = SO.nbCaseInventory;
         nbCardInHand = SO.nbCardInHand;
     }
 
