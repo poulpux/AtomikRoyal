@@ -32,11 +32,9 @@ public class PlayerInputSystem : MonoBehaviour
 
     void Awake()
     {
-        this.cam = GetComponent<PlayerInfos>().cam;
+        cam = GetComponent<PlayerInfos>().cam;
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
-
-        isUsingUsableEvent.AddListener(() => print("marche"));
     }
 
     private void Update()

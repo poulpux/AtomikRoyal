@@ -16,6 +16,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
+
+        infos.inputSystem.isUsingUsableEvent.AddListener(() => UseItem());
     }
     void Update()
     {
@@ -43,9 +45,11 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         else
             EchangeInventoryItem(usable, usable.SO.nbRecolted/* remplacerParLeNbDobjetsAuSOl*/);
     }
-    public void UseAnItem()
+    public void UseItem()
     {
-        Inventory[cursorPos].TryUse();
+        print("cursor pos : " + cursorPos + "Inventory.Count+ 1 : " + Inventory.Count + 1);
+        if(Inventory.Count - 1 >= cursorPos && Inventory[cursorPos] != null)
+            Inventory[cursorPos].TryUse();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,6 +82,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         Inventory.Add(GF.SetScripts<Usable>(usable.SO.script, gameObject));
         nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
         Inventory[Inventory.Count-1].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
+        Inventory[Inventory.Count - 1].SO = usable.SO;
     }
 
     private void SubstractOneItem(int index)
