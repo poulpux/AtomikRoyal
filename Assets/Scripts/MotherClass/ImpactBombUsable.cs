@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImpactBombUsable : BombUsable
 {
-    public override void Use()
+    protected override void Use()
     {
         base.Use();
         //TODO

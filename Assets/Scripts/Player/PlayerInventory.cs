@@ -46,10 +46,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
     public void UseAnItem()
     {
-        Inventory[cursorPos].Use();
-        nbInInventory[cursorPos]--;
-        if (nbInInventory[cursorPos] <= 0)
-            DestroyCurrentItem();
+        Inventory[cursorPos].TryUse();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -80,7 +77,18 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     private void AddInVoidCases(Usable usable, int nb)
     {
         Inventory.Add(GF.SetScripts<Usable>(usable.SO.script, gameObject));
+        Inventory[Inventory.Count].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count));
         nbInInventory.Add(nb <= usable.SO.nbMaxInventory ? nb : usable.SO.nbMaxInventory);
+    }
+
+    private void SubstractOneItem(int index)
+    {
+        nbInInventory[index] -= 1;
+        if (nbInInventory[index] <= 0)
+        {
+            Inventory[index].UseEvent.RemoveAllListeners();
+            DestroyCurrentItem(index);
+        }
     }
 
     private void EchangeInventoryItem(Usable usable, int nb)
@@ -91,10 +99,10 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
 
 
-    private void DestroyCurrentItem()
+    private void DestroyCurrentItem(int index)
     {
-        Destroy(Inventory[cursorPos]);
-        Inventory[cursorPos] = null;
+        Destroy(Inventory[index]);
+        Inventory[index] = null;
     }
 
     private void SetCursorEvent()

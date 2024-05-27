@@ -4,8 +4,4 @@ using UnityEngine;
 
 public class UtilityDefault : UtilityUsable
 {
-    public override void Use()
-    {
-        base.Use();
-    }
 }
