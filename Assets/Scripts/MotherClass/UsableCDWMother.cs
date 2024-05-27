@@ -10,7 +10,6 @@ public abstract class UsableCDWMother : UtilityUsable
     private void Start()
     {
         realSO = SO as UtilityUsableSO;
-        print(realSO.name);
         infos = GetComponent<PlayerInfos>();
     }
 

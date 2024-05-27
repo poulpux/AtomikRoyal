@@ -16,8 +16,12 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
-
         infos.inputSystem.isUsingUsableEvent.AddListener(() => UseItem());
+
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
+            Inventory.Add(null);
+        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
+            nbInInventory.Add(0);
     }
     void Update()
     {
@@ -41,33 +45,48 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         int index = 0;
         if (CheckIfObjectInCase(SO, ref index))
             CompleteACase(SO, nbOnGround, index, usableOnGround);
-        else if (Inventory.Count < _StaticPlayer.nbCasesInventory)
+        else if (CheckIfVoidCase())
             AddInVoidCases(SO, nbOnGround);
         else
             EchangeInventoryItem(SO, nbOnGround);
     }
     public void UseItem()
     {
-        if(Inventory.Count - 1 >= cursorPos && Inventory[cursorPos-1] != null)
-            Inventory[cursorPos-1].TryUse();
+        print(cursorPos);
+        if (Inventory[cursorPos] == null) return;
+        
+            Inventory[cursorPos].TryUse();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private bool CheckIfObjectInCase(UsableSO SO,ref int index)
     {
-        HashSet<string> itemNames = new HashSet<string>();
+        List<string> itemNames = new List<string>();
         itemNames.Add(SO.name);
         int counter = 0;
         foreach (var item in Inventory)
         {
-            if(item == null || item.SO == null) continue;
-            if (nbInInventory[counter] != Inventory[counter].SO.nbMaxInventory && !itemNames.Add(item.SO.name) )
+            if(item == null) continue;
+            print(SO.name);
+            if (nbInInventory[counter] != Inventory[counter].SO.nbMaxInventory  && item.SO.name == SO.name)
             {
                 index = counter;
                 return true;
             }
             counter++;
+        }
+        return false;
+    }
+
+    private bool CheckIfVoidCase()
+    {
+        int index = 0;
+        foreach (var item in Inventory)
+        {
+            if (item == null)
+                return true;
+            index++;
         }
         return false;
     }
@@ -84,18 +103,17 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void CompleteACase(UsableSO SO, int nb, int index, UsableOnGround usableOnGround)
     {
-        print("complete"+ index);
-        if (nbInInventory[index]+nb <= SO.nbMaxInventory)
+        if (nbInInventory[index]+ nb <= SO.nbMaxInventory)
             nbInInventory[index] += nb;
         else
         {
-            nb -= SO.nbMaxInventory - nbInInventory[index];
+            int place = SO.nbMaxInventory - nbInInventory[index]; //positif
             nbInInventory[index] = SO.nbMaxInventory;
 
-            if(Inventory.Count <= _StaticPlayer.nbCasesInventory)
-                AddInVoidCases(SO, nb);
-            else
-                usableOnGround.nb = nb;
+            usableOnGround.nb = nb - place;
+            //if(Inventory.Count <= _StaticPlayer.nbCasesInventory)
+            //    AddInVoidCases(SO, nb);
+            //else
             //Play Logic Of put down item
         }
        
@@ -103,10 +121,23 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void AddInVoidCases(UsableSO SO, int nb)
     {
-        Inventory.Add(GF.SetScripts<Usable>(SO.script, gameObject));
-        nbInInventory.Add(nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory);
-        Inventory[Inventory.Count-1].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
-        Inventory[Inventory.Count - 1].SO = SO;
+        int index = GetIndexVoidCase();
+        Inventory[index] = GF.SetScripts<Usable>(SO.script, gameObject);
+        nbInInventory[index] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
+        Inventory[index].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
+        Inventory[index].SO = SO;
+    }
+
+    private int GetIndexVoidCase()
+    {
+        int index = 0;
+        foreach (var item in Inventory)
+        {
+            if(item == null)
+                return index;
+            index ++;
+        }
+        return cursorPos;
     }
 
     private void SubstractOneItem(int index)
@@ -121,10 +152,14 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void EchangeInventoryItem(UsableSO SO, int nb)
     {
+        GameObject objet = _StaticChest.InstantiateUsable(transform.position, Inventory[cursorPos].SO, nbInInventory[cursorPos]);
+        UsableOnGround onGround = objet.GetComponent<UsableOnGround>();
+        onGround.nb = nbInInventory[cursorPos];
+        onGround.SO = Inventory[cursorPos].SO;
+
         Destroy(Inventory[cursorPos]);
         Inventory[cursorPos] = GF.SetScripts<Usable>(SO.script, gameObject);
-        GameObject objet = _StaticChest.InstantiateUsable(transform.position, Inventory[cursorPos].SO, nbInInventory[cursorPos]);
-        objet.GetComponent<UsableOnGround>().nb = nbInInventory[cursorPos];
+        Inventory[cursorPos].SO = SO;
         nbInInventory[cursorPos] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
     }
 
