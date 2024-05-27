@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,14 +26,7 @@ public class ConditionalFieldDrawer : PropertyDrawer
         ConditionalFieldAttribute conditional = (ConditionalFieldAttribute)attribute;
         bool enabled = GetConditionalHideAttributeResult(conditional, property);
 
-        if (enabled)
-        {
-            return EditorGUI.GetPropertyHeight(property, label);
-        }
-        else
-        {
-            return -EditorGUIUtility.standardVerticalSpacing;
-        }
+        return enabled ? EditorGUI.GetPropertyHeight(property, label) : -EditorGUIUtility.standardVerticalSpacing;
     }
 
     private bool GetConditionalHideAttributeResult(ConditionalFieldAttribute conditional, SerializedProperty property)
@@ -54,29 +48,17 @@ public class ConditionalFieldDrawer : PropertyDrawer
     {
         switch (sourceProperty.propertyType)
         {
-            case SerializedPropertyType.Boolean:
-                bool sourceBool = sourceProperty.boolValue;
-                bool compareBool = compareValue == null ? true : (bool)compareValue;
-                return CompareValues(sourceBool, compareBool, comparisonOperator);
-            case SerializedPropertyType.Integer:
-                int sourceInt = sourceProperty.intValue;
-                int compareInt = compareValue == null ? 0 : (int)compareValue;
-                return CompareValues(sourceInt, compareInt, comparisonOperator);
-            case SerializedPropertyType.Float:
-                float sourceFloat = sourceProperty.floatValue;
-                float compareFloat = compareValue == null ? 0.0f : (float)compareValue;
-                return CompareValues(sourceFloat, compareFloat, comparisonOperator);
-            case SerializedPropertyType.String:
-                string sourceString = sourceProperty.stringValue;
-                string compareString = compareValue == null ? string.Empty : (string)compareValue;
-                return CompareValues(sourceString, compareString, comparisonOperator);
+            case SerializedPropertyType.Enum:
+                int enumValue = sourceProperty.enumValueIndex;
+                int compareEnumValue = (int)compareValue;
+                return CompareValues(enumValue, compareEnumValue, comparisonOperator);
             default:
                 Debug.LogWarning("Unsupported property type for comparison: " + sourceProperty.propertyType);
                 return true;
         }
     }
 
-    private bool CompareValues<T>(T sourceValue, T compareValue, string comparisonOperator) where T : System.IComparable<T>
+    private bool CompareValues<T>(T sourceValue, T compareValue, string comparisonOperator) where T : IComparable<T>
     {
         switch (comparisonOperator)
         {
