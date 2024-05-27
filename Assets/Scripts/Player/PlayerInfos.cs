@@ -50,7 +50,7 @@ public class PlayerInfos : MonoBehaviour
     [Space(10)]
     //LIFE
     [ConditionalField("seeAll", true)] public int currentLife;
-    [ConditionalField("seeAll", true)] public int maxLife;
+    [ConditionalField("seeAll", true)] public int currentShield, maxLife;
     //DAMAGES
     [ConditionalField("seeAll", true)] public int dmgCAC, dmgBomb;
     //OTHERS
@@ -106,6 +106,11 @@ public class PlayerInfos : MonoBehaviour
     {
         currentLife = currentLife + heal <= maxLife ? currentLife + heal : maxLife;
     }
+    
+    public void IncreaseShield(int shield)
+    {
+        currentShield = currentShield + shield <= _StaticPlayer.maxShield ? currentShield + shield : _StaticPlayer.maxShield;
+    }
 
     public void DecreaseLife(int damage)
     {
@@ -117,6 +122,22 @@ public class PlayerInfos : MonoBehaviour
         {
             isDead = true;
             isDeadEvent.Invoke(this);
+        }
+    }
+
+    public void TakeDomage(int damage)
+    {
+        if (isInvincibleList.Count >= 1)
+            return;
+
+        int currentDamage = damage;
+        if(currentShield >=currentDamage) 
+            currentShield -= currentDamage;
+        else
+        {
+            currentDamage -= currentShield;
+            currentShield = 0;
+            currentLife -= currentDamage;
         }
     }
 

@@ -8,6 +8,7 @@ public class StaticPlayerSO : ScriptableObject
 {
     [Header("All curves")]
     [Space(10)]
+    public int maxShield;
     public UpgradeCurves spd;
     public UpgradeCurves pvMax;
     public UpgradeCurves explosionSize;
