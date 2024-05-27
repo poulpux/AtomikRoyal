@@ -20,7 +20,8 @@ public static class _StaticPlayer
 {
     [Header("All curves")]
     [Space(10)]
-    //Courbe "nbAmélioration/prix"
+
+    static public int maxShield;
     static public UpgradeCurves spd;
     static public UpgradeCurves pvMax;
     static public UpgradeCurves explosionSize;
@@ -68,6 +69,7 @@ public static class _StaticPlayer
 
     static public void Init(StaticPlayerSO SO)
     {
+        maxShield = SO.maxShield;
         spd = SO.spd;
         pvMax = SO.pvMax;
         explosionSize = SO.explosionSize;
