@@ -16,6 +16,7 @@ public class UsableOnGround : Interactible
     {
         base.Use(infos);
         infos.inventory.AddObject(SO,nb, this);
-        Destroy(gameObject);
+        if(nb <= 0)
+            Destroy(gameObject);
     }
 }
