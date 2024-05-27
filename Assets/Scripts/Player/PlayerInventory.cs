@@ -36,10 +36,11 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         cantThrowItem.RemoveAll(delete => delete == nameOfInterdiction);
     }
 
-    public void AddObject(UsableSO SO, int nbOnGround)
+    public void AddObject(UsableSO SO, int nbOnGround, UsableOnGround usableOnGround)
     {
-        if (Inventory.Contains(GF.GetScript<Usable>(SO.script)))
-            CompleteACase(SO, nbOnGround);
+        int index = 0;
+        if (CheckIfObjectInCase(SO, ref index))
+            CompleteACase(SO, nbOnGround, index, usableOnGround);
         else if (Inventory.Count <= _StaticPlayer.nbCasesInventory)
             AddInVoidCases(SO, nbOnGround);
         else
@@ -53,6 +54,23 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    private bool CheckIfObjectInCase(UsableSO SO,ref int index)
+    {
+        HashSet<string> itemNames = new HashSet<string>();
+        itemNames.Add(SO.name);
+        int counter = 0;
+        foreach (var item in Inventory)
+        {
+            if (nbInInventory[counter] != Inventory[counter].SO.nbMaxInventory && !itemNames.Add(item.SO.name) )
+            {
+                index = counter;
+                return true;
+            }
+            counter++;
+        }
+        return false;
+    }
+
     private void SetCursorInventory(int nb)
     {
         cursorPos = nb;
@@ -63,14 +81,20 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory + ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f ? _StaticPlayer.nbCasesInventory : 0);
     }
 
-    private void CompleteACase(UsableSO SO, int nb)
+    private void CompleteACase(UsableSO SO, int nb, int index, UsableOnGround usableOnGround)
     {
-        int index = Inventory.FindIndex(listIndex => listIndex == GF.GetScript<Usable>(SO.script));
+        print("complete"+ index);
         if (nbInInventory[index]+nb <= SO.nbMaxInventory)
             nbInInventory[index] += nb;
         else
         {
+            nb -= SO.nbMaxInventory - nbInInventory[index];
             nbInInventory[index] = SO.nbMaxInventory;
+
+            if(Inventory.Count <= _StaticPlayer.nbCasesInventory)
+                AddInVoidCases(SO, nb);
+            else
+                usableOnGround.nb = nb;
             //Play Logic Of put down item
         }
        

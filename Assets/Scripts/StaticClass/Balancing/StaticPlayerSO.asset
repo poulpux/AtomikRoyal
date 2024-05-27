@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c385319dd82534d4cbee4ccc56781e92, type: 3}
   m_Name: StaticPlayerSO
   m_EditorClassIdentifier: 
+  maxShield: 100
   spd:
     CostCurve:
       serializedVersion: 2
@@ -155,4 +156,4 @@ MonoBehaviour:
   cdwPiece: 10
   nbCardInDeck: 5
   nbCardInHand: 3
-  nbCaseInventory: 6
+  nbCaseInventory: 5

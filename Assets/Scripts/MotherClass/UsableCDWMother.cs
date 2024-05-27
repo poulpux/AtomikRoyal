@@ -35,7 +35,6 @@ public abstract class UsableCDWMother : UtilityUsable
     {
         while (!UseCondition() && !infos.isMoving)
         {
-            print(timer + " timer : "+timer +" timeUse : "+realSO.timeUse+" : "+UseCondition());
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

@@ -14,7 +14,7 @@ public class UsableOnGround : Interactible
     protected override void Use(PlayerInfos infos)
     {
         base.Use(infos);
-        infos.inventory.AddObject(SO,nb);
+        infos.inventory.AddObject(SO,nb, this);
         Destroy(gameObject);
     }
 }
