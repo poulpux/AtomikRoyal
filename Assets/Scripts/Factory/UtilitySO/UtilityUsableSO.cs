@@ -40,7 +40,7 @@ public class UtilityUsableSO : UsableSO
     [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
     [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
     [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
-    public Sprite explosionPrefab;
+    public GameObject  explosionPrefab;
 
 
     //Other
@@ -52,9 +52,9 @@ public class UtilityUsableSO : UsableSO
     private const string BombScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableBomb.cs";
 
 
-    public const string prefabPathGrenadeImpulse = "Prefabs/ArchiUsable/PrefabGrenadeImpulse";
-    public const string prefabPathGrenadeCDW = "Prefabs/ArchiUsable/PrefabGrenadeCDW";
-    public const string prefabPathMine = "Prefabs/ArchiUsable/PrefabMine";
+    public const string prefabPathGrenadeImpulse = "PrefabGrenadeImpulse";
+    public const string prefabPathGrenadeCDW = "PrefabGrenadeCDW";
+    public const string prefabPathMine = "PrefabMine";
 
     private void OnValidate()
     {

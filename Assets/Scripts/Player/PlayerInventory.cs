@@ -105,7 +105,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         int index = GetIndexVoidCase();
         Inventory[index] = GF.SetScripts<Usable>(SO.script, gameObject);
         nbInInventory[index] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
-        Inventory[index].UseEvent.AddListener(() => SubstractOneItem(Inventory.Count-1));
+        Inventory[index].UseEvent.AddListener(() => SubstractOneItem(index));
         Inventory[index].SO = SO;
     }
 

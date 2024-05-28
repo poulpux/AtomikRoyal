@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: StaticPhysicsSO
   m_EditorClassIdentifier: 
   onGroundDrag: 3
+  grenadeDrag: 1
   onGroundImpulseForce: 1.5
   chestRadius: 0.2

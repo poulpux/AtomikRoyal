@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum BOMBTYPE
@@ -15,19 +16,21 @@ public class BombUsableSO : UsableSO
     [Header("BombUsableSO")]
     [Space(10)]
     public BOMBTYPE type;
-    public int baseDamage;
+    public float baseDamage, cdw;
     public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
-    [SerializeField] private TextAsset bombScript;
+    //[SerializeField] private TextAsset bombScript;
 
-    public const string prefabPathGrenadeImpulse = "Prefabs/ArchiUsable/PrefabGrenadeImpulse";
-    public const string prefabPathGrenadeCDW = "Prefabs/ArchiUsable/PrefabGrenadeCDW";
-    public const string prefabPathMine = "Prefabs/ArchiUsable/PrefabMine";
+    public const string prefabPathGrenadeImpulse = "PrefabGrenadeImpulse";
+    public const string prefabPathGrenadeCDW = "PrefabGrenadeCDW";
+    public const string prefabPathMine = "PrefabMine";
+
+    private const string bombScriptPath = "Assets/Scripts/Factory/BombUsableSO/BombUsable.cs";
 
     private void OnValidate()
     {
-        VerifBombType<BombUsable>();
+        script = AssetDatabase.LoadAssetAtPath<TextAsset>(bombScriptPath);
         VerifExplosionPrefabComponent();
     }
 
@@ -55,27 +58,5 @@ public class BombUsableSO : UsableSO
             explosionPrefab = null;
             throw new System.Exception("explosion prefab haven't the script Explosion");
         }
-    }
-
-    protected void VerifBombType<T>()
-    {
-        if (bombScript == null)
-            throw new System.Exception("No reference on " + typeof(T) + " script");
-
-        System.Type t = System.Type.GetType(bombScript.name.Replace(".cs", ""));
-
-        if (t == null)
-        {
-            bombScript = null;
-            throw new System.Exception("The referenced asset is not a script");
-        }
-
-        if (t.BaseType != typeof(T))
-        {
-            bombScript = null;
-            throw new System.Exception("The referenced script is not an " + typeof(T));
-        }
-
-        script = bombScript;
     }
 }

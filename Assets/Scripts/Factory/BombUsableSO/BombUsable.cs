@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UtilityUsableBomb : Usable
+public class BombUsable : Usable
 {
-    UtilityUsableSO realSO;
+    BombUsableSO realSO;
 
     protected override void Start()
     {
         base.Start();
-        realSO = SO as UtilityUsableSO;
+        realSO = SO as BombUsableSO;
     }
+
     protected override void Use()
     {
         base.Use();
@@ -19,5 +20,4 @@ public class UtilityUsableBomb : Usable
         GetComponent<SpriteRenderer>().sprite = realSO.sprite;
         objet.GetComponent<ProjectileBombMother>().Init(infos, realSO.explosionPrefab, 0f, infos.inputSystem.mousePos, realSO.cdw);
     }
-
 }

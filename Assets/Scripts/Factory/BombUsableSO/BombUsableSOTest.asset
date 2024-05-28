@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d9246ad3c335847a94ffd8154581ad, type: 3}
   m_Name: BombUsableSOTest
   m_EditorClassIdentifier: 
-  script: {fileID: 11500000, guid: 9a3712da25b7b8449a1a89a61874e551, type: 3}
+  script: {fileID: 11500000, guid: 7e0c09cd608829842b4a97a337ffe417, type: 3}
   nameUsable: 
   description: 
   nbMaxInventory: 10
   nbRecolted: 4
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
+  type: 0
   baseDamage: 0
+  cdw: 1
   owner: {fileID: 0}
-  objectToInstantiate: {fileID: 0}
+  objectToInstantiate: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}

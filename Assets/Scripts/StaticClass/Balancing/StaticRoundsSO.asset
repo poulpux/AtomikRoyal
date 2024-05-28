@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197edd8c1ddb06f4eb8a2469502094d8, type: 3}
   m_Name: StaticRoundsSO
   m_EditorClassIdentifier: 
-  allGameMods:
+  _allGameMods:
   - {fileID: 11400000, guid: 89c66d1da6d435844a85547b35b49ddc, type: 2}

@@ -16,7 +16,7 @@ public class PlayerInputSystem : MonoBehaviour
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
-    [HideInInspector] public Vector2 direction, mousePos;
+    [HideInInspector] public Vector2 direction, mousePos, mouseDirection;
     [HideInInspector] public bool isInteracting;
     private float scrollMouse, scrollMouseTimer;
     Camera cam;
@@ -193,6 +193,7 @@ public class PlayerInputSystem : MonoBehaviour
     private void MousePositionAct(InputAction.CallbackContext value)
     {
         mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+        mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
     
     private void MousePositionSleep(InputAction.CallbackContext value)
