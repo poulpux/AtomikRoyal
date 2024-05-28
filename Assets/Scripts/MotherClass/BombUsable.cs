@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombUsable : Usable
+public abstract class BombUsable : Usable
 {
+    BombUsableSO realSO;
+
+    protected void Explose()
+    {
+        //Instantiate()
+    }
 
     public override void AddSO(UsableSO SO)
     {

@@ -24,14 +24,14 @@ public class UtilityUsableSO : UsableSO
 
     [ConditionalField("type", UTILITYTYPE.HEAL, "==")]  public int nbHeal;
     [ConditionalField("type", UTILITYTYPE.SHIELD, "==")]  public int nbShield;
-    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "==")]  public int spdModifier;
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "==")]  public float spdModifier;
     [ConditionalField("type", UTILITYTYPE.GRENADECDW, "!=")][ConditionalField("type", UTILITYTYPE.GRENADEIMPULSE, "!=")][ConditionalField("type", UTILITYTYPE.MINE, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]  
     public float timeUse;
 
     [ConditionalField("type", UTILITYTYPE.GRENADECDW, "==")] public float cdw;
 
-    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")] [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")] [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
-    public GameObject objectToInstantiate, explosionPrefab;
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")][ConditionalField("type", UTILITYTYPE.SHIELD, "!=")][ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public BombUsableSO bombSO;
 
     //Other
     [ConditionalField("type", UTILITYTYPE.OTHER, "==")] public TextAsset otherScript;
@@ -59,6 +59,9 @@ public class UtilityUsableSO : UsableSO
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(mineScriptPath);
         else
             VerifOtherType<UtilityUsable>();
+
+        if(type ==UTILITYTYPE.GRENADECDW || type == UTILITYTYPE.GRENADEIMPULSE || type == UTILITYTYPE.MINE)
+            bombSO.baseDamage = 0;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

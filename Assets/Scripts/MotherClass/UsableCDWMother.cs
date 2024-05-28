@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class UsableCDWMother : UtilityUsable
 {
-    protected UtilityUsableSO realSO;
     private float timer;
     private void Start()
     {

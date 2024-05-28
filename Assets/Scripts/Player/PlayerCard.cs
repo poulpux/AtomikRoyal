@@ -51,8 +51,8 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         CheckIfItFirstTime();
         for (int i = 0; i < _StaticPlayer.nbCardInDeck; i++)
         {
-            Card card = GF.SetScripts<Card>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
-            card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
+            Card card = GF.SetScripts<Card>(_StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
+            card.SO = _StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)];
             deck.Add(card);
         }
     }

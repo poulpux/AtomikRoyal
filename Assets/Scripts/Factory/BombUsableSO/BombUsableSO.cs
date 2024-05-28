@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BombUsableSO_fileName", menuName = "SO/BombUsableSO")]
+[CreateAssetMenu(fileName = "BombSO_fileName", menuName = "SO/BombSO")]
 public class BombUsableSO : UsableSO
 {
     [Header("BombUsableSO")]
     [Space(10)]
     public int baseDamage;
     public PlayerInfos owner;
-    public GameObject objectToInstantiate;
+    public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
+    public const string prefabAdressGrenadeImpulse = "Prefabs/ArchiUsable/PrefabGrenadeImpulse";
+    public const string prefabAdressGrenadeCDW = "Prefabs/ArchiUsable/PrefabGrenadeCDW";
+    public const string prefabAdressMine = "Prefabs/ArchiUsable/PrefabMine";
 
     private void OnValidate()
     {
