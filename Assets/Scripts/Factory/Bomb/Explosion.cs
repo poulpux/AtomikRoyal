@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [HideInInspector] public int damage;
-    PlayerInfos playerInfos;    
+    public PlayerInfos infos;
+    public float baseDomage; 
     List<PlayerInfos> touchedPlayer = new List<PlayerInfos>();
 
     private void OnCollisionEnter(Collision collision)

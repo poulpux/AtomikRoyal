@@ -1,25 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BombUsableSO_fileName", menuName = "SO/BombUsableSO")]
+public enum BOMBTYPE
+{
+    GRENADECDW,
+    GRENADEIMPULSE,
+    MINE
+}
+
+[CreateAssetMenu(fileName = "BombSO_fileName", menuName = "SO/BombSO")]
 public class BombUsableSO : UsableSO
 {
     [Header("BombUsableSO")]
     [Space(10)]
-    public int baseDamage;
+    public BOMBTYPE type;
+    public float baseDamage;
+
+    [ConditionalField("type", BOMBTYPE.GRENADECDW, "==")] public float cdw;
     public PlayerInfos owner;
-    public GameObject objectToInstantiate;
+    public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
+    //[SerializeField] private TextAsset bombScript;
+
+    public const string prefabPathGrenadeImpulse = "PrefabGrenadeImpulse";
+    public const string prefabPathGrenadeCDW = "PrefabGrenadeCDW";
+    public const string prefabPathMine = "PrefabMine";
+
+    private const string bombScriptPath = "Assets/Scripts/Factory/BombUsableSO/BombUsable.cs";
 
     private void OnValidate()
     {
-        VerifType<BombUsable>();
+        script = AssetDatabase.LoadAssetAtPath<TextAsset>(bombScriptPath);
         VerifExplosionPrefabComponent();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    public string GetPath()
+    {
+        if (type == BOMBTYPE.GRENADECDW)
+            return prefabPathGrenadeCDW;
+        else if (type == BOMBTYPE.GRENADEIMPULSE)
+            return prefabPathGrenadeImpulse;
+        else if(type == BOMBTYPE.MINE)
+            return prefabPathMine;
+
+        return prefabPathGrenadeCDW;
+    }
 
     private void VerifExplosionPrefabComponent()
     {

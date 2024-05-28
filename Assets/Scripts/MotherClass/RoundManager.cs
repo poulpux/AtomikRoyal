@@ -26,11 +26,10 @@ public abstract class RoundManager : Singleton<RoundManager>
 
     private void MakeChestSpawn()
     {
-        foreach (var item in _StaticChest.allChestPos)
+        foreach (var item in _StaticChest.AllChestPos)
         {
             //MakeSpawnChest
         }
-        _StaticChest.allChestPos.Clear();
     }
 
     protected virtual bool EndCondition()

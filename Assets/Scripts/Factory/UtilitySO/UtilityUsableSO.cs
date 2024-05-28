@@ -24,14 +24,24 @@ public class UtilityUsableSO : UsableSO
 
     [ConditionalField("type", UTILITYTYPE.HEAL, "==")]  public int nbHeal;
     [ConditionalField("type", UTILITYTYPE.SHIELD, "==")]  public int nbShield;
-    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "==")]  public int spdModifier;
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "==")]  public float spdModifier;
     [ConditionalField("type", UTILITYTYPE.GRENADECDW, "!=")][ConditionalField("type", UTILITYTYPE.GRENADEIMPULSE, "!=")][ConditionalField("type", UTILITYTYPE.MINE, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]  
     public float timeUse;
 
     [ConditionalField("type", UTILITYTYPE.GRENADECDW, "==")] public float cdw;
 
-    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")] [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")] [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
-    public GameObject objectToInstantiate, explosionPrefab;
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public Sprite spriteObjectToInstantiate;
+    
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public GameObject  explosionPrefab;
+
 
     //Other
     [ConditionalField("type", UTILITYTYPE.OTHER, "==")] public TextAsset otherScript;
@@ -39,9 +49,12 @@ public class UtilityUsableSO : UsableSO
     private const string healScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableHeal.cs";
     private const string shieldScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableShield.cs";
     private const string spdBoostScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableSpdBoost.cs";
-    private const string grenadeCDWScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableGrenadeCDW.cs";
-    private const string grenadeImpulseScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableGrenadeCDW.cs";
-    private const string mineScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableMine.cs";
+    private const string BombScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableBomb.cs";
+
+
+    public const string prefabPathGrenadeImpulse = "PrefabGrenadeImpulse";
+    public const string prefabPathGrenadeCDW = "PrefabGrenadeCDW";
+    public const string prefabPathMine = "PrefabMine";
 
     private void OnValidate()
     {
@@ -51,17 +64,25 @@ public class UtilityUsableSO : UsableSO
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(shieldScriptPath);
         else if (type == UTILITYTYPE.SPDBOOST)
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(spdBoostScriptPath);
-        else if (type == UTILITYTYPE.GRENADECDW)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(grenadeCDWScriptPath);        
-        else if (type == UTILITYTYPE.GRENADEIMPULSE)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(grenadeImpulseScriptPath);
-        else if (type == UTILITYTYPE.MINE)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(mineScriptPath);
+        else if (type == UTILITYTYPE.GRENADECDW || type == UTILITYTYPE.GRENADEIMPULSE || type == UTILITYTYPE.MINE)
+            script = AssetDatabase.LoadAssetAtPath<TextAsset>(BombScriptPath);  
         else
             VerifOtherType<UtilityUsable>();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public string GetPath()
+    {
+        if (type == UTILITYTYPE.GRENADECDW)
+            return prefabPathGrenadeCDW;
+        else if (type == UTILITYTYPE.GRENADEIMPULSE)
+            return prefabPathGrenadeImpulse;
+        else if (type == UTILITYTYPE.MINE)
+            return prefabPathMine;
+
+        return prefabPathGrenadeCDW;
+    }
 
     protected void VerifOtherType<T>()
     {

@@ -13,12 +13,14 @@ public enum RARITY
 
 public static class _StaticChest
 {
-    static public List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
-    static public List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
-    static public int minGoldInChest, maxGoldInChest, chestDropRate;
-    static public List<Vector2> allChestPos = new List<Vector2>();
-    static public GameObject objectOnGroundPrefab, coinsOnGroundPrefab;
-    static public int nbUtility, nbBomb, nbCoins;
+    static public IReadOnlyList<Vector2> AllChestPos=> _allChestPos.AsReadOnly();
+
+    static private List<Vector2> _allChestPos = new List<Vector2>();
+    static private List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
+    static private List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
+    static private int minGoldInChest, maxGoldInChest, chestDropRate;
+    static private GameObject objectOnGroundPrefab, coinsOnGroundPrefab;
+    static private int nbUtility, nbBomb, nbCoins;
 
     static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
@@ -56,6 +58,7 @@ public static class _StaticChest
             return;
         }
 
+        _allChestPos = SO.allChestPos;
         ToFindInChestUtility = SO.ToFindInChestUtility;
         ToFindInChestBomb = SO.ToFindInChestBomb;
         minGoldInChest = SO.minGoldInChest;

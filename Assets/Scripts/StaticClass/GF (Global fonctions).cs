@@ -75,4 +75,12 @@ public static class GF
     {
         listOfInterdiction.RemoveAll(item => item == interdictionName);
     }
+
+    static public GameObject GetPrefabAdress(string prefabPath)
+    {
+        GameObject prefab = Resources.Load<GameObject>(prefabPath);
+        if (prefab == null)
+            Debug.LogError("Prefab not found at path: " + prefabPath);
+        return prefab;
+    }
 }

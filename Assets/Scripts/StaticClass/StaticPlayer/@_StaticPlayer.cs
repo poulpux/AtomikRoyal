@@ -18,40 +18,49 @@ public enum PLAYERSTATS
 
 public static class _StaticPlayer 
 {
-    [Header("All curves")]
-    [Space(10)]
+    //[Header("All curves")]
+    //[Space(10)]
+    public static int maxShield { private set; get; }
+    public static UpgradeCurves spd { private set; get; }
+    public static UpgradeCurves pvMax { private set; get; }
+    public static UpgradeCurves explosionSize { private set; get; }
+    public static UpgradeCurves dmgCAC { private set; get; }
+    public static UpgradeCurves dmgBomb { private set; get; }
+    public static UpgradeCurves cdwThrow { private set; get; }
+    public static UpgradeCurves throwForce { private set; get; }
+    public static UpgradeCurves range { private set; get; }
 
-    static public int maxShield;
-    static public UpgradeCurves spd;
-    static public UpgradeCurves pvMax;
-    static public UpgradeCurves explosionSize;
-    static public UpgradeCurves dmgCAC;
-    static public UpgradeCurves dmgBomb;
-    static public UpgradeCurves cdwThrow;
-    static public UpgradeCurves throwForce;
-    static public UpgradeCurves range;
+    //[Header("GeneralValues")]
+    //[Space(10)]
+    public static float rangeInteractible { private set; get; }
+    public static float timeInteractibleBecomeZero { private set; get; }
+    public static float scrollCdwCursor { private set; get; }
 
-    [Header("GeneralValues")]
-    [Space(10)]
-    static public float rangeInteractible, timeInteractibleBecomeZero, scrollCdwCursor;
+    //[Header("Speed")]
+    //[Space(10)]
+    public static float glueSpdModifier { private set; get; }
+    public static float waterSpdModifier { private set; get; }
+    public static float deadSpd { private set; get; }
+    public static AnimationCurve beginEndMoveCurve { private set; get; }
+    public static float beginEndMoveCurveDuration { private set; get; } = 0.1f;
 
-    [Header("Speed")]
-    [Space(10)]
-    static public float glueSpdModifier;
-    static public float waterSpdModifier, deadSpd;
-    static public AnimationCurve beginEndMoveCurve;
-    static public float beginEndMoveCurveDuration = 0.1f;
+    //[Header("Card")]
+    //[Space(10)]
+    public static int pieceByKill { private set; get; }
+    public static float cdwPiece { private set; get; }
+    public static int nbCardInDeck { private set; get; }
+    public static int nbCardInHand { private set; get; }
 
-    [Header("Card")]
-    [Space(10)]
-    static public int pieceByKill;
-    static public float cdwPiece;
-    static public int nbCardInDeck, nbCardInHand;
+    //[Header("Inventory")]
+    //[Space(10)]
+    public static int nbCasesInventory { private set; get; }
 
+    //[Header("Ground")]
+    //[Space(10)]
+    public static float onGroundDrag { private set; get; }
+    public static float onGroundImpulseForce { private set; get; }
+    public static float chestRadius { private set; get; }
 
-    [Header("Inventory")]
-    [Space(10)]
-    static public int nbCasesInventory;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

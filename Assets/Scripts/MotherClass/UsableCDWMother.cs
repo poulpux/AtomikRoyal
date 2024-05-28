@@ -5,12 +5,11 @@ using UnityEngine;
 
 public abstract class UsableCDWMother : UtilityUsable
 {
-    protected UtilityUsableSO realSO;
     private float timer;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         realSO = SO as UtilityUsableSO;
-        infos = GetComponent<PlayerInfos>();
     }
 
     override public void TryUse()
