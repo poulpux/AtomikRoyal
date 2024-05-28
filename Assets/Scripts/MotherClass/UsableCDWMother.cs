@@ -6,15 +6,18 @@ using UnityEngine;
 public abstract class UsableCDWMother : UtilityUsable
 {
     private float timer;
+    private int cursor;
     protected override void Start()
     {
         base.Start();
         realSO = SO as UtilityUsableSO;
+        infos.GetCancelEvent.AddListener(() => CancelRecovery());
     }
 
     override public void TryUse()
     {
         if (timer != 0) return;
+        cursor = infos.inventory.cursorPos;
         StopCoroutine(UseCoroutine());
         StartCoroutine(UseCoroutine());
         base.TryUse();
@@ -31,14 +34,20 @@ public abstract class UsableCDWMother : UtilityUsable
 
     protected IEnumerator UseCoroutine()
     {
-        while (!UseCondition() && !infos.isMoving)
+        while (!UseCondition() && !infos.isMoving && infos.inventory.cursorPos != cursor)
         {
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        if (!infos.isMoving)
+        timer = 0f;
+        if (!infos.isMoving && infos.inventory.cursorPos != cursor)
             Use();
+    }
+
+    private void CancelRecovery()
+    {
+        StopCoroutine(UseCoroutine());
         timer = 0f;
     }
 
