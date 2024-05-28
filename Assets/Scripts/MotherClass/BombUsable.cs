@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class BombUsable : Usable
 {
-    BombUsableSO realSOBomb;
-    UtilityUsable realSOUsable;
+    BombUsableSO realSO;
+
+    protected override void Start()
+    {
+        base.Start();
+        realSO = SO as BombUsableSO;
+    }
 
     protected override void Use()
     {
         base.Use();
-        if(realSOBomb != null)
-        {
-
-        }   
-        else
-        {
-
-        }
+        GameObject objet = Instantiate(GF.GetPrefabAdress(realSO.GetPath()));
     }
     public override void AddSO(UsableSO SO)
     {

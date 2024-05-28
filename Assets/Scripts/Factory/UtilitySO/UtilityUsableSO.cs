@@ -49,9 +49,12 @@ public class UtilityUsableSO : UsableSO
     private const string healScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableHeal.cs";
     private const string shieldScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableShield.cs";
     private const string spdBoostScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableSpdBoost.cs";
-    private const string grenadeCDWScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableGrenadeCDW.cs";
-    private const string grenadeImpulseScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableGrenadeCDW.cs";
-    private const string mineScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableMine.cs";
+    private const string BombScriptPath = "Assets/Scripts/Factory/UtilitySO/UtilityUsableBomb.cs";
+
+
+    public const string prefabPathGrenadeImpulse = "Prefabs/ArchiUsable/PrefabGrenadeImpulse";
+    public const string prefabPathGrenadeCDW = "Prefabs/ArchiUsable/PrefabGrenadeCDW";
+    public const string prefabPathMine = "Prefabs/ArchiUsable/PrefabMine";
 
     private void OnValidate()
     {
@@ -61,17 +64,25 @@ public class UtilityUsableSO : UsableSO
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(shieldScriptPath);
         else if (type == UTILITYTYPE.SPDBOOST)
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(spdBoostScriptPath);
-        else if (type == UTILITYTYPE.GRENADECDW)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(grenadeCDWScriptPath);        
-        else if (type == UTILITYTYPE.GRENADEIMPULSE)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(grenadeImpulseScriptPath);
-        else if (type == UTILITYTYPE.MINE)
-            script = AssetDatabase.LoadAssetAtPath<TextAsset>(mineScriptPath);
+        else if (type == UTILITYTYPE.GRENADECDW || type == UTILITYTYPE.GRENADEIMPULSE || type == UTILITYTYPE.MINE)
+            script = AssetDatabase.LoadAssetAtPath<TextAsset>(BombScriptPath);  
         else
             VerifOtherType<UtilityUsable>();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public string GetPath()
+    {
+        if (type == UTILITYTYPE.GRENADECDW)
+            return prefabPathGrenadeCDW;
+        else if (type == UTILITYTYPE.GRENADEIMPULSE)
+            return prefabPathGrenadeImpulse;
+        else if (type == UTILITYTYPE.MINE)
+            return prefabPathMine;
+
+        return prefabPathGrenadeCDW;
+    }
 
     protected void VerifOtherType<T>()
     {

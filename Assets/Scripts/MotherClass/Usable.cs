@@ -9,6 +9,10 @@ public abstract class Usable : MonoBehaviour
     [HideInInspector] public PlayerInfos infos;
     [HideInInspector] public UnityEvent UseEvent = new UnityEvent();
 
+    protected virtual void Start()
+    {
+        infos = GetComponent<PlayerInfos>();
+    }
 
     virtual public void TryUse()
     {
