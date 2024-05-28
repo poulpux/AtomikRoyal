@@ -43,17 +43,17 @@ public class PlayerInputSystem : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    private void Start()
     {
         EnableActionMap(DefaultActions);
         SetAllButton();
         SetButtonInventoryList();
     }
 
-    private void OnDisable()
-    {
-        DisableActionMap(DefaultActions);
-    }
+    //private void OnDisable()
+    //{
+    //    DisableActionMap(DefaultActions);
+    //}
 
     //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
@@ -233,6 +233,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void InventoryAct(int index)
     {
+        print("rip");
         ButtonAct(index);
     }
     

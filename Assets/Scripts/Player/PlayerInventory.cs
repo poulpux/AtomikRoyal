@@ -24,6 +24,15 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
             nbInInventory.Add(0);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+            nbCoins += collision.GetComponent<OnGroundCoins>().nb;
+            Destroy(collision.gameObject);
+        }
+    }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void AddObject(UsableSO SO, int nbOnGround, UsableOnGround usableOnGround)
@@ -53,7 +62,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         {
             if(item == null) continue;
             print(SO.name);
-            if (nbInInventory[counter] != Inventory[counter].SO.nbMaxInventory  && item.SO.name == SO.name)
+            if (nbInInventory[counter] != item.SO.nbMaxInventory  && item.SO.name == SO.name)
             {
                 index = counter;
                 return true;
@@ -77,6 +86,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void SetCursorInventory(int nb)
     {
+        print("appuis touche");
         cursorPos = nb;
     }
 
