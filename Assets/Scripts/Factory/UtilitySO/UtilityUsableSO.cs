@@ -30,8 +30,18 @@ public class UtilityUsableSO : UsableSO
 
     [ConditionalField("type", UTILITYTYPE.GRENADECDW, "==")] public float cdw;
 
-    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")][ConditionalField("type", UTILITYTYPE.SHIELD, "!=")][ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")][ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
-    public BombUsableSO bombSO;
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public Sprite spriteObjectToInstantiate;
+    
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public Sprite explosionPrefab;
+
 
     //Other
     [ConditionalField("type", UTILITYTYPE.OTHER, "==")] public TextAsset otherScript;
@@ -59,9 +69,6 @@ public class UtilityUsableSO : UsableSO
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(mineScriptPath);
         else
             VerifOtherType<UtilityUsable>();
-
-        if(type ==UTILITYTYPE.GRENADECDW || type == UTILITYTYPE.GRENADEIMPULSE || type == UTILITYTYPE.MINE)
-            bombSO.baseDamage = 0;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

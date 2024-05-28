@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BombUsable : Usable
+public class BombUsable : Usable
 {
-    BombUsableSO realSO;
+    BombUsableSO realSOBomb;
+    UtilityUsable realSOUsable;
 
-    protected void Explose()
+    protected override void Use()
     {
-        //Instantiate()
-    }
+        base.Use();
+        if(realSOBomb != null)
+        {
 
+        }   
+        else
+        {
+
+        }
+    }
     public override void AddSO(UsableSO SO)
     {
         if (SO.GetType() == typeof(BombUsableSO))
