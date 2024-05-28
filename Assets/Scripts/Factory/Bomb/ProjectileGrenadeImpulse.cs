@@ -15,7 +15,8 @@ public class ProjectileGrenadeImpulse : ProjectileBombMother
         {
             if (Vector2.Distance(transform.position, posToGo) < 0.5f)
             {
-                print("distance explose");
+
+                print("distance explose "+ transform.position+" : "+posToGo);
                 Destroy(gameObject);
             }
             yield return new WaitForEndOfFrame();

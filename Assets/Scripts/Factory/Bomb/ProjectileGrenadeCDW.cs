@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class ProjectileGrenadeCDW : ProjectileBombMother
 {
+    Vector2 direction;
+    Rigidbody2D rb;
     private void Start()
     {
-        print(cdw);
+        rb = GetComponent<Rigidbody2D>();
+        direction = posToGo - (Vector2)transform.position;
+        StartCoroutine(TouchPosToGo());
         Destroy(gameObject, cdw);
     }
 
-    //public override void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo, float cdw = 0)
-    //{
-    //    base.Init(infos, explosionPrefab, baseDomage, posToGo, cdw);
-    //}
+    private IEnumerator TouchPosToGo()
+    {
+        while (true)
+        {
+            if (Vector2.Distance(transform.position, posToGo) < 0.2f)
+            {
+                direction /= 3f;//mettre en static
+                posToGo += direction;
+                rb.drag *= 2f;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }

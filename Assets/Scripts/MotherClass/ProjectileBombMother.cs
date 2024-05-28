@@ -9,12 +9,13 @@ public abstract class ProjectileBombMother : MonoBehaviour
     protected float baseDomage, cdw;
     protected Vector2 posToGo;
 
-    public /*virtual*/ void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
+    public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
     {
         this.infos = infos;
         this.baseDomage = baseDomage;
         this.explosionPrefab = explosionPrefab;
         this.cdw = cdw;
+        this.posToGo = posToGo;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.drag = _StaticPhysics.grenadeDrag;
