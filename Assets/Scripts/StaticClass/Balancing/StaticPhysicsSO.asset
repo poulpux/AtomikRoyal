@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StaticPhysicsSO
   m_EditorClassIdentifier: 
   onGroundDrag: 3
-  grenadeDrag: 0.2
   onGroundImpulseForce: 1.5
+  grenadeDrag: 0.2
+  lostSpdBounce: 2
   chestRadius: 0.2

@@ -9,9 +9,13 @@ public class StaticPhysicsSO : ScriptableObject
     [Header("OnGroundPhysics")]
     [Space(10)]
     public float onGroundDrag;
-    public float grenadeDrag;
     public float onGroundImpulseForce;
-    
+
+    [Header("Grenade")]
+    [Space(10)]
+    public float grenadeDrag;
+    public float lostSpdBounce = 3f;
+
     [Header("Chest")]
     [Space(10)]
     public float chestRadius;

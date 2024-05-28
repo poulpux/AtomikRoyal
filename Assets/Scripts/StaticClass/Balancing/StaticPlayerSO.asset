@@ -110,7 +110,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    startValue: 5
+    startValue: 12
     statsParLv: 0
   range:
     CostCurve:
