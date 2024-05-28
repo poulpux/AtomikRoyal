@@ -34,7 +34,6 @@ public class ProjectileGrenadeCDW : ProjectileBombMother
                 rb.AddForce(direction, ForceMode2D.Impulse);
                 if (direction.magnitude < 0.1f)
                 {
-                    print("on ground");
                     rb.drag = _StaticPhysics.onGroundDrag;
                     yield break;
                 }

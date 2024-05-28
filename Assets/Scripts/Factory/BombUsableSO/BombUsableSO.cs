@@ -16,7 +16,9 @@ public class BombUsableSO : UsableSO
     [Header("BombUsableSO")]
     [Space(10)]
     public BOMBTYPE type;
-    public float baseDamage, cdw;
+    public float baseDamage;
+
+    [ConditionalField("type", BOMBTYPE.GRENADECDW, "==")] public float cdw;
     public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
