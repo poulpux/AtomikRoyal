@@ -82,7 +82,9 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void CursorMoveLogic(int sub)
     {
-        cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory + ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f ? _StaticPlayer.nbCasesInventory : 0);
+        cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory;
+        if ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f)
+            cursorPos += _StaticPlayer.nbCasesInventory;
     }
 
     private void CompleteACase(UsableSO SO, int nb, int index, UsableOnGround usableOnGround)
