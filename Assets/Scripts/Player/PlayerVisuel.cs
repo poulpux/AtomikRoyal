@@ -91,11 +91,21 @@ public class PlayerVisuel : MonoBehaviour
         if (timerAnim > animCooldown)
         {
             timerAnim = 0f;
-            indexAnim = (indexAnim + 1) % 3;
+            indexAnim = (indexAnim + 1) % GetNbFrameInAnim();
         }
 
         // En attendant
         // infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
+    }
+
+    private int GetNbFrameInAnim()
+    {
+        if (currentAnim == STATEANIM.IDLE)
+            return currentSkin.idle.Count;
+        else if (currentAnim == STATEANIM.WALK)
+            return currentSkin.walk.Count;
+
+        return currentSkin.idle.Count;
     }
 
     private void SetDirection()
