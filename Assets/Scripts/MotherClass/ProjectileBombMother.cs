@@ -9,7 +9,7 @@ public abstract class ProjectileBombMother : MonoBehaviour
     protected float baseDomage, cdw;
     protected Vector2 posToGo;
 
-    public void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
+    public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
     {
         this.infos = infos;
         this.baseDomage = baseDomage;

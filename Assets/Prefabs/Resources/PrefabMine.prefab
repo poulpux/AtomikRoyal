@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7592043316567602648}
   - component: {fileID: -4364437461951426495}
   - component: {fileID: -7473449558294519238}
+  - component: {fileID: 7279618272729452212}
   m_Layer: 0
   m_Name: PrefabMine
   m_TagString: Untagged
@@ -148,3 +149,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7279618272729452212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143113075881482973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dca4080af77fb46a8bd7012426bb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
