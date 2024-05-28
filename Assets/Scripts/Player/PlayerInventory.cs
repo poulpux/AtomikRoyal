@@ -32,7 +32,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         if (CheckIfObjectInCase(SO, ref index))
             CompleteACase(SO, nbOnGround, index, usableOnGround);
         else if (CheckIfVoidCase())
-            AddInVoidCases(SO, nbOnGround);
+            AddInVoidCases(SO, nbOnGround, usableOnGround);
         else
             EchangeInventoryItem(SO, nbOnGround);
     }
@@ -83,14 +83,17 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     private void CursorMoveLogic(int sub)
     {
         cursorPos = (cursorPos + sub) % _StaticPlayer.nbCasesInventory;
-        if ((cursorPos + sub) % _StaticPlayer.nbCasesInventory < 0f)
+        if (cursorPos % _StaticPlayer.nbCasesInventory < 0f)
             cursorPos += _StaticPlayer.nbCasesInventory;
     }
 
     private void CompleteACase(UsableSO SO, int nb, int index, UsableOnGround usableOnGround)
     {
-        if (nbInInventory[index]+ nb <= SO.nbMaxInventory)
+        if (nbInInventory[index] + nb <= SO.nbMaxInventory)
+        {
+            usableOnGround.nb = 0;
             nbInInventory[index] += nb;
+        }
         else
         {
             int place = SO.nbMaxInventory - nbInInventory[index]; //positif
@@ -100,13 +103,16 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
        
     }
 
-    private void AddInVoidCases(UsableSO SO, int nb)
+    private void AddInVoidCases(UsableSO SO, int nb, UsableOnGround usableOnGround)
     {
         int index = GetIndexVoidCase();
         Inventory[index] = GF.SetScripts<Usable>(SO.script, gameObject);
         nbInInventory[index] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
         Inventory[index].UseEvent.AddListener(() => SubstractOneItem(index));
         Inventory[index].SO = SO;
+
+        usableOnGround.nb = 0;
+
     }
 
     private int GetIndexVoidCase()

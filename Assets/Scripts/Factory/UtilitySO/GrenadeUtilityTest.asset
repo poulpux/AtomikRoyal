@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
-  m_Name: UtilitySO_1
+  m_Name: GrenadeUtilityTest
   m_EditorClassIdentifier: 
-  script: {fileID: 11500000, guid: e9129aff870a09a41977078b15d5552e, type: 3}
+  script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
   nameUsable: 
   description: vbfgb
   nbMaxInventory: 10
   nbRecolted: 4
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
-  type: 0
+  type: 3
   nbHeal: 0
+  nbShield: 0
+  spdModifier: 0
   timeUse: 0
+  cdw: 1
+  spriteObjectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
+  explosionPrefab: {fileID: 0}
   otherScript: {fileID: 0}

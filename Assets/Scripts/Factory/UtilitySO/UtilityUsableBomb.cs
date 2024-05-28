@@ -16,8 +16,7 @@ public class UtilityUsableBomb : Usable
         base.Use();
         GameObject objet = Instantiate(GF.GetPrefabAdress(realSO.GetPath()).gameObject);
         objet.transform.position = transform.position;
-        GetComponent<SpriteRenderer>().sprite = realSO.sprite;
+        objet.GetComponent<SpriteRenderer>().sprite = realSO.spriteObjectToInstantiate;
         objet.GetComponent<ProjectileBombMother>().Init(infos, realSO.explosionPrefab, 0f, infos.inputSystem.mousePos, realSO.cdw);
     }
-
 }
