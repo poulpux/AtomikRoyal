@@ -11,6 +11,7 @@ public class BombUsableSO : UsableSO
     public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
+
     public const string prefabAdressGrenadeImpulse = "Prefabs/ArchiUsable/PrefabGrenadeImpulse";
     public const string prefabAdressGrenadeCDW = "Prefabs/ArchiUsable/PrefabGrenadeCDW";
     public const string prefabAdressMine = "Prefabs/ArchiUsable/PrefabMine";

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class _StaticPhysics
 {
-    static public float onGroundDrag;
-    static public float onGroundImpulseForce, chestRadius;
-
+    static public float onGroundDrag { private set; get; }
+    static public float onGroundImpulseForce { private set; get; }
+    static public float chestRadius { private set; get; }
     static public void Init(StaticPhysicsSO SO)
     {
         onGroundDrag = SO.onGroundDrag;

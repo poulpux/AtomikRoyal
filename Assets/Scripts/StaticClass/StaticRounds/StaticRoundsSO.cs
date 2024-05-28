@@ -8,5 +8,6 @@ public class StaticRoundsSO : ScriptableObject
 {
     [Header("All GameMods")]
     [Space(10)]
-    public List<RoundRulesSO> allGameMods = new List<RoundRulesSO>();
+    private List<RoundRulesSO> _allGameMods = new List<RoundRulesSO>();
+    public IReadOnlyList<RoundRulesSO> AllGameMods => _allGameMods.AsReadOnly();
 }
