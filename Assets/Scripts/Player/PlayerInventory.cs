@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     public int cursorPos, nbCoins;
     public List<Usable> Inventory = new List<Usable>();
     public List<int> nbInInventory = new List<int>();
-    public List<string> cantThrowItem = new List<string>();
+    public List<string> cantUseItem = new List<string>();
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -47,7 +47,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
     public void UseItem()
     {
-        if (Inventory[cursorPos] == null || cantThrowItem.Count != 0) return;
+        if (Inventory[cursorPos] == null || cantUseItem.Count != 0) return;
             Inventory[cursorPos].TryUse();
     }
 
