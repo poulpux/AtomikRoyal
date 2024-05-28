@@ -86,7 +86,6 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void SetCursorInventory(int nb)
     {
-        print("appuis touche");
         cursorPos = nb;
     }
 
