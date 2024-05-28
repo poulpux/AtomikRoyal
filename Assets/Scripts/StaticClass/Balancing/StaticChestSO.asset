@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StaticChestSO
   m_EditorClassIdentifier: 
   ToFindInChestUtility:
-  - {fileID: 11400000, guid: 3c203fbab4f86224fab85654809894a2, type: 2}
+  - {fileID: 11400000, guid: c1ecaf926f2aa0c4381d004c903baea8, type: 2}
   ToFindInChestBomb:
   - {fileID: 11400000, guid: 79af277f14c32654bb6f7bc7ab7e341a, type: 2}
   communLootPct: 60

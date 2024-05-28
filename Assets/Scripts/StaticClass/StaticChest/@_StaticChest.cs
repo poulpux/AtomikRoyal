@@ -33,7 +33,7 @@ public static class _StaticChest
             InstantiateUsable(position, item, item.nbRecolted);
 
         for (int i = 0; i < nbCoins; i++)
-            InstantiateCoin(position);
+            InstantiateCoin(position, Random.Range(minGoldInChest, maxGoldInChest));
     }
 
     static public GameObject InstantiateUsable(Vector2 position, UsableSO model, int nbRecolted)
@@ -48,6 +48,14 @@ public static class _StaticChest
         onGround.nb = nbRecolted;
 
         return objet;
+    }
+
+    static public void InstantiateCoin(Vector2 position, int nb)
+    {
+        GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
+        coins.GetComponent<OnGroundCoins>().nb = nb;
+        coins.transform.position = RandomSpawnPos(position);
+        coins.GetComponent<OnGroundPhysics>().Init(position);
     }
 
     static public void Init(StaticChestSO SO)
@@ -136,13 +144,5 @@ public static class _StaticChest
         Vector2 teleportPosition = new Vector2(randomDirection.x, randomDirection.y) + chestPos;
 
         return teleportPosition;
-    }
-
-    static private void InstantiateCoin(Vector2 position)
-    {
-        GameObject coins = Object.Instantiate(coinsOnGroundPrefab);
-        coins.GetComponent<OnGroundCoins>().nb = Random.Range(minGoldInChest, maxGoldInChest);
-        coins.transform.position = RandomSpawnPos(position);
-        coins.GetComponent<OnGroundPhysics>().Init(position);
     }
 }
