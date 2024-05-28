@@ -14,14 +14,17 @@ public class ProjectileGrenadeImpulse : ProjectileBombMother
         while (true)
         {
             if (Vector2.Distance(transform.position, posToGo) < 0.5f)
+            {
+                print("distance explose");
                 Destroy(gameObject);
+            }
             yield return new WaitForEndOfFrame();
         }
     }
 
-    public override void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo, float cdw = 0)
-    {
-        base.Init(infos, explosionPrefab, baseDomage, posToGo, cdw);
-    }
+    //public override void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo, float cdw = 0)
+    //{
+    //    base.Init(infos, explosionPrefab, baseDomage, posToGo, cdw);
+    //}
 
 }
