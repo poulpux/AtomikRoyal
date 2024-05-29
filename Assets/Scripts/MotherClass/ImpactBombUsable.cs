@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImpactBombUsable : BombUsableMother
+public class ImpactBombUsable : BombUsable
 {
     protected override void Use()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BombMother : MonoBehaviour
 {
-    protected GameObject explosionPrefab;
     protected PlayerInfos infos;
+    protected GameObject explosionPrefab;
     protected float baseDomage;
 
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo, float cdw = 0f)

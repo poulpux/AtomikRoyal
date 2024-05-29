@@ -28,7 +28,8 @@ public class BombUsableSO : UsableSOMother
     public const string prefabPathGrenadeCDW = "PrefabGrenadeCDW";
     public const string prefabPathMine = "PrefabMine";
 
-    private const string bombScriptPath = "Assets/Scripts/Factory/Archi/Bomb/BombUsableMother.cs";
+    //private const string bombScriptPath = "Assets/Scripts/MotherClass/BombMother.cs";
+    private const string bombScriptPath = "Assets/Scripts/Factory/Archi/Bomb/BombUsable.cs";
 
     private void OnValidate()
     {
