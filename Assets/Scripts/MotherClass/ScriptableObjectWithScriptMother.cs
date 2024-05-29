@@ -6,7 +6,7 @@ public abstract class ScriptableObjectWithScriptMother : ScriptableObject
 {
     [Header("Script")]
     [Space(10)]
-    [HideInInspector] public TextAsset script;
+    public TextAsset script;
 
     protected void VerifType<T>()
     {

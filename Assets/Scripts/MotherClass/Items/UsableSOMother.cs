@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UsableSOMother : ScriptableObjectWithScriptMother
+public abstract class UsableSOMother : ScriptableObject
 {
     [Header("UsableSO")]
     [Space(10)]
@@ -11,4 +11,5 @@ public abstract class UsableSOMother : ScriptableObjectWithScriptMother
     public int nbMaxInventory, nbRecolted;
     public Sprite sprite;
     public RARITY rarity;
+    [HideInInspector] public TextAsset script;
 }
