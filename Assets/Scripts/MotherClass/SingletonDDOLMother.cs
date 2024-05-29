@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class SingletonDDOL<T> : MonoBehaviour where T : SingletonDDOL<T>
+public abstract class SingletonDDOLMother<T> : MonoBehaviour where T : SingletonDDOLMother<T>
 {
     public static T Instance { get; private set; }
 

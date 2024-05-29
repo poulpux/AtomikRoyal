@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class UsableCDWMother : UtilityUsable
+public abstract class UsableCDWMother : UtilityUsableMother
 {
     private float timer;
     private int cursor;

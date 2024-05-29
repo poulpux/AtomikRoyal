@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ScriptableObjectWithScript : ScriptableObject
+public abstract class ScriptableObjectWithScriptMother : ScriptableObject
 {
     [Header("Script")]
     [Space(10)]

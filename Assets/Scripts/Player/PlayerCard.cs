@@ -9,7 +9,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
     PlayerInfos infos;
 
     [HideInInspector] public int nbPiece;
-    [HideInInspector] public List<Card> deck = new List<Card>(), inHand = new List<Card>(), inPile = new List<Card>();
+    [HideInInspector] public List<CardMother> deck = new List<CardMother>(), inHand = new List<CardMother>(), inPile = new List<CardMother>();
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -51,7 +51,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         CheckIfItFirstTime();
         for (int i = 0; i < _StaticPlayer.nbCardInDeck; i++)
         {
-            Card card = GF.SetScripts<Card>(_StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
+            CardMother card = GF.SetScripts<CardMother>(_StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
             card.SO = _StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)];
             deck.Add(card);
         }
@@ -59,7 +59,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 
     private void Melange()
     {
-        List<Card> deck = this.deck.ToList();
+        List<CardMother> deck = this.deck.ToList();
 
         for (int i = 0; i < this.deck.Count; i++)
         {

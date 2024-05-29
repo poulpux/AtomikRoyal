@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UtilityUsableBomb : Usable
+public class UtilityUsableBomb : UsableMother
 {
     UtilityUsableSO realSO;
 

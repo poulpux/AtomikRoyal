@@ -33,7 +33,7 @@ public class StaticManager : MonoBehaviour
 
         //Set gameManager
         GameManager gameManager = FindObjectOfType<GameManager>();
-        GF.SetScripts<RoundManager>(currentGameModeScript, gameManager.gameObject);
+        GF.SetScripts<RoundManagerMother>(currentGameModeScript, gameManager.gameObject);
         gameManager.GetRound();
     }
 }

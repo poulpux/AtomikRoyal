@@ -17,7 +17,7 @@ public class CardSO : ScriptableObject
 
     private void OnValidate()
     {
-        VerifType<Card>();
+        VerifType<CardMother>();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

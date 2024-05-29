@@ -11,7 +11,7 @@ public enum BOMBTYPE
 }
 
 [CreateAssetMenu(fileName = "BombSO_fileName", menuName = "SO/BombSO")]
-public class BombUsableSO : UsableSO
+public class BombUsableSO : UsableSOMother
 {
     [Header("BombUsableSO")]
     [Space(10)]

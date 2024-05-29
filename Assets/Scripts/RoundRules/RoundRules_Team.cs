@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundRules_Team : RoundManager
+public class RoundRules_Team : RoundManagerMother
 {
     [SerializeField] protected int nbPlayerSquad;
     List<List<PlayerInfos>> allTeams = new List<List<PlayerInfos>>();

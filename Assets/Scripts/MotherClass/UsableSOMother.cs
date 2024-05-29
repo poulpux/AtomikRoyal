@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UsableSO : ScriptableObjectWithScript
+public abstract class UsableSOMother : ScriptableObjectWithScriptMother
 {
     [Header("UsableSO")]
     [Space(10)]

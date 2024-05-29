@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ProjectileBombMother : MonoBehaviour
+public abstract class ProjectileBombMother : BombMother
 {
-    protected GameObject explosionPrefab;
-    protected PlayerInfos infos;
-    protected float baseDomage, cdw;
+   
+    protected float cdw;
     protected Vector2 posToGo;
 
-    public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
+    public override void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo,float cdw = 0f)
     {
-        this.infos = infos;
-        this.baseDomage = baseDomage;
-        this.explosionPrefab = explosionPrefab;
+        base.Init(infos, explosionPrefab, baseDomage, posToGo, cdw);
         this.cdw = cdw;
         this.posToGo = posToGo;
 

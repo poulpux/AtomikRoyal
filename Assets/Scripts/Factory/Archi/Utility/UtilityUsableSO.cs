@@ -16,7 +16,7 @@ public enum UTILITYTYPE
 }
 
 [CreateAssetMenu(fileName = "UtilitySO_filename", menuName = "SO/UtilitySO")]
-public class UtilityUsableSO : UsableSO
+public class UtilityUsableSO : UsableSOMother
 {
     [Header("TYPE")]
     [Space(10)]
@@ -67,7 +67,7 @@ public class UtilityUsableSO : UsableSO
         else if (type == UTILITYTYPE.GRENADECDW || type == UTILITYTYPE.GRENADEIMPULSE || type == UTILITYTYPE.MINE)
             script = AssetDatabase.LoadAssetAtPath<TextAsset>(BombScriptPath);  
         else
-            VerifOtherType<UtilityUsable>();
+            VerifOtherType<UtilityUsableMother>();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

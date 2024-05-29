@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonMother<GameManager>
 {
-    [HideInInspector] public RoundManager gameRules;
+    [HideInInspector] public RoundManagerMother gameRules;
     public void GetRound()
     {
-        gameRules = GetComponent<RoundManager>();
+        gameRules = GetComponent<RoundManagerMother>();
     }
 }

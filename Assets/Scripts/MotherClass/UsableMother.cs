@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Usable : MonoBehaviour
+public abstract class UsableMother : MonoBehaviour
 {
-    [HideInInspector] public UsableSO SO;
+    [HideInInspector] public UsableSOMother SO;
     [HideInInspector] public PlayerInfos infos;
     [HideInInspector] public UnityEvent UseEvent = new UnityEvent();
 
@@ -29,9 +29,9 @@ public abstract class Usable : MonoBehaviour
         return true;
     }
 
-    virtual public void AddSO(UsableSO SO)
+    virtual public void AddSO(UsableSOMother SO)
     {
-        if (SO.GetType() == typeof(UsableSO))
+        if (SO.GetType() == typeof(UsableSOMother))
             this.SO = SO;
         else
             Debug.LogError("Not good type");

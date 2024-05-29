@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UsableOnGround : Interactible
 {
-    public UsableSO SO;
+    public UsableSOMother SO;
     public int nb;
 
     protected override void Use(PlayerInfos infos)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDefault5 : Card
+public class CardDefault5 : CardMother
 {
     void Start()
     {

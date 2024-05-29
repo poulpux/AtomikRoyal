@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public abstract class SingletonMother<T> : MonoBehaviour where T : SingletonMother<T>
 {
     private static T _instance;
     public static T Instance => _instance;

@@ -12,7 +12,7 @@ public enum GAMEMODE
     BLUEVSRED
 }
 
-public abstract class RoundManager : Singleton<RoundManager>
+public abstract class RoundManagerMother : SingletonMother<RoundManagerMother>
 {
     protected List<PlayerInfos> allPlayerAlife = new List<PlayerInfos>();
     public Action gameStartEvent;

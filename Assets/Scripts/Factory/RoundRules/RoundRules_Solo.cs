@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundRules_Solo : RoundManager
+public class RoundRules_Solo : RoundManagerMother
 {
     protected override bool EndCondition()
     {

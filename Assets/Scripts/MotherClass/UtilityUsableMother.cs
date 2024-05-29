@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UtilityUsable : Usable
+public abstract class UtilityUsableMother : UsableMother
 {
     protected UtilityUsableSO realSO;
 }
