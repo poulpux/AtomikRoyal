@@ -28,12 +28,12 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
     {
         Collider2D[] tabColli = Physics2D.OverlapCircleAll(transform.position, _StaticPlayer.rangeInteractible);
         float minDistance = 63f;
-        Interactible nearestInteractible = null;
+        InteractibleMother nearestInteractible = null;
 
         for (int i = 0; i < tabColli.Length; i++)
         {
             float distance = Vector2.Distance(tabColli[i].transform.position, transform.position);
-            Interactible test = tabColli[i].GetComponent<Interactible>();
+            InteractibleMother test = tabColli[i].GetComponent<InteractibleMother>();
 
             if (test != null && distance < minDistance)
             {

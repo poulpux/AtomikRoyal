@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactible : MonoBehaviour
+public abstract class InteractibleMother : MonoBehaviour
 {
     [SerializeField] protected float timeToInteract;
     private float timer;
