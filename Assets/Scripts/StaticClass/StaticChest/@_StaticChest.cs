@@ -27,7 +27,7 @@ public static class _StaticChest
 
     static public void OpenChest(Vector3 position)
     {
-        List<UsableSO> list = RandomUsable();
+        List<UsableSOMother> list = RandomUsable();
 
         foreach (var item in list)
             InstantiateUsable(position, item, item.nbRecolted);
@@ -36,7 +36,7 @@ public static class _StaticChest
             InstantiateCoin(position, Random.Range(minGoldInChest, maxGoldInChest));
     }
 
-    static public GameObject InstantiateUsable(Vector2 position, UsableSO model, int nbRecolted)
+    static public GameObject InstantiateUsable(Vector2 position, UsableSOMother model, int nbRecolted)
     {
         GameObject objet = Object.Instantiate(objectOnGroundPrefab);
         objet.GetComponent<OnGroundItem>().Init(model);
@@ -88,9 +88,9 @@ public static class _StaticChest
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
     }
 
-    static private List<UsableSO> RandomUsable()
+    static private List<UsableSOMother> RandomUsable()
     {
-        List<UsableSO> list = new List<UsableSO>();
+        List<UsableSOMother> list = new List<UsableSOMother>();
         for (int i = 0; i < nbUtility ; i++)
         {
             RARITY rarity = GetRandomRarity(true);
@@ -118,7 +118,7 @@ public static class _StaticChest
             return RARITY.LEGENDARY;
     }
 
-    static private UsableSO GetRandomUtility(RARITY rarity)
+    static private UsableSOMother GetRandomUtility(RARITY rarity)
     {
         List<UtilityUsableSO> filteredList = ToFindInChestUtility.Where(usable => usable.rarity == rarity).ToList();
         if (filteredList.Count == 0)

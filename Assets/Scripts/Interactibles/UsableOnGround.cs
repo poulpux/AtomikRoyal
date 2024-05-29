@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UsableOnGround : Interactible
+public class UsableOnGround : InteractibleMother
 {
-    public UsableSO SO;
+    public UsableSOMother SO;
     public int nb;
 
     protected override void Use(PlayerInfos infos)

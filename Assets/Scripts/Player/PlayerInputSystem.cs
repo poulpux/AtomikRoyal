@@ -233,7 +233,6 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void InventoryAct(int index)
     {
-        print("rip");
         ButtonAct(index);
     }
     
