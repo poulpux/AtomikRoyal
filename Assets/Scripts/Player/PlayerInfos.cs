@@ -20,7 +20,14 @@ using UnityEngine.InputSystem;
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
-    public Camera cam { get; private set; }
+
+    [SerializeField] private Camera _cam;
+
+    [HideInInspector] public Camera cam
+    {
+        get { return _cam; }
+        private set { _cam = value; }
+    }
 
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }

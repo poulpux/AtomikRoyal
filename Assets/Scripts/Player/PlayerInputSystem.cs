@@ -19,7 +19,9 @@ public class PlayerInputSystem : MonoBehaviour
     [HideInInspector] public Vector2 direction, mousePos, mouseDirection;
     [HideInInspector] public bool isInteracting;
     private float scrollMouse, scrollMouseTimer;
-    Camera cam;
+
+
+    PlayerInfos infos;
     class Button
     {
         public string name;
@@ -32,7 +34,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     void Awake()
     {
-        cam = GetComponent<PlayerInfos>().cam;
+        infos = GetComponent<PlayerInfos>();
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
     }
@@ -192,8 +194,9 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void MousePositionAct(InputAction.CallbackContext value)
     {
-        //mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
-        //mouseDirection = (mousePos - (Vector2)transform.position).normalized;
+        print(mousePos);
+        mousePos = infos.cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+        mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
     
     private void MousePositionSleep(InputAction.CallbackContext value)
