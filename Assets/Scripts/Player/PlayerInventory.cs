@@ -14,7 +14,6 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     private List<int> _nbInInventory = new List<int>();
     private List<string> _cantUseItem = new List<string>();
 
-    // Public getters, private setters
     public List<UsableMother> inventory
     {
         get { return _inventory; }

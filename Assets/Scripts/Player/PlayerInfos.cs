@@ -20,7 +20,7 @@ using UnityEngine.InputSystem;
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
-    public Camera cam;
+    public Camera cam { get; private set; }
 
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }
@@ -44,7 +44,8 @@ public class PlayerInfos : MonoBehaviour
     public int nbKill { get; private set; }
     public bool isDead { get; private set; }
 
-    List<string> isInvincibleList = new List<string>();
+    public List<string> isInvincibleList = new List<string>();
+
     private List<PlayerInfos> team;
 
     //[Header("Stats")]

@@ -50,10 +50,10 @@ public class PlayerInputSystem : MonoBehaviour
         SetButtonInventoryList();
     }
 
-    //private void OnDisable()
-    //{
-    //    DisableActionMap(DefaultActions);
-    //}
+    private void OnDisable()
+    {
+        DisableActionMap(DefaultActions);
+    }
 
     //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
@@ -192,8 +192,8 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void MousePositionAct(InputAction.CallbackContext value)
     {
-        mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
-        mouseDirection = (mousePos - (Vector2)transform.position).normalized;
+        //mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+        //mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
     
     private void MousePositionSleep(InputAction.CallbackContext value)
