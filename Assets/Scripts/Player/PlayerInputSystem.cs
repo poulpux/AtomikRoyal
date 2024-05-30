@@ -119,7 +119,7 @@ public class PlayerInputSystem : MonoBehaviour
         SetButton("OpenInventory");
         SetButton("OpenMap");
         SetButton("Inventory1");
-        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
+        for (int i = 0; i < 6; i++)
         {
             int index = i;
             SetButton("Inventory" + index);
@@ -149,10 +149,10 @@ public class PlayerInputSystem : MonoBehaviour
             return isOpeningInventoryEvent;
         else if (index == 2)
             return isOpeningMapEvent;
-        else if(index < _StaticPlayer.nbCasesInventory+3)
+        else if(index < 6+3)
             return inventoryEvent[index - 3];
         else
-            return upgradeStatEvent[index - 3 - _StaticPlayer.nbCasesInventory];
+            return upgradeStatEvent[index - 3 -6];
     }
 
     //2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -186,8 +186,8 @@ public class PlayerInputSystem : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             int index = i;
-            action["UpgradeStat" + (index + 1).ToString()].started += test => InventoryAct(index+3+_StaticPlayer.nbCasesInventory);
-            action["UpgradeStat" + (index + 1).ToString()].canceled += test => InventorySleep(index+3+_StaticPlayer.nbCasesInventory);
+            action["UpgradeStat" + (index + 1).ToString()].started += test => InventoryAct(index+3+6);
+            action["UpgradeStat" + (index + 1).ToString()].canceled += test => InventorySleep(index+3+6);
         }
     }
 
@@ -220,8 +220,8 @@ public class PlayerInputSystem : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             int index = i;
-            action["UpgradeStat" + (index + 1).ToString()].started -= test => InventoryAct(index + 3 + _StaticPlayer.nbCasesInventory);
-            action["UpgradeStat" + (index + 1).ToString()].canceled -= test => InventorySleep(index + 3 + _StaticPlayer.nbCasesInventory);
+            action["UpgradeStat" + (index + 1).ToString()].started -= test => InventoryAct(index + 3 +6);
+            action["UpgradeStat" + (index + 1).ToString()].canceled -= test => InventorySleep(index + 3 + 6);
         }
 
     }
