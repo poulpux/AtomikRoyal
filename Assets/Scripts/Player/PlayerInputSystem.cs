@@ -16,10 +16,13 @@ public class PlayerInputSystem : MonoBehaviour
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
-    [HideInInspector] public Vector2 direction, mousePos, mouseDirection;
-    [HideInInspector] public bool isInteracting;
+    [HideInInspector] public Vector2 direction { get; private set; }
+    [HideInInspector] public Vector2 mousePos { get; private set; }
+    [HideInInspector] public Vector2 mouseDirection { get; private set; }
+    [HideInInspector] public bool isInteracting { get; private set; }
     private float scrollMouse, scrollMouseTimer;
-    Camera cam;
+
+    PlayerInfos infos;
     class Button
     {
         public string name;
@@ -32,7 +35,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     void Awake()
     {
-        cam = GetComponent<PlayerInfos>().cam;
+        infos = GetComponent<PlayerInfos>();
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
     }
@@ -50,10 +53,10 @@ public class PlayerInputSystem : MonoBehaviour
         SetButtonInventoryList();
     }
 
-    //private void OnDisable()
-    //{
-    //    DisableActionMap(DefaultActions);
-    //}
+    private void OnDisable()
+    {
+        DisableActionMap(DefaultActions);
+    }
 
     //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
@@ -192,7 +195,8 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void MousePositionAct(InputAction.CallbackContext value)
     {
-        mousePos = cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+        print(mousePos);
+        mousePos = infos.cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
         mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
     

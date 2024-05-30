@@ -20,46 +20,68 @@ using UnityEngine.InputSystem;
 public class PlayerInfos : MonoBehaviour
 {
     [SerializeField] private Collider2D colliderr;
-    public Camera cam;
 
-    [HideInInspector] public PlayerInputSystem inputSystem;
-    [HideInInspector] public PlayerMovement movement;
-    [HideInInspector] public PlayerInventory inventory;
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
+    [SerializeField] private Camera _cam;
+
+    [HideInInspector] public Camera cam
+    {
+        get { return _cam; }
+        private set { _cam = value; }
+    }
+
+    [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
+    [HideInInspector] public PlayerMovement movement { get; private set; }
+    [HideInInspector] public PlayerInventory inventory { get; private set; }
+    [HideInInspector] public Rigidbody2D rb { get; private set; }
+    [HideInInspector] public SpriteRenderer spriteRenderer { get; private set; }
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent = new UnityEvent<PlayerInfos>();
 
-    [HideInInspector] public bool isMoving;
+    [HideInInspector] public bool isMoving { get; private set; }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    [Header("Main infos")]
-    [Space(10)]
-     public string pseudo;
+    //[Header("Main infos")]
+    //[Space(10)]
+    [SerializeField]
+    public string pseudo { get; private set; }
 
-     public int nbKill;
-    public bool isDead;
+    public int nbKill { get; private set; }
+    public bool isDead { get; private set; }
 
-    List<string> isInvincibleList = new List<string>();
+    public List<string> isInvincibleList = new List<string>();
+
     private List<PlayerInfos> team;
 
-    [Header("Stats")]
-    [Space(10)]
-    //LIFE
-    public int currentLife;
-    public int currentShield, maxLife;
-    //DAMAGES
-    public int dmgCAC, dmgBomb;
-    //OTHERS
-    public float spd, cdwThrow, throwForce, range, exploSize;
+    //[Header("Stats")]
+    //[Space(10)]
 
-    [Header("Stats points")]
-    [Space(10)]
-    public int spd_Stat;
-    public int maxLife_Stat, exploSize_Stat, dmgCAC_Stat, dmgBomb_Stat, cdwThrow_Stat, throwForce_Stat, range_Stat;
+    //LIFE
+    public int currentLife { get; private set; } 
+    public int currentShield { get; private set; } 
+    public int maxLife { get; private set; }
+    //DAMAGES
+    public int dmgCAC { get; private set; } 
+    public int dmgBomb { get; private set; }
+    //OTHERS
+    public float spd { get; private set; }
+    public float cdwThrow { get; private set; }  
+    public float throwForce { get; private set; }  
+    public float range { get; private set; } 
+    public float  exploSize { get; private set; }
+
+    //[Header("Stats points")]
+    //[Space(10)]
+    public int spd_Stat { get; private set; }
+    public int maxLife_Stat { get; private set; }
+    public int exploSize_Stat { get; private set; }
+    public int dmgCAC_Stat { get; private set; }
+    public int dmgBomb_Stat { get; private set; }
+    public int cdwThrow_Stat { get; private set; }
+    public int throwForce_Stat { get; private set; }
+    public int range_Stat { get; private set; }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ////// Pourquoi pas ajouter les médailles ici aussi

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d9246ad3c335847a94ffd8154581ad, type: 3}
   m_Name: BombSO_fileName
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
   nameUsable: 
   description: 
   nbMaxInventory: 0
   nbRecolted: 0
   sprite: {fileID: 0}
   rarity: 0
-  type: 0
+  script: {fileID: 11500000, guid: 7e0c09cd608829842b4a97a337ffe417, type: 3}
+  type: 2
   baseDamage: 0
   cdw: 0
   owner: {fileID: 0}
