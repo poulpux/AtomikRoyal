@@ -40,9 +40,12 @@ public class PlayerInputSystem : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
     }
-
-    private void Start()
+    private void OnEnable()
     {
+        SetAllButton();
+        SetButtonInventoryList();
+        SetButtonUpgradeStatList();
+        EnableActionMap(DefaultActions);
     }
 
     private void Update()
@@ -51,13 +54,6 @@ public class PlayerInputSystem : MonoBehaviour
     }
 
 
-    private void OnEnable()
-    {
-        SetAllButton();
-        SetButtonInventoryList();
-        SetButtonUpgradeStatList();
-        EnableActionMap(DefaultActions);
-    }
 
     private void OnDisable()
     {
