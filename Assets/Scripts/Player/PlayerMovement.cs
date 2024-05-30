@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
         currentSpdModifier = 1f;
 
-        infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.spd); //Quand tu améliores tes stats
+        infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.stats[(int)PLAYERSTATS.SPD]); //Quand tu améliores tes stats
         infos.isDeadEvent.AddListener((infos) => currentSpd = _StaticPlayer.deadSpd);
     }
 

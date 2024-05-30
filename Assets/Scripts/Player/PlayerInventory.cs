@@ -8,7 +8,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int cursorPos { get; private set; }
-    public int  nbCoins { get; private set; }
+    public int nbCoins;
 
     private List<UsableMother> _inventory = new List<UsableMother>();
     private List<int> _nbInInventory = new List<int>();
@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     void Start()
     {
+        nbCoins = 100;
         infos = GetComponent<PlayerInfos>();
         SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));

@@ -16,7 +16,7 @@ public abstract class ProjectileBombMother : BombMother
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.drag = _StaticPhysics.grenadeDrag;
-        rb.AddForce(infos.inputSystem.mouseDirection * infos.throwForce, ForceMode2D.Impulse);
+        rb.AddForce(infos.inputSystem.mouseDirection * infos.stats[(int)PLAYERSTATS.THROWFORCE], ForceMode2D.Impulse);
     }
 
     private void OnDestroy()
