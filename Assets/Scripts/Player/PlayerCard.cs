@@ -8,8 +8,15 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 {
     PlayerInfos infos;
 
-    [HideInInspector] public int nbPiece;
-    [HideInInspector] public List<CardMother> deck = new List<CardMother>(), inHand = new List<CardMother>(), inPile = new List<CardMother>();
+    [HideInInspector] public int nbPiece { get; private set; }
+    private List<CardMother> _deck = new List<CardMother>();
+    private List<CardMother> _inHand = new List<CardMother>();
+    private List<CardMother> _inPile = new List<CardMother>();
+
+    public List<CardMother> deck { get { return _deck; } private set { _deck = value; } }
+    public List<CardMother> inHand { get { return _inHand; } private set { _inHand = value; } }
+    public List<CardMother> inPile { get { return _inPile; } private set { _inPile = value; } }
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -25,16 +32,16 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
 
     public void UseCard(int index)
     {
-        if (inHand[index].SO.cost > nbPiece)
+        if (_inHand[index].SO.cost > nbPiece)
             return;
 
-        nbPiece -= inHand[index].SO.cost;
-        inHand[index].Draw();
+        nbPiece -= _inHand[index].SO.cost;
+        _inHand[index].Draw();
 
-        inPile.Add(inHand[index]);
-        inHand.RemoveAt(index);
-        inHand.Add(inPile[0]);
-        inPile.RemoveAt(0);
+        _inPile.Add(_inHand[index]);
+        _inHand.RemoveAt(index);
+        _inHand.Add(_inPile[0]);
+        _inPile.RemoveAt(0);
     }
 
     private IEnumerator PieceCdwCoroutine()
@@ -51,23 +58,23 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         CheckIfItFirstTime();
         for (int i = 0; i < _StaticPlayer.nbCardInDeck; i++)
         {
-            CardMother card = GF.SetScripts<CardMother>(_StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
-            card.SO = _StaticCards.AllCards[PlayerPrefs.GetInt("card" + i)];
-            deck.Add(card);
+            CardMother card = GF.SetScripts<CardMother>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
+            card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
+            _deck.Add(card);
         }
     }
 
     private void Melange()
     {
-        List<CardMother> deck = this.deck.ToList();
+        List<CardMother> deck = this._deck.ToList();
 
-        for (int i = 0; i < this.deck.Count; i++)
+        for (int i = 0; i < this._deck.Count; i++)
         {
             int index = Random.Range(0, deck.Count);
             if (i < _StaticPlayer.nbCardInHand)
-                inHand.Add(deck[index]);
+                _inHand.Add(deck[index]);
             else
-                inPile.Add(deck[index]);
+                _inPile.Add(deck[index]);
 
             deck.RemoveAt(index);
         }
