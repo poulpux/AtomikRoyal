@@ -23,11 +23,7 @@ public class PlayerInfos : MonoBehaviour
 
     [SerializeField] private Camera _cam;
 
-    [HideInInspector] public Camera cam
-    {
-        get { return _cam; }
-        private set { _cam = value; }
-    }
+    [HideInInspector] public Camera cam { get { return _cam; } private set { _cam = value; } }
 
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }
@@ -40,6 +36,7 @@ public class PlayerInfos : MonoBehaviour
     [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent = new UnityEvent<PlayerInfos>();
 
     [HideInInspector] public bool isMoving { get; private set; }
+    [HideInInspector] public List<string> cantUpgrade = new List<string>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -60,28 +57,14 @@ public class PlayerInfos : MonoBehaviour
 
     //LIFE
     public int currentLife { get; private set; } 
-    public int currentShield { get; private set; } 
-    public int maxLife { get; private set; }
-    //DAMAGES
-    public int dmgCAC { get; private set; } 
-    public int dmgBomb { get; private set; }
-    //OTHERS
-    public float spd { get; private set; }
-    public float cdwThrow { get; private set; }  
-    public float throwForce { get; private set; }  
-    public float range { get; private set; } 
-    public float  exploSize { get; private set; }
+    public int currentShield { get; private set; }
 
-    //[Header("Stats points")]
-    //[Space(10)]
-    public int spd_Stat { get; private set; }
-    public int maxLife_Stat { get; private set; }
-    public int exploSize_Stat { get; private set; }
-    public int dmgCAC_Stat { get; private set; }
-    public int dmgBomb_Stat { get; private set; }
-    public int cdwThrow_Stat { get; private set; }
-    public int throwForce_Stat { get; private set; }
-    public int range_Stat { get; private set; }
+    private List<float> _stats = new List<float>();
+    public List<float> stats { get { return _stats; } private set { _stats = value; } }
+
+    private List<int> _nbStats = new List<int>();
+    public List<int> nbStats { get { return nbStats; } private set { nbStats = value; } }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ////// Pourquoi pas ajouter les médailles ici aussi
@@ -98,9 +81,16 @@ public class PlayerInfos : MonoBehaviour
     }
     void Start()
     {
+        for (int i = 0; i < 8; i++)
+        {
+            _nbStats.Add(0);
+            _stats.Add(0f);
+        }
         SetAllStats();
-        currentLife = maxLife;
+        currentLife = (int)_stats[(int)PLAYERSTATS.PVMAX];
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
+
+        AllEvents();
 
         //AddTeamate(this);
     }
@@ -112,21 +102,35 @@ public class PlayerInfos : MonoBehaviour
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+    private void WhenDead()
+    {
+        isDead = true;
+        cantUpgrade.Add("isDead");
+    }
+
     private void SetIsMoving()
     {
         isMoving = movement.canMove.Count == 0 && inputSystem.direction != Vector2.zero;
     }
 
-    public void UpgradeStat(PLAYERSTATS stats)
+    public void TryUpgradeStat(PLAYERSTATS stats)
     {
-        if (isDead)
+        if (cantUpgrade.Count > 0)
             return;
-        //TODO
+
+        int price = _StaticPlayer.GetPrice(stats, _nbStats[(int)stats]);
+        if (inventory.nbCoins >= price)
+        {
+            inventory.nbCoins -= price;
+            _nbStats[(int)stats]++;
+            SetAllStats();
+        }
     }
 
     public void IncreaseLife(int heal)
     {
-        currentLife = currentLife + heal <= maxLife ? currentLife + heal : maxLife;
+        currentLife = currentLife + heal <= (int)_stats[(int)PLAYERSTATS.PVMAX] ? currentLife + heal : (int)_stats[(int)PLAYERSTATS.PVMAX];
     }
     
     public void IncreaseShield(int shield)
@@ -141,10 +145,7 @@ public class PlayerInfos : MonoBehaviour
 
         currentLife -= damage;
         if (currentLife <= 0)
-        {
-            isDead = true;
             isDeadEvent.Invoke(this);
-        }
     }
 
     public void TakeDomage(int damage)
@@ -177,14 +178,8 @@ public class PlayerInfos : MonoBehaviour
 
     private void SetAllStats()
     {
-        spd = _StaticPlayer.GetValue(PLAYERSTATS.SPD, spd_Stat);
-        maxLife = (int)_StaticPlayer.GetValue(PLAYERSTATS.PVMAX, maxLife_Stat);
-        exploSize = _StaticPlayer.GetValue(PLAYERSTATS.EXPLOSIONSIZE, exploSize_Stat);
-        dmgCAC = (int)_StaticPlayer.GetValue(PLAYERSTATS.DMGCAC, dmgCAC_Stat);
-        dmgBomb = (int)_StaticPlayer.GetValue(PLAYERSTATS.DMGBOMB, dmgBomb_Stat);
-        cdwThrow = _StaticPlayer.GetValue(PLAYERSTATS.COOLDOWNTHROW, cdwThrow_Stat);
-        throwForce = _StaticPlayer.GetValue(PLAYERSTATS.THROWFORCE, throwForce_Stat);
-        range = _StaticPlayer.GetValue(PLAYERSTATS.RANGE, range_Stat);
+        for (int i = 0; i < 8; i++)
+            _stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, _nbStats[i]); ;
 
         UpdateStatsEvent.Invoke();
     }
@@ -201,5 +196,16 @@ public class PlayerInfos : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         movement = GetComponent<PlayerMovement>();
         inventory = GetComponent<PlayerInventory>();
+    }
+
+    private void AllEvents()
+    {
+        for (int i = 0; i < inputSystem.upgradeStatEvent.Count; i++)
+        {
+            int index = i;
+            inputSystem.upgradeStatEvent[index].AddListener(() => TryUpgradeStat((PLAYERSTATS)index));
+        }
+
+        isDeadEvent.AddListener((infos) => WhenDead());
     }
 }

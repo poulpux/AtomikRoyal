@@ -123,7 +123,7 @@ public class PlayerInputSystem : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             int index = i;
-            SetButton("UpgradeStat" + i);
+            SetButton("UpgradeStat" + index);
         }
     }
 
@@ -138,7 +138,6 @@ public class PlayerInputSystem : MonoBehaviour
 
     private UnityEvent GetEvent(int index)
     {
-        print(index);
         if (index == 0)
             return isUsingUsableEvent;
         else if (index == 1)
