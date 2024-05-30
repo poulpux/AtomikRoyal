@@ -16,10 +16,11 @@ public class PlayerInputSystem : MonoBehaviour
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
     [HideInInspector] public List<UnityEvent> inventoryEvent;
-    [HideInInspector] public Vector2 direction, mousePos, mouseDirection;
-    [HideInInspector] public bool isInteracting;
+    [HideInInspector] public Vector2 direction { get; private set; }
+    [HideInInspector] public Vector2 mousePos { get; private set; }
+    [HideInInspector] public Vector2 mouseDirection { get; private set; }
+    [HideInInspector] public bool isInteracting { get; private set; }
     private float scrollMouse, scrollMouseTimer;
-
 
     PlayerInfos infos;
     class Button
