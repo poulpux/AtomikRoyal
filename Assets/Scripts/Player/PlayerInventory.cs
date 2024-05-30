@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
-        SetCursorEvent();
+        //SetCursorEvent();
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
         infos.inputSystem.isUsingUsableEvent.AddListener(() => UseItem());
 

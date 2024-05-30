@@ -15,7 +15,8 @@ public class PlayerInputSystem : MonoBehaviour
     //Toutes les variables interressantes
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
-    [HideInInspector] public List<UnityEvent> inventoryEvent;
+    [HideInInspector] public List<UnityEvent> inventoryEvent = new List<UnityEvent>();
+    [HideInInspector] public List<UnityEvent> upgradeStatEvent = new List<UnityEvent>();
     [HideInInspector] public Vector2 direction { get; private set; }
     [HideInInspector] public Vector2 mousePos { get; private set; }
     [HideInInspector] public Vector2 mouseDirection { get; private set; }
@@ -40,17 +41,22 @@ public class PlayerInputSystem : MonoBehaviour
         DefaultActions = playerInput.actions.FindActionMap("Default");
     }
 
+    private void Start()
+    {
+    }
+
     private void Update()
     {
         ThrowScrollMouseEvent();
     }
 
 
-    private void Start()
+    private void OnEnable()
     {
-        EnableActionMap(DefaultActions);
         SetAllButton();
         SetButtonInventoryList();
+        SetButtonUpgradeStatList();
+        EnableActionMap(DefaultActions);
     }
 
     private void OnDisable()
@@ -80,6 +86,12 @@ public class PlayerInputSystem : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
             inventoryEvent.Add(new UnityEvent());
+    }
+    
+    private void SetButtonUpgradeStatList()
+    {
+        for (int i = 0; i < 8; i++)
+            upgradeStatEvent.Add(new UnityEvent());
     }
 
     private void SwitchConfig(CONFIG config)
@@ -112,6 +124,11 @@ public class PlayerInputSystem : MonoBehaviour
             int index = i;
             SetButton("Inventory" + index);
         }
+        for (int i = 0; i < 8; i++)
+        {
+            int index = i;
+            SetButton("UpgradeStat" + i);
+        }
     }
 
     private void SetButton(string name)
@@ -125,14 +142,17 @@ public class PlayerInputSystem : MonoBehaviour
 
     private UnityEvent GetEvent(int index)
     {
+        print(index);
         if (index == 0)
             return isUsingUsableEvent;
         else if (index == 1)
             return isOpeningInventoryEvent;
         else if (index == 2)
             return isOpeningMapEvent;
-        else
+        else if(index < _StaticPlayer.nbCasesInventory+3)
             return inventoryEvent[index - 3];
+        else
+            return upgradeStatEvent[index - 3 - _StaticPlayer.nbCasesInventory];
     }
 
     //2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -157,11 +177,17 @@ public class PlayerInputSystem : MonoBehaviour
         action["OpenMap"].started += test => InventoryAct(2);
         action["OpenMap"].canceled += test => InventorySleep(2);
 
-        for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
+        for (int i = 0; i < 6; i++)
         {
             int index = i;
             action["Inventory"+(index+1).ToString()].started += test => InventoryAct(index+3);
             action["Inventory"+(index+1).ToString()].canceled += test => InventorySleep(index+3);
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            int index = i;
+            action["UpgradeStat" + (index + 1).ToString()].started += test => InventoryAct(index+3+_StaticPlayer.nbCasesInventory);
+            action["UpgradeStat" + (index + 1).ToString()].canceled += test => InventorySleep(index+3+_StaticPlayer.nbCasesInventory);
         }
     }
 
@@ -191,11 +217,17 @@ public class PlayerInputSystem : MonoBehaviour
             action["Inventory" + (index + 1).ToString()].started -= test => InventoryAct(index + 3);
             action["Inventory" + (index + 1).ToString()].canceled -= test => InventorySleep(index + 3);
         }
+        for (int i = 0; i < 8; i++)
+        {
+            int index = i;
+            action["UpgradeStat" + (index + 1).ToString()].started -= test => InventoryAct(index + 3 + _StaticPlayer.nbCasesInventory);
+            action["UpgradeStat" + (index + 1).ToString()].canceled -= test => InventorySleep(index + 3 + _StaticPlayer.nbCasesInventory);
+        }
+
     }
 
     private void MousePositionAct(InputAction.CallbackContext value)
     {
-        print(mousePos);
         mousePos = infos.cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
         mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
