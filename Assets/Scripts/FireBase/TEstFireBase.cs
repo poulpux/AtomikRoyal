@@ -10,18 +10,30 @@ public class TEstFireBase : MonoBehaviour
     public nbFamililier familier;
     public string userId;
     DatabaseReference dbRef;
-
-    private void Awake()
+    ConnectAndLogin login;
+    private void Start()
     {
+        login = GetComponent<ConnectAndLogin>();
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
         SaveDataFn();
+
         //SaveClassData(familier, "pop/fsdf");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            print("click");
+            SaveDataFn();
+        }
+
     }
 
     public void SaveDataFn()
     {
         string json = JsonUtility.ToJson(dts);
-        dbRef.Child("users").Child(userId).SetRawJsonValueAsync(json);
+        dbRef.Child("users").Child(login.auth.CurrentUser.UserId).SetRawJsonValueAsync(json);
 
         //string json = JsonUtility.ToJson(dts);
         //dbRef.Child("users").Child(userId).Child("StatsPrincipales").SetRawJsonValueAsync(json);
