@@ -33,6 +33,7 @@ public class PlayerInfos : MonoBehaviour
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent HitEnnemyEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent = new UnityEvent<PlayerInfos>();
 
     [HideInInspector] public bool isMoving { get; private set; }
