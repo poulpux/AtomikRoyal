@@ -30,17 +30,25 @@ public static class _StaticRound
     //[Header("Ring")]
     //[Space(10)]
     static public float timeToCloseRing {  get; private set; }
-    static public List<RingZone> zones { get; private set; } = new List<RingZone>();
-    static public UnityEvent<RINGSTATE> CloseRingEvent = new UnityEvent<RINGSTATE>();
+    static public float closeRingCooldown { get; private set; }
+    static public UnityEvent<RINGNAME> CloseRingEvent = new UnityEvent<RINGNAME>();
+    static public UnityEvent<RINGNAME> WillCloseRingEvent = new UnityEvent<RINGNAME>();
     static public void Init(RoundRulesSO SO)
     {
         gameMode = SO.gameMode;
         timeToCloseRing = SO.timeToCloseRing;
+        closeRingCooldown = SO.closeRingCooldown;
     }
+
+    static public void CloseRandomRing()=>
+        GameManager.Instance.ringGestion.TryCloseRandomRing();
+    
+    static public void CloseRing(RINGNAME name) =>
+        GameManager.Instance.ringGestion.TryCloseRing(name);
 }
 
 public class RingZone
 {
-    RINGNAME name;
-    RINGSTATE state;
+    public RINGNAME name;
+    public RINGSTATE state;
 }
