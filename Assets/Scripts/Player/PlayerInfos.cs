@@ -59,12 +59,8 @@ public class PlayerInfos : MonoBehaviour
     //LIFE
     public int currentLife { get; private set; } 
     public int currentShield { get; private set; }
-
-    private List<float> _stats = new List<float>();
-    public List<float> stats { get { return _stats; } private set { _stats = value; } }
-
-    private List<int> _nbStats = new List<int>();
-    public List<int> nbStats { get { return nbStats; } private set { nbStats = value; } }
+    public List<float> stats { get; private set; } = new List<float>();
+    public List<int> nbStats { get; private set; } = new List<int>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -84,11 +80,11 @@ public class PlayerInfos : MonoBehaviour
     {
         for (int i = 0; i < 8; i++)
         {
-            _nbStats.Add(0);
-            _stats.Add(0f);
+            nbStats.Add(0);
+            stats.Add(0f);
         }
         SetAllStats();
-        currentLife = (int)_stats[(int)PLAYERSTATS.PVMAX];
+        currentLife = (int)stats[(int)PLAYERSTATS.PVMAX];
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         AllEvents();
@@ -120,18 +116,18 @@ public class PlayerInfos : MonoBehaviour
         if (cantUpgrade.Count > 0)
             return;
 
-        int price = _StaticPlayer.GetPrice(stats, _nbStats[(int)stats]);
+        int price = _StaticPlayer.GetPrice(stats, nbStats[(int)stats]);
         if (inventory.nbCoins >= price)
         {
             inventory.nbCoins -= price;
-            _nbStats[(int)stats]++;
+            nbStats[(int)stats]++;
             SetAllStats();
         }
     }
 
     public void IncreaseLife(int heal)
     {
-        currentLife = currentLife + heal <= (int)_stats[(int)PLAYERSTATS.PVMAX] ? currentLife + heal : (int)_stats[(int)PLAYERSTATS.PVMAX];
+        currentLife = currentLife + heal <= (int)stats[(int)PLAYERSTATS.PVMAX] ? currentLife + heal : (int)stats[(int)PLAYERSTATS.PVMAX];
     }
     
     public void IncreaseShield(int shield)
@@ -180,7 +176,7 @@ public class PlayerInfos : MonoBehaviour
     private void SetAllStats()
     {
         for (int i = 0; i < 8; i++)
-            _stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, _nbStats[i]); ;
+            stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, nbStats[i]); ;
 
         UpdateStatsEvent.Invoke();
     }

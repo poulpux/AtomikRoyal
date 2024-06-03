@@ -17,7 +17,8 @@ public class StaticManager : MonoBehaviour
     {
         SetGameMod();
 
-        _StaticPhysics.Init(physicsSO);
+        _StaticRound.Init(roundsSO.AllGameMods[PlayerPrefs.GetInt("gameMod")]);
+        _StaticPhysics.Init(physicsSO); ;
         _StaticSkins.Init(skinsSO);
         _StaticChest.Init(chestSO);
         _StaticPlayer.Init(playerSO);

@@ -13,9 +13,7 @@ public enum RARITY
 
 public static class _StaticChest
 {
-    static public IReadOnlyList<Vector2> AllChestPos=> _allChestPos.AsReadOnly();
-
-    static private List<Vector2> _allChestPos = new List<Vector2>();
+    static public List<Vector2> allChestPos { get; private set; } = new List<Vector2>();
     static private List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     static private List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
     static private int minGoldInChest, maxGoldInChest, chestDropRate;
@@ -66,7 +64,7 @@ public static class _StaticChest
             return;
         }
 
-        _allChestPos = SO.allChestPos;
+        allChestPos = SO.allChestPos;
         ToFindInChestUtility = SO.ToFindInChestUtility;
         ToFindInChestBomb = SO.ToFindInChestBomb;
         minGoldInChest = SO.minGoldInChest;
