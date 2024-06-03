@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7050520671212369117}
   m_Layer: 0
   m_Name: OnGroundItemPrefab
-  m_TagString: Untagged
+  m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,3 +189,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToInteract: 0.2
+  SO: {fileID: 0}
+  nb: 0

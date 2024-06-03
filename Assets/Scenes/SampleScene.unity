@@ -600,6 +600,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3904344215643794474, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: m_Name
+      value: ZoneAttrape
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268710908916365624, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8690522875517513036, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_Name
       value: Player
