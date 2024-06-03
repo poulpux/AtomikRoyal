@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TEstFireBase : MonoBehaviour
+public class TestFireBase : MonoBehaviour
 {
     public dataToSave dts;
     public nbFamililier familier;
