@@ -13,6 +13,10 @@ public class RoundRulesSO : ScriptableObjectWithScriptMother
     [Header("Chest")]
     [Space(10)]
     public StaticChestSO chestSO;
+    [Header("Ring")]
+    [Space(10)]
+    public float timeToCloseRing;
+    public float closeRingCooldown;
 
     private void OnValidate()
     {

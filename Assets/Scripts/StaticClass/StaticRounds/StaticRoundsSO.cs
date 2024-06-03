@@ -8,6 +8,6 @@ public class StaticRoundsSO : ScriptableObject
 {
     [Header("All GameMods")]
     [Space(10)]
-    [SerializeField] private List<RoundRulesSO> _allGameMods = new List<RoundRulesSO>();
+    [SerializeField] public List<RoundRulesSO> _allGameMods = new List<RoundRulesSO>();
     public IReadOnlyList<RoundRulesSO> AllGameMods => _allGameMods.AsReadOnly();
 }

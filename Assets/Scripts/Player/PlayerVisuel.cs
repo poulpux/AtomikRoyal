@@ -34,7 +34,7 @@ public class PlayerVisuel : MonoBehaviour
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
-        currentSkin = _StaticSkins.AllSkins[PlayerPrefs.GetInt("skin")];
+        currentSkin = _StaticSkins.allSkins[PlayerPrefs.GetInt("skin")];
     }
 
     void Update()

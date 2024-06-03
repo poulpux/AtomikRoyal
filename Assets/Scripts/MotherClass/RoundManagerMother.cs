@@ -26,7 +26,7 @@ public abstract class RoundManagerMother : SingletonMother<RoundManagerMother>
 
     private void MakeChestSpawn()
     {
-        foreach (var item in _StaticChest.AllChestPos)
+        foreach (var item in _StaticChest.allChestPos)
         {
             //MakeSpawnChest
         }

@@ -15,3 +15,5 @@ MonoBehaviour:
   script: {fileID: 11500000, guid: d8eb68e48f5f7db4da19bd9239ad82fb, type: 3}
   gameMode: 0
   chestSO: {fileID: 11400000, guid: e8f24ca13a8bc81468c9665a840e882b, type: 2}
+  timeToCloseRing: 40
+  closeRingCooldown: 50

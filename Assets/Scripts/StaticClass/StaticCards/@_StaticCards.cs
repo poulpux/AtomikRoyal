@@ -4,11 +4,10 @@ using UnityEngine;
 
 public static class _StaticCards
 {
-    private static List<CardSO> _allCards = new List<CardSO>();
-    public static IReadOnlyList<CardSO> allCards => _allCards.AsReadOnly();
+    public static List<CardSO> allCards { get; private set; } = new List<CardSO>();
 
     static public void Init(StaticCardsSO SO)
     {
-        _allCards = SO.allCards;
+        allCards = SO.allCards;
     }
 }
