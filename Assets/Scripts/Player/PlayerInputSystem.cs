@@ -14,6 +14,7 @@ public class PlayerInputSystem : MonoBehaviour
 {
     //Toutes les variables interressantes
     [HideInInspector] public UnityEvent isUsingUsableEvent = new UnityEvent(), isOpeningInventoryEvent = new UnityEvent(), isOpeningMapEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent needToGoUpInteractEvent = new UnityEvent();
     [HideInInspector] public UnityEvent<int> mouseScrollEvent = new UnityEvent<int>();
     [HideInInspector] public List<UnityEvent> inventoryEvent = new List<UnityEvent>();
     [HideInInspector] public List<UnityEvent> upgradeStatEvent = new List<UnityEvent>();
@@ -39,6 +40,7 @@ public class PlayerInputSystem : MonoBehaviour
         infos = GetComponent<PlayerInfos>();
         playerInput = GetComponent<PlayerInput>();
         DefaultActions = playerInput.actions.FindActionMap("Default");
+        needToGoUpInteractEvent.AddListener(() => isInteracting = false);
     }
     private void OnEnable()
     {
@@ -48,7 +50,7 @@ public class PlayerInputSystem : MonoBehaviour
         EnableActionMap(DefaultActions);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ThrowScrollMouseEvent();
     }

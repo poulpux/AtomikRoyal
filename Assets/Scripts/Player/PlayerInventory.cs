@@ -69,7 +69,6 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         foreach (var item in _inventory)
         {
             if(item == null) continue;
-            print(SO.name);
             if (_nbInInventory[counter] != item.SO.nbMaxInventory  && item.SO.name == SO.name)
             {
                 index = counter;

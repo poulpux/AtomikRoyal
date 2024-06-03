@@ -12,7 +12,6 @@ public abstract class InteractibleMother : MonoBehaviour
         //StopCoroutine(ResetCoroutine());
         //StartCoroutine(ResetCoroutine());
 
-        //print("interact : " + name+" timer : "+timer);
         timer += Time.deltaTime;
         if(timer > timeToInteract )
         {
@@ -23,6 +22,7 @@ public abstract class InteractibleMother : MonoBehaviour
 
     protected virtual void Use(PlayerInfos infos)
     {
+        infos.inputSystem.needToGoUpInteractEvent.Invoke();
     }
 
     private IEnumerator ResetCoroutine()
