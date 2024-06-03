@@ -9,19 +9,13 @@ using Firebase.Extensions;
 
 public class ConnectAndLogin : MonoBehaviour
 {
-    bool Connected;
+    public bool Connected;
     public FirebaseAuth auth;
     void Awake()
     {
         LoginWithEmailAndGetDrive("ambroise.marquet@gmail.com", "pipoudou");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private async void CheckEmailExistsAndSignUp(string email, string password)
+    public async void CheckEmailExistsAndSignUp(string email, string password)
     {
         auth = FirebaseAuth.DefaultInstance;
         try
@@ -32,6 +26,7 @@ public class ConnectAndLogin : MonoBehaviour
             // L'utilisateur est inscrit avec succès
             FirebaseUser newUser = signUpTask.User;
             Debug.Log("Inscription réussie pour l'utilisateur : " + newUser.Email);
+            Connected = true;
         }
         catch (AggregateException ex)
         {

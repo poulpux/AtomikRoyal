@@ -34,32 +34,7 @@ public class TestFireBase : MonoBehaviour
     {
         string json = JsonUtility.ToJson(dts);
         dbRef.Child("users").Child(login.auth.CurrentUser.UserId).SetRawJsonValueAsync(json);
-
-        //string json = JsonUtility.ToJson(dts);
-        //dbRef.Child("users").Child(userId).Child("StatsPrincipales").SetRawJsonValueAsync(json);
-
-        //string json2 = JsonUtility.ToJson(familier);
-        //dbRef.Child("users").Child(userId).Child("StatsSecondaires").SetRawJsonValueAsync(json2);
     }
-
-    //private void SaveClassData<T>(T className, string path)
-    //{
-    //    string ajustedPath = "/" + userId + "/" + path;
-    //    string[] parties = path.Split('/');
-
-    //    DatabaseReference a = dbRef.Child("users");
-    //    foreach (var item in parties)
-    //    {
-    //        Debug.Log(item);
-    //        a = a.Child(item);
-    //    }
-
-    //    Debug.Log(a.ToString());
-    //    //string json = JsonUtility.ToJson(className);
-    //    //dbRef.Child("users").Child(userId).Child("StatsPrincipales").SetRawJsonValueAsync(json);
-    //    //DatabaseReference a = dbRef.Child("users");
-    //    //DatabaseReference b = a.Child(userId);
-    //}
 }
 
 [Serializable]

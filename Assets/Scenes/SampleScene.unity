@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dts:
-    userName: fsdf
+    userName: test
     totalCoins: 4
     crrLevel: 1
     hightScore: 1
@@ -381,6 +381,7 @@ MonoBehaviour:
   familier:
     nbFamilier: 656
   userId: 24524
+  login: {fileID: 0}
 --- !u!4 &738192656
 Transform:
   m_ObjectHideFlags: 0
