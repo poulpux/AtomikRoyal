@@ -3,7 +3,6 @@ using Firebase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using Firebase.Extensions;
 
@@ -15,6 +14,7 @@ public class ConnectAndLogin : MonoBehaviour
     {
         LoginWithEmailAndGetDrive("ambroise.marquet@gmail.com", "pipoudou");
     }
+
     public async void CheckEmailExistsAndSignUp(string email, string password)
     {
         auth = FirebaseAuth.DefaultInstance;

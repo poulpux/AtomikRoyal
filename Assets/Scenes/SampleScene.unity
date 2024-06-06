@@ -351,7 +351,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738192656}
-  - component: {fileID: 738192655}
   - component: {fileID: 738192657}
   m_Layer: 0
   m_Name: Firebase
@@ -360,28 +359,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &738192655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738192654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3dc127977caac14abc10fc82555ca9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dts:
-    userName: test
-    totalCoins: 4
-    crrLevel: 1
-    hightScore: 1
-    objects: 0400000006000000
-  familier:
-    nbFamilier: 656
-  userId: 24524
-  login: {fileID: 0}
 --- !u!4 &738192656
 Transform:
   m_ObjectHideFlags: 0
@@ -406,9 +383,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 738192654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bac53ffedea9a74b977e26a78cc8dbc, type: 3}
+  m_Script: {fileID: 11500000, guid: d74227a02f133434b853d5251b657485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Connected: 0
+  dataToSave:
+    userName: 8
+    totalCoins: 8
+    crrLevel: 8
+    hightScore: 8
+    objects: 
 --- !u!1 &1272487276
 GameObject:
   m_ObjectHideFlags: 0
