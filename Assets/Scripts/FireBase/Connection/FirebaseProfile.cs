@@ -25,10 +25,7 @@ public class FirebaseProfile : MonoBehaviour
     {
         LoginWithEmailAndGetDrive(email, passWord);
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
-    }
-
-    private void Start()
-    {
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -42,7 +39,6 @@ public class FirebaseProfile : MonoBehaviour
         {
             SaveData(allMedals_Stats);
         }
-
     }
 
     public void SaveData<T>(T classType)

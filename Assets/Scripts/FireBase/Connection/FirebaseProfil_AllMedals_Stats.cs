@@ -9,5 +9,8 @@ public class FirebaseProfil_AllMedals_Stats
     public string pseudo;
     public int minutePlayed;
 
-
+    public void AddValues(FirebaseProfil_AllMedals_Stats stats)
+    {
+        minutePlayed += stats.minutePlayed;
+    }
 }
