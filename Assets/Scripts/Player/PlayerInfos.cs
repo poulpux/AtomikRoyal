@@ -16,6 +16,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerVisuel))]
 [RequireComponent(typeof(PlayerCard))]
 [RequireComponent(typeof(WhenPlayerDied))]
+[RequireComponent(typeof(FirebaseProfil_AllMedals_Stats))]
 
 public class PlayerInfos : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerInfos : MonoBehaviour
     [HideInInspector] public PlayerInventory inventory { get; private set; }
     [HideInInspector] public Rigidbody2D rb { get; private set; }
     [HideInInspector] public SpriteRenderer spriteRenderer { get; private set; }
+    [HideInInspector] public FirebaseProfil_AllMedals_Stats allMedals_Stats { get; private set; }
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
@@ -193,6 +195,7 @@ public class PlayerInfos : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         movement = GetComponent<PlayerMovement>();
         inventory = GetComponent<PlayerInventory>();
+        allMedals_Stats = GetComponent<FirebaseProfil_AllMedals_Stats>();
     }
 
     private void AllEvents()
