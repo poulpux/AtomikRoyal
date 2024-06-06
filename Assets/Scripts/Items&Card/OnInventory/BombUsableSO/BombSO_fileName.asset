@@ -18,8 +18,8 @@ MonoBehaviour:
   nbRecolted: 0
   sprite: {fileID: 0}
   rarity: 0
-  script: {fileID: 11500000, guid: 7e0c09cd608829842b4a97a337ffe417, type: 3}
-  type: 2
+  script: {fileID: 0}
+  type: 0
   baseDamage: 0
   cdw: 0
   owner: {fileID: 0}
