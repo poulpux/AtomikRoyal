@@ -9,28 +9,38 @@ using Firebase.Extensions;
 
 public class FirebaseProfile : MonoBehaviour
 {
-    public bool Connected;
+    public enum DATATYPE
+    {
+        ALLMEDALS_STATS
+    }
+
     [HideInInspector] private FirebaseAuth auth;
     DatabaseReference dbRef;
 
     [SerializeField] string email, passWord;
-    public dataToSave dataToSave;
+    public bool Connected;
+
+    public FirebaseProfil_AllMedals_Stats allMedals_Stats;
     void Awake()
     {
         LoginWithEmailAndGetDrive(email, passWord);
+        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     private void Start()
     {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            print("click");
-            LoadData(ref dataToSave);
+            LoadData(DATATYPE.ALLMEDALS_STATS);
+        }
+        
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            SaveData(allMedals_Stats);
         }
 
     }
@@ -41,20 +51,22 @@ public class FirebaseProfile : MonoBehaviour
         dbRef.Child("users").Child(auth.CurrentUser.UserId).Child(classType.ToString()).SetRawJsonValueAsync(json);
     }
 
-    public void LoadData<T>(ref T classType)
+    public void LoadData(DATATYPE dataType)
     {
-        T copy = classType;
-        var myData = new DataWrapper<T>(copy);
-        StartCoroutine(LoadDataEnum(myData));
-        print(myData.Value.);
-        classType = myData.Value;
+        StartCoroutine(LoadDataEnum(dataType));
+        
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private IEnumerator LoadDataEnum<T>(DataWrapper<T> dataWrapper)
+    private IEnumerator LoadDataEnum(DATATYPE dataType)
     {
-        var serverData = dbRef.Child("users").Child(auth.CurrentUser.UserId).Child(dataWrapper.Value.ToString()).GetValueAsync();
+        string typeName = "";
+        if (dataType == DATATYPE.ALLMEDALS_STATS)
+            typeName = allMedals_Stats.ToString();
+
+        print(typeName);
+        var serverData = dbRef.Child("users").Child(auth.CurrentUser.UserId).Child(typeName).GetValueAsync();
         yield return new WaitUntil(predicate: () => serverData.IsCompleted);
 
         print("processs is complete");
@@ -65,7 +77,8 @@ public class FirebaseProfile : MonoBehaviour
         if (jsonData != null)
         {
             print("data found");
-            dataWrapper.Value = JsonUtility.FromJson<T>(jsonData);
+            if (dataType == DATATYPE.ALLMEDALS_STATS)
+                allMedals_Stats = JsonUtility.FromJson<FirebaseProfil_AllMedals_Stats>(jsonData);
         }
         else
             print("NO data found");

@@ -386,13 +386,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74227a02f133434b853d5251b657485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  email: ambroise.marquet@gmail.com
+  passWord: pipoudou
   Connected: 0
-  dataToSave:
-    userName: 8
-    totalCoins: 8
-    crrLevel: 8
-    hightScore: 8
-    objects: 
+  allMedals_Stats:
+    pseudo: Oui
+    minutePlayed: 0
 --- !u!1 &1272487276
 GameObject:
   m_ObjectHideFlags: 0
