@@ -15,12 +15,4 @@ public abstract class CardMother : MonoBehaviour
     {
 
     }
-
-    public virtual void AddSO(CardSO SO)
-    {
-        if (SO.GetType() == typeof(CardSO))
-            this.SO = SO;
-        else
-            Debug.Log("Try to add the SO variable but it's not the right type");
-    }
 }

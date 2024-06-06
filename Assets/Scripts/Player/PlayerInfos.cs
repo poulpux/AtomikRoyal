@@ -30,6 +30,7 @@ public class PlayerInfos : MonoBehaviour
     [HideInInspector] public PlayerInventory inventory { get; private set; }
     [HideInInspector] public Rigidbody2D rb { get; private set; }
     [HideInInspector] public SpriteRenderer spriteRenderer { get; private set; }
+    [HideInInspector] public FirebaseProfil_AllMedals_Stats allMedals_Stats { get; private set; } = new FirebaseProfil_AllMedals_Stats();
 
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
@@ -88,6 +89,7 @@ public class PlayerInfos : MonoBehaviour
         GameManager.Instance.gameRules.gameEndEvent += EndOfTheGame;
 
         AllEvents();
+        SetAllMedals();
 
         //AddTeamate(this);
     }
@@ -179,6 +181,12 @@ public class PlayerInfos : MonoBehaviour
             stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, nbStats[i]); ;
 
         UpdateStatsEvent.Invoke();
+    }
+
+    private void SetAllMedals()
+    {  
+        foreach(MedalsSO medal in _StaticMedals.allMedals)
+            GF.SetScripts<MedalsMother>(medal.script, gameObject);
     }
 
     private void EndOfTheGame()

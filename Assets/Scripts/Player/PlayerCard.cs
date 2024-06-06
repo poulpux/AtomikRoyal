@@ -9,13 +9,10 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
     PlayerInfos infos;
 
     [HideInInspector] public int nbPiece { get; private set; }
-    private List<CardMother> _deck = new List<CardMother>();
-    private List<CardMother> _inHand = new List<CardMother>();
-    private List<CardMother> _inPile = new List<CardMother>();
 
-    public List<CardMother> deck { get { return _deck; } private set { _deck = value; } }
-    public List<CardMother> inHand { get { return _inHand; } private set { _inHand = value; } }
-    public List<CardMother> inPile { get { return _inPile; } private set { _inPile = value; } }
+    public List<CardMother> deck { get; private set; } = new List<CardMother>();
+    public List<CardMother> inHand { get; private set; } = new List<CardMother>();
+    public List<CardMother> inPile { get; private set; } = new List<CardMother>();
 
     void Start()
     {
@@ -26,22 +23,18 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         Melange();
     }
 
-    void Update()
-    {
-    }
-
     public void UseCard(int index)
     {
-        if (_inHand[index].SO.cost > nbPiece)
+        if (inHand[index].SO.cost > nbPiece)
             return;
 
-        nbPiece -= _inHand[index].SO.cost;
-        _inHand[index].Draw();
+        nbPiece -= inHand[index].SO.cost;
+        inHand[index].Draw();
 
-        _inPile.Add(_inHand[index]);
-        _inHand.RemoveAt(index);
-        _inHand.Add(_inPile[0]);
-        _inPile.RemoveAt(0);
+        inPile.Add(inHand[index]);
+        inHand.RemoveAt(index);
+        inHand.Add(inPile[0]);
+        inPile.RemoveAt(0);
     }
 
     private IEnumerator PieceCdwCoroutine()
@@ -60,21 +53,21 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         {
             CardMother card = GF.SetScripts<CardMother>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
             card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
-            _deck.Add(card);
+            deck.Add(card);
         }
     }
 
     private void Melange()
     {
-        List<CardMother> deck = this._deck.ToList();
+        List<CardMother> deck = this.deck.ToList();
 
-        for (int i = 0; i < this._deck.Count; i++)
+        for (int i = 0; i < this.deck.Count; i++)
         {
             int index = Random.Range(0, deck.Count);
             if (i < _StaticPlayer.nbCardInHand)
-                _inHand.Add(deck[index]);
+                inHand.Add(deck[index]);
             else
-                _inPile.Add(deck[index]);
+                inPile.Add(deck[index]);
 
             deck.RemoveAt(index);
         }
