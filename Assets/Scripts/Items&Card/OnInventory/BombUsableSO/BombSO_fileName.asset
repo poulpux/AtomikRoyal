@@ -19,7 +19,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   rarity: 0
   script: {fileID: 0}
-  type: 0
+  type: 2
   baseDamage: 0
   cdw: 0
   owner: {fileID: 0}

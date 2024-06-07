@@ -15,4 +15,5 @@ MonoBehaviour:
   script: {fileID: 11500000, guid: 02993831b5a6b28459f9d5f6201062ec, type: 3}
   namee: test
   description: fdf
+  medal: 1
   spriteMedla: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
