@@ -10,7 +10,8 @@ public class MedalsSO : ScriptableObjectWithScriptMother
     [Space(10)]
     public string namee;
     public string description;
-    public Sprite spriteMedla;
+    public bool medal = true;
+    [ConditionalField("medal", true, "==")] public Sprite spriteMedla;
 
 
     private void OnValidate()

@@ -1,6 +1,6 @@
 using System;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 [CustomPropertyDrawer(typeof(ConditionalFieldAttribute))]
 public class ConditionalFieldDrawer : PropertyDrawer
@@ -52,6 +52,14 @@ public class ConditionalFieldDrawer : PropertyDrawer
                 int enumValue = sourceProperty.enumValueIndex;
                 int compareEnumValue = (int)compareValue;
                 return CompareValues(enumValue, compareEnumValue, comparisonOperator);
+            case SerializedPropertyType.Integer:
+                int intValue = sourceProperty.intValue;
+                int compareIntValue = (int)compareValue;
+                return CompareValues(intValue, compareIntValue, comparisonOperator);
+            case SerializedPropertyType.Boolean:
+                bool boolValue = sourceProperty.boolValue;
+                bool compareBoolValue = (bool)compareValue;
+                return CompareValues(boolValue, compareBoolValue, comparisonOperator);
             default:
                 Debug.LogWarning("Unsupported property type for comparison: " + sourceProperty.propertyType);
                 return true;

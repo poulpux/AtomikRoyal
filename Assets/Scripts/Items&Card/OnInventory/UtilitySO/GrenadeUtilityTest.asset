@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
   m_Name: GrenadeUtilityTest
   m_EditorClassIdentifier: 
-  script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
   nameUsable: 
   description: vbfgb
   nbMaxInventory: 10
   nbRecolted: 4
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
+  script: {fileID: 0}
   type: 3
   nbHeal: 0
   nbShield: 0
