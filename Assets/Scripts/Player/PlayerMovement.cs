@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
     private Vector2 lastDirection, saveDir;
     private bool twoActiv, smoothRota;
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -26,6 +28,11 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
         Help2DirectionWhenStop();
         LastDirection();
         Move();
+    }
+
+    public void WhenDied()
+    {
+        currentSpd = _StaticPlayer.deadSpd;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,10 +92,5 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
         }
         else
             timerCurve = timerCurve - Time.deltaTime > 0f ? timerCurve - Time.deltaTime : 0f;
-    }
-
-    public void WhenDied()
-    {
-        currentSpd = _StaticPlayer.deadSpd;
     }
 }

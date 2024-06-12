@@ -32,6 +32,12 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
             _nbInInventory.Add(0);
     }
 
+    public void WhenDied()
+    {
+        foreach (var item in _inventory)
+            Destroy(item);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Coin"))
@@ -180,11 +186,5 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
             int index = i;
             infos.inputSystem.inventoryEvent[index].AddListener(() => SetCursorInventory(index));
         }
-    }
-
-    public void WhenDied()
-    {
-        foreach (var item in _inventory)
-            Destroy(item);
     }
 }

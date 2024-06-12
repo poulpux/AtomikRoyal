@@ -7,6 +7,8 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
     PlayerInfos infos;
     InteractibleMother nearestInteractible;
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -35,6 +37,4 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public void WhenDead() { }
 }

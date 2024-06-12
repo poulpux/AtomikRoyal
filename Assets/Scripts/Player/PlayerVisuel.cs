@@ -31,6 +31,8 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead
     private int indexAnim;
     private STATEANIM currentAnim;
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     void Start()
     {
         infos = GetComponent<PlayerInfos>();
@@ -42,6 +44,11 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead
         SetDirection();
         SetSpriteDirection();
         AnimateSprite();
+    }
+
+    public void WhenDied()
+    {
+        print("change de skin");
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,10 +134,5 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead
             direction = directionInput.y > 0 ? DIRECTION.NORTH :
                         directionInput.y < 0 ? DIRECTION.SOUTH : direction;
         }
-    }
-
-    public void WhenDied()
-    {
-        print("change de skin");
     }
 }

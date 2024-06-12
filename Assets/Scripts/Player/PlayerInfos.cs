@@ -18,8 +18,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCard))]
 [RequireComponent(typeof(WhenPlayerDied))]
 
-public class PlayerInfos : MonoBehaviour
+public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
 {
+    //[Header("All Refs")]
+
     [SerializeField] private Collider2D colliderr;
 
     [SerializeField] private Camera _cam;
@@ -36,7 +38,8 @@ public class PlayerInfos : MonoBehaviour
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
     [HideInInspector] public UnityEvent HitEnnemyEvent = new UnityEvent();
-    [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent = new UnityEvent<PlayerInfos>();
+    [HideInInspector] public UnityEvent isDeadEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent isSpawningEvent = new UnityEvent();
 
     [HideInInspector] public bool isMoving { get; private set; }
     [HideInInspector] public List<string> cantUpgrade = new List<string>();
@@ -44,7 +47,7 @@ public class PlayerInfos : MonoBehaviour
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     //[Header("Main infos")]
-    //[Space(10)]
+
     [SerializeField]
     public string pseudo { get; private set; }
 
@@ -56,7 +59,6 @@ public class PlayerInfos : MonoBehaviour
     private List<PlayerInfos> team;
 
     //[Header("Stats")]
-    //[Space(10)]
 
     //LIFE
     public int currentLife { get; private set; } 
@@ -65,14 +67,6 @@ public class PlayerInfos : MonoBehaviour
     public List<int> nbStats { get; private set; } = new List<int>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    ////// Pourquoi pas ajouter les médailles ici aussi
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    //////
 
     private void Awake()
     {
@@ -100,19 +94,13 @@ public class PlayerInfos : MonoBehaviour
         SetIsMoving();
     }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-    private void WhenDead()
+    public void WhenDied()
     {
         isDead = true;
         cantUpgrade.Add("isDead");
     }
 
-    private void SetIsMoving()
-    {
-        isMoving = movement.canMove.Count == 0 && inputSystem.direction != Vector2.zero;
-    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void TryUpgradeStat(PLAYERSTATS stats)
     {
@@ -145,7 +133,7 @@ public class PlayerInfos : MonoBehaviour
 
         currentLife = Mathf.Max(currentLife - damage, 0);
         if (currentLife <= 0)
-            isDeadEvent.Invoke(this);
+            isDeadEvent.Invoke();
     }
 
     public void TakeDomage(int damage)
@@ -163,6 +151,11 @@ public class PlayerInfos : MonoBehaviour
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void SetIsMoving()
+    {
+        isMoving = movement.canMove.Count == 0 && inputSystem.direction != Vector2.zero;
+    }
 
     private void GetAKill()
     {
@@ -204,7 +197,5 @@ public class PlayerInfos : MonoBehaviour
             int index = i;
             inputSystem.upgradeStatEvent[index].AddListener(() => TryUpgradeStat((PLAYERSTATS)index));
         }
-
-        isDeadEvent.AddListener((infos) => WhenDead());
     }
 }
