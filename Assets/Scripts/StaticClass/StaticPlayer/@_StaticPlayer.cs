@@ -75,6 +75,11 @@ public static class _StaticPlayer
         return currentCurve.startValue + currentCurve.statsParLv * (float)currentNbUpgrade;
     }
 
+    static public int DamageCalculation(float baseDamage, PlayerInfos infos)
+    {
+        return (int)(baseDamage * infos.stats[(int)PLAYERSTATS.DMGBOMB]);
+    }
+
 
     static public void Init(StaticPlayerSO SO)
     {

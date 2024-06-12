@@ -40,7 +40,10 @@ public class Explosion : MonoBehaviour
 
     private void Hit(GameObject hitedObject)
     {
-
+        touchedList.Add(hitedObject);
+        HitableByBombMother hit = hitedObject.GetComponent<HitableByBombMother>();
+        if (hit != null)
+            hit.GetHit(_StaticPlayer.DamageCalculation(baseDomage, infos));
     }
 
     private void ConeVision()
