@@ -42,21 +42,25 @@ public class VisionField : MonoBehaviour
 
         for (int i = 0; i < VisionConeResolution; i++)
         {
+            bool hitSomethings = false;
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
             Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
 
-            if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
-            {                
-                Vertices[i + 1] = VertForward * hit.distance;
-
-                // Vérifier si l'objet touché est le joueur
-            }
-            else
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, VisionObstructingLayer);
+            foreach (var ray in hit)
             {
-                Vertices[i + 1] = VertForward * VisionRange;
+                if (!ray.collider.isTrigger)
+                {
+                    hitSomethings = true;
+                    Vertices[i + 1] = VertForward * ray.distance;
+                    break;
+                }
             }
+
+            if(!hitSomethings)
+                Vertices[i + 1] = VertForward * VisionRange;
 
             Currentangle += angleIncrement;
         }
