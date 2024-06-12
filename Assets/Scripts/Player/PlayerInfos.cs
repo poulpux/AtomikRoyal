@@ -130,12 +130,12 @@ public class PlayerInfos : MonoBehaviour
 
     public void IncreaseLife(int heal)
     {
-        currentLife = currentLife + heal <= (int)stats[(int)PLAYERSTATS.PVMAX] ? currentLife + heal : (int)stats[(int)PLAYERSTATS.PVMAX];
+        currentLife = Mathf.Min(currentLife + heal, (int)stats[(int)PLAYERSTATS.PVMAX]);
     }
     
     public void IncreaseShield(int shield)
     {
-        currentShield = currentShield + shield <= _StaticPlayer.maxShield ? currentShield + shield : _StaticPlayer.maxShield;
+        currentShield = Mathf.Min(currentShield + shield, _StaticPlayer.maxShield);
     }
 
     public void DecreaseLife(int damage)
@@ -153,7 +153,7 @@ public class PlayerInfos : MonoBehaviour
         if (isInvincibleList.Count >= 1)
             return;
 
-        DecreaseLife(Mathf.Min(0, damage - currentShield)); // 
+        DecreaseLife(Mathf.Max(0, damage - currentShield)); //Set damage after decrease shield
         currentShield = Mathf.Max(currentShield - damage, 0);
     }
 
