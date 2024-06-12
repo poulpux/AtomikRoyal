@@ -10,10 +10,8 @@ public class Explosion : MonoBehaviour
     List<GameObject> touchedList = new List<GameObject>();
 
     public Material VisionConeMaterial;
-    public LayerMask VisionObstructingLayer;//layer with objects that obstruct the enemy view, like walls, for example
     public float VisionRange = 5f;
     private float VisionAngle;
-    private int VisionConeResolution;//the vision cone will be made up of triangles, the higher this value is the pretier the vision cone will be
     private Mesh VisionConeMesh;
     private MeshFilter MeshFilter_;
 
@@ -28,7 +26,6 @@ public class Explosion : MonoBehaviour
         VisionConeMesh = new Mesh();
         VisionAngle = 360f;
         VisionAngle *= Mathf.Deg2Rad;
-        VisionConeResolution = _StaticPhysics.explosionResolution;
     }
 
     void Update()
@@ -48,15 +45,15 @@ public class Explosion : MonoBehaviour
 
     private void ConeVision()
     {
-        int[] triangles = new int[(VisionConeResolution - 1) * 3];
-        Vector3[] Vertices = new Vector3[VisionConeResolution + 1];
+        int[] triangles = new int[(_StaticPhysics.explosionResolution - 1) * 3];
+        Vector3[] Vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
         Vertices[0] = Vector3.zero;
         float Currentangle = -VisionAngle / 2;
-        float angleIncrement = VisionAngle / (VisionConeResolution - 1);
+        float angleIncrement = VisionAngle / (_StaticPhysics.explosionResolution - 1);
         float Sine;
         float Cosine;
 
-        for (int i = 0; i < VisionConeResolution; i++)
+        for (int i = 0; i < _StaticPhysics.explosionResolution; i++)
         {
             bool hitSomethings = false;
             GameObject hitedObject = null;
@@ -65,7 +62,7 @@ public class Explosion : MonoBehaviour
             Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
 
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, VisionObstructingLayer);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, _StaticPhysics.ObstructingLayers);
             foreach (var ray in hit)
             {
                 if (!ray.collider.isTrigger)

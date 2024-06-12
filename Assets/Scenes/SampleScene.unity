@@ -489,7 +489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463662082}
-  - component: {fileID: 1463662081}
+  - component: {fileID: 1463662083}
   m_Layer: 6
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -497,30 +497,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1463662081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463662080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30317716bd377054b9de20c6d9b0599e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VisionConeMaterial: {fileID: 2100000, guid: 0b1f5764683dbd740a800945d9a58e12, type: 2}
-  VisionObstructingLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  VisionRange: 5
-  VisionAngle: 360
-  VisionConeResolution: 120
-  AboutVisionField: 'Warning : Add this to an empty object, not a capsule
-
-    Dont
-    forget to add the material from the VisionConeMaterial variable and to change
-    the VisionObstructingLayer.'
 --- !u!4 &1463662082
 Transform:
   m_ObjectHideFlags: 0
@@ -530,12 +506,33 @@ Transform:
   m_GameObject: {fileID: 1463662080}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.66, y: -0.95, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1463662083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463662080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951b0ef68776fa04bb9b0ba582c09bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infos: {fileID: 0}
+  baseDomage: 0
+  VisionConeMaterial: {fileID: 2100000, guid: 0b1f5764683dbd740a800945d9a58e12, type: 2}
+  VisionRange: 5
+  AboutVisionField: 'Warning : Add this to an empty object, not a capsule
+
+    Dont
+    forget to add the material from the VisionConeMaterial variable and to change
+    the VisionObstructingLayer.'
 --- !u!1001 &4403987486771264288
 PrefabInstance:
   m_ObjectHideFlags: 0
