@@ -34,8 +34,14 @@ public class UtilityUsableSO : UsableSOMother
     [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
     [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
     [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public float radius;
+
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
     public Sprite spriteObjectToInstantiate;
-    
+
     [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
     [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
     [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]

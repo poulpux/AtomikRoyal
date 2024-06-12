@@ -18,7 +18,8 @@ public class StaticPhysicsSO : ScriptableObject
 
     [Header("Explosion")]
     [Space(10)]
-    public int explosionResolution;
+    public float timeExplosionStay;
+    public int explosionResolution; 
     public LayerMask ObstructingLayers;
 
     [Header("Chest")]

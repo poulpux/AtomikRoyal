@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public PlayerInfos infos;
-    public float baseDomage; 
+    private PlayerInfos infos;
+    private float baseDamage; 
     List<GameObject> touchedList = new List<GameObject>();
 
     public Material VisionConeMaterial;
-    public float VisionRange = 5f;
+    private float radius;
     private float VisionAngle;
     private Mesh VisionConeMesh;
     private MeshFilter MeshFilter_;
@@ -26,6 +25,7 @@ public class Explosion : MonoBehaviour
         VisionConeMesh = new Mesh();
         VisionAngle = 360f;
         VisionAngle *= Mathf.Deg2Rad;
+        Destroy(gameObject, _StaticPhysics.timeExplosionStay);
     }
 
     void Update()
@@ -33,9 +33,11 @@ public class Explosion : MonoBehaviour
         ConeVision();
     }
 
-    public void Init()
+    public void Init(float baseDamage, float radius, PlayerInfos infos)
     {
-
+        this.baseDamage = baseDamage;
+        this.infos = infos;
+        this.radius = radius;
     }
 
     private void Hit(GameObject hitedObject)
@@ -43,7 +45,7 @@ public class Explosion : MonoBehaviour
         touchedList.Add(hitedObject);
         HitableByBombMother hit = hitedObject.GetComponent<HitableByBombMother>();
         if (hit != null)
-            hit.GetHit(_StaticPlayer.DamageCalculation(baseDomage, infos));
+            hit.GetHit(_StaticPlayer.DamageCalculation(baseDamage, infos));
     }
 
     private void ConeVision()
@@ -65,7 +67,7 @@ public class Explosion : MonoBehaviour
             Vector3 RaycastDirection = (transform.up * Cosine) + (transform.right * Sine);
             Vector3 VertForward = (Vector3.up * Cosine) + (Vector3.right * Sine);
 
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, _StaticPhysics.ObstructingLayers);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, radius, _StaticPhysics.ObstructingLayers);
             foreach (var ray in hit)
             {
                 if (!ray.collider.isTrigger)
@@ -78,7 +80,7 @@ public class Explosion : MonoBehaviour
             }
 
             if (!hitSomethings)
-                Vertices[i + 1] = VertForward * VisionRange;
+                Vertices[i + 1] = VertForward * radius;
             else
                 Hit(hitedObject);
             Currentangle += angleIncrement;

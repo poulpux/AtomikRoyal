@@ -19,6 +19,7 @@ public class BombUsableSO : UsableSOMother
     public float baseDamage;
 
     [ConditionalField("type", BOMBTYPE.GRENADECDW, "==")] public float cdw;
+    public float radius;
     [HideInInspector] public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
