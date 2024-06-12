@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVisuel : MonoBehaviour
+public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSpawn
 {
     public enum DIRECTION
     {
@@ -31,10 +31,20 @@ public class PlayerVisuel : MonoBehaviour
     private int indexAnim;
     private STATEANIM currentAnim;
 
-    void Start()
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    void Awake()
     {
         infos = GetComponent<PlayerInfos>();
+    }
+
+    public void WhenSpawn()
+    {
         currentSkin = _StaticSkins.allSkins[PlayerPrefs.GetInt("skin")];
+    }
+    public void WhenDied()
+    {
+        print("change de skin");
     }
 
     void Update()
@@ -43,6 +53,7 @@ public class PlayerVisuel : MonoBehaviour
         SetSpriteDirection();
         AnimateSprite();
     }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &738192656
 Transform:
   m_ObjectHideFlags: 0
@@ -915,10 +915,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1875041990447982659, guid: 7a8edcc0e83695949a7e9958341a6c8e, type: 3}
-      propertyPath: medalsSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 86d3591e742452a45bda53f2b668e61b, type: 2}
     - target: {fileID: 4135257029367917662, guid: 7a8edcc0e83695949a7e9958341a6c8e, type: 3}
       propertyPath: m_Name
       value: StaticManager
@@ -1025,6 +1021,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isDeadEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isSpawningEvent:
     m_PersistentCalls:
       m_Calls: []
   cantUpgrade: []

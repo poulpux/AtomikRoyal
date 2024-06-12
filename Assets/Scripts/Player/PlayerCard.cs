@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
+public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead, IActWhenPlayerIsDead
 {
     PlayerInfos infos;
 
@@ -14,7 +14,9 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
     public List<CardMother> inHand { get; private set; } = new List<CardMother>();
     public List<CardMother> inPile { get; private set; } = new List<CardMother>();
 
-    void Start()
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public void WhenDied()
     {
         infos = GetComponent<PlayerInfos>();
         nbPiece = infos.nbKill * _StaticPlayer.pieceByKill;
@@ -22,6 +24,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         GetDeck();
         Melange();
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void UseCard(int index)
     {
@@ -36,6 +39,8 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         inHand.Add(inPile[0]);
         inPile.RemoveAt(0);
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private IEnumerator PieceCdwCoroutine()
     {
@@ -53,6 +58,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead
         {
             CardMother card = GF.SetScripts<CardMother>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
             card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
+            card.owner = infos;
             deck.Add(card);
         }
     }

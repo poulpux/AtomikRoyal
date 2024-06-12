@@ -9,10 +9,6 @@ public class PlayerGetHit : HitableByBombMother, IDesactiveWhenPlayerIsDead
     {
         infos = GetComponent<PlayerInfos>();
     }
-    public void WhenDead()
-    {
-        this.enabled = false;
-    }
 
     protected override void HitEffect(int damage)
     {

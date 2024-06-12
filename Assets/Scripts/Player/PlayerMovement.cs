@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSpawn
 {
     PlayerInfos infos;
 
@@ -12,14 +12,21 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lastDirection, saveDir;
     private bool twoActiv, smoothRota;
 
-    void Start()
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void Awake()
     {
         infos = GetComponent<PlayerInfos>();
-
-        currentSpdModifier = 1f;
-
         infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.stats[(int)PLAYERSTATS.SPD]); //Quand tu améliores tes stats
-        infos.isDeadEvent.AddListener((infos) => currentSpd = _StaticPlayer.deadSpd);
+    }
+    public void WhenSpawn()
+    {
+        currentSpdModifier = 1f;
+    }
+
+    public void WhenDied()
+    {
+        currentSpd = _StaticPlayer.deadSpd;
     }
 
     void Update()

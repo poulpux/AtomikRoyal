@@ -27,6 +27,8 @@ public class StaticManager : MonoBehaviour
         _StaticMedals.Init(medalsSO);
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void SetGameMod()
     {
         //Get chestSO

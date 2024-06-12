@@ -39,7 +39,7 @@ public abstract class RoundManagerMother : SingletonMother<RoundManagerMother>
 
     public void AddPlayer(PlayerInfos infos)
     {
-        infos.isDeadEvent.AddListener((infos)=>RemovePlayer(infos));
+        infos.isDeadEvent.AddListener(()=>RemovePlayer(infos));
         allPlayerAlife.Add(infos);
     }
 

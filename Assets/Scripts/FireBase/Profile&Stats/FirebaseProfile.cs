@@ -135,14 +135,4 @@ public class FirebaseProfile : MonoBehaviour
     //===========
     //==========================
     //====================================================
-
-    public class DataWrapper<T>
-    {
-        public T Value { get; set; }
-
-        public DataWrapper(T initialValue)
-        {
-            Value = initialValue;
-        }
-    }
 }

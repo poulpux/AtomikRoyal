@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
+public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int cursorPos { get; private set; }
@@ -30,6 +30,12 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
             _inventory.Add(null);
         for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
             _nbInInventory.Add(0);
+    }
+
+    public void WhenDied()
+    {
+        foreach (var item in _inventory)
+            Destroy(item);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -180,12 +186,5 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
             int index = i;
             infos.inputSystem.inventoryEvent[index].AddListener(() => SetCursorInventory(index));
         }
-    }
-
-    public void WhenDead()
-    {
-        foreach (var item in _inventory)
-            Destroy(item);
-        enabled = false;
     }
 }
