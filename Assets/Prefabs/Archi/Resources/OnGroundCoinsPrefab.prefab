@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6956556237535133448}
   - component: {fileID: 5259948435590136337}
   - component: {fileID: 3461105842308694774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OnGroundCoinsPrefab
   m_TagString: Coin
   m_Icon: {fileID: 0}

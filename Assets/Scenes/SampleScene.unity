@@ -490,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1463662082}
   - component: {fileID: 1463662081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   VisionRange: 5
   VisionAngle: 360
-  VisionConeResolution: 30
+  VisionConeResolution: 120
   AboutVisionField: 'Warning : Add this to an empty object, not a capsule
 
     Dont
@@ -713,6 +713,10 @@ PrefabInstance:
     - target: {fileID: 3904344215643794474, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_Name
       value: ZoneAttrape
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035920122023110593, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8268710908916365624, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_Constraints

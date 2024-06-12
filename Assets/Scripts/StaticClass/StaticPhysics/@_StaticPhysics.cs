@@ -9,6 +9,7 @@ public static class _StaticPhysics
     static public float onGroundImpulseForce { private set; get; }
     static public float lostSpdBounce { private set; get; }
     static public float chestRadius { private set; get; }
+    static public int explosionResolution { private set; get; }
     static public void Init(StaticPhysicsSO SO)
     {
         onGroundDrag = SO.onGroundDrag;
@@ -16,5 +17,6 @@ public static class _StaticPhysics
         lostSpdBounce = SO.lostSpdBounce;    
         chestRadius = SO.chestRadius;
         grenadeDrag = SO.grenadeDrag;
+        explosionResolution = SO.explosionResolution;
     }
 }
