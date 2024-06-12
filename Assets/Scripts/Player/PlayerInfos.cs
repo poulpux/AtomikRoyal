@@ -68,9 +68,12 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    void Start()
+    void Awake()
     {
         InstantiateAll();
+    }
+    void Start()
+    {
         for (int i = 0; i < 8; i++)
         {
             nbStats.Add(0);
