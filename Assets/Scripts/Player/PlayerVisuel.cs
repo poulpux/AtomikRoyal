@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVisuel : MonoBehaviour
+public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead
 {
     public enum DIRECTION
     {
@@ -127,5 +127,10 @@ public class PlayerVisuel : MonoBehaviour
             direction = directionInput.y > 0 ? DIRECTION.NORTH :
                         directionInput.y < 0 ? DIRECTION.SOUTH : direction;
         }
+    }
+
+    public void WhenDied()
+    {
+        print("change de skin");
     }
 }

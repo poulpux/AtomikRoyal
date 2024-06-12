@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
+public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWhenPlayerIsDead
 {
     PlayerInfos infos;
     public int cursorPos { get; private set; }
@@ -182,10 +182,9 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead
         }
     }
 
-    public void WhenDead()
+    public void WhenDied()
     {
         foreach (var item in _inventory)
             Destroy(item);
-        enabled = false;
     }
 }

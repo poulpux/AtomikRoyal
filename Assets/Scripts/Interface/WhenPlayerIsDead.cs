@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WhenPlayerDied : MonoBehaviour
 {
+    MonoBehaviour[] tabMono;
     private void Awake()
     {
         MonoBehaviour[] tabMono = GetComponents<MonoBehaviour>();
@@ -20,16 +21,15 @@ public class WhenPlayerDied : MonoBehaviour
 
     private void PlayerDied()
     {
-        MonoBehaviour[] tabMono = GetComponents<MonoBehaviour>();
         foreach (var item in tabMono)
         {
+            if(item is IActWhenPlayerIsDead)
+                item.GetComponent<IActWhenPlayerIsDead>().WhenDied();
+
             if (item is IActiveWhenPlayerIsDead)
                 item.enabled = true;
             else if (item is IDesactiveWhenPlayerIsDead)
-            {
-                item.GetComponent<IDesactiveWhenPlayerIsDead>().WhenDead();
                 item.enabled = false;
-            }
         }
 
         enabled = false;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IActiveWhenPlayerIsDead
@@ -11,5 +12,9 @@ public interface IActiveWhenPlayerIsDead
 public interface IDesactiveWhenPlayerIsDead
 {
     //Et mettre un ScriptActivateWhenPlayerDead dans lobjet
-    void WhenDead();
+}
+
+public interface IActWhenPlayerIsDead
+{
+    void WhenDied();
 }

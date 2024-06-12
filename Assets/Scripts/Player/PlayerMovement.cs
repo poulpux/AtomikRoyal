@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
 {
     PlayerInfos infos;
 
@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
         currentSpdModifier = 1f;
 
         infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.stats[(int)PLAYERSTATS.SPD]); //Quand tu améliores tes stats
-        infos.isDeadEvent.AddListener((infos) => currentSpd = _StaticPlayer.deadSpd);
     }
 
     void Update()
@@ -86,5 +85,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             timerCurve = timerCurve - Time.deltaTime > 0f ? timerCurve - Time.deltaTime : 0f;
+    }
+
+    public void WhenDied()
+    {
+        currentSpd = _StaticPlayer.deadSpd;
     }
 }
