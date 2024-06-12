@@ -46,10 +46,10 @@ public class UtilityUsableSO : UsableSOMother
     //Other
     [ConditionalField("type", UTILITYTYPE.OTHER, "==")] public TextAsset otherScript;
 
-    private const string healScriptPath = "Assets/Scripts/Items/OnInventory/Archi/Utility/UtilityUsableHeal.cs";
-    private const string shieldScriptPath = "Assets/Scripts/Items/OnInventory/Archi/Utility/UtilityUsableShield.cs";
-    private const string spdBoostScriptPath = "Assets/Scripts/Items/OnInventory/Archi/Utility/UtilityUsableSpdBoost.cs";
-    private const string BombScriptPath = "Assets/Scripts/Items/OnInventory/Archi/Utility/UtilityUsableBomb.cs";
+    private const string healScriptPath = "Assets/Scripts/Items&Card/OnInventory/Archi/Utility/UtilityUsableHeal.cs";
+    private const string shieldScriptPath = "Assets/Scripts/Items&Card/OnInventory/Archi/Utility/UtilityUsableShield.cs";
+    private const string spdBoostScriptPath = "Assets/Scripts/Items&Card/OnInventory/Archi/Utility/UtilityUsableSpdBoost.cs";
+    private const string BombScriptPath = "Assets/Scripts/Items&Card/OnInventory/Archi/Utility/UtilityUsableBomb.cs";
 
 
     public const string prefabPathGrenadeImpulse = "PrefabGrenadeImpulse";
