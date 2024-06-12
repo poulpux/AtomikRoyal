@@ -16,6 +16,12 @@ public class StaticPhysicsSO : ScriptableObject
     public float grenadeDrag;
     public float lostSpdBounce = 3f;
 
+    [Header("Explosion")]
+    [Space(10)]
+    public float timeExplosionStay;
+    public int explosionResolution; 
+    public LayerMask ObstructingLayers;
+
     [Header("Chest")]
     [Space(10)]
     public float chestRadius;

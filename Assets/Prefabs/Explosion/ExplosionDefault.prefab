@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951b0ef68776fa04bb9b0ba582c09bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  VisionConeMaterial: {fileID: 2100000, guid: 0b1f5764683dbd740a800945d9a58e12, type: 2}
+  AboutVisionField: 'Warning : Add this to an empty object, not a capsule
+
+    Dont
+    forget to add the material from the VisionConeMaterial variable and to change
+    the VisionObstructingLayer.'

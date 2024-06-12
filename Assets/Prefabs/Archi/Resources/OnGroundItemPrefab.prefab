@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2848035521490772237}
   - component: {fileID: 5901969714971091076}
   - component: {fileID: -7050520671212369117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OnGroundItemPrefab
   m_TagString: Interactible
   m_Icon: {fileID: 0}

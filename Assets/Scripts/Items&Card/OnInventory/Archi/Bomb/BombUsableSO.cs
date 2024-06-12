@@ -19,6 +19,7 @@ public class BombUsableSO : UsableSOMother
     public float baseDamage;
 
     [ConditionalField("type", BOMBTYPE.GRENADECDW, "==")] public float cdw;
+    public float radius;
     [HideInInspector] public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;
@@ -29,7 +30,7 @@ public class BombUsableSO : UsableSOMother
     public const string prefabPathMine = "PrefabMine";
 
     //private const string bombScriptPath = "Assets/Scripts/MotherClass/BombMother.cs";
-    private const string bombScriptPath = "Assets/Scripts/Items/OnInventory/Archi/Bomb/BombUsable.cs";
+    private const string bombScriptPath = "Assets/Scripts/Items&Card/OnInventory/Archi/Bomb/BombUsable.cs";
 
     private void OnValidate()
     {

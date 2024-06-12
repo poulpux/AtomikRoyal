@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInputSystem))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerGetHit))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerInteract))]
@@ -129,20 +130,20 @@ public class PlayerInfos : MonoBehaviour
 
     public void IncreaseLife(int heal)
     {
-        currentLife = currentLife + heal <= (int)stats[(int)PLAYERSTATS.PVMAX] ? currentLife + heal : (int)stats[(int)PLAYERSTATS.PVMAX];
+        currentLife = Mathf.Min(currentLife + heal, (int)stats[(int)PLAYERSTATS.PVMAX]);
     }
     
     public void IncreaseShield(int shield)
     {
-        currentShield = currentShield + shield <= _StaticPlayer.maxShield ? currentShield + shield : _StaticPlayer.maxShield;
+        currentShield = Mathf.Min(currentShield + shield, _StaticPlayer.maxShield);
     }
 
     public void DecreaseLife(int damage)
     {
-        if (isInvincibleList.Count>=1)
+        if (isInvincibleList.Count>=1 || Mathf.Sign(damage) ==  -1f)
             return;
 
-        currentLife -= damage;
+        currentLife = Mathf.Max(currentLife - damage, 0);
         if (currentLife <= 0)
             isDeadEvent.Invoke(this);
     }
@@ -152,15 +153,8 @@ public class PlayerInfos : MonoBehaviour
         if (isInvincibleList.Count >= 1)
             return;
 
-        int currentDamage = damage;
-        if(currentShield >=currentDamage) 
-            currentShield -= currentDamage;
-        else
-        {
-            currentDamage -= currentShield;
-            currentShield = 0;
-            currentLife -= currentDamage;
-        }
+        DecreaseLife(Mathf.Max(0, damage - currentShield)); //Set damage after decrease shield
+        currentShield = Mathf.Max(currentShield - damage, 0);
     }
 
     public void AddTeamate(PlayerInfos playerInfos)

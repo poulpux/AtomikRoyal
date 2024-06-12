@@ -15,7 +15,6 @@ public class Medals_MinutePlayed : MedalsMother
         {
             yield return new WaitForSeconds(2f);
             infos.allMedals_Stats.minutePlayed++;
-            print(infos.allMedals_Stats.minutePlayed);
         }
     }
 }

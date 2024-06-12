@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "515893549928",
+    "firebase_url": "https://atomikroyal-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "atomikroyal",
+    "storage_bucket": "atomikroyal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515893549928:android:6e01a02ad95a37f83d54dd",
+        "android_client_info": {
+          "package_name": "AtomikRoyal.ClementAmbroise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtv2AtCopzDM9j86gfv0jGdQ7I2M8zkcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

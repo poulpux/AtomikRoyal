@@ -1,16 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class VisionField : MonoBehaviour
 {
-    private PlayerInfos infos;
-    private float baseDamage; 
-    List<GameObject> touchedList = new List<GameObject>();
-
     public Material VisionConeMaterial;
-    private float radius;
-    private float VisionAngle;
+    public LayerMask VisionObstructingLayer;//layer with objects that obstruct the enemy view, like walls, for example
+    public float VisionRange = 5f;
+    public float VisionAngle = 120f;
+    public int VisionConeResolution = 120;//the vision cone will be made up of triangles, the higher this value is the pretier the vision cone will be
     private Mesh VisionConeMesh;
     private MeshFilter MeshFilter_;
 
@@ -23,9 +22,7 @@ public class Explosion : MonoBehaviour
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
-        VisionAngle = 360f;
         VisionAngle *= Mathf.Deg2Rad;
-        Destroy(gameObject, _StaticPhysics.timeExplosionStay);
     }
 
     void Update()
@@ -33,57 +30,38 @@ public class Explosion : MonoBehaviour
         ConeVision();
     }
 
-    public void Init(float baseDamage, float radius, PlayerInfos infos)
-    {
-        this.baseDamage = baseDamage;
-        this.infos = infos;
-        this.radius = radius;
-    }
-
-    private void Hit(GameObject hitedObject)
-    {
-        if(touchedList.Contains(hitedObject)) return;
-        touchedList.Add(hitedObject);
-        HitableByBombMother hit = hitedObject.GetComponentInParent<HitableByBombMother>();
-        if (hit != null)
-            hit.GetHit(_StaticPlayer.DamageCalculation(baseDamage, infos));
-    }
-
     private void ConeVision()
     {
-        int[] triangles = new int[(_StaticPhysics.explosionResolution - 1) * 3];
-        Vector3[] Vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
+        int[] triangles = new int[(VisionConeResolution - 1) * 3];
+        Vector3[] Vertices = new Vector3[VisionConeResolution + 1];
         Vertices[0] = Vector3.zero;
         float Currentangle = -VisionAngle / 2;
-        float angleIncrement = VisionAngle / (_StaticPhysics.explosionResolution - 1);
+        float angleIncrement = VisionAngle / (VisionConeResolution - 1);
         float Sine;
         float Cosine;
 
-        for (int i = 0; i < _StaticPhysics.explosionResolution; i++)
+        for (int i = 0; i < VisionConeResolution; i++)
         {
             bool hitSomethings = false;
-            GameObject hitedObject = null;
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
-            Vector3 RaycastDirection = (transform.up * Cosine) + (transform.right * Sine);
-            Vector3 VertForward = (Vector3.up * Cosine) + (Vector3.right * Sine);
+            Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
+            Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
 
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, radius, _StaticPhysics.ObstructingLayers);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, VisionObstructingLayer);
             foreach (var ray in hit)
             {
                 if (!ray.collider.isTrigger)
                 {
                     hitSomethings = true;
                     Vertices[i + 1] = VertForward * ray.distance;
-                    hitedObject = ray.collider.gameObject;
                     break;
                 }
             }
 
-            if (!hitSomethings)
-                Vertices[i + 1] = VertForward * radius;
-            else
-                Hit(hitedObject);
+            if(!hitSomethings)
+                Vertices[i + 1] = VertForward * VisionRange;
+
             Currentangle += angleIncrement;
         }
 
