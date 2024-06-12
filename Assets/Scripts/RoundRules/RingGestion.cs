@@ -47,6 +47,7 @@ public class RingGestion : MonoBehaviour
         {
             RingZone zone = new RingZone();
             zone.name = (RINGNAME)i;
+            zone.state = RINGSTATE.FREE;
             zones.Add(zone);
         }
     }
