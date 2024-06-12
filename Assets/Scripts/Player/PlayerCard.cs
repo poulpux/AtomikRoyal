@@ -58,6 +58,7 @@ public class PlayerCard : MonoBehaviour, IActiveWhenPlayerIsDead, IActWhenPlayer
         {
             CardMother card = GF.SetScripts<CardMother>(_StaticCards.allCards[PlayerPrefs.GetInt("card" + i)].script, gameObject);
             card.SO = _StaticCards.allCards[PlayerPrefs.GetInt("card" + i)];
+            card.owner = infos;
             deck.Add(card);
         }
     }

@@ -68,12 +68,9 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private void Awake()
-    {
-        InstantiateAll();
-    }
     void Start()
     {
+        InstantiateAll();
         for (int i = 0; i < 8; i++)
         {
             nbStats.Add(0);
@@ -86,7 +83,13 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
         AllEvents();
         SetAllMedals();
 
+        isSpawningEvent.Invoke();
         //AddTeamate(this);
+    }
+    public void WhenDied()
+    {
+        isDead = true;
+        cantUpgrade.Add("isDead");
     }
 
     private void Update()
@@ -94,11 +97,6 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
         SetIsMoving();
     }
 
-    public void WhenDied()
-    {
-        isDead = true;
-        cantUpgrade.Add("isDead");
-    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

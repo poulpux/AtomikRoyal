@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    void Start()
+    void Awake()
     {
         infos = GetComponent<PlayerInfos>();
     }

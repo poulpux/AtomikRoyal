@@ -51,6 +51,10 @@ public class WhenPlayerDied : MonoBehaviour
 
     private void PlayerSpawn()
     {
+        foreach (var item in activeWhenDeadList)
+            item.enabled = false;
+        foreach (var item in desactiveWhenDeadList)
+            item.enabled = true;
         foreach (var item in actWhenSpawnList)
             item.WhenSpawn();
     }

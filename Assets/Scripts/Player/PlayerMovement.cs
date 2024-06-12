@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
+public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSpawn
 {
     PlayerInfos infos;
 
@@ -14,13 +14,19 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    void Start()
+    private void Awake()
     {
         infos = GetComponent<PlayerInfos>();
-
-        currentSpdModifier = 1f;
-
         infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.stats[(int)PLAYERSTATS.SPD]); //Quand tu améliores tes stats
+    }
+    public void WhenSpawn()
+    {
+        currentSpdModifier = 1f;
+    }
+
+    public void WhenDied()
+    {
+        currentSpd = _StaticPlayer.deadSpd;
     }
 
     void Update()
@@ -28,11 +34,6 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead
         Help2DirectionWhenStop();
         LastDirection();
         Move();
-    }
-
-    public void WhenDied()
-    {
-        currentSpd = _StaticPlayer.deadSpd;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

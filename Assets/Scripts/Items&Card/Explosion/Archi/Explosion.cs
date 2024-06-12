@@ -33,12 +33,16 @@ public class Explosion : MonoBehaviour
         ConeVision();
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     public void Init(float baseDamage, float radius, PlayerInfos infos)
     {
         this.baseDamage = baseDamage;
         this.infos = infos;
         this.radius = radius;
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void Hit(GameObject hitedObject)
     {
