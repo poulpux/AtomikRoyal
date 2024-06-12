@@ -140,10 +140,10 @@ public class PlayerInfos : MonoBehaviour
 
     public void DecreaseLife(int damage)
     {
-        if (isInvincibleList.Count>=1)
+        if (isInvincibleList.Count>=1 || Mathf.Sign(damage) ==  -1f)
             return;
 
-        currentLife -= damage;
+        currentLife = Mathf.Max(currentLife - damage, 0);
         if (currentLife <= 0)
             isDeadEvent.Invoke(this);
     }
@@ -153,16 +153,8 @@ public class PlayerInfos : MonoBehaviour
         if (isInvincibleList.Count >= 1)
             return;
 
-        int currentDamage = damage;
-        if(currentShield >=currentDamage) 
-            currentShield -= currentDamage;
-        else
-        {
-            currentDamage -= currentShield;
-            currentShield = 0;
-            DecreaseLife(currentDamage);
-        }
-
+        DecreaseLife(Mathf.Min(0, damage - currentShield)); // 
+        currentShield = Mathf.Max(currentShield - damage, 0);
     }
 
     public void AddTeamate(PlayerInfos playerInfos)
