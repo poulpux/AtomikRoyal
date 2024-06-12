@@ -126,7 +126,7 @@ MonoBehaviour:
   scrollCdwCursor: 0.02
   glueSpdModifier: 0
   waterSpdModifier: 0
-  deadSpd: 0
+  deadSpd: 10
   beginEndMoveCurve:
     serializedVersion: 2
     m_Curve:

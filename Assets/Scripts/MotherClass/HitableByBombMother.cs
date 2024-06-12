@@ -6,6 +6,7 @@ public abstract class HitableByBombMother : MonoBehaviour
 {
     public void GetHit(int damage)
     {
+        print("GetHit");
         if (HitCondtion())
             HitEffect(damage);
     }

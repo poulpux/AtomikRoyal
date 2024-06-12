@@ -160,8 +160,9 @@ public class PlayerInfos : MonoBehaviour
         {
             currentDamage -= currentShield;
             currentShield = 0;
-            currentLife -= currentDamage;
+            DecreaseLife(currentDamage);
         }
+
     }
 
     public void AddTeamate(PlayerInfos playerInfos)
