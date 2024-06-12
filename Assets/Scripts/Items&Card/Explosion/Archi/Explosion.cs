@@ -59,8 +59,8 @@ public class Explosion : MonoBehaviour
             GameObject hitedObject = null;
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
-            Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
-            Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
+            Vector3 RaycastDirection = (transform.up * Cosine) + (transform.right * Sine);
+            Vector3 VertForward = (Vector3.up * Cosine) + (Vector3.right * Sine);
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, RaycastDirection, VisionRange, _StaticPhysics.ObstructingLayers);
             foreach (var ray in hit)
