@@ -2,10 +2,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
+public enum EXPLOSIONSHAPE
+{
+    CIRCLE,
+    SQUARE,
+    CROSS
+}
 
 public class Explosion : MonoBehaviour
 {
+    public EXPLOSIONSHAPE shape;
+
     private PlayerInfos infos;
     private float baseDamage; 
     List<GameObject> touchedList = new List<GameObject>();
@@ -36,16 +44,29 @@ public class Explosion : MonoBehaviour
         VisionAngle *= Mathf.Deg2Rad;
         Destroy(gameObject, _StaticPhysics.timeExplosionStay);
 
-        resolutionPerSide = _StaticPhysics.explosionResolution / 4;
-        totalVertices = resolutionPerSide * 4 *2 + 1; // 4 côtés, plus un point central
-        vertices = new Vector3[totalVertices];
+
+        shape = EXPLOSIONSHAPE.CROSS;
+
+        if(shape == EXPLOSIONSHAPE.CIRCLE)
+        {
+            vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
+        }
+        if (shape == EXPLOSIONSHAPE.CROSS)
+        {
+            resolutionPerSide = _StaticPhysics.explosionResolution / 4;
+            totalVertices = resolutionPerSide * 4 * 2 + 1; // 4 côtés, plus un point central
+            vertices = new Vector3[totalVertices];
+        }
     }  
 
     void FixedUpdate()
     {
-        CircleExplosion();
-        //SquareExplosion();
-        //CrossExplosion(5f, 0.5f);
+        if(shape == EXPLOSIONSHAPE.CIRCLE)
+            CircleExplosion();
+        else if(shape == EXPLOSIONSHAPE.SQUARE)
+            SquareExplosion();
+        else if(shape == EXPLOSIONSHAPE.CROSS)
+            CrossExplosion(5f, 0.5f);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,8 +92,7 @@ public class Explosion : MonoBehaviour
     private void CircleExplosion()
     {
         int[] triangles = new int[(_StaticPhysics.explosionResolution - 1) * 3];
-        Vector3[] Vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
-        Vertices[0] = Vector3.zero;
+        vertices[0] = Vector3.zero;
         float Currentangle = -VisionAngle / 2;
         float angleIncrement = VisionAngle / (_StaticPhysics.explosionResolution - 1);
         float Sine;
@@ -93,14 +113,14 @@ public class Explosion : MonoBehaviour
                 if (!ray.collider.isTrigger)
                 {
                     hitSomethings = true;
-                    Vertices[i + 1] = VertForward * ray.distance;
+                    vertices[i + 1] = VertForward * ray.distance;
                     hitedObject = ray.collider.gameObject;
                     break;
                 }
             }
 
             if (!hitSomethings)
-                Vertices[i + 1] = VertForward * radius;
+                vertices[i + 1] = VertForward * radius;
             else
                 Hit(hitedObject);
             Currentangle += angleIncrement;
@@ -114,7 +134,7 @@ public class Explosion : MonoBehaviour
         }
 
         VisionConeMesh.Clear();
-        VisionConeMesh.vertices = Vertices;
+        VisionConeMesh.vertices = vertices;
         VisionConeMesh.triangles = triangles;
         MeshFilter_.mesh = VisionConeMesh;
     }
