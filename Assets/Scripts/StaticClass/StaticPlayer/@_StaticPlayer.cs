@@ -44,6 +44,12 @@ public static class _StaticPlayer
     public static AnimationCurve beginEndMoveCurve { private set; get; }
     public static float beginEndMoveCurveDuration { private set; get; } = 0.1f;
 
+
+    //[Header("Collision")]
+    //[Space(10)]
+    static public LayerMask excludeCollisionWhenDead;
+    static public LayerMask excludeCollisionWhenAlife;
+
     //[Header("Card")]
     //[Space(10)]
     public static int pieceByKill { private set; get; }
@@ -108,6 +114,9 @@ public static class _StaticPlayer
 
         nbCasesInventory = SO.nbCaseInventory;
         nbCardInHand = SO.nbCardInHand;
+
+        excludeCollisionWhenAlife = SO.excludeCollisionWhenAlife;
+        excludeCollisionWhenDead = SO.excludeCollisionWhenDead;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)

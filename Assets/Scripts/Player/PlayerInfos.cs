@@ -92,12 +92,14 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     {
         isDead = false;
         cantUpgrade.Clear();
+        colliderr.excludeLayers = _StaticPlayer.excludeCollisionWhenAlife;
     }
 
     public void WhenDied()
     {
         isDead = true;
         cantUpgrade.Add("isDead");
+        colliderr.excludeLayers = _StaticPlayer.excludeCollisionWhenDead;
     }
 
     private void Update()
