@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a287af186e2adc54f9563f776940b3e7, type: 3}
-  m_Name: CardSOTest 3
+  m_Name: CardSO_Test5
   m_EditorClassIdentifier: 
   namee: 
   description: 
   cost: 0
   spriteCard: {fileID: 0}
-  script: {fileID: 11500000, guid: 7e579a5c20ededd43bfe7b6127ad301a, type: 3}
+  script: {fileID: 11500000, guid: 17a2981bcaab6a44f9edcbb104845548, type: 3}

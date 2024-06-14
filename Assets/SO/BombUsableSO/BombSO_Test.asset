@@ -9,26 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
-  m_Name: GrenadeUtilityTest
+  m_Script: {fileID: 11500000, guid: 09d9246ad3c335847a94ffd8154581ad, type: 3}
+  m_Name: BombSO_Test
   m_EditorClassIdentifier: 
   nameUsable: 
-  description: vbfgb
+  description: 
   nbMaxInventory: 10
   nbRecolted: 4
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
-  script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
-  type: 5
-  nbHeal: 0
-  nbShield: 0
-  spdModifier: 0
-  timeUse: 0
-  cdw: 10
-  shape: 1
-  radius: 5
+  script: {fileID: 11500000, guid: 7e0c09cd608829842b4a97a337ffe417, type: 3}
+  type: 1
+  baseDamage: 1
+  cdw: 2
+  shape: 0
+  radius: 2
   lenght: 5
   thick: 0.5
-  spriteObjectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
+  owner: {fileID: 0}
+  objectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
   explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}
-  otherScript: {fileID: 0}

@@ -19,9 +19,8 @@ public class ProjectileGrenadeImpulse : ProjectileBombMother
         }
     }
 
-    //public override void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, Vector2 posToGo, float cdw = 0)
-    //{
-    //    base.Init(infos, explosionPrefab, baseDomage, posToGo, cdw);
-    //}
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }

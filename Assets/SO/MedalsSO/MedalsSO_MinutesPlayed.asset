@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e68d0dfc8675a5f4ab5a256a55b55a50, type: 3}
-  m_Name: MedalsSO_Test
+  m_Name: MedalsSO_MinutesPlayed
   m_EditorClassIdentifier: 
   script: {fileID: 11500000, guid: 02993831b5a6b28459f9d5f6201062ec, type: 3}
   namee: test
