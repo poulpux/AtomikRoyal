@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
-  m_Name: HealTest
+  m_Name: UtilitySO_HealTest
   m_EditorClassIdentifier: 
   script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
   nameUsable: 
