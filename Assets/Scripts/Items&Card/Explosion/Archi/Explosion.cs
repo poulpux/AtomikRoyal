@@ -15,8 +15,12 @@ public class Explosion : MonoBehaviour
     private Mesh VisionConeMesh;
     private MeshFilter MeshFilter_;
 
-    Vector3[] vertices;
+    int resolutionPerSide;
+    int totalVertices ; // 4 côtés, plus un point central
+
+    Vector3[] vertices ;
     List<int> triangles = new List<int>();
+    int vertexIndex;
 
     [TextArea]
     public string AboutVisionField = "Warning : Add this to an empty object, not a capsule\r\nDont forget to add the material from the VisionConeMaterial variable and to change the VisionObstructingLayer.";
@@ -31,17 +35,20 @@ public class Explosion : MonoBehaviour
         VisionAngle *= Mathf.Deg2Rad;
         Destroy(gameObject, _StaticPhysics.timeExplosionStay);
 
-        int resolutionPerSide = _StaticPhysics.explosionResolution / 4;
-        int totalVertices = resolutionPerSide * 4 * 2 + 1; // 4 côtés, plus un point central
+        resolutionPerSide = _StaticPhysics.explosionResolution / 4;
+        totalVertices = resolutionPerSide * 4 *2 + 1; // 4 côtés, plus un point central
         vertices = new Vector3[totalVertices];
-    }
+    }  
 
     void Update()
     {
         //CircleExplosion();
         //SquareExplosion();
         //CrossExplosion();
-        CrossExplosion(5f, 0.5f);
+        vertexIndex = 1;
+        RectangleExplosion(5f, 0.5f);
+        RectangleExplosion(0.5f, 5f);
+        GenerateRectangle();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,31 +204,24 @@ public class Explosion : MonoBehaviour
         MeshFilter_.mesh = VisionConeMesh;
     }
 
-    private void CrossExplosion(float width, float height)
+    private void RectangleExplosion(float width, float height)
     {
-        int resolutionPerSide = _StaticPhysics.explosionResolution / 8; // Divisé par 8 car 2 rectangles croisés
-        int totalVertices = resolutionPerSide * 8 + 1; // 8 segments (4 de chaque rectangle), plus un point central
-
-        Vector3[] vertices = new Vector3[totalVertices];
-        List<int> triangles = new List<int>();
-
         // Le centre de l'explosion
         vertices[0] = Vector3.zero;
 
-        // Définir les dimensions de la croix
+        // Définir les longueurs des côtés du rectangle
         float halfWidth = width / 2;
         float halfHeight = height / 2;
 
-        // Générer les vertices pour chaque segment de la croix
-        int vertexIndex = 1;
-        for (int arm = 0; arm < 4; arm++)
+        // Générer les vertices pour chaque côté du rectangle
+        for (int side = 0; side < 4; side++)
         {
             for (int i = 0; i < resolutionPerSide; i++)
             {
                 float t = (float)i / (resolutionPerSide - 1);
                 Vector3 direction = Vector3.zero;
 
-                switch (arm)
+                switch (side)
                 {
                     case 0: // Bas
                         direction = new Vector3(Mathf.Lerp(-halfWidth, halfWidth, t), -halfHeight, 0);
@@ -260,11 +260,14 @@ public class Explosion : MonoBehaviour
                 vertexIndex++;
             }
         }
+    }
 
+    private void GenerateRectangle()
+    {
         // Générer les triangles
         for (int i = 1; i < totalVertices - 1; i++)
         {
-            triangles.Add(0); // Centre de la croix
+            triangles.Add(0); // Centre du rectangle
             triangles.Add(i);
             triangles.Add(i + 1);
         }
