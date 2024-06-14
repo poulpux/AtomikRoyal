@@ -16,7 +16,7 @@ TagManager:
   - StopBomb
   - OnGround
   - Explosions
-  - Water
+  - ShallowWater
   - Glue
   - 
   - 

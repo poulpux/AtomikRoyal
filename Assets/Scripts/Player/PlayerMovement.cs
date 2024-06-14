@@ -39,17 +39,10 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(collision.gameObject.layer);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
-        {
             currentSpdModifier = _StaticPlayer.glueSpdModifier;
-        }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
-        {
-
-            print("water modif");
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
             currentSpdModifier = _StaticPlayer.waterSpdModifier;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
