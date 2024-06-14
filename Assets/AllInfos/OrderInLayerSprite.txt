@@ -1,3 +1,4 @@
 OnGroundItem = -10
 Explosion = 0
+ThrowedItem = 8
 Player = 10
