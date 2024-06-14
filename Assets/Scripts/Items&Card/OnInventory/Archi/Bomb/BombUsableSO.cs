@@ -17,9 +17,16 @@ public class BombUsableSO : UsableSOMother
     [Space(10)]
     public BOMBTYPE type;
     public float baseDamage;
-
     [ConditionalField("type", BOMBTYPE.GRENADECDW, "==")] public float cdw;
+
+    public EXPLOSIONSHAPE shape;
+    [ConditionalField("shape", EXPLOSIONSHAPE.LONG_RECTANGLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.WIDE_RECTANGLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.CROSS, "!=")]
     public float radius;
+    [ConditionalField("shape", EXPLOSIONSHAPE.CIRCLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.SQUARE, "!=")]
+    public float lenght, thick;
     [HideInInspector] public PlayerInfos owner;
     public Sprite objectToInstantiate;
     public GameObject explosionPrefab;

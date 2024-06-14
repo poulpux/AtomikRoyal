@@ -34,7 +34,22 @@ public class UtilityUsableSO : UsableSOMother
     [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
     [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
     [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    public EXPLOSIONSHAPE shape;
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.LONG_RECTANGLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.WIDE_RECTANGLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.CROSS, "!=")]
     public float radius;
+    [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
+    [ConditionalField("type", UTILITYTYPE.SPDBOOST, "!=")]
+    [ConditionalField("type", UTILITYTYPE.OTHER, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.CIRCLE, "!=")]
+    [ConditionalField("shape", EXPLOSIONSHAPE.SQUARE, "!=")]
+    public float lenght, thick;
 
     [ConditionalField("type", UTILITYTYPE.HEAL, "!=")]
     [ConditionalField("type", UTILITYTYPE.SHIELD, "!=")]
