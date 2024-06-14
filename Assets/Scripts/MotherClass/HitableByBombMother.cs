@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class HitableByBombMother : MonoBehaviour
 {
-    public void GetHit(int damage)
+    public void GetHit(int damage, PlayerInfos offenser)
     {
         print("GetHit");
         if (HitCondtion())
-            HitEffect(damage);
+            HitEffect(damage, offenser);
     }
 
     protected virtual bool HitCondtion() 
@@ -16,7 +16,7 @@ public abstract class HitableByBombMother : MonoBehaviour
         return true;
     }
     
-    protected virtual void HitEffect(int damage) 
+    protected virtual void HitEffect(int damage, PlayerInfos offenser) 
     {
         
     }

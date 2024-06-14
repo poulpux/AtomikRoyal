@@ -87,7 +87,7 @@ public class Explosion : MonoBehaviour
         touchedList.Add(hitedObject);
         HitableByBombMother hit = hitedObject.GetComponentInParent<HitableByBombMother>();
         if (hit != null)
-            hit.GetHit(_StaticPlayer.DamageCalculation(baseDamage, infos));
+            hit.GetHit(_StaticPlayer.DamageCalculation(baseDamage, infos), infos);
     }
 
     private void InitializeVertices()
