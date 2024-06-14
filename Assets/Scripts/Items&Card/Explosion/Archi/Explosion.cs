@@ -40,8 +40,7 @@ public class Explosion : MonoBehaviour
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
-        VisionAngle = 360f;
-        VisionAngle *= Mathf.Deg2Rad;
+        print(VisionAngle);
         Destroy(gameObject, _StaticPhysics.timeExplosionStay);
 
 
@@ -49,6 +48,8 @@ public class Explosion : MonoBehaviour
 
         if(shape == EXPLOSIONSHAPE.CIRCLE)
         {
+            VisionAngle = 360f;
+            VisionAngle *= Mathf.Deg2Rad;
             vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
         }
         else if(shape == EXPLOSIONSHAPE.SQUARE)
