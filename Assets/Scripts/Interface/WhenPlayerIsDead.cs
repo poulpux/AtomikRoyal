@@ -21,7 +21,7 @@ public class WhenPlayerDied : MonoBehaviour
             item.enabled = false;
         
         PlayerInfos infos = GetComponent<PlayerInfos>();
-        infos.isDeadEvent.AddListener(() => PlayerDied());
+        infos.isDeadEvent.AddListener((info) => PlayerDied());
         infos.isSpawningEvent.AddListener(() => PlayerSpawn());
     }
 

@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombMother : MonoBehaviour
+public abstract class BombMother : HitableByBombMother
 {
     protected PlayerInfos infos;
     protected GameObject explosionPrefab;
     protected EXPLOSIONSHAPE shape;
-    protected float baseDomage, radius, lenght, thick;
+    protected float baseDamage, radius, lenght, thick;
+    protected Rigidbody2D rb;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float radius, EXPLOSIONSHAPE shape, Vector2 posToGo, float cdw = 0f)
     {
         this.infos = infos;
-        this.baseDomage = baseDomage;
+        this.baseDamage = baseDomage;
         this.explosionPrefab = explosionPrefab;
         this.radius = radius;
         this.shape = shape; 
@@ -21,7 +26,7 @@ public class BombMother : MonoBehaviour
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float radius, EXPLOSIONSHAPE shape)
     {
         this.infos = infos;
-        this.baseDomage = baseDomage;
+        this.baseDamage = baseDomage;
         this.explosionPrefab = explosionPrefab;
         this.radius = radius;
         this.shape = shape;
@@ -30,7 +35,7 @@ public class BombMother : MonoBehaviour
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float lenght, float thick, EXPLOSIONSHAPE shape, Vector2 posToGo, float cdw = 0f)
     {
         this.infos = infos;
-        this.baseDomage = baseDomage;
+        this.baseDamage = baseDomage;
         this.explosionPrefab = explosionPrefab;
         this.lenght = lenght;
         this.thick = thick;
@@ -40,7 +45,7 @@ public class BombMother : MonoBehaviour
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float lenght, float thick, EXPLOSIONSHAPE shape)
     {
         this.infos = infos;
-        this.baseDomage = baseDomage;
+        this.baseDamage = baseDomage;
         this.explosionPrefab = explosionPrefab;
         this.lenght = lenght;
         this.thick = thick;
@@ -51,9 +56,16 @@ public class BombMother : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionPrefab);
         explosion.transform.position = transform.position;
+        print(baseDamage);
         if(shape == EXPLOSIONSHAPE.CIRCLE || shape == EXPLOSIONSHAPE.SQUARE)
-            explosion.GetComponent<Explosion>().Init(baseDomage, radius,shape, infos);
+            explosion.GetComponent<Explosion>().Init(baseDamage, radius,shape, infos);
         else
-            explosion.GetComponent<Explosion>().Init(baseDomage ,lenght ,thick ,shape, infos);
+            explosion.GetComponent<Explosion>().Init(baseDamage ,lenght ,thick ,shape, infos);
+    }
+
+    protected override void HitEffect(int damage, PlayerInfos offenser)
+    {
+        base.HitEffect(damage, offenser);
+        Destroy(gameObject);
     }
 }

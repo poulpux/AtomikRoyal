@@ -38,7 +38,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
     [HideInInspector] public UnityEvent UpdateStatsEvent = new UnityEvent();
     [HideInInspector] public UnityEvent GetCancelEvent = new UnityEvent();
     [HideInInspector] public UnityEvent HitEnnemyEvent = new UnityEvent();
-    [HideInInspector] public UnityEvent isDeadEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent<PlayerInfos> isDeadEvent = new UnityEvent<PlayerInfos>();
     [HideInInspector] public UnityEvent isSpawningEvent = new UnityEvent();
 
     [HideInInspector] public bool isMoving { get; private set; }
@@ -127,22 +127,22 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
         currentShield = Mathf.Min(currentShield + shield, _StaticPlayer.maxShield);
     }
 
-    public void DecreaseLife(int damage)
+    public void DecreaseLife(int damage, PlayerInfos offenser)
     {
         if (isInvincibleList.Count>=1 || Mathf.Sign(damage) ==  -1f)
             return;
 
         currentLife = Mathf.Max(currentLife - damage, 0);
         if (currentLife <= 0)
-            isDeadEvent.Invoke();
+            isDeadEvent.Invoke(offenser);
     }
 
-    public void TakeDomage(int damage)
+    public void TakeDomage(int damage, PlayerInfos offenser)
     {
         if (isInvincibleList.Count >= 1)
             return;
 
-        DecreaseLife(Mathf.Max(0, damage - currentShield)); //Set damage after decrease shield
+        DecreaseLife(Mathf.Max(0, damage - currentShield), offenser); //Set damage after decrease shield
         currentShield = Mathf.Max(currentShield - damage, 0);
     }
 

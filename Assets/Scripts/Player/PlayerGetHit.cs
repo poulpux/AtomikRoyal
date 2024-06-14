@@ -10,10 +10,10 @@ public class PlayerGetHit : HitableByBombMother, IDesactiveWhenPlayerIsDead
         infos = GetComponent<PlayerInfos>();
     }
 
-    protected override void HitEffect(int damage)
+    protected override void HitEffect(int damage, PlayerInfos offenser)
     {
-        base.HitEffect(damage);
-        infos.TakeDomage(damage);
+        base.HitEffect(damage, offenser);
+        infos.TakeDomage(damage, offenser);
     }
 
     protected override bool HitCondtion()
