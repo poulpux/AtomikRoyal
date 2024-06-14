@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Explosion : MonoBehaviour
@@ -45,10 +46,7 @@ public class Explosion : MonoBehaviour
         //CircleExplosion();
         //SquareExplosion();
         //CrossExplosion();
-        vertexIndex = 1;
-        RectangleExplosion(5f, 0.5f);
-        RectangleExplosion(0.5f, 5f);
-        GenerateRectangle();
+        CrossExplosion(5f, 0.5f);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -262,6 +260,14 @@ public class Explosion : MonoBehaviour
         }
     }
 
+    private void CrossExplosion(float lenght, float thick)
+    {
+        vertexIndex = 1;
+        RectangleExplosion(lenght, thick);
+        RectangleExplosion(thick, lenght);
+        GenerateRectangle();
+    }
+
     private void GenerateRectangle()
     {
         // Générer les triangles
@@ -276,12 +282,11 @@ public class Explosion : MonoBehaviour
             triangles.Add(i + 1);
         }
 
-        //// Connecter le dernier vertex au premier vertex sur le bord
-        //triangles.Add(0);
-        //triangles.Add(totalVertices - 1);
-        //triangles.Add(1);
+        MeshUpdate();
+    }
 
-        // Mettre à jour le mesh
+    private void MeshUpdate()
+    {
         VisionConeMesh.Clear();
         VisionConeMesh.vertices = vertices;
         VisionConeMesh.triangles = triangles.ToArray();
