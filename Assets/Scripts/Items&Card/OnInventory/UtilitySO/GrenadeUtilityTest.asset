@@ -25,10 +25,10 @@ MonoBehaviour:
   spdModifier: 0
   timeUse: 0
   cdw: 2
-  shape: 0
+  shape: 1
   radius: 2
-  lenght: 0
-  thick: 0
+  lenght: 5
+  thick: 0.5
   spriteObjectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
   explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}
   otherScript: {fileID: 0}
