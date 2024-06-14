@@ -13,24 +13,29 @@ MonoBehaviour:
   m_Name: SkinsSOTest
   m_EditorClassIdentifier: 
   idle:
-  - south: {fileID: 0}
-    south_west: {fileID: 0}
-    west: {fileID: 0}
-    northWest: {fileID: 0}
-    north: {fileID: 0}
-  - south: {fileID: 0}
-    south_west: {fileID: 0}
-    west: {fileID: 0}
-    northWest: {fileID: 0}
-    north: {fileID: 0}
+  - south: {fileID: -1371901682, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    south_west: {fileID: 42347804, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    west: {fileID: -849648668, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    northWest: {fileID: -415423594, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    north: {fileID: 1720093852, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
   walk:
-  - south: {fileID: 0}
-    south_west: {fileID: 0}
-    west: {fileID: 0}
-    northWest: {fileID: 0}
-    north: {fileID: 0}
-  - south: {fileID: 0}
-    south_west: {fileID: 0}
-    west: {fileID: 0}
-    northWest: {fileID: 0}
-    north: {fileID: 0}
+  - south: {fileID: 2146675644, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    south_west: {fileID: 224379924, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    west: {fileID: 1675288899, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    northWest: {fileID: -953879923, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    north: {fileID: -177433387, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+  - south: {fileID: -1371901682, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    south_west: {fileID: 42347804, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    west: {fileID: -849648668, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    northWest: {fileID: -415423594, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    north: {fileID: 1720093852, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+  - south: {fileID: -464017778, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    south_west: {fileID: -1962896610, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    west: {fileID: 1334295620, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    northWest: {fileID: -1373081745, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    north: {fileID: -1086081598, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+  - south: {fileID: -1371901682, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    south_west: {fileID: 42347804, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    west: {fileID: -849648668, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    northWest: {fileID: -415423594, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}
+    north: {fileID: 1720093852, guid: 9c6fd4ed20663d3408b3e446f67f98ea, type: 3}

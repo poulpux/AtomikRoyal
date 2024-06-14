@@ -19,7 +19,7 @@ MonoBehaviour:
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
   script: {fileID: 11500000, guid: 7e0c09cd608829842b4a97a337ffe417, type: 3}
-  type: 0
+  type: 1
   baseDamage: 1
   cdw: 2
   shape: 0

@@ -16,12 +16,6 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         SOUTH_WEST
     }
 
-    public enum STATEANIM
-    {
-        IDLE,
-        WALK
-    }
-
     private PlayerInfos infos;
     private SkinSO currentSkin;
     private int currentSpriteDirection;
@@ -106,7 +100,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         }
 
         // En attendant
-        // infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
+         infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
     }
 
     private int GetNbFrameInAnim()
