@@ -16,7 +16,7 @@ MonoBehaviour:
   onGroundImpulseForce: 1.5
   grenadeDrag: 0.2
   lostSpdBounce: 2
-  timeExplosionStay: 10
+  timeExplosionStay: 0.2
   explosionResolution: 120
   ObstructingLayers:
     serializedVersion: 2

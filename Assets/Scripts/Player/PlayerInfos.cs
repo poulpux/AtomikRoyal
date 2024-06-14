@@ -12,7 +12,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerGetHit))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerInteract))]
 [RequireComponent(typeof(PlayerVisuel))]
 [RequireComponent(typeof(PlayerCard))]
@@ -186,7 +185,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
     {
         inputSystem = GetComponent<PlayerInputSystem>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         movement = GetComponent<PlayerMovement>();
         inventory = GetComponent<PlayerInventory>();
     }

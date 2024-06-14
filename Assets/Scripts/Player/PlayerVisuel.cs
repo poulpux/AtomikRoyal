@@ -16,12 +16,6 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         SOUTH_WEST
     }
 
-    public enum STATEANIM
-    {
-        IDLE,
-        WALK
-    }
-
     private PlayerInfos infos;
     private SkinSO currentSkin;
     private int currentSpriteDirection;
@@ -99,6 +93,12 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         }
 
         float animCooldown = currentAnim == STATEANIM.IDLE ? _StaticSkins.idleCldAnim : _StaticSkins.walkCldAnim;
+
+        //Make the animation faster if you walk fast
+        float spdCoef = 1f / (infos.movement.currentSpd / _StaticPlayer.spd.startValue);
+        if (currentAnim == STATEANIM.WALK)
+            animCooldown *= Mathf.Clamp(spdCoef, 0.2f,1f);
+
         if (timerAnim > animCooldown)
         {
             timerAnim = 0f;
@@ -106,7 +106,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         }
 
         // En attendant
-        // infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
+         infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
     }
 
     private int GetNbFrameInAnim()
