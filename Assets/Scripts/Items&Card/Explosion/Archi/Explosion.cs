@@ -83,7 +83,6 @@ public class Explosion : MonoBehaviour
 
     private void Hit(GameObject hitedObject)
     {
-        print(baseDamage);
         if (baseDamage == 0 || touchedList.Contains(hitedObject)) return;
         touchedList.Add(hitedObject);
         HitableByBombMother hit = hitedObject.GetComponentInParent<HitableByBombMother>();
