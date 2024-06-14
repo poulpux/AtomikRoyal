@@ -18,6 +18,9 @@ public class BombUsable : UsableMother
         GameObject objet = Instantiate(GF.GetPrefabAdress(realSO.GetPath()).gameObject);
         objet.transform.position = transform.position;
         objet.GetComponent<SpriteRenderer>().sprite = realSO.objectToInstantiate;
-        objet.GetComponent<BombMother>().Init(infos, realSO.explosionPrefab, realSO.baseDamage, realSO.radius, infos.inputSystem.mousePos, realSO.cdw);
+        if (realSO.shape == EXPLOSIONSHAPE.CIRCLE || realSO.shape == EXPLOSIONSHAPE.SQUARE)
+            objet.GetComponent<BombMother>().Init(infos, realSO.explosionPrefab, 0f, realSO.radius, realSO.shape, infos.inputSystem.mousePos, realSO.cdw);
+        else
+            objet.GetComponent<BombMother>().Init(infos, realSO.explosionPrefab, 0f, realSO.lenght, realSO.thick, realSO.shape, infos.inputSystem.mousePos, realSO.cdw);
     }
 }

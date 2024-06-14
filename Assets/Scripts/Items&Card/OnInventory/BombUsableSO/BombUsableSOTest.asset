@@ -22,7 +22,10 @@ MonoBehaviour:
   type: 0
   baseDamage: 1
   cdw: 2
+  shape: 0
   radius: 2
+  lenght: 0
+  thick: 0
   owner: {fileID: 0}
   objectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
   explosionPrefab: {fileID: 1155366732937787891, guid: 7d2eda240c623944fa8fa96cb1a2e612, type: 3}

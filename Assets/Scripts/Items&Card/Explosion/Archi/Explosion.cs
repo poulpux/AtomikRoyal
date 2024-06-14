@@ -13,12 +13,12 @@ public enum EXPLOSIONSHAPE
 public class Explosion : MonoBehaviour
 {
     public EXPLOSIONSHAPE shape;
+    public Material VisionConeMaterial;
 
     private PlayerInfos infos;
     private float baseDamage;
     private List<GameObject> touchedList = new List<GameObject>();
 
-    public Material VisionConeMaterial;
     private float radius, length, thickness;
     private float visionAngle;
     private Mesh visionConeMesh;
@@ -31,14 +31,14 @@ public class Explosion : MonoBehaviour
     [TextArea]
     public string AboutVisionField = "Warning: Add this to an empty object, not a capsule.\nDon't forget to add the material from the VisionConeMaterial variable and to change the VisionObstructingLayer.";
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     void Start()
     {
         meshFilter = gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         visionConeMesh = new Mesh();
         Destroy(gameObject, _StaticPhysics.timeExplosionStay);
-
-        shape = EXPLOSIONSHAPE.SQUARE;
 
         InitializeVertices();
     }
@@ -56,6 +56,8 @@ public class Explosion : MonoBehaviour
         else if (shape == EXPLOSIONSHAPE.WIDE_RECTANGLE)
             RectangleExplosion(thickness, length);
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void Init(float baseDamage, float radius, EXPLOSIONSHAPE shape, PlayerInfos infos)
     {
@@ -76,6 +78,8 @@ public class Explosion : MonoBehaviour
         if (shape == EXPLOSIONSHAPE.CIRCLE || shape == EXPLOSIONSHAPE.SQUARE)
             Debug.LogError("Wrong shape bro");
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void Hit(GameObject hitedObject)
     {
@@ -106,6 +110,43 @@ public class Explosion : MonoBehaviour
                 break;
         }
     }
+
+    private void RectangleExplosion(float width, float height)
+    {
+        vertexIndex = 1;
+        GenerateRectangle(width / 2, height / 2);
+        GenerateRectangleTriangles();
+    }
+
+    private void CrossExplosion(float length, float thickness)
+    {
+        vertexIndex = 1;
+        GenerateRectangle(length / 2, thickness / 2);
+        GenerateRectangle(thickness / 2, length / 2);
+        GenerateRectangleTriangles();
+    }
+
+    private void GenerateRectangleTriangles()
+    {
+        for (int i = 1; i < vertexIndex - 1; i++)
+        {
+            if (i == (vertexIndex - 1) / 2) continue;
+            triangles.Add(0);
+            triangles.Add(i);
+            triangles.Add(i + 1);
+        }
+
+        UpdateMesh();
+    }
+
+    private void UpdateMesh()
+    {
+        visionConeMesh.Clear();
+        visionConeMesh.vertices = vertices;
+        visionConeMesh.triangles = triangles.ToArray();
+        meshFilter.mesh = visionConeMesh;
+    }
+
 
     private void CircleExplosion()
     {
@@ -152,21 +193,6 @@ public class Explosion : MonoBehaviour
         visionConeMesh.vertices = vertices;
         visionConeMesh.triangles = triangles;
         meshFilter.mesh = visionConeMesh;
-    }
-
-    private void RectangleExplosion(float width, float height)
-    {
-        vertexIndex = 1;
-        GenerateRectangle(width / 2, height / 2);
-        GenerateRectangleTriangles();
-    }
-
-    private void CrossExplosion(float length, float thickness)
-    {
-        vertexIndex = 1;
-        GenerateRectangle(length / 2, thickness / 2);
-        GenerateRectangle(thickness / 2, length / 2);
-        GenerateRectangleTriangles();
     }
 
     private void GenerateRectangle(float halfWidth, float halfHeight)
@@ -219,26 +245,5 @@ public class Explosion : MonoBehaviour
                 vertexIndex++;
             }
         }
-    }
-
-    private void GenerateRectangleTriangles()
-    {
-        for (int i = 1; i < vertexIndex - 1; i++)
-        {
-            if (i == (vertexIndex - 1) / 2) continue;
-            triangles.Add(0);
-            triangles.Add(i);
-            triangles.Add(i + 1);
-        }
-
-        UpdateMesh();
-    }
-
-    private void UpdateMesh()
-    {
-        visionConeMesh.Clear();
-        visionConeMesh.vertices = vertices;
-        visionConeMesh.triangles = triangles.ToArray();
-        meshFilter.mesh = visionConeMesh;
     }
 }
