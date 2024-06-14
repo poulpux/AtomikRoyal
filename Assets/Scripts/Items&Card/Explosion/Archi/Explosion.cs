@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -25,7 +25,7 @@ public class Explosion : MonoBehaviour
     private MeshFilter MeshFilter_;
 
     int resolutionPerSide;
-    int totalVertices ; // 4 côtés, plus un point central
+    int totalVertices ; // 4 cÃ´tÃ©s, plus un point central
 
     Vector3[] vertices ;
     List<int> triangles = new List<int>();
@@ -45,16 +45,20 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject, _StaticPhysics.timeExplosionStay);
 
 
-        shape = EXPLOSIONSHAPE.CROSS;
+        shape = EXPLOSIONSHAPE.SQUARE;
 
         if(shape == EXPLOSIONSHAPE.CIRCLE)
         {
             vertices = new Vector3[_StaticPhysics.explosionResolution + 1];
         }
-        if (shape == EXPLOSIONSHAPE.CROSS)
+        else if(shape == EXPLOSIONSHAPE.SQUARE)
+        {
+
+        }
+        else if (shape == EXPLOSIONSHAPE.CROSS)
         {
             resolutionPerSide = _StaticPhysics.explosionResolution / 4;
-            totalVertices = resolutionPerSide * 4 * 2 + 1; // 4 côtés, plus un point central
+            totalVertices = resolutionPerSide * 4 * 2 + 1; // 4 cÃ´tÃ©s, plus un point central
             vertices = new Vector3[totalVertices];
         }
     }  
@@ -142,7 +146,7 @@ public class Explosion : MonoBehaviour
     private void SquareExplosion()
     {
         int resolutionPerSide = _StaticPhysics.explosionResolution / 4;
-        int totalVertices = resolutionPerSide * 4 + 1; // 4 côtés, plus un point central
+        int totalVertices = resolutionPerSide * 4 + 1; // 4 cÃ´tÃ©s, plus un point central
 
         Vector3[] vertices = new Vector3[totalVertices];
         List<int> triangles = new List<int>();
@@ -150,10 +154,10 @@ public class Explosion : MonoBehaviour
         // Le centre de l'explosion
         vertices[0] = Vector3.zero;
 
-        // La longueur du côté du carré (distance du centre au bord correspondant à l'angle)
+        // La longueur du cÃ´tÃ© du carrÃ© (distance du centre au bord correspondant Ã  l'angle)
         float halfSideLength = radius / Mathf.Sqrt(2);
 
-        // Générer les vertices pour chaque côté du carré
+        // GÃ©nÃ©rer les vertices pour chaque cÃ´tÃ© du carrÃ©
         int vertexIndex = 1;
         for (int side = 0; side < 4; side++)
         {
@@ -202,10 +206,10 @@ public class Explosion : MonoBehaviour
             }
         }
 
-        // Générer les triangles
+        // GÃ©nÃ©rer les triangles
         for (int i = 1; i < totalVertices - 1; i++)
         {
-            triangles.Add(0); // Centre du carré
+            triangles.Add(0); // Centre du carrÃ©
             triangles.Add(i);
             triangles.Add(i + 1);
         }
@@ -214,7 +218,7 @@ public class Explosion : MonoBehaviour
         triangles.Add(totalVertices - 1);
         triangles.Add(1);
 
-        // Mettre à jour le mesh
+        // Mettre Ã  jour le mesh
         VisionConeMesh.Clear();
         VisionConeMesh.vertices = vertices;
         VisionConeMesh.triangles = triangles.ToArray();
@@ -226,11 +230,11 @@ public class Explosion : MonoBehaviour
         // Le centre de l'explosion
         vertices[0] = Vector3.zero;
 
-        // Définir les longueurs des côtés du rectangle
+        // DÃ©finir les longueurs des cÃ´tÃ©s du rectangle
         float halfWidth = width / 2;
         float halfHeight = height / 2;
 
-        // Générer les vertices pour chaque côté du rectangle
+        // GÃ©nÃ©rer les vertices pour chaque cÃ´tÃ© du rectangle
         for (int side = 0; side < 4; side++)
         {
             for (int i = 0; i < resolutionPerSide; i++)
@@ -289,7 +293,7 @@ public class Explosion : MonoBehaviour
 
     private void GenerateRectangle()
     {
-        // Générer les triangles
+        // GÃ©nÃ©rer les triangles
         for (int i = 1; i < totalVertices -1; i++)
         {
             if (i == (totalVertices-1)/2)
