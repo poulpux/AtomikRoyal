@@ -17,7 +17,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCard))]
 [RequireComponent(typeof(WhenPlayerDied))]
 
-public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
+public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSpawn
 {
     //[Header("All Refs")]
 
@@ -88,6 +88,12 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead
         isSpawningEvent.Invoke();
         //AddTeamate(this);
     }
+    public void WhenSpawn()
+    {
+        isDead = false;
+        cantUpgrade.Clear();
+    }
+
     public void WhenDied()
     {
         isDead = true;

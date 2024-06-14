@@ -11,4 +11,8 @@ public class StaticSkinsSO : ScriptableObject
     public List<SkinSO> allSkins = new List<SkinSO>();
 
     public float idleCldAnim, walkCldAnim;
+
+
+    public float fasterSpdModif, lowerSpdModif;
+
 }

@@ -18,3 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f618957fc38e7648b66f1c113daf12f, type: 2}
   idleCldAnim: 0.5
   walkCldAnim: 0.3
+  fasterSpdModif: 0.2
+  lowerSpdModif: 2

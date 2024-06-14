@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
     PlayerInfos infos;
 
     public List<string> canMove = new List<string>();
-    public float currentSpd { get; private set; }
-    private float currentSpdModifier, timerCurve;
+    public float realCurrentSpd {  get; private set; }
+    private float currentSpd, currentSpdModifier, timerCurve;
     private Vector2 lastDirection, saveDir;
     private bool twoActiv, smoothRota;
 
@@ -30,11 +30,26 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
         currentSpd = _StaticPlayer.deadSpd;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Help2DirectionWhenStop();
         LastDirection();
         Move();
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(infos.isDead) return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
+            currentSpdModifier = _StaticPlayer.glueSpdModifier;
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
+            currentSpdModifier = _StaticPlayer.waterSpdModifier;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currentSpdModifier = 1f;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,11 +59,12 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
         if (canMove.Count != 0)
             return;
 
-        float currentSpd = this.currentSpd;
+        realCurrentSpd = this.currentSpd;
         PlayCurve();
 
-        currentSpd = _StaticPlayer.beginEndMoveCurve.Evaluate(timerCurve * (1f/_StaticPlayer.beginEndMoveCurveDuration)) * currentSpd;
-        infos.rb.velocity = lastDirection * currentSpd * currentSpdModifier;
+        realCurrentSpd = _StaticPlayer.beginEndMoveCurve.Evaluate(timerCurve * (1f/_StaticPlayer.beginEndMoveCurveDuration)) * realCurrentSpd;
+        realCurrentSpd *= currentSpdModifier;
+        infos.rb.velocity = lastDirection * realCurrentSpd;
     }
 
     private void LastDirection()

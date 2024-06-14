@@ -124,8 +124,8 @@ MonoBehaviour:
   rangeInteractible: 2
   timeInteractibleBecomeZero: 2
   scrollCdwCursor: 0.02
-  glueSpdModifier: 0
-  waterSpdModifier: 0
+  glueSpdModifier: 0.2
+  waterSpdModifier: 0.6
   deadSpd: 10
   beginEndMoveCurve:
     serializedVersion: 2
