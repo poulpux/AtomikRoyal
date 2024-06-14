@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e235ccdbff394479937150fb41b75a, type: 3}
+  m_Name: SkinsSO_BlueCap
+  m_EditorClassIdentifier: 
+  namee: Clementino
+  idle:
+  - south: {fileID: -513396636, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    south_west: {fileID: -1994552538, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    west: {fileID: -1197850787, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    northWest: {fileID: 887005450, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    north: {fileID: -1023248744, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+  walk:
+  - south: {fileID: -784618240, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    south_west: {fileID: -205449984, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    west: {fileID: -1863935556, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    northWest: {fileID: -1706768795, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    north: {fileID: -1466196141, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+  - south: {fileID: -513396636, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    south_west: {fileID: -1994552538, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    west: {fileID: -1197850787, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    northWest: {fileID: 887005450, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    north: {fileID: -1023248744, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+  - south: {fileID: 887286050, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    south_west: {fileID: -44140682, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    west: {fileID: -1837163529, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    northWest: {fileID: -670985613, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    north: {fileID: 2134205101, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+  - south: {fileID: -513396636, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    south_west: {fileID: -1994552538, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    west: {fileID: -1197850787, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    northWest: {fileID: 887005450, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+    north: {fileID: -1023248744, guid: d4a390c77e5381343b624d37d95959dc, type: 3}

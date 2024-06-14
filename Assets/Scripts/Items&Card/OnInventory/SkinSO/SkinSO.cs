@@ -12,6 +12,7 @@ public enum STATEANIM
 [CreateAssetMenu(fileName = "SkinsSO_filename", menuName = "SO/SkinsSO")]
 public class SkinSO : ScriptableObject
 {
+    public string namee;
     public List<SpriteDirection> idle = new List<SpriteDirection>(), walk = new List<SpriteDirection>();
     public Sprite GetSprite(int currentSpriteDirection,int indexAnim, STATEANIM currentAnim)
     {

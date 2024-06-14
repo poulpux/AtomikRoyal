@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allSkins:
   - {fileID: 11400000, guid: 5fdd4fecd69bee04ab5e9c19427c9af1, type: 2}
+  - {fileID: 11400000, guid: 187545f03e7af02408960e434b45e677, type: 2}
+  - {fileID: 11400000, guid: 6f618957fc38e7648b66f1c113daf12f, type: 2}
   idleCldAnim: 0.5
   walkCldAnim: 0.3
