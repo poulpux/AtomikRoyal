@@ -40,7 +40,7 @@ public class Explosion : MonoBehaviour
         vertices = new Vector3[totalVertices];
     }  
 
-    void Update()
+    void FixedUpdate()
     {
         //CircleExplosion();
         //SquareExplosion();
@@ -265,16 +265,21 @@ public class Explosion : MonoBehaviour
     private void GenerateRectangle()
     {
         // Générer les triangles
-        for (int i = 1; i < totalVertices - 1; i++)
+        for (int i = 1; i < totalVertices -1; i++)
         {
+            if (i == (totalVertices-1)/2)
+            {
+                continue;
+            }
             triangles.Add(0); // Centre du rectangle
             triangles.Add(i);
             triangles.Add(i + 1);
         }
-        // Connecter le dernier vertex au premier vertex sur le bord
-        triangles.Add(0);
-        triangles.Add(totalVertices - 1);
-        triangles.Add(1);
+
+        //// Connecter le dernier vertex au premier vertex sur le bord
+        //triangles.Add(0);
+        //triangles.Add(totalVertices - 1);
+        //triangles.Add(1);
 
         // Mettre à jour le mesh
         VisionConeMesh.Clear();
