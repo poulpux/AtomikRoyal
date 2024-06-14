@@ -43,10 +43,9 @@ public class Explosion : MonoBehaviour
 
     void FixedUpdate()
     {
-        //CircleExplosion();
+        CircleExplosion();
         //SquareExplosion();
-        //CrossExplosion();
-        CrossExplosion(5f, 0.5f);
+        //CrossExplosion(5f, 0.5f);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
