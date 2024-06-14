@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if(infos.isDead) return;
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
             currentSpdModifier = _StaticPlayer.glueSpdModifier;
         else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
