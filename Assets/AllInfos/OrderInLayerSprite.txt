@@ -1,1 +1,3 @@
-Player = 1
+OnGroundItem = -10
+Explosion = 0
+Player = 10

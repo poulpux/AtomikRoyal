@@ -34,6 +34,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
 
     public void WhenSpawn()
     {
+        PlayerPrefs.SetInt("skin", 1);
         currentSkin = _StaticSkins.allSkins[PlayerPrefs.GetInt("skin")];
     }
     public void WhenDied()
@@ -41,7 +42,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         print("change de skin");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         SetDirection();
         SetSpriteDirection();
