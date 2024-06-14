@@ -38,7 +38,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
     }
     public void WhenDied()
     {
-        print("change de skin");
+        currentSkin = _StaticSkins.allSkins[0];
     }
 
     void FixedUpdate()
