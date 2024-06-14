@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
     PlayerInfos infos;
 
     public List<string> canMove = new List<string>();
-    private float currentSpd, currentSpdModifier, timerCurve;
+    public float currentSpd { get; private set; }
+    private float currentSpdModifier, timerCurve;
     private Vector2 lastDirection, saveDir;
     private bool twoActiv, smoothRota;
 
