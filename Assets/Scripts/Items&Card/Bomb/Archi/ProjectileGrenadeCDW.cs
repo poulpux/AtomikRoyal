@@ -7,10 +7,8 @@ public class ProjectileGrenadeCDW : ProjectileBombMother
 {
     Vector2 direction;
     float timeToGo;
-    Rigidbody2D rb;
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         direction = posToGo - (Vector2)transform.position;
         CalculateTimeToGo();
         StartCoroutine(TouchPosToGo());

@@ -8,6 +8,11 @@ public abstract class BombMother : HitableByBombMother
     protected GameObject explosionPrefab;
     protected EXPLOSIONSHAPE shape;
     protected float baseDamage, radius, lenght, thick;
+    protected Rigidbody2D rb;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float radius, EXPLOSIONSHAPE shape, Vector2 posToGo, float cdw = 0f)
     {
