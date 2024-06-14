@@ -34,7 +34,6 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
 
     public void WhenSpawn()
     {
-        PlayerPrefs.SetInt("skin", 1);
         currentSkin = _StaticSkins.allSkins[PlayerPrefs.GetInt("skin")];
     }
     public void WhenDied()
@@ -96,9 +95,9 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         float animCooldown = currentAnim == STATEANIM.IDLE ? _StaticSkins.idleCldAnim : _StaticSkins.walkCldAnim;
 
         //Make the animation faster if you walk fast
-        float spdCoef = 1f / (infos.movement.currentSpd / _StaticPlayer.spd.startValue);
+        float spdCoef = 1f / (infos.movement.realCurrentSpd / _StaticPlayer.spd.startValue);
         if (currentAnim == STATEANIM.WALK)
-            animCooldown *= Mathf.Clamp(spdCoef, 0.2f,1f);
+            animCooldown *= Mathf.Clamp(spdCoef, _StaticSkins.fasterSpdModif, _StaticSkins.lowerSpdModif);
 
         if (timerAnim > animCooldown)
         {
