@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
     PlayerInfos infos;
     InteractibleMother nearestInteractible;
+
+    public UnityEvent<bool> changeStateInteractibleEvent = new UnityEvent<bool>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -16,6 +19,7 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void FixedUpdate()
     {
+        print(nearestInteractible);
         if (infos.inputSystem.isInteracting && nearestInteractible != null)
             nearestInteractible?.Interact(infos);
     }
