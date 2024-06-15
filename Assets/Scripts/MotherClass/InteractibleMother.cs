@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class InteractibleMother : MonoBehaviour
 {
-    [SerializeField] protected float timeToInteract;
+    [SerializeField] protected float timeToInteract = 0.2f;
     private float timer;
 
     public void Interact(PlayerInfos infos)
