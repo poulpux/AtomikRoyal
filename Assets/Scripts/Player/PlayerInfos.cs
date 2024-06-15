@@ -30,6 +30,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }
     [HideInInspector] public PlayerInventory inventory { get; private set; }
+    [HideInInspector] public PlayerInteract interact { get; private set; }
     [HideInInspector] public Rigidbody2D rb { get; private set; }
     [HideInInspector] public SpriteRenderer spriteRenderer { get; private set; }
     [HideInInspector] public FirebaseProfil_AllMedals_Stats allMedals_Stats { get; private set; } = new FirebaseProfil_AllMedals_Stats();
@@ -86,6 +87,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         SetAllMedals();
 
         isSpawningEvent.Invoke();
+        GameManager.Instance.currentPlayer = this;
         //AddTeamate(this);
     }
     public void WhenSpawn()
@@ -196,6 +198,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         movement = GetComponent<PlayerMovement>();
         inventory = GetComponent<PlayerInventory>();
+        interact = GetComponent<PlayerInteract>();
     }
 
     private void AllEvents()
