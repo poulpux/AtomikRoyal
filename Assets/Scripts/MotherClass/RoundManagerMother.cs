@@ -21,15 +21,11 @@ public abstract class RoundManagerMother : SingletonMother<RoundManagerMother>
     protected override void Awake()
     {
         base.Awake();
-        gameStartEvent += MakeChestSpawn;
     }
 
-    private void MakeChestSpawn()
+    private void Start()
     {
-        foreach (var item in _StaticChest.allChestPos)
-        {
-            //MakeSpawnChest
-        }
+        _StaticChest.InstantiateAllChest();
     }
 
     protected virtual bool EndCondition()

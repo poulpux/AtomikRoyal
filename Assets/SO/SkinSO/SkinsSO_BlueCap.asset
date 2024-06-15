@@ -40,3 +40,6 @@ MonoBehaviour:
     west: {fileID: -1197850787, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
     northWest: {fileID: 887005450, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
     north: {fileID: -1023248744, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
+  typeAnimCDW: 0
+  idleCldAnim: 0.2
+  walkCldAnim: 2

@@ -19,12 +19,12 @@ MonoBehaviour:
   communLootPct: 60
   rareLootPct: 20
   legendaryLootPct: 10
-  chestDropRate: 0
+  chestDropRate: 50
   minGoldInChest: 12
   maxGoldInChest: 15
   nbUtilty: 1
   nbBomb: 1
   nbCoins: 1
-  allChestPos: []
+  chestPrefab: {fileID: 4154329947893806318, guid: 1018d6ab93248ae41afec7bce6553b9b, type: 3}
   objectOnGroundPrefab: {fileID: 101801510844995690, guid: 5583cd3737ef04c45b0278636b55fed4, type: 3}
   coinsOnGroundPrefab: {fileID: 8372495750878818164, guid: ce71452952d335943a4c74cc3b15e91b, type: 3}

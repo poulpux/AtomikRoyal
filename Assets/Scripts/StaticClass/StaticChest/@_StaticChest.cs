@@ -17,13 +17,26 @@ public static class _StaticChest
     static private List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     static private List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
     static private int minGoldInChest, maxGoldInChest, chestDropRate;
-    static private GameObject objectOnGroundPrefab, coinsOnGroundPrefab;
+    static private GameObject objectOnGroundPrefab, coinsOnGroundPrefab, chestPrefab;
     static private int nbUtility, nbBomb, nbCoins;
 
     static private int communLootPctUtility, rareLootPctUtility, legendaryLootPctUtility;
     static private int communLootPctBomb, rareLootPctBomb, legendaryLootPctBomb;
 
-    static public void OpenChest(Vector3 position)
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    static public void InstantiateAllChest()
+    {
+        foreach (var position in allChestPos)
+        {
+            if (Random.Range(1, 100) < chestDropRate)
+                InstantiateChest(position);
+        }
+
+        allChestPos = new List<Vector2>();
+    }
+
+    static public void OpenChest(Vector2 position)
     {
         List<UsableSOMother> list = RandomUsable();
 
@@ -63,8 +76,6 @@ public static class _StaticChest
             Debug.LogError("No SO");
             return;
         }
-
-        allChestPos = SO.allChestPos;
         ToFindInChestUtility = SO.ToFindInChestUtility;
         ToFindInChestBomb = SO.ToFindInChestBomb;
         minGoldInChest = SO.minGoldInChest;
@@ -75,6 +86,7 @@ public static class _StaticChest
         nbUtility = SO.nbUtilty;
         nbBomb = SO.nbBomb;
         nbCoins = SO.nbCoins;
+        chestPrefab = SO.chestPrefab;
 
         communLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
         communLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.COMMUN) ? SO.communLootPct : 0;
@@ -84,6 +96,14 @@ public static class _StaticChest
         
         legendaryLootPctUtility = ToFindInChestUtility.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
         legendaryLootPctBomb = ToFindInChestBomb.Any(usable => usable.rarity == RARITY.LEGENDARY) ? SO.legendaryLootPct : 0;
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    static private void InstantiateChest(Vector2 position)
+    {
+        GameObject objet = Object.Instantiate(chestPrefab);
+        objet.transform.position = position;
     }
 
     static private List<UsableSOMother> RandomUsable()

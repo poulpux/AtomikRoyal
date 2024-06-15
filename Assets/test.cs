@@ -9,10 +9,4 @@ public class test : MonoBehaviour
     {
         _StaticChest.OpenChest(transform.position);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
