@@ -9,11 +9,21 @@ public enum STATEANIM
     WALK
 }
 
+public enum TYPEOFANIMECDW
+{
+    DEFAULT,
+    CUSTOMISE
+}
+
 [CreateAssetMenu(fileName = "SkinsSO_filename", menuName = "SO/SkinsSO")]
 public class SkinSO : ScriptableObject
 {
     public string namee;
     public List<SpriteDirection> idle = new List<SpriteDirection>(), walk = new List<SpriteDirection>();
+    [SerializeField] private TYPEOFANIMECDW typeAnimCDW;
+    [ConditionalField("typeAnimCDW", TYPEOFANIMECDW.CUSTOMISE, "==")]
+    public float idleCldAnim = 0.5f, walkCldAnim = 0.3f;
+
     public Sprite GetSprite(int currentSpriteDirection,int indexAnim, STATEANIM currentAnim)
     {
         List<SpriteDirection> currentAnimation =  currentAnim == STATEANIM.IDLE ? idle : walk;
@@ -30,6 +40,27 @@ public class SkinSO : ScriptableObject
 
         return null;
 
+    }
+
+    public float GetCDWAnimation(STATEANIM currentAnim)
+    {
+        if(currentAnim == STATEANIM.IDLE)
+        {
+            if (typeAnimCDW == TYPEOFANIMECDW.DEFAULT)
+                return _StaticSkins.idleCldAnim;
+            else
+                return idleCldAnim;
+        }
+        else if(currentAnim == STATEANIM.WALK)
+        {
+            if(typeAnimCDW == TYPEOFANIMECDW.DEFAULT)
+                return _StaticSkins.walkCldAnim;
+            else
+                return walkCldAnim;
+        }
+
+        Debug.LogError("Tu as ajouté un STATEANIM, il faut compléter");
+        return 1f;
     }
 }
 

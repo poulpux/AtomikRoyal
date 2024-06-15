@@ -82,6 +82,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
     {
         timerAnim += Time.deltaTime;
 
+        //Gère les changements d'animation
         STATEANIM lastAnim = currentAnim;
 
         currentAnim = infos.inputSystem.direction == Vector2.zero ? STATEANIM.IDLE : STATEANIM.WALK;
@@ -92,7 +93,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
             timerAnim = 0f;
         }
 
-        float animCooldown = currentAnim == STATEANIM.IDLE ? _StaticSkins.idleCldAnim : _StaticSkins.walkCldAnim;
+        float animCooldown = currentSkin.GetCDWAnimation(currentAnim);
 
         //Make the animation faster if you walk fast
         float spdCoef = 1f / (infos.movement.realCurrentSpd / _StaticPlayer.spd.startValue);
@@ -103,10 +104,8 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         {
             timerAnim = 0f;
             indexAnim = (indexAnim + 1) % GetNbFrameInAnim();
-        }
-
-        // En attendant
-         infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
+            infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
+        }       
     }
 
     private int GetNbFrameInAnim()
