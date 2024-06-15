@@ -104,8 +104,8 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         {
             timerAnim = 0f;
             indexAnim = (indexAnim + 1) % GetNbFrameInAnim();
-            infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
-        }       
+        }
+        infos.spriteRenderer.sprite = currentSkin.GetSprite(currentSpriteDirection, indexAnim, currentAnim);
     }
 
     private int GetNbFrameInAnim()
