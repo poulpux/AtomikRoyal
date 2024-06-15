@@ -10,6 +10,7 @@ public class GameManager : SingletonMother<GameManager>
 {
     [HideInInspector] public RoundManagerMother gameRules;
     [HideInInspector] public RingGestion ringGestion;
+    [HideInInspector] public PlayerInfos currentPlayer;
 
     public void GetRound()
     {
