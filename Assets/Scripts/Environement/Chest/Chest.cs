@@ -9,6 +9,7 @@ public class Chest : InteractibleMother
         base.Use(infos);
         _StaticChest.OpenChest(transform.position);
         GetComponent<SpriteRenderer>().color = Color.red;
+        tag = LayerMask.LayerToName(0);
         Destroy(this);
     }
 }
