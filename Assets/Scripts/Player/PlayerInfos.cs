@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,11 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     [SerializeField] private Camera _cam;
 
     [HideInInspector] public Camera cam { get { return _cam; } private set { _cam = value; } }
+
+
+    [SerializeField] private CinemachineVirtualCamera _cinemachineCam;
+
+    [HideInInspector] public CinemachineVirtualCamera cinemachineCam { get { return _cinemachineCam; } private set { _cinemachineCam = value; } }
 
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }
@@ -93,7 +99,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     public void WhenSpawn()
     {
         isDead = false;
-        cantUpgrade.Clear();
+        cantUpgrade = new List<string>();
         colliderr.excludeLayers = _StaticPlayer.excludeCollisionWhenAlife;
     }
 
@@ -114,7 +120,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
 
     public void TryUpgradeStat(PLAYERSTATS stats)
     {
-        if (cantUpgrade.Count > 0)
+        if (cantUpgrade.Count > 0 && nbUpgrade[(int)stats]<9)
             return;
 
         int price = _StaticPlayer.GetPrice(stats, nbUpgrade[(int)stats]);
@@ -208,5 +214,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
             int index = i;
             inputSystem.upgradeStatEvent[index].AddListener(() => TryUpgradeStat((PLAYERSTATS)index));
         }
+
+        UpdateStatsEvent.AddListener(() => _cinemachineCam.m_Lens.OrthographicSize = stats[(int)PLAYERSTATS.RANGE]);
     }
 }

@@ -1523,6 +1523,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3844629139990049207, guid: e815686220177d848a17f924ad2864b7, type: 3}
+      propertyPath: _cinemachineCam
+      value: 
+      objectReference: {fileID: 1948163601}
     - target: {fileID: 4543362112485493395, guid: e815686220177d848a17f924ad2864b7, type: 3}
       propertyPath: m_Camera
       value: 
