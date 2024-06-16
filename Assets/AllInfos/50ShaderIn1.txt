@@ -1,5 +1,7 @@
 Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou changer le material.
 
+Les UV effects vont en général servir pour les emotes
+
 1-Glow : utiliser pour l'ambiance, le feu, les explosions
 2-Fade : Tout ce qui fade (bouton Interagir, tout ça
 3-Outline : Faire une DA générale avecOutline blanc et utiliser le grouper pour l'enviro, en mode paper
@@ -19,3 +21,6 @@ Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou ch
 24-Shine : Mettre partout (sur les cartes, le meilleurs joueur, à la fin, les items stylé, et.)
 25-Contrast&Brightness : Faudra voir partout pour voir si ça passe
 26-OverlayTexture : pour le meilleur joueur, un effet ou un skin
+29-HandDrawn : en vrai ça peut être stylé de fou, mais je sais pas comment
+30-Wind : On peut les mettres dans les herbes et les arbres
+44-Fish Eye  : ça peut être un mode marrant
