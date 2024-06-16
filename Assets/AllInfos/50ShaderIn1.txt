@@ -8,3 +8,14 @@ Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou ch
 7-Color Swap : skin or card mod
 8-HueShift : skin or card mod
 9-Change 1 color : For skins on grenade or Upgrade of the skin
+11-HitEffect : ...
+12-Negative : skins ou des effets on screen
+13-Pixalate : skins
+14-Greyscale : lune de sang par exemple
+16-Blur : Un mode bourré
+17-Motion Blur : si un ennemi va trop vite
+18-Ghost : Quand tu est mort ou que tu utilises la carte pour revenir à la vie
+23-Shadow : Sur le podium à la fin
+24-Shine : Mettre partout (sur les cartes, le meilleurs joueur, à la fin, les items stylé, et.)
+25-Contrast&Brightness : Faudra voir partout pour voir si ça passe
+26-OverlayTexture : pour le meilleur joueur, un effet ou un skin
