@@ -26,10 +26,14 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
         infos.inputSystem.mouseScrollEvent.AddListener((side) => CursorMoveLogic(side));
         infos.inputSystem.isUsingUsableEvent.AddListener(() => UseItem());
 
+
         for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
             _inventory.Add(null);
         for (int i = 0; i < _StaticPlayer.nbCasesInventory; i++)
             _nbInInventory.Add(0);
+        
+        //Permet d'ajouter le punch, qui doit toujours être en première position de la liste
+        AddObject(_StaticChest.ToFindInChestUtility[0], 5, null);
     }
 
     public void WhenDied()
@@ -62,7 +66,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
     public void UseItem()
     {
         if (_inventory[cursorPos] == null || _cantUseItem.Count != 0) return;
-            _inventory[cursorPos].TryUse();
+        
+        _inventory[cursorPos].TryUse();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,13 +133,15 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
     private void AddInVoidCases(UsableSOMother SO, int nb, UsableOnGround usableOnGround)
     {
         int index = GetIndexVoidCase();
+        print(SO);
+        print(SO.script);
         _inventory[index] = GF.SetScripts<UsableMother>(SO.script, gameObject);
         _nbInInventory[index] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
         _inventory[index].UseEvent.AddListener(() => SubstractOneItem(index));
         _inventory[index].SO = SO;
 
-        usableOnGround.nb = 0;
-
+        if(usableOnGround != null)
+            usableOnGround.nb = 0;
     }
 
     private int GetIndexVoidCase()
@@ -151,6 +158,8 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
 
     private void SubstractOneItem(int index)
     {
+        if(index == 0) return; //Permet d'utiliser à l'infini les poings
+
         _nbInInventory[index] -= 1;
         if (_nbInInventory[index] <= 0)
         {

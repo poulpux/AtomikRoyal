@@ -14,7 +14,7 @@ public enum RARITY
 public static class _StaticChest
 {
     static public List<Vector2> allChestPos { get; private set; } = new List<Vector2>();
-    static private List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
+    static public List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     static private List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
     static private int minGoldInChest, maxGoldInChest, chestDropRate;
     static private GameObject objectOnGroundPrefab, coinsOnGroundPrefab, chestPrefab;
