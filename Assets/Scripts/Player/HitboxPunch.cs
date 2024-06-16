@@ -21,6 +21,7 @@ public class HitboxPunch : MonoBehaviour
     {
         if (!findPunch) return;
 
+        print("toucheqqc " + collision.name);
         if (touchedList.Contains(collision.gameObject)) return;
         touchedList.Add(collision.gameObject);
         HitableByBombMother hit = collision.gameObject.GetComponentInParent<HitableByBombMother>();
@@ -38,5 +39,6 @@ public class HitboxPunch : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         GameManager.Instance.currentPlayer.inventory.inventory[0].UseEvent.AddListener(() => touchedList = new List<GameObject>());
+        findPunch = true;
     }
 }
