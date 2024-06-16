@@ -1,1 +1,4 @@
 Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou changer le material.
+
+1-Glow : utiliser pour l'ambiance, le feu, les explosions
+3-Outline : Faire une DA générale avecOutline blanc et utiliser le grouper pour l'enviro, en mode paper
