@@ -29,12 +29,14 @@ public class UtilityPunch : UtilityUsableMother
     private IEnumerator DuraCoroutine()
     {
         punchPivot.SetActive(true);
-        canPunch = false; 
+        canPunch = false;
+        infos.inventory.cantUseItem.Add("Punch");
 
         float angle = Mathf.Atan2(infos.inputSystem.mouseDirection.y, infos.inputSystem.mouseDirection.x) * Mathf.Rad2Deg;
         punchPivot.transform.eulerAngles = new Vector3(0, 0, angle - 90f);
 
         yield return new WaitForSeconds(_StaticPlayer.puchDura);
+        infos.inventory.cantUseItem.RemoveAll(nameOfInterdiction => nameOfInterdiction == "Punch");
         punchPivot.SetActive(false);
     }
 
