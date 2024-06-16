@@ -141,8 +141,9 @@ public static class _StaticChest
         List<UtilityUsableSO> filteredList = ToFindInChestUtility.Where(usable => usable.rarity == rarity).ToList();
         if (filteredList.Count == 0)
             return null;
+        int beginIndex = rarity == RARITY.COMMUN ? 1 : 0;
 
-        int randomIndex = Random.Range(0, filteredList.Count);
+        int randomIndex = Random.Range(beginIndex, filteredList.Count);
         return filteredList[randomIndex];
     }
     

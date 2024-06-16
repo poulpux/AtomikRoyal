@@ -87,7 +87,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         SetAllMedals();
 
         isSpawningEvent.Invoke();
-        GameManager.Instance.currentPlayer = this;
+        GameManager.Instance.SetCurrentPlayer(this);
         //AddTeamate(this);
     }
     public void WhenSpawn()

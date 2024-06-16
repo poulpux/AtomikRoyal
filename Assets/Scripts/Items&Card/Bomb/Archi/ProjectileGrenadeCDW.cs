@@ -7,8 +7,9 @@ public class ProjectileGrenadeCDW : ProjectileBombMother
 {
     Vector2 direction;
     float timeToGo;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         direction = posToGo - (Vector2)transform.position;
         CalculateTimeToGo();
         StartCoroutine(TouchPosToGo());
