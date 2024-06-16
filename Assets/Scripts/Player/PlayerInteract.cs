@@ -20,7 +20,6 @@ public class PlayerInteract : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void FixedUpdate()
     {
-        print(nearestInteractible);
         if (infos.inputSystem.isInteracting && nearestInteractible != null)
         {
             nearestInteractible?.Interact(infos);

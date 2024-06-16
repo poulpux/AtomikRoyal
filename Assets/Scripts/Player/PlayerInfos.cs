@@ -64,7 +64,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     public int currentLife { get; private set; } 
     public int currentShield { get; private set; }
     public List<float> stats { get; private set; } = new List<float>();
-    public List<int> nbStats { get; private set; } = new List<int>();
+    public List<int> nbUpgrade { get; private set; } = new List<int>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -76,7 +76,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     {
         for (int i = 0; i < 8; i++)
         {
-            nbStats.Add(0);
+            nbUpgrade.Add(0);
             stats.Add(0f);
         }
         SetAllStats();
@@ -117,11 +117,11 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         if (cantUpgrade.Count > 0)
             return;
 
-        int price = _StaticPlayer.GetPrice(stats, nbStats[(int)stats]);
+        int price = _StaticPlayer.GetPrice(stats, nbUpgrade[(int)stats]);
         if (inventory.nbCoins >= price)
         {
             inventory.nbCoins -= price;
-            nbStats[(int)stats]++;
+            nbUpgrade[(int)stats]++;
             SetAllStats();
         }
     }
@@ -175,7 +175,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     private void SetAllStats()
     {
         for (int i = 0; i < 8; i++)
-            stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, nbStats[i]); ;
+            stats[i] = _StaticPlayer.GetValue((PLAYERSTATS)i, nbUpgrade[i]); ;
 
         UpdateStatsEvent.Invoke();
     }

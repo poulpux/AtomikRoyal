@@ -9,8 +9,9 @@ public abstract class BombMother : HitableByBombMother
     protected EXPLOSIONSHAPE shape;
     protected float baseDamage, radius, lenght, thick;
     protected Rigidbody2D rb;
-    private void Start()
+    protected virtual void Start()
     {
+        print("passe");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -56,7 +57,6 @@ public abstract class BombMother : HitableByBombMother
     {
         GameObject explosion = Instantiate(explosionPrefab);
         explosion.transform.position = transform.position;
-        print(baseDamage);
         if(shape == EXPLOSIONSHAPE.CIRCLE || shape == EXPLOSIONSHAPE.SQUARE)
             explosion.GetComponent<Explosion>().Init(baseDamage, radius,shape, infos);
         else

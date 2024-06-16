@@ -19,14 +19,14 @@ MonoBehaviour:
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   rarity: 0
   script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
-  type: 5
+  type: 3
   nbHeal: 0
   nbShield: 0
   spdModifier: 0
   timeUse: 0
-  cdw: 10
+  cdw: 2
   shape: 1
-  radius: 5
+  radius: 1
   lenght: 5
   thick: 0.5
   spriteObjectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}

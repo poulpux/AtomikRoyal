@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SkinsSO_OrangeCap
   m_EditorClassIdentifier: 
   namee: Wiliam
+  position: {x: 0, y: 0, z: 0}
+  scale: {x: 5.5, y: 5.5, z: 5.5}
   idle:
   - south: {fileID: -1227495541, guid: 87687239535ebff4fa56e22c55415687, type: 3}
     south_west: {fileID: 878827656, guid: 87687239535ebff4fa56e22c55415687, type: 3}
@@ -40,3 +42,6 @@ MonoBehaviour:
     west: {fileID: -1371112125, guid: 87687239535ebff4fa56e22c55415687, type: 3}
     northWest: {fileID: -940275453, guid: 87687239535ebff4fa56e22c55415687, type: 3}
     north: {fileID: 1283850802, guid: 87687239535ebff4fa56e22c55415687, type: 3}
+  typeAnimCDW: 0
+  idleCldAnim: 0.5
+  walkCldAnim: 0.3

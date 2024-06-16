@@ -74,7 +74,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    startValue: 0
+    startValue: 1
     statsParLv: 0
   dmgCAC:
     CostCurve:
