@@ -19,11 +19,12 @@ public enum TYPEOFANIMECDW
 public class SkinSO : ScriptableObject
 {
     public string namee;
+    public Vector3 position, scale;
     public List<SpriteDirection> idle = new List<SpriteDirection>(), walk = new List<SpriteDirection>();
     [SerializeField] private TYPEOFANIMECDW typeAnimCDW;
     [ConditionalField("typeAnimCDW", TYPEOFANIMECDW.CUSTOMISE, "==")]
     public float idleCldAnim = 0.5f, walkCldAnim = 0.3f;
-
+    
     public Sprite GetSprite(int currentSpriteDirection,int indexAnim, STATEANIM currentAnim)
     {
         List<SpriteDirection> currentAnimation =  currentAnim == STATEANIM.IDLE ? idle : walk;

@@ -34,11 +34,11 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
 
     public void WhenSpawn()
     {
-        currentSkin = _StaticSkins.allSkins[PlayerPrefs.GetInt("skin")];
+        SetSkin(PlayerPrefs.GetInt("skin"));
     }
     public void WhenDied()
     {
-        currentSkin = _StaticSkins.allSkins[0];
+        SetSkin(0);
     }
 
     void FixedUpdate()
@@ -48,6 +48,15 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
         AnimateSprite();
     }
 
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public void SetSkin(int index)
+    {
+        currentSkin = _StaticSkins.allSkins[index];
+        infos.spriteRenderer.transform.localScale = currentSkin.scale;
+        infos.spriteRenderer.transform.localPosition = currentSkin.position;
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
