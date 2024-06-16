@@ -1,4 +1,10 @@
 Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou changer le material.
 
 1-Glow : utiliser pour l'ambiance, le feu, les explosions
+2-Fade : Tout ce qui fade (bouton Interagir, tout ça
 3-Outline : Faire une DA générale avecOutline blanc et utiliser le grouper pour l'enviro, en mode paper
+5-Inner outline : Pour faire des skins en particulier
+6-Gradient : Pas pour des skins mais des fonds oui
+7-Color Swap : skin or card mod
+8-HueShift : skin or card mod
+9-Change 1 color : For skins on grenade or Upgrade of the skin
