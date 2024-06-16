@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf10911df680b24b9df2b18c34a4f43, type: 3}
   m_Name: UtilitySO_Punch
   m_EditorClassIdentifier: 
-  nameUsable: 
-  description: 
+  nameUsable: Punch
+  description: Hit hard
   nbMaxInventory: 0
   nbRecolted: 0
   sprite: {fileID: 0}
   rarity: 0
-  script: {fileID: 0}
-  type: 0
+  script: {fileID: 11500000, guid: 7ba70cd54eb3ef945a80b7c395d1b27a, type: 3}
+  type: 6
   nbHeal: 0
   nbShield: 0
   spdModifier: 0
@@ -31,4 +31,4 @@ MonoBehaviour:
   thick: 0
   spriteObjectToInstantiate: {fileID: 0}
   explosionPrefab: {fileID: 0}
-  otherScript: {fileID: 0}
+  otherScript: {fileID: 11500000, guid: 7ba70cd54eb3ef945a80b7c395d1b27a, type: 3}
