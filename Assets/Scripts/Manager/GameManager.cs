@@ -10,12 +10,18 @@ public class GameManager : SingletonMother<GameManager>
 {
     [HideInInspector] public RoundManagerMother gameRules;
     [HideInInspector] public RingGestion ringGestion;
-    [HideInInspector] public PlayerInfos currentPlayer;
+    [HideInInspector] public PlayerInfos currentPlayer {  get; private set; }
 
     public void GetRound()
     {
         gameRules = GetComponent<RoundManagerMother>();
         ringGestion = GetComponent<RingGestion>();
     }
+
+    public void SetCurrentPlayer(PlayerInfos player)
+    {
+        currentPlayer = player;
+    }
+
     
 }

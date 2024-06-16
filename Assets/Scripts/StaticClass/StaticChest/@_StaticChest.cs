@@ -14,7 +14,7 @@ public enum RARITY
 public static class _StaticChest
 {
     static public List<Vector2> allChestPos { get; private set; } = new List<Vector2>();
-    static private List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
+    static public List<UtilityUsableSO> ToFindInChestUtility = new List<UtilityUsableSO>();
     static private List<BombUsableSO> ToFindInChestBomb = new List<BombUsableSO>();
     static private int minGoldInChest, maxGoldInChest, chestDropRate;
     static private GameObject objectOnGroundPrefab, coinsOnGroundPrefab, chestPrefab;
@@ -141,8 +141,9 @@ public static class _StaticChest
         List<UtilityUsableSO> filteredList = ToFindInChestUtility.Where(usable => usable.rarity == rarity).ToList();
         if (filteredList.Count == 0)
             return null;
+        int beginIndex = rarity == RARITY.COMMUN ? 1 : 0;
 
-        int randomIndex = Random.Range(0, filteredList.Count);
+        int randomIndex = Random.Range(beginIndex, filteredList.Count);
         return filteredList[randomIndex];
     }
     

@@ -163,3 +163,5 @@ MonoBehaviour:
   nbCardInDeck: 5
   nbCardInHand: 3
   nbCaseInventory: 5
+  punchCDW: 0.8
+  punchDura: 0.3

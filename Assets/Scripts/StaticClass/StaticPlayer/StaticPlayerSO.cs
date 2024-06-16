@@ -51,6 +51,10 @@ public class StaticPlayerSO : ScriptableObject
     public int nbCaseInventory;
 
 
+    [Header("Punch")]
+    [Space(10)]
+    public float punchCDW;
+    public float punchDura;
 
     [Serializable]
     public class UpgradeCurves

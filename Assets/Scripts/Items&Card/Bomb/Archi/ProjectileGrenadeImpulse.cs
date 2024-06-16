@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ProjectileGrenadeImpulse : ProjectileBombMother
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(TouchPosToGo());
     }
 

@@ -67,6 +67,12 @@ public static class _StaticPlayer
     public static float onGroundImpulseForce { private set; get; }
     public static float chestRadius { private set; get; }
 
+    //[Header("Punch")]
+    //[Space(10)]
+    public static float punchCDW { private set; get; }
+
+    public static float puchDura { private set; get; }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -117,6 +123,9 @@ public static class _StaticPlayer
 
         excludeCollisionWhenAlife = SO.excludeCollisionWhenAlife;
         excludeCollisionWhenDead = SO.excludeCollisionWhenDead;
+
+        punchCDW = SO.punchCDW;
+        puchDura = SO.punchDura;
     }
 
     static private UpgradeCurves GetUpgradeCurve(PLAYERSTATS stat)
