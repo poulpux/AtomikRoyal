@@ -1,6 +1,8 @@
 Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou changer le material.
 
 Les UV effects vont en général servir pour les emotes
+En gros je vais être obligé de toucher à tout, de faire des tests, les mettres sur des particules aussi.
+
 
 1-Glow : utiliser pour l'ambiance, le feu, les explosions
 2-Fade : Tout ce qui fade (bouton Interagir, tout ça
@@ -24,3 +26,16 @@ Les UV effects vont en général servir pour les emotes
 29-HandDrawn : en vrai ça peut être stylé de fou, mais je sais pas comment
 30-Wind : On peut les mettres dans les herbes et les arbres
 44-Fish Eye  : ça peut être un mode marrant
+
+Effets cumulés cool :
+Unified Outline : pour les batiments et tout
+Ice soldier : effet en mode gelé, emot
+Shield soldier : quand tu chopes du shild ou quand tu balances au shield au sol
+Burn : on modifie ça pour un effet de mort
+Impact : quand tu t'améliores
+Water
+ScreenHit
+ShinyMarine
+SkinsProcéduraux pour les classiques
+Thermal vision : Un mode vision nocturne
+Shiny soldier : le mode avec l'étoile
