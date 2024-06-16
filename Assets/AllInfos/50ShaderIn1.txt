@@ -1,0 +1,1 @@
+Pour modifier les valeurs, on peut changer le prefab, utiliser un animator ou changer le material.
