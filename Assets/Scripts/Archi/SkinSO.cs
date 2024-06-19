@@ -19,7 +19,7 @@ public enum TYPEOFANIMECDW
 public class SkinSO : ScriptableObject
 {
     public string namee;
-    public Vector3 position, scale;
+    public GameObject prefab;
     public List<SpriteDirection> idle = new List<SpriteDirection>(), walk = new List<SpriteDirection>();
     [SerializeField] private TYPEOFANIMECDW typeAnimCDW;
     [ConditionalField("typeAnimCDW", TYPEOFANIMECDW.CUSTOMISE, "==")]

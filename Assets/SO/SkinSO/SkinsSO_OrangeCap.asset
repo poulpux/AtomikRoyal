@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SkinsSO_OrangeCap
   m_EditorClassIdentifier: 
   namee: Wiliam
-  position: {x: 0, y: 0, z: 0}
-  scale: {x: 5.5, y: 5.5, z: 5.5}
+  prefab: {fileID: 5615092201698987742, guid: 39e2a5645c739d041a589acef50ca86c, type: 3}
   idle:
   - south: {fileID: -1227495541, guid: 87687239535ebff4fa56e22c55415687, type: 3}
     south_west: {fileID: 878827656, guid: 87687239535ebff4fa56e22c55415687, type: 3}

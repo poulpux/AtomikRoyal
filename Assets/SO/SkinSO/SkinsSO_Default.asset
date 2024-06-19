@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SkinsSO_Default
   m_EditorClassIdentifier: 
   namee: Noobies
-  position: {x: 0, y: 0, z: 0}
-  scale: {x: 5.5, y: 5.5, z: 5.5}
+  prefab: {fileID: 5615092201698987742, guid: 39e2a5645c739d041a589acef50ca86c, type: 3}
   idle:
   - south: {fileID: 2030941203, guid: 4a3105b228927bc49a9002939eafd102, type: 3}
     south_west: {fileID: -1446538029, guid: 4a3105b228927bc49a9002939eafd102, type: 3}

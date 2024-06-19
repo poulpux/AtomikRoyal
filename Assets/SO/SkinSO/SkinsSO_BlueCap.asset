@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SkinsSO_BlueCap
   m_EditorClassIdentifier: 
   namee: Clementino
-  position: {x: 0, y: 0, z: 0}
-  scale: {x: 5.5, y: 5.5, z: 5.5}
+  prefab: {fileID: 5615092201698987742, guid: 39e2a5645c739d041a589acef50ca86c, type: 3}
   idle:
   - south: {fileID: -513396636, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
     south_west: {fileID: -1994552538, guid: d4a390c77e5381343b624d37d95959dc, type: 3}
