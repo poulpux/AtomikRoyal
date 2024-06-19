@@ -225,7 +225,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void MousePositionAct(InputAction.CallbackContext value)
     {
-        mousePos = infos.cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
+        mousePos = GameManager.Instance.cam.ScreenToWorldPoint(value.ReadValue<Vector2>());
         mouseDirection = (mousePos - (Vector2)transform.position).normalized;
     }
     
