@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSpawn
 {
@@ -25,6 +26,8 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
     private int indexAnim;
     private STATEANIM currentAnim;
 
+    public UnityEvent<GameObject> changeVisuEvent = new UnityEvent<GameObject>();
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     void Awake()
@@ -34,6 +37,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
 
     public void WhenSpawn()
     {
+        PlayerPrefs.SetInt("skin", 2);
         SetSkin(PlayerPrefs.GetInt("skin"));
     }
     public void WhenDied()
@@ -54,8 +58,10 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
     public void SetSkin(int index)
     {
         currentSkin = _StaticSkins.allSkins[index];
-        infos.spriteRenderer.transform.localScale = currentSkin.scale;
-        infos.spriteRenderer.transform.localPosition = currentSkin.position;
+        if (infos.spriteRenderer != null)
+            Destroy(infos.spriteRenderer.gameObject);
+
+        changeVisuEvent.Invoke(Instantiate(currentSkin.prefab, infos.transform));
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
