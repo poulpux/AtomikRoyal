@@ -14,6 +14,7 @@ public class RingGestion : MonoBehaviour
     private List<ZoneMakeDamage> listDamageZone = new List<ZoneMakeDamage>();
     private bool makeDamage;
     private float timer;
+    private int nbZoneClosed;
     void Start()
     {
         InstantiateAll();
@@ -52,19 +53,17 @@ public class RingGestion : MonoBehaviour
             StartCoroutine(WillCloseRing(theoreticalZone[(int)name]));
     }
 
-    public void OpenRing(RINGNAME name) //TO BE TESTED
-    {
-        theoreticalZone[(int)name].state = RINGSTATE.FREE;
-        _concretZone[(int)name].SetActive(false);
-    }
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void MakeDamegeRing()
     {
         timer = makeDamage ? timer + Time.deltaTime : 0f;
         
-        //if(timer > )
+        if(timer > _StaticRound.CDWTicDamage)
+        {
+            timer = 0f;
+            GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(nbZoneClosed), null);
+        }
     }
 
     private void VerifTouchPlayer()
@@ -88,6 +87,9 @@ public class RingGestion : MonoBehaviour
             damage.OnPlayerEnterOrExitEvent.AddListener(() => VerifTouchPlayer());
             listDamageZone.Add(damage);
         }
+
+        _StaticRound.CloseRingEvent.AddListener((name) => CloseZone(name));
+        _StaticRound.OpenRingEvent.AddListener((name) => OpenZone(name));
     }
     private void SetZoneList()
     {
@@ -121,9 +123,20 @@ public class RingGestion : MonoBehaviour
         }
         if (zone.state == RINGSTATE.FREE)
             yield return null;
-        zone.state = RINGSTATE.CLOSE;
         _StaticRound.CloseRingEvent.Invoke(zone.name);
-        _concretZone[(int)zone.name].SetActive(true);
-        print(zone.name);
+    }
+
+    private void CloseZone(RINGNAME name)
+    {
+        theoreticalZone[(int)name].state = RINGSTATE.CLOSE;
+        _concretZone[(int)name].SetActive(true);
+        nbZoneClosed++;
+    }
+
+    private void OpenZone(RINGNAME name)
+    {
+        theoreticalZone[(int)name].state = RINGSTATE.FREE;
+        _concretZone[(int)name].SetActive(false);
+        nbZoneClosed--;
     }
 }

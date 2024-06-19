@@ -17,6 +17,7 @@ public class RoundRulesSO : ScriptableObjectWithScriptMother
     [Space(10)]
     public float timeToCloseRing;
     public float closeRingCooldown, CDWTicDamage;
+    public AnimationCurve damageCurve;
 
     private void OnValidate()
     {

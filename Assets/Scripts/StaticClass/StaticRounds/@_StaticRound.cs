@@ -40,6 +40,8 @@ public static class _StaticRound
     static public float timeToCloseRing {  get; private set; }
     static public float closeRingCooldown { get; private set; }
     static public float CDWTicDamage { get; private set; }
+    static public AnimationCurve damageCurve { get; private set; }
+    static public UnityEvent<RINGNAME> OpenRingEvent = new UnityEvent<RINGNAME>();
     static public UnityEvent<RINGNAME> CloseRingEvent = new UnityEvent<RINGNAME>();
     static public UnityEvent<RINGNAME> WillCloseRingEvent = new UnityEvent<RINGNAME>();
     static public void Init(RoundRulesSO SO)
@@ -48,6 +50,7 @@ public static class _StaticRound
         timeToCloseRing = SO.timeToCloseRing;
         closeRingCooldown = SO.closeRingCooldown;
         CDWTicDamage = SO.CDWTicDamage;
+        damageCurve = SO.damageCurve;
     }
 
     static public void CloseRandomRing()=>
@@ -55,4 +58,10 @@ public static class _StaticRound
     
     static public void CloseRing(RINGNAME name) =>
         GameManager.Instance.ringGestion.TryCloseRing(name);
+
+    static public int GetDamageOfZone(int nbRingClosed)
+    {
+        Debug.Log("nb ring close : "+ nbRingClosed+" damages : " + (int)damageCurve.Evaluate(nbRingClosed));
+        return (int)damageCurve.Evaluate(nbRingClosed);
+    }
 }
