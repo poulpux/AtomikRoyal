@@ -1186,8 +1186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderr: {fileID: 5860252564105273156}
-  _cam: {fileID: 519420031}
-  _cinemachineCam: {fileID: 1948163601}
   UpdateStatsEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1525,6 +1523,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6128338459616233870, guid: 01f87a03549b3824e8e899682b3e4b9d, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 6128338459616233870, guid: 01f87a03549b3824e8e899682b3e4b9d, type: 3}
+      propertyPath: _cinemachineCam
+      value: 
+      objectReference: {fileID: 1948163601}
     - target: {fileID: 8139728188864116652, guid: 01f87a03549b3824e8e899682b3e4b9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

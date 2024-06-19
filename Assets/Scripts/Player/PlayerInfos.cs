@@ -23,16 +23,6 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     //[Header("All Refs")]
 
     [SerializeField] private Collider2D colliderr;
-
-    [SerializeField] private Camera _cam;
-
-    [HideInInspector] public Camera cam { get { return _cam; } private set { _cam = value; } }
-
-
-    [SerializeField] private CinemachineVirtualCamera _cinemachineCam;
-
-    [HideInInspector] public CinemachineVirtualCamera cinemachineCam { get { return _cinemachineCam; } private set { _cinemachineCam = value; } }
-
     [HideInInspector] public PlayerInputSystem inputSystem { get; private set; }
     [HideInInspector] public PlayerMovement movement { get; private set; }
     [HideInInspector] public PlayerInventory inventory { get; private set; }
@@ -216,7 +206,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
             inputSystem.upgradeStatEvent[index].AddListener(() => TryUpgradeStat((PLAYERSTATS)index));
         }
 
-        UpdateStatsEvent.AddListener(() => _cinemachineCam.m_Lens.OrthographicSize = stats[(int)PLAYERSTATS.RANGE]);
+        UpdateStatsEvent.AddListener(() => GameManager.Instance.cinemachineCam.m_Lens.OrthographicSize = stats[(int)PLAYERSTATS.RANGE]);
         visuel.changeVisuEvent.AddListener((objet)=>spriteRenderer = objet.GetComponent<SpriteRenderer>());
     }
 }
