@@ -17,7 +17,7 @@ MonoBehaviour:
   chestSO: {fileID: 11400000, guid: e8f24ca13a8bc81468c9665a840e882b, type: 2}
   timeToCloseRing: 2
   closeRingCooldown: 3
-  CDWTicDamage: 0.8
+  CDWTicDamage: 1.2
   damageCurve:
     serializedVersion: 2
     m_Curve:

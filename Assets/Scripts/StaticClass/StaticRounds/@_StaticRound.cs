@@ -59,9 +59,6 @@ public static class _StaticRound
     static public void CloseRing(RINGNAME name) =>
         GameManager.Instance.ringGestion.TryCloseRing(name);
 
-    static public int GetDamageOfZone(int nbRingClosed)
-    {
-        Debug.Log("nb ring close : "+ nbRingClosed+" damages : " + (int)damageCurve.Evaluate(nbRingClosed));
-        return (int)damageCurve.Evaluate(nbRingClosed);
-    }
+    static public int GetDamageOfZone(int nbRingClosed) =>
+        (int)damageCurve.Evaluate(nbRingClosed);
 }
