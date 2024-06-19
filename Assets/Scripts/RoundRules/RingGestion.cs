@@ -12,11 +12,18 @@ public class RingGestion : MonoBehaviour
     [HideInInspector] public List<GameObject> concretZone { get { return _concretZone; } private set { _concretZone = value; } }
 
     private List<ZoneMakeDamage> listDamageZone = new List<ZoneMakeDamage>();
+    private bool makeDamage;
+    private float timer;
     void Start()
     {
         InstantiateAll();
         SetZoneList();
         StartCoroutine(CloseRandomRingCoroutine());
+    }
+
+    private void FixedUpdate()
+    {
+        MakeDamegeRing();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,10 +60,34 @@ public class RingGestion : MonoBehaviour
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    private void MakeDamegeRing()
+    {
+        timer = makeDamage ? timer + Time.deltaTime : 0f;
+        
+        //if(timer > )
+    }
+
+    private void VerifTouchPlayer()
+    {
+        makeDamage = false;
+        foreach (var item in listDamageZone)
+        {
+            if (item.infos != null)
+            {
+                makeDamage = true;
+                return;
+            }
+        }
+    }
+
     private void InstantiateAll()
     {
         foreach (var item in _concretZone)
-            listDamageZone.Add(item.GetComponent<ZoneMakeDamage>());
+        {
+            ZoneMakeDamage damage = item.GetComponent<ZoneMakeDamage>();
+            damage.OnPlayerEnterOrExitEvent.AddListener(() => VerifTouchPlayer());
+            listDamageZone.Add(damage);
+        }
     }
     private void SetZoneList()
     {

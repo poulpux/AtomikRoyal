@@ -6,19 +6,14 @@ using UnityEngine.Events;
 public class ZoneMakeDamage : MonoBehaviour
 {
     [HideInInspector] public PlayerInfos infos = new PlayerInfos();
-    public UnityEvent OnPlayerEnterEvent = new UnityEvent();
-    public UnityEvent OnPlayerExitEvent = new UnityEvent();
-
-    private void Start()
-    {
-        
-    }
+    public UnityEvent OnPlayerEnterOrExitEvent = new UnityEvent();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             infos = GameManager.Instance.currentPlayer;
+            OnPlayerEnterOrExitEvent.Invoke();
         }
     }
 
@@ -27,6 +22,7 @@ public class ZoneMakeDamage : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             infos = null;
+            OnPlayerEnterOrExitEvent.Invoke();
         }
     }
 }
