@@ -7,11 +7,13 @@ using UnityEngine.Events;
 public enum RINGNAME
 {
     UPLEFT,
+    UPMIDDLE,
     UPRIGHT,
     MIDDLELEFT,
     MIDDLE,
     MIDDLERIGHT,
     DOWNLEFT,
+    DOWNMIDDLE,
     DOWNRIGHT,
 }
 
@@ -20,6 +22,12 @@ public enum RINGSTATE
     FREE,
     WILLCLOSE,
     CLOSE
+}
+
+public class RingZone
+{
+    public RINGNAME name;
+    public RINGSTATE state;
 }
 
 public static class _StaticRound 
@@ -45,10 +53,4 @@ public static class _StaticRound
     
     static public void CloseRing(RINGNAME name) =>
         GameManager.Instance.ringGestion.TryCloseRing(name);
-}
-
-public class RingZone
-{
-    public RINGNAME name;
-    public RINGSTATE state;
 }

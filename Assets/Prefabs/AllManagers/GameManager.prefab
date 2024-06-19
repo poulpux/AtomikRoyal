@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6324c6980175743b62a80c818e6983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cam: {fileID: 0}
+  _cinemachineCam: {fileID: 0}
   gameRules: {fileID: 0}
+  ringGestion: {fileID: 0}
 --- !u!114 &974246641071927327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d648a126da8e3ed48b1d86f667f8f740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _concretZone:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
