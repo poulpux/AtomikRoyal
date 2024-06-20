@@ -1,0 +1,7 @@
+Eau -> Eteint le feu, et casse glue, elle casse les buissons
+Bush -> Etre brulé par le feu, cache les mines, est cassé par des murs
+Murs -> Si inflamable, sont attaqués par le feu
+Glue -> Elle est détruite par l'eau, les murs et le feu
+Gaz -> Avec avec du feu, ça explose et neutralise le gaz
+Feu -> Est éteint par l'eau, les fumigènes, A voir si le feu s'éteint après l'explosion du gaz
+Fumigène -> Eteint le feu

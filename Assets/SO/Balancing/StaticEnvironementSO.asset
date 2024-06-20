@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d812a39e310704b418fa0eeff3b89e18, type: 3}
+  m_Name: StaticEnvironementSO
+  m_EditorClassIdentifier: 
+  wallInteractions: 
+  waterInteractions: 
+  bushInteractions: 000000000300000001000000
+  glueInteractions: 000000000100000002000000
+  gazInteractions: 00000000
+  fireInteractions: 0000000001000000020000000300000004000000
+  smokeInteractions: 0000000005000000
+  allInteractions:
+  - currentElement: 2
+    interactions: 000000000300000001000000
+  - currentElement: 3
+    interactions: 000000000100000002000000
+  - currentElement: 4
+    interactions: 00000000
+  - currentElement: 5
+    interactions: 0000000001000000020000000300000004000000
+  - currentElement: 6
+    interactions: 0000000005000000

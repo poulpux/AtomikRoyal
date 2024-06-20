@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
 public static class GF 
 {
+    public static T GetMaxValue<T>() where T : Enum
+    {
+        return Enum.GetValues(typeof(T)).Cast<T>().Max();
+    }
+
     static public void CopyFields<TSource, TTarget>(TSource source,TTarget target)
     {
         if (source == null || target == null) return;

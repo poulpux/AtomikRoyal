@@ -12,6 +12,7 @@ public class StaticManager : MonoBehaviour
     [SerializeField] private StaticCardsSO cardsSO;
     [SerializeField] private StaticPhysicsSO physicsSO;
     [SerializeField] private StaticMedalsSO medalsSO;
+    [SerializeField] private StaticEnvironementSO environementSO;
     private StaticChestSO chestSO;
 
     void Awake()
@@ -25,6 +26,7 @@ public class StaticManager : MonoBehaviour
         _StaticPlayer.Init(playerSO);
         _StaticCards.Init(cardsSO);
         _StaticMedals.Init(medalsSO);
+        _StaticEnvironement.Init(environementSO);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
