@@ -6,12 +6,14 @@ using UnityEngine;
 public enum ELEMENTS
 {
     WALL,
+    FLAMMABLEWALL,
     WATER,
     BUSH,
     GLUE,
+    SMOKE,
     GAZ,
     FIRE,
-    SMOKE
+    EXPLOSION
 }
 
 [CreateAssetMenu(fileName = "StaticEnvironementSO", menuName = "Static/StaticEnvironementSO")]
