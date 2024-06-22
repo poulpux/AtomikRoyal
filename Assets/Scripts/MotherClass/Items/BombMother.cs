@@ -41,6 +41,7 @@ public abstract class BombMother : HitableByBombMother
         this.lenght = lenght;
         this.thick = thick;
         this.shape = shape;
+        print("throw"+thick);
     }
     
     public virtual void Init(PlayerInfos infos, GameObject explosionPrefab, float baseDomage, float lenght, float thick, EXPLOSIONSHAPE shape)
