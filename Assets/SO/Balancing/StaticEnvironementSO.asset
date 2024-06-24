@@ -31,3 +31,5 @@ MonoBehaviour:
     interactions: 00000000010000000200000003000000040000000500000006000000
   - currentElement: 8
     interactions: 06000000
+  mapLenght: 50
+  tabResolution: 1
