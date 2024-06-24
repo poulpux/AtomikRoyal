@@ -37,7 +37,7 @@ public class PlayerVisuel : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerS
 
     public void WhenSpawn()
     {
-        PlayerPrefs.SetInt("skin", 2);
+        PlayerPrefs.SetInt("skin", 1);
         SetSkin(PlayerPrefs.GetInt("skin"));
     }
     public void WhenDied()
