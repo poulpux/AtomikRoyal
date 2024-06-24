@@ -72,6 +72,7 @@ public class Explosion : MonoBehaviour
     {
         this.baseDamage = baseDamage;
         this.infos = infos;
+        //print("lenght :" + length + " thickness : " + thickness);
         this.length = Mathf.Max(length, thickness);
         this.thickness = Mathf.Min(length, thickness);
         this.shape = shape;

@@ -22,7 +22,7 @@ MonoBehaviour:
   type: 1
   baseDamage: 1
   cdw: 2
-  shape: 0
+  shape: 2
   radius: 2
   lenght: 5
   thick: 0.5
