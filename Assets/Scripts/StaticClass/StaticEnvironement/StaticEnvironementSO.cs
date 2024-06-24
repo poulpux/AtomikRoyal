@@ -20,6 +20,7 @@ public enum ELEMENTS
 public class StaticEnvironementSO : ScriptableObject
 {
     public List<InteractionElement> allInteractions = new List<InteractionElement>();
+    public int mapLenght, tabResolution;
 }
 
 [Serializable]
