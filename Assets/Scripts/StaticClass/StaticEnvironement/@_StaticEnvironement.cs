@@ -19,7 +19,7 @@ public static class _StaticEnvironement
             List<ELEMENTS> listTemps = GetListToRead(i, SO);
             int currentValue = 0;
             foreach (var item in listTemps)
-                currentValue +=(int)Mathf.Pow(2f, (float)item);
+                GF.AddInBinaryMask(ref currentValue, (int)item); 
             maskInteraction[i] = currentValue;
         }
     }

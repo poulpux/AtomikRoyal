@@ -13,6 +13,8 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
     {
         binaryMaskMap = new int[_StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution, _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution];
 
+        VerifyAllPosibleInteraction();
+
         foreach (var item in allInteractionsList)
             item.Init();
 
@@ -20,6 +22,25 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
         GF.AddInBinaryMask(ref binaryMaskMap[5, 5], (int)ELEMENTS.WALL);
         print(GF.IsOnBinaryMask(binaryMaskMap[5,5], (int)ELEMENTS.WALL));
         allInteractionsList[(int)ELEMENTS.WALL].PlayInteractions(5, 5);
+    }
+
+    private void VerifyAllPosibleInteraction()
+    {
+        for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)
+        {
+            for (int y = 0; y < (int)GF.GetMaxValue<ELEMENTS>(); y++)
+            {
+                if (!GF.IsOnBinaryMask(_StaticEnvironement.maskInteraction[i], y))
+                {
+                    EnviroInteractionMother currentInteraction = allInteractionsList[i].ReturnGoodMother(y);
+                    if (currentInteraction != null)
+                    {
+                        print((ELEMENTS)y);
+                        currentInteraction.typeDisable.Add((ELEMENTS)y);
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -37,7 +58,7 @@ public class EnviroInteractPackage
     public EnviroInteractionMother fireInteraction ;
     public EnviroInteractionMother explosionInteraction ;
 
-    /*[HideInInspector]*/ public List<EnviroInteractionMother> allEnableInteractions ;
+    /*[HideInInspector]*/ public List<EnviroInteractionMother> allEnableInteractions = new List<EnviroInteractionMother>();
 
     public void PlayInteractions(int x, int y)
     {
@@ -51,15 +72,15 @@ public class EnviroInteractPackage
 
     public void Init()
     {
-        AddToList(wallInteraction);
-        AddToList(fireWallInteraction);
-        AddToList(explosionInteraction);
-        AddToList(waterInteraction);
-        AddToList(fireInteraction);
-        AddToList(gazInteraction);
-        AddToList(smokeInteraction);
-        AddToList(glueInteraction);
-        AddToList(bushInteraction);
+        AddToList(wallInteraction, ELEMENTS.WALL);
+        AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
+        AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
+        AddToList(waterInteraction, ELEMENTS.WATER);
+        AddToList(fireInteraction, ELEMENTS.FIRE);
+        AddToList(gazInteraction, ELEMENTS.GAZ);
+        AddToList(smokeInteraction, ELEMENTS.SMOKE);
+        AddToList(glueInteraction, ELEMENTS.GLUE);
+        AddToList(bushInteraction, ELEMENTS.BUSH);
 
         wallInteraction = null;
         fireWallInteraction = null;
@@ -72,9 +93,33 @@ public class EnviroInteractPackage
         bushInteraction = null;
     }
 
-    private void AddToList(EnviroInteractionMother interaction)
+    public EnviroInteractionMother ReturnGoodMother(int enumNumber)
     {
-        if (interaction != null && !interaction.typeDisable.Contains(elementType))
+        if (enumNumber == 0)
+            return wallInteraction;
+        else if (enumNumber == 1)
+            return fireWallInteraction;
+        else if (enumNumber == 2)
+            return waterInteraction;
+        else if (enumNumber == 3)
+            return bushInteraction;
+        else if (enumNumber == 4)
+            return glueInteraction;
+        else if (enumNumber == 5)
+            return smokeInteraction;
+        else if (enumNumber == 6)
+            return gazInteraction;
+        else if (enumNumber == 7)
+            return fireInteraction;
+        else if (enumNumber == 8)
+            return explosionInteraction;
+
+        return wallInteraction;
+    }     
+
+    private void AddToList(EnviroInteractionMother interaction, ELEMENTS element)
+    {
+        if (interaction != null && !interaction.typeDisable.Contains(element))            
             allEnableInteractions.Add(interaction);
     }
 }
