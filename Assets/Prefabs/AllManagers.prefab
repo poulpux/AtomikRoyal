@@ -161,7 +161,7 @@ MonoBehaviour:
     glueInteraction: {fileID: 8107415864641394506}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
-    fireInteraction: {fileID: 0}
+    fireInteraction: {fileID: 823855202557551633}
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 4
@@ -201,7 +201,7 @@ MonoBehaviour:
     wallInteraction: {fileID: 8951916279698697191}
     fireWallInteraction: {fileID: 0}
     waterInteraction: {fileID: 8951916279698697191}
-    bushInteraction: {fileID: 0}
+    bushInteraction: {fileID: 823855202557551633}
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 8951916279698697191}
     gazInteraction: {fileID: 0}
@@ -212,7 +212,7 @@ MonoBehaviour:
     wallInteraction: {fileID: 3042027317551101569}
     fireWallInteraction: {fileID: 3042027317551101569}
     waterInteraction: {fileID: 0}
-    bushInteraction: {fileID: 0}
+    bushInteraction: {fileID: 823855202557551633}
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
