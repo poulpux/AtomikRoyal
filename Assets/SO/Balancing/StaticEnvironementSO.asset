@@ -33,3 +33,6 @@ MonoBehaviour:
     interactions: 06000000
   mapLenght: 50
   tabResolution: 1
+  ATTENTION: "toutes les enums doivent etre prensente qu'une fois, c'est essentiel
+    pour le d\xE9roulement des interactions"
+  elementsInteractionsPriority: 000000000100000008000000020000000700000006000000050000000400000003000000

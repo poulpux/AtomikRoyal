@@ -8,10 +8,12 @@ public static class _StaticEnvironement
     static public int[] maskInteraction {  get; private set; }
     static public int mapLenght;
     static public int tabResolution;
+    static public List<ELEMENTS> elementsInteractionsPriority { get; private set; }
     static public void Init(StaticEnvironementSO SO)
     {
         mapLenght = SO.mapLenght;
         tabResolution = SO.tabResolution;
+        elementsInteractionsPriority = SO.elementsInteractionsPriority;
 
         maskInteraction = new int[(int)GF.GetMaxValue<ELEMENTS>()];
         for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)

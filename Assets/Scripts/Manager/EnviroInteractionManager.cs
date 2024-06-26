@@ -18,9 +18,6 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
         foreach (var item in allInteractionsList)
             item.Init();
 
-        GF.AddInBinaryMask(ref binaryMaskMap[5, 5], (int)ELEMENTS.GLUE);
-        GF.AddInBinaryMask(ref binaryMaskMap[5, 5], (int)ELEMENTS.WALL);
-        print(GF.IsOnBinaryMask(binaryMaskMap[5,5], (int)ELEMENTS.WALL));
         allInteractionsList[(int)ELEMENTS.WALL].PlayInteractions(5, 5);
     }
 
@@ -34,10 +31,7 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
                 {
                     EnviroInteractionMother currentInteraction = allInteractionsList[i].ReturnGoodMother(y);
                     if (currentInteraction != null)
-                    {
-                        print((ELEMENTS)y);
                         currentInteraction.typeDisable.Add((ELEMENTS)y);
-                    }
                 }
             }
         }
@@ -72,15 +66,18 @@ public class EnviroInteractPackage
 
     public void Init()
     {
-        AddToList(wallInteraction, ELEMENTS.WALL);
-        AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
-        AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
-        AddToList(waterInteraction, ELEMENTS.WATER);
-        AddToList(fireInteraction, ELEMENTS.FIRE);
-        AddToList(gazInteraction, ELEMENTS.GAZ);
-        AddToList(smokeInteraction, ELEMENTS.SMOKE);
-        AddToList(glueInteraction, ELEMENTS.GLUE);
-        AddToList(bushInteraction, ELEMENTS.BUSH);
+        foreach (var item in _StaticEnvironement.elementsInteractionsPriority)
+            AddToList(ReturnGoodMother((int)item), item);
+
+        //AddToList(wallInteraction, ELEMENTS.WALL);
+        //AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
+        //AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
+        //AddToList(waterInteraction, ELEMENTS.WATER);
+        //AddToList(fireInteraction, ELEMENTS.FIRE);
+        //AddToList(gazInteraction, ELEMENTS.GAZ);
+        //AddToList(smokeInteraction, ELEMENTS.SMOKE);
+        //AddToList(glueInteraction, ELEMENTS.GLUE);
+        //AddToList(bushInteraction, ELEMENTS.BUSH);
 
         wallInteraction = null;
         fireWallInteraction = null;
