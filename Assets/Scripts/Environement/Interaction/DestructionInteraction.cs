@@ -9,6 +9,6 @@ public class DestructionInteraction : EnviroInteractionMother
     public override void Interact(int x, int y)
     {
         base.Interact(x, y);
-        GF.DeleteInBinaryMask(ref EnviroInteractionManager.Instance.binaryMaskMap[x, y], (int)elementToDestruct);
+        GF.RemoveInBinaryMask(ref EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)elementToDestruct);
     }
 }

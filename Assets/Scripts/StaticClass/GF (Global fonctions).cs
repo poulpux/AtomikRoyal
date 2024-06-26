@@ -15,7 +15,7 @@ public static void AddInBinaryMask(ref int mask, int position)
     mask |= (1 << position);
 }
 
-public static void DeleteInBinaryMask(ref int mask, int position)
+public static void RemoveInBinaryMask(ref int mask, int position)
 {
     mask &= ~(1 << position);
 }

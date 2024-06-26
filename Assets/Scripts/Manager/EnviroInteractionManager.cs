@@ -6,19 +6,40 @@ using UnityEngine.Events;
 
 public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager>
 {
-    public int[,] binaryMaskMap ;
+    public EnviroCase[,] binaryMaskMap { get; private set; }
     [SerializeField] private List<EnviroInteractPackage> allInteractionsList = new List<EnviroInteractPackage>((int)GF.GetMaxValue<ELEMENTS>());
-    [HideInInspector] public UnityEvent InstantiateAllInteractionEvent = new UnityEvent();
+
+    [HideInInspector] public UnityEvent<int, int, ELEMENTS> AddElementEvent = new UnityEvent<int, int, ELEMENTS>();
+    [HideInInspector] public UnityEvent<int, int, ELEMENTS> RemoveElementEvent = new UnityEvent<int, int, ELEMENTS>();
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     public void Start()
     {
-        binaryMaskMap = new int[_StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution, _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution];
+        InstantiateTab();
+
+        AddElementEvent.AddListener((x, y, element) => AddElement(x, y, element));
+        RemoveElementEvent.AddListener((x, y, element) => GF.RemoveInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element));
 
         VerifyAllPosibleInteraction();
 
         foreach (var item in allInteractionsList)
             item.Init();
 
-        allInteractionsList[(int)ELEMENTS.WALL].PlayInteractions(5, 5);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.WALL);
+        print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.GLUE);
+        print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
+        print(binaryMaskMap[5, 5].binaryMask);
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void AddElement(int x, int y, ELEMENTS element)
+    {
+        GF.AddInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element);
+        allInteractionsList[(int)element].PlayInteractions(x, y);
     }
 
     private void VerifyAllPosibleInteraction()
@@ -36,6 +57,22 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
             }
         }
     }
+
+    private void InstantiateTab()
+    {
+        binaryMaskMap = new EnviroCase[_StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution, _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution];
+        for (int i = 0; i < _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution; i++)
+        {
+            for (int y = 0; y < _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution; y++)
+                binaryMaskMap[i, y] = new EnviroCase();
+        }
+    }
+}
+
+public class EnviroCase
+{
+    public int binaryMask;
+    public float flammableHp;
 }
 
 [Serializable]
@@ -54,11 +91,13 @@ public class EnviroInteractPackage
 
     /*[HideInInspector]*/ public List<EnviroInteractionMother> allEnableInteractions = new List<EnviroInteractionMother>();
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     public void PlayInteractions(int x, int y)
     {
         foreach (var item in allEnableInteractions)
         {
-            if (!GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y], (int)elementType))
+            if (!GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)elementType))
                 return;
             item.Interact(x, y);
         }
@@ -112,7 +151,9 @@ public class EnviroInteractPackage
             return explosionInteraction;
 
         return wallInteraction;
-    }     
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void AddToList(EnviroInteractionMother interaction, ELEMENTS element)
     {
