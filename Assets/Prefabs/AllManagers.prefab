@@ -150,7 +150,7 @@ MonoBehaviour:
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
-    fireInteraction: {fileID: 8951916279698697191}
+    fireInteraction: {fileID: 0}
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 3
@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDisable: 
   elementToDestruct: 4
 --- !u!114 &823855202557551633
 MonoBehaviour:
@@ -251,7 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDisable: 
   elementToDestruct: 3
 --- !u!114 &8951916279698697191
 MonoBehaviour:
@@ -265,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDisable: 
   elementToDestruct: 7
 --- !u!114 &3042027317551101569
 MonoBehaviour:
@@ -279,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeDisable: 
   elementToDestruct: 8
 --- !u!1 &7396531056177536727
 GameObject:
