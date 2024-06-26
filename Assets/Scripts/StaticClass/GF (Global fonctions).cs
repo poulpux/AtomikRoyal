@@ -7,10 +7,21 @@ using UnityEngine;
 
 public static class GF 
 {
-    public static T GetMaxValue<T>() where T : Enum
-    {
-        return Enum.GetValues(typeof(T)).Cast<T>().Max();
-    }
+    public static bool IsOnBinaryMask(int mask, int position) =>
+    (mask & (1 << position)) != 0;
+
+public static void AddInBinaryMask(ref int mask, int position) 
+{
+    mask |= (1 << position);
+}
+
+public static void RemoveInBinaryMask(ref int mask, int position)
+{
+    mask &= ~(1 << position);
+}
+
+    public static T GetMaxValue<T>() where T : Enum =>
+        Enum.GetValues(typeof(T)).Cast<T>().Max();
 
     static public void CopyFields<TSource, TTarget>(TSource source,TTarget target)
     {

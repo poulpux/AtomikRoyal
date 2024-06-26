@@ -20,8 +20,6 @@ public class HitboxPunch : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!findPunch) return;
-
-        print("toucheqqc " + collision.name);
         if (touchedList.Contains(collision.gameObject)) return;
         touchedList.Add(collision.gameObject);
         HitableByBombMother hit = collision.gameObject.GetComponentInParent<HitableByBombMother>();

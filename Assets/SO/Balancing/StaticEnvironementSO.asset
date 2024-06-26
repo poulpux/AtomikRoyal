@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allInteractions:
   - currentElement: 0
-    interactions: 
+    interactions: 0400000003000000
   - currentElement: 1
-    interactions: 070000000500000002000000
+    interactions: 0700000005000000020000000300000004000000
   - currentElement: 2
     interactions: 01000000030000000400000007000000
   - currentElement: 3
@@ -31,3 +31,8 @@ MonoBehaviour:
     interactions: 00000000010000000200000003000000040000000500000006000000
   - currentElement: 8
     interactions: 06000000
+  mapLenght: 50
+  tabResolution: 1
+  ATTENTION: "toutes les enums doivent etre prensente qu'une fois, c'est essentiel
+    pour le d\xE9roulement des interactions"
+  elementsInteractionsPriority: 000000000100000008000000020000000700000006000000050000000400000003000000

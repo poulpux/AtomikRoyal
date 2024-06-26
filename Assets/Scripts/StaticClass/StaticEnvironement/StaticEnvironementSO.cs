@@ -20,6 +20,11 @@ public enum ELEMENTS
 public class StaticEnvironementSO : ScriptableObject
 {
     public List<InteractionElement> allInteractions = new List<InteractionElement>();
+    public int mapLenght, tabResolution;
+    [TextArea]
+    public string ATTENTION = "toutes les enums doivent etre prensente qu'une fois, c'est essentiel pour le déroulement des interactions";
+
+    public List<ELEMENTS> elementsInteractionsPriority = new List<ELEMENTS>();
 }
 
 [Serializable]
