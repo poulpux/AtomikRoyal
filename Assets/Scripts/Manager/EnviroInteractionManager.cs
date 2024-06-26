@@ -25,13 +25,15 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
 
         foreach (var item in allInteractionsList)
             item.Init();
-
-        AddElementEvent.Invoke(5, 5, ELEMENTS.WALL);
-        print(binaryMaskMap[5, 5].binaryMask);
-        AddElementEvent.Invoke(5, 5, ELEMENTS.GLUE);
-        print(binaryMaskMap[5, 5].binaryMask);
         AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
         print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
+        print(binaryMaskMap[5, 5].binaryMask);
+
+        AddElementEvent.Invoke(5, 5, ELEMENTS.BUSH);
+        print(binaryMaskMap[5, 5].binaryMask);
+        //AddElementEvent.Invoke(5, 5, ELEMENTS.BUSH);
+        //print(binaryMaskMap[5, 5].binaryMask);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,6 +80,19 @@ public class EnviroCase
 [Serializable]
 public class EnviroInteractPackage
 {
+    [Serializable]
+    public class ConditionEnviro
+    {
+        public EnviroInteractionMother script;
+        public ELEMENTS interactWith;
+
+        public ConditionEnviro(EnviroInteractionMother script, ELEMENTS interactWith)
+        {
+            this.script = script;
+            this.interactWith = interactWith;
+        }
+
+    }
     public ELEMENTS elementType;
     public EnviroInteractionMother wallInteraction;
     public EnviroInteractionMother fireWallInteraction ;
@@ -89,7 +104,8 @@ public class EnviroInteractPackage
     public EnviroInteractionMother fireInteraction ;
     public EnviroInteractionMother explosionInteraction ;
 
-    /*[HideInInspector]*/ public List<EnviroInteractionMother> allEnableInteractions = new List<EnviroInteractionMother>();
+
+    /*[HideInInspector]*/ public List<ConditionEnviro> allEnableInteractions = new List<ConditionEnviro>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -99,7 +115,8 @@ public class EnviroInteractPackage
         {
             if (!GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)elementType))
                 return;
-            item.Interact(x, y);
+            if(GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)item.interactWith))
+                item.script.Interact(x, y);
         }
     }
 
@@ -157,7 +174,7 @@ public class EnviroInteractPackage
 
     private void AddToList(EnviroInteractionMother interaction, ELEMENTS element)
     {
-        if (interaction != null && !interaction.typeDisable.Contains(element))            
-            allEnableInteractions.Add(interaction);
+        if (interaction != null/* && !interaction.typeDisable.Contains(element)*/)            
+            allEnableInteractions.Add(new ConditionEnviro(interaction, element));
     }
 }

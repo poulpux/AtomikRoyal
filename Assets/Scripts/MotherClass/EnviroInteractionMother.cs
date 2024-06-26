@@ -20,6 +20,7 @@ public abstract class EnviroInteractionMother : MonoBehaviour
     private IEnumerator WaitOneFrame()
     {
         yield return new WaitForEndOfFrame();
+        print("reset");
         typeDisable = new List<ELEMENTS>();
     }
 }
