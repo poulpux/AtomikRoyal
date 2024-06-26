@@ -23,6 +23,8 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
 
         foreach (var item in allInteractionsList)
             item.Init();
+
+
         //AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
         //print(binaryMaskMap[5, 5].binaryMask);
         //AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
