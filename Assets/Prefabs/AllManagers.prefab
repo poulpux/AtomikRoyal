@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 823855202557551633}
   - component: {fileID: 8951916279698697191}
   - component: {fileID: 3042027317551101569}
+  - component: {fileID: 4364504649107326098}
   m_Layer: 0
   m_Name: EnviroManager
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
-    fireInteraction: {fileID: 0}
+    fireInteraction: {fileID: 4364504649107326098}
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 7
@@ -204,7 +205,7 @@ MonoBehaviour:
     bushInteraction: {fileID: 823855202557551633}
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 8951916279698697191}
-    gazInteraction: {fileID: 0}
+    gazInteraction: {fileID: 4364504649107326098}
     fireInteraction: {fileID: 0}
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
@@ -277,6 +278,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementToDestruct: 8
+--- !u!114 &4364504649107326098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251419846336392585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f1fb8d2f4678c44b725ee365649a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7396531056177536727
 GameObject:
   m_ObjectHideFlags: 0

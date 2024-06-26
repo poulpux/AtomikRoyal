@@ -22,6 +22,6 @@ public class FireGazInteraction : EnviroInteractionMother
     private void TryExpendExplosion(int y, int x)
     {
         if (GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)ELEMENTS.GAZ))
-            EnviroInteractionManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.FIRE);
+            EnviroInteractionManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.EXPLOSION);
     }
 }

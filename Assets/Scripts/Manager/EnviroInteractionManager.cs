@@ -25,10 +25,13 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
             item.Init();
 
 
-        //AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
-        //print(binaryMaskMap[5, 5].binaryMask);
-        //AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
-        //print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.GAZ);
+        print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(6, 5, ELEMENTS.GAZ);
+        print(binaryMaskMap[6, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
+        print(binaryMaskMap[5, 5].binaryMask);
+        print(binaryMaskMap[6, 5].binaryMask);
 
         //AddElementEvent.Invoke(5, 5, ELEMENTS.BUSH);
         //print(binaryMaskMap[5, 5].binaryMask);
