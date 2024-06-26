@@ -21,8 +21,6 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
         AddElementEvent.AddListener((x, y, element) => AddElement(x, y, element));
         RemoveElementEvent.AddListener((x, y, element) => GF.RemoveInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element));
 
-        VerifyAllPosibleInteraction();
-
         foreach (var item in allInteractionsList)
             item.Init();
         AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
@@ -32,8 +30,12 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
 
         AddElementEvent.Invoke(5, 5, ELEMENTS.BUSH);
         print(binaryMaskMap[5, 5].binaryMask);
-        //AddElementEvent.Invoke(5, 5, ELEMENTS.BUSH);
-        //print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.GLUE);
+        print(binaryMaskMap[5, 5].binaryMask);
+        RemoveElementEvent.Invoke(5, 5, ELEMENTS.WATER);
+        print(binaryMaskMap[5, 5].binaryMask);
+        AddElementEvent.Invoke(5, 5, ELEMENTS.GLUE);
+        print(binaryMaskMap[5, 5].binaryMask);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,22 +44,6 @@ public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager
     {
         GF.AddInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element);
         allInteractionsList[(int)element].PlayInteractions(x, y);
-    }
-
-    private void VerifyAllPosibleInteraction()
-    {
-        for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)
-        {
-            for (int y = 0; y < (int)GF.GetMaxValue<ELEMENTS>(); y++)
-            {
-                if (!GF.IsOnBinaryMask(_StaticEnvironement.maskInteraction[i], y))
-                {
-                    EnviroInteractionMother currentInteraction = allInteractionsList[i].ReturnGoodMother(y);
-                    if (currentInteraction != null)
-                        currentInteraction.typeDisable.Add((ELEMENTS)y);
-                }
-            }
-        }
     }
 
     private void InstantiateTab()
@@ -125,6 +111,7 @@ public class EnviroInteractPackage
         foreach (var item in _StaticEnvironement.elementsInteractionsPriority)
             AddToList(ReturnGoodMother((int)item), item);
 
+        //Priorités
         //AddToList(wallInteraction, ELEMENTS.WALL);
         //AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
         //AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
@@ -174,7 +161,7 @@ public class EnviroInteractPackage
 
     private void AddToList(EnviroInteractionMother interaction, ELEMENTS element)
     {
-        if (interaction != null/* && !interaction.typeDisable.Contains(element)*/)            
+        if (interaction != null)            
             allEnableInteractions.Add(new ConditionEnviro(interaction, element));
     }
 }
