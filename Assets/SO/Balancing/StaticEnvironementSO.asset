@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allInteractions:
   - currentElement: 0
-    interactions: 
+    interactions: 0400000003000000
   - currentElement: 1
-    interactions: 070000000500000002000000
+    interactions: 0700000005000000020000000300000004000000
   - currentElement: 2
     interactions: 01000000030000000400000007000000
   - currentElement: 3
