@@ -1,6 +1,17 @@
-ground = -30
-element = -20
+ground = -31
+
+water = -30
+glue = -30
+
+wall and flammableWall = -29
+bush = -28
+fire = -27
+smoke = -26
+gaz = -25
+
 OnGroundItem = -10
 Explosion = 0
 ThrowedItem = 8
 Player = 10
+
+Ring = 100

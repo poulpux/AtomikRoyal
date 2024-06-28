@@ -140,8 +140,8 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         if (isInvincibleList.Count>=1 || Mathf.Sign(damage) ==  -1f)
             return;
 
-        print(currentLife);
         currentLife = Mathf.Max(currentLife - damage, 0);
+        print(currentLife);
         if (currentLife <= 0)
             isDeadEvent.Invoke(offenser);
     }
@@ -151,7 +151,6 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         if (isInvincibleList.Count >= 1)
             return;
 
-        print("takeDamage "+damage);
         DecreaseLife(Mathf.Max(0, damage - currentShield), offenser); //Set damage after decrease shield
         currentShield = Mathf.Max(currentShield - damage, 0);
     }

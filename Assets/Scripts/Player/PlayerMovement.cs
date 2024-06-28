@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
     {
         infos = GetComponent<PlayerInfos>();
         infos.UpdateStatsEvent.AddListener(() => currentSpd = infos.stats[(int)PLAYERSTATS.SPD]); //Quand tu améliores tes stats
+        infos.detectEnviro.changeSpdModifEvent.AddListener((spdModif) => currentSpdModifier = spdModif);
     }
     public void WhenSpawn()
     {
@@ -36,21 +37,6 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
         LastDirection();
         Move();
     }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if(infos.isDead) return;
-
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
-    //        currentSpdModifier = _StaticPlayer.glueSpdModifier;
-    //    else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
-    //        currentSpdModifier = _StaticPlayer.waterSpdModifier;
-    //}
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    currentSpdModifier = 1f;
-    //}
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
