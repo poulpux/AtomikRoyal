@@ -19,10 +19,14 @@ public class GameManager : SingletonMother<GameManager>
     [HideInInspector] public RingGestion ringGestion;
     [HideInInspector] public PlayerInfos currentPlayer {  get; private set; }
 
-    public void GetRound()
+    [SerializeField] private Transform pilierNorthWest, pilierSouthEast;
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public void Init()
     {
-        gameRules = GetComponent<RoundManagerMother>();
-        ringGestion = GetComponent<RingGestion>();
+        GetRound();
+        InstantiateLimitMap();
     }
 
     public void SetCurrentPlayer(PlayerInfos player)
@@ -30,5 +34,20 @@ public class GameManager : SingletonMother<GameManager>
         currentPlayer = player;
     }
 
-    
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void InstantiateLimitMap()
+    {
+        int lenght = (int)(-pilierNorthWest.transform.position.x + pilierSouthEast.transform.position.x);
+        int height = (int)(pilierNorthWest.transform.position.y - pilierSouthEast.transform.position.y);
+        int originX = (int) pilierNorthWest.transform.position.x;
+        int originY = (int) pilierSouthEast.transform.position.y;
+        print("lenght : " + originX + " height : " + originY);
+    }
+
+    private void GetRound()
+    {
+        gameRules = GetComponent<RoundManagerMother>();
+        ringGestion = GetComponent<RingGestion>();
+    }    
 }
