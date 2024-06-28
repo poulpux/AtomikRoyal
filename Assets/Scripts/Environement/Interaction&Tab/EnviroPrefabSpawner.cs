@@ -15,6 +15,7 @@ public class EnviroPrefabSpawner : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         InstantiateAll();
+        EnviroManager.Instance.AddElementEvent.Invoke(2, 2, ELEMENTS.GLUE);
     }
 
     private void InstantiateAll()
@@ -29,7 +30,6 @@ public class EnviroPrefabSpawner : MonoBehaviour
     private void InstantiatePrefab(int x,int y, ELEMENTS element)
     {
         string tag = CodateTagToDictionnary(x,y);
-        print(tag);
         if (allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
         GameObject currentPrefab = Instantiate(GetGoodPrefab((int)element));
         currentPrefab.transform.position = new Vector2(x, y);

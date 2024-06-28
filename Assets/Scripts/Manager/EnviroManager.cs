@@ -86,7 +86,7 @@ public class EnviroInteractPackage
     public EnviroMother explosionInteraction ;
 
 
-    /*[HideInInspector]*/ public List<ConditionEnviro> allEnableInteractions = new List<ConditionEnviro>();
+    [HideInInspector] public List<ConditionEnviro> allEnableInteractions = new List<ConditionEnviro>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -105,17 +105,6 @@ public class EnviroInteractPackage
     {
         foreach (var item in _StaticEnvironement.elementsInteractionsPriority)
             AddToList(ReturnGoodMother((int)item), item);
-
-        //Priorités
-        //AddToList(wallInteraction, ELEMENTS.WALL);
-        //AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
-        //AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
-        //AddToList(waterInteraction, ELEMENTS.WATER);
-        //AddToList(fireInteraction, ELEMENTS.FIRE);
-        //AddToList(gazInteraction, ELEMENTS.GAZ);
-        //AddToList(smokeInteraction, ELEMENTS.SMOKE);
-        //AddToList(glueInteraction, ELEMENTS.GLUE);
-        //AddToList(bushInteraction, ELEMENTS.BUSH);
 
         wallInteraction = null;
         fireWallInteraction = null;

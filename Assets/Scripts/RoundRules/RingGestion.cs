@@ -11,10 +11,13 @@ public class RingGestion : MonoBehaviour
     [SerializeField] private List<GameObject> _concretZone;
     [HideInInspector] public List<GameObject> concretZone { get { return _concretZone; } private set { _concretZone = value; } }
 
-    private List<ZoneMakeDamage> listDamageZone = new List<ZoneMakeDamage>();
-    private bool makeDamage;
     private float timer;
     private int nbZoneClosed;
+
+    [Header("Damage")]
+    private List<ZoneMakeDamage> listDamageZone = new List<ZoneMakeDamage>();
+    private int makeDamage;
+
     void Start()
     {
         InstantiateAll();
@@ -57,7 +60,7 @@ public class RingGestion : MonoBehaviour
 
     private void MakeDamegeRing()
     {
-        timer = makeDamage ? timer + Time.deltaTime : 0f;
+        timer = makeDamage > 0 ? timer + Time.deltaTime : 0f;
         
         if(timer > _StaticRound.CDWTicDamage)
         {
@@ -66,17 +69,9 @@ public class RingGestion : MonoBehaviour
         }
     }
 
-    private void VerifTouchPlayer()
+    private void VerifTouchPlayer(bool enter)
     {
-        makeDamage = false;
-        foreach (var item in listDamageZone)
-        {
-            if (item.infos != null)
-            {
-                makeDamage = true;
-                return;
-            }
-        }
+        makeDamage += enter ? 1 : -1;
     }
 
     private void InstantiateAll()
@@ -84,7 +79,7 @@ public class RingGestion : MonoBehaviour
         foreach (var item in _concretZone)
         {
             ZoneMakeDamage damage = item.GetComponent<ZoneMakeDamage>();
-            damage.OnPlayerEnterOrExitEvent.AddListener(() => VerifTouchPlayer());
+            damage.OnPlayerEnterOrExitEvent.AddListener((enter) => VerifTouchPlayer(enter));
             listDamageZone.Add(damage);
         }
 

@@ -37,20 +37,20 @@ public class PlayerMovement : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlaye
         Move();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(infos.isDead) return;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if(infos.isDead) return;
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
-            currentSpdModifier = _StaticPlayer.glueSpdModifier;
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
-            currentSpdModifier = _StaticPlayer.waterSpdModifier;
-    }
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Glue"))
+    //        currentSpdModifier = _StaticPlayer.glueSpdModifier;
+    //    else if (collision.gameObject.layer == LayerMask.NameToLayer("ShallowWater"))
+    //        currentSpdModifier = _StaticPlayer.waterSpdModifier;
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        currentSpdModifier = 1f;
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    currentSpdModifier = 1f;
+    //}
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

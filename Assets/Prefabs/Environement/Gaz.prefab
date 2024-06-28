@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2712313381765049060}
   - component: {fileID: 8768163857530615495}
   - component: {fileID: 1852095261251263691}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gaz
-  m_TagString: Untagged
+  m_TagString: Gaz
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
