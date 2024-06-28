@@ -1305,7 +1305,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.26
 --- !u!114 &2200328778820948890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,6 +2072,7 @@ MonoBehaviour:
   changeSpdModifEvent:
     m_PersistentCalls:
       m_Calls: []
+  isInBush: 0
 --- !u!4 &9019395204984332417
 Transform:
   m_ObjectHideFlags: 0
