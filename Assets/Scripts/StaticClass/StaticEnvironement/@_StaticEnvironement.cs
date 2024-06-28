@@ -6,7 +6,10 @@ using System.Linq;
 public static class _StaticEnvironement 
 {
     static public int[] maskInteraction {  get; private set; }
-    static public int mapLenght { get; private set; }
+    static public int lenght { get; private set; }
+    static public int height { get; private set; }
+    static public int originX { get; private set; }
+    static public int originY { get; private set; }
     static public int tabResolution { get; private set; }
 
     //[Header("Fire")]
@@ -45,7 +48,6 @@ public static class _StaticEnvironement
 
     static public void Init(StaticEnvironementSO SO)
     {
-        mapLenght = SO.mapLenght;
         tabResolution = SO.tabResolution;
         elementsInteractionsPriority = SO.elementsInteractionsPriority;
 
@@ -86,6 +88,14 @@ public static class _StaticEnvironement
                 GF.AddInBinaryMask(ref currentValue, (int)item); 
             maskInteraction[i] = currentValue;
         }
+    }
+
+    static public void DefineLimiteMap(int lenght, int height, int originX, int originY)
+    {
+        _StaticEnvironement.lenght = lenght;
+        _StaticEnvironement.height = height;
+        _StaticEnvironement.originX = originX;
+        _StaticEnvironement.originY = originY;
     }
 
     static private List<ELEMENTS> GetListToRead(int index, StaticEnvironementSO SO)

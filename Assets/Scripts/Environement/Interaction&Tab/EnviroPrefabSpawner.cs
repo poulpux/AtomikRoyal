@@ -35,7 +35,7 @@ public class EnviroPrefabSpawner : MonoBehaviour
         string tag = CodateTagToDictionnary(x,y);
         if (allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
         GameObject currentPrefab = Instantiate(GetGoodPrefab((int)element));
-        currentPrefab.transform.position = new Vector2(x, y);
+        currentPrefab.transform.position = new Vector2(x, y)+new Vector2(_StaticEnvironement.originX, _StaticEnvironement.originY);
         allInstantiatePrefab[(int)element].Add(tag, currentPrefab);
     }
 

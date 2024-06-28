@@ -9,6 +9,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(RingGestion))]
 public class GameManager : SingletonMother<GameManager>
 {
+    [Header("Cam")]
+    [Space(10)]
     [SerializeField] private Camera _cam;
     [HideInInspector] public Camera cam { get { return _cam; } private set { _cam = value; } }
     [SerializeField] private CinemachineVirtualCamera _cinemachineCam;
@@ -19,7 +21,11 @@ public class GameManager : SingletonMother<GameManager>
     [HideInInspector] public RingGestion ringGestion;
     [HideInInspector] public PlayerInfos currentPlayer {  get; private set; }
 
-    [SerializeField] private Transform pilierNorthWest, pilierSouthEast;
+    [Header("Limit Map")]
+    [Space(10)]
+
+    [SerializeField] private Transform pilierNorthWest;
+    [SerializeField] private Transform pilierSouthEast;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,7 +48,7 @@ public class GameManager : SingletonMother<GameManager>
         int height = (int)(pilierNorthWest.transform.position.y - pilierSouthEast.transform.position.y);
         int originX = (int) pilierNorthWest.transform.position.x;
         int originY = (int) pilierSouthEast.transform.position.y;
-        print("lenght : " + originX + " height : " + originY);
+        _StaticEnvironement.DefineLimiteMap(lenght, height, originX, originY);
     }
 
     private void GetRound()
