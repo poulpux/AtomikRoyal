@@ -8,6 +8,7 @@ public class PlayerDectectEnviro : MonoBehaviour
     [Header("Ring")]
     private int ringMakeDamage;
     private UnityEvent<bool> onRingEnterExitEvent = new UnityEvent<bool> ();
+    private bool closeRingCoroutine;
     private void Start()
     {
         onRingEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter));
@@ -15,19 +16,30 @@ public class PlayerDectectEnviro : MonoBehaviour
 
     private void OnRingEnterExit(bool enter)
     {
-       if(ringMakeDamage == 0)
+        if (ringMakeDamage == 0)
+        {
+            closeRingCoroutine = false;
             StartCoroutine(MakeDamageRingCoroutine());
+        }
         ringMakeDamage += enter ? 1 : -1;
-        if(ringMakeDamage == 0)
-            StopCoroutine(MakeDamageRingCoroutine());
+        if (ringMakeDamage == 0)
+            closeRingCoroutine = true;
+
+        print(ringMakeDamage);
+
     }
 
     private IEnumerator MakeDamageRingCoroutine()
     {
-        while (true)
+        float timer = 0f;
+        while (!closeRingCoroutine)
         {
-            yield return new WaitForSeconds(_StaticRound.CDWTicDamage);
-            GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+            timer += Time.deltaTime;
+            if (timer > _StaticRound.CDWTicDamage)
+            {
+                timer = 0f;
+                GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+            }
             yield return new WaitForEndOfFrame();
         }
     }
