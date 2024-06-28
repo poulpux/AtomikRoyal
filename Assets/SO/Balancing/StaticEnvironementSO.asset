@@ -33,6 +33,15 @@ MonoBehaviour:
     interactions: 06000000
   mapLenght: 50
   tabResolution: 1
+  wallPrefab: {fileID: 2501052660582742787, guid: 5a5174cda5bab4d4bacecc215e272869, type: 3}
+  flammableWallPrefab: {fileID: 2501052660582742787, guid: cc7d6cfbc6d26444895704c5cfa1ac1c, type: 3}
+  waterPrefab: {fileID: 7175511751607052246, guid: 3414ce34141c8ba4a956b6c3f1071a96, type: 3}
+  bushPrefab: {fileID: 2501052660582742787, guid: 7979c6366b2d5304faf6e666e9a3f285, type: 3}
+  gluePrefab: {fileID: 2501052660582742787, guid: 6bc2fafa331078941b7c6aaa9c6430e2, type: 3}
+  smokePrefab: {fileID: 2501052660582742787, guid: 15bb396331a14fc49b7d1a9181a0e6bc, type: 3}
+  gazPrefab: {fileID: 2501052660582742787, guid: 067787daeb13a0c4a99d4dc1ee440b2a, type: 3}
+  firePrefab: {fileID: 2501052660582742787, guid: 7833ee66bd49d3a41a98b0d5a39f8fe9, type: 3}
+  explosionPrefab: {fileID: 2501052660582742787, guid: 47873555548b1034b8f0b226668520d0, type: 3}
   ATTENTION: "toutes les enums doivent etre prensente qu'une fois, c'est essentiel
     pour le d\xE9roulement des interactions"
   elementsInteractionsPriority: 000000000100000008000000020000000700000006000000050000000400000003000000

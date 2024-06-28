@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGazInteraction : EnviroInteractionMother
+public class FireGazInteraction : EnviroMother
 {
     public override void Interact(int x, int y)
     {
         base.Interact(x, y);
-        EnviroInteractionManager.Instance.RemoveElementEvent.Invoke(x, y, ELEMENTS.GAZ);
-        EnviroInteractionManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.EXPLOSION);
+        EnviroManager.Instance.RemoveElementEvent.Invoke(x, y, ELEMENTS.GAZ);
+        EnviroManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.EXPLOSION);
         TryExpendExplosion(x + 1, y);
         TryExpendExplosion(x + 1, y + 1);
         TryExpendExplosion(x + 1, y - 1);
@@ -21,7 +21,7 @@ public class FireGazInteraction : EnviroInteractionMother
 
     private void TryExpendExplosion(int y, int x)
     {
-        if (GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)ELEMENTS.GAZ))
-            EnviroInteractionManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.EXPLOSION);
+        if (GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[x, y].binaryMask, (int)ELEMENTS.GAZ))
+            EnviroManager.Instance.AddElementEvent.Invoke(x, y, ELEMENTS.EXPLOSION);
     }
 }

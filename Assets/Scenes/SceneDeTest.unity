@@ -355,6 +355,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6468628632871637684, guid: 1018d6ab93248ae41afec7bce6553b9b, type: 3}
   m_PrefabInstance: {fileID: 405995509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &497504276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 497504277}
+  - component: {fileID: 497504278}
+  m_Layer: 0
+  m_Name: EnviroVisuel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &497504277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497504276}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8452443427716552691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497504278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497504276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04572b838e67ae41afd1a06af5e7b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1026118208091698844, guid: e56a40f9210dbd3449af93669a424884, type: 3}
@@ -2050,9 +2104,17 @@ PrefabInstance:
       objectReference: {fileID: 8452443427716552695}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4741188068294676129, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 497504277}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
+--- !u!4 &8452443427716552691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4741188068294676129, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
+  m_PrefabInstance: {fileID: 8452443427716552690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8452443427716552695 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3042027317551101569, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
