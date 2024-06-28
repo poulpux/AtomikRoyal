@@ -8,6 +8,20 @@ public static class _StaticEnvironement
     static public int[] maskInteraction {  get; private set; }
     static public int mapLenght { get; private set; }
     static public int tabResolution { get; private set; }
+
+    //[Header("Fire")]
+    static public float CDWDamageFire { get; private set; }
+    static public int damageFire { get; private set; }
+
+    //[Header("GAZ")]
+    static public float CDWDamageGaz { get; private set; }
+    static public int damageGaz { get; private set; }
+
+    //[Header("Ring")]
+    //[Space(10)]
+    static public float CDWDamageRing { get; private set; }
+    static public AnimationCurve damageRingCurve { get; private set; }
+
     static public GameObject wallPrefab { get; private set; }
     static public GameObject flammableWallPrefab { get; private set; }
     static public GameObject waterPrefab { get; private set; }
@@ -27,11 +41,23 @@ public static class _StaticEnvironement
     static public string fireTag { get; private set; }
     static public string ringTag { get; private set; }
     static public List<ELEMENTS> elementsInteractionsPriority { get; private set; }
+
+
     static public void Init(StaticEnvironementSO SO)
     {
         mapLenght = SO.mapLenght;
         tabResolution = SO.tabResolution;
         elementsInteractionsPriority = SO.elementsInteractionsPriority;
+
+        CDWDamageFire = SO.CDWDamageFire;
+        damageFire = SO.damageFire;
+
+        CDWDamageGaz = SO.CDWDamageGaz;
+        damageGaz = SO.damageGaz;
+
+        CDWDamageRing = SO.CDWDamageRing;
+        damageRingCurve = SO.damageRingCurve;
+
         wallPrefab = SO.wallPrefab;
         flammableWallPrefab = SO.flammableWallPrefab;
         waterPrefab = SO.waterPrefab;
@@ -72,4 +98,7 @@ public static class _StaticEnvironement
 
         return null;
     }
+
+    static public int GetDamageOfZone(int nbRingClosed) =>
+    (int)damageRingCurve.Evaluate(nbRingClosed);
 }

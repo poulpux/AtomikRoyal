@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerDectectEnviro : MonoBehaviour
 {
-    [Header("Ring")]
     private MakeDamageEnviro ring, fire, gaz;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -13,7 +12,9 @@ public class PlayerDectectEnviro : MonoBehaviour
     private void Start()
     {
         InstantiateRing();
-        
+        InstantiateFire();
+        InstantiateGaz();
+        _StaticRound.CloseRingEvent.AddListener((ringName) => ring.damage = _StaticEnvironement.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +23,10 @@ public class PlayerDectectEnviro : MonoBehaviour
 
         if (collision.tag == _StaticEnvironement.ringTag)
             ring.onEnterExitEvent.Invoke(true);
+        else if (collision.tag == _StaticEnvironement.fireTag)
+            fire.onEnterExitEvent.Invoke(true);
+        else if (collision.tag == _StaticEnvironement.gazTag)
+            gaz.onEnterExitEvent.Invoke(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -30,6 +35,10 @@ public class PlayerDectectEnviro : MonoBehaviour
 
         if (collision.tag == _StaticEnvironement.ringTag)
             ring.onEnterExitEvent.Invoke(false);
+        else if (collision.tag == _StaticEnvironement.fireTag)
+            fire.onEnterExitEvent.Invoke(false);
+        else if (collision.tag == _StaticEnvironement.gazTag)
+            gaz.onEnterExitEvent.Invoke(false);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,15 +46,27 @@ public class PlayerDectectEnviro : MonoBehaviour
     private void InstantiateRing()
     {
         ring = new MakeDamageEnviro();
-        ring.damage = _StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed);
+        ring.damage = _StaticEnvironement.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed);
         ring.onEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter, ref ring));
-        ring.CDWTikDomage = _StaticRound.CDWTicDamage;
+        ring.CDWTikDomage = _StaticEnvironement.CDWDamageRing;
         ring.attackLifeOnly = true;
     }
 
     private void InstantiateFire()
     {
         fire = new MakeDamageEnviro();
+        fire.damage = _StaticEnvironement.damageFire;
+        fire.onEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter, ref fire));
+        fire.CDWTikDomage = _StaticEnvironement.CDWDamageFire;
+    }
+    
+    private void InstantiateGaz()
+    {
+        gaz = new MakeDamageEnviro();
+        gaz.damage = _StaticEnvironement.damageGaz;
+        gaz.onEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter, ref gaz));
+        gaz.CDWTikDomage = _StaticEnvironement.CDWDamageGaz;
+        gaz.attackLifeOnly = true;
     }
 
     private void OnRingEnterExit(bool enter,ref MakeDamageEnviro enviro)
@@ -74,13 +95,13 @@ public class PlayerDectectEnviro : MonoBehaviour
             while (!stopCoroutine)
             {
                 timer += Time.deltaTime;
-                if (timer > _StaticRound.CDWTicDamage)
+                if (timer > CDWTikDomage)
                 {
                     timer = 0f;
                     if(attackLifeOnly)
-                        GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+                        GameManager.Instance.currentPlayer.DecreaseLife(damage, null);
                     else
-                        GameManager.Instance.currentPlayer.TakeDamage(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+                        GameManager.Instance.currentPlayer.TakeDamage(damage, null);
                 }
                 yield return new WaitForEndOfFrame();
             }

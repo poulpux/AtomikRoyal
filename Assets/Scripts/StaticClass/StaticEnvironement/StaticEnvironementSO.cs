@@ -21,6 +21,20 @@ public class StaticEnvironementSO : ScriptableObject
 {
     public List<InteractionElement> allInteractions = new List<InteractionElement>();
     public int mapLenght, tabResolution;
+
+    [Header("Fire")]
+    public float CDWDamageFire;
+    public int damageFire;
+    
+    [Header("GAZ")]
+    public float CDWDamageGaz;
+    public int damageGaz;
+
+    [Header("Ring")]
+    [Space(10)]
+    public float CDWDamageRing;
+    public AnimationCurve damageRingCurve;
+
     [Header("All prefabs")]
     public GameObject wallPrefab;
     public GameObject flammableWallPrefab, waterPrefab, bushPrefab, gluePrefab, smokePrefab, gazPrefab, firePrefab, explosionPrefab;

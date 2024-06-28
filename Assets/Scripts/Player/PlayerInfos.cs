@@ -151,6 +151,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         if (isInvincibleList.Count >= 1)
             return;
 
+        print("takeDamage "+damage);
         DecreaseLife(Mathf.Max(0, damage - currentShield), offenser); //Set damage after decrease shield
         currentShield = Mathf.Max(currentShield - damage, 0);
     }

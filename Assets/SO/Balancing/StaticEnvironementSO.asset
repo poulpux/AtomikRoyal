@@ -33,6 +33,53 @@ MonoBehaviour:
     interactions: 06000000
   mapLenght: 50
   tabResolution: 1
+  CDWDamageFire: 0.7
+  damageFire: 3
+  CDWDamageGaz: 0.9
+  damageGaz: 5
+  CDWDamageRing: 1.2
+  damageRingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.1034865
+      outSlope: 1.1034865
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.92318845
+      value: 1.018726
+      inSlope: 0.45011285
+      outSlope: 0.45011285
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.18577667
+    - serializedVersion: 3
+      time: 5.3532577
+      value: 4.1114736
+      inSlope: 0.9765537
+      outSlope: 0.9765537
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10.148592
+      value: 10.129527
+      inSlope: -0.15562478
+      outSlope: -0.15562478
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.44929495
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   wallPrefab: {fileID: 2501052660582742787, guid: 5a5174cda5bab4d4bacecc215e272869, type: 3}
   flammableWallPrefab: {fileID: 2501052660582742787, guid: cc7d6cfbc6d26444895704c5cfa1ac1c, type: 3}
   waterPrefab: {fileID: 7175511751607052246, guid: 3414ce34141c8ba4a956b6c3f1071a96, type: 3}

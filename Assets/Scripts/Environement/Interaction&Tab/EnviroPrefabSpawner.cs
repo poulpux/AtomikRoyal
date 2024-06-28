@@ -15,7 +15,8 @@ public class EnviroPrefabSpawner : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         InstantiateAll();
-        EnviroManager.Instance.AddElementEvent.Invoke(2, 2, ELEMENTS.GLUE);
+        EnviroManager.Instance.AddElementEvent.Invoke(2, 2, ELEMENTS.FIRE);
+        EnviroManager.Instance.AddElementEvent.Invoke(3, 3, ELEMENTS.GAZ);
     }
 
     private void InstantiateAll()
