@@ -10,8 +10,6 @@ public class RingGestion : MonoBehaviour
 
     [SerializeField] private List<GameObject> _concretZone;
     [HideInInspector] public List<GameObject> concretZoneconcretZone { get { return _concretZone; } private set { _concretZone = value; } }
-
-    private float timer;
     public int nbZoneClosed {  get; private set; }
 
     void Start()
