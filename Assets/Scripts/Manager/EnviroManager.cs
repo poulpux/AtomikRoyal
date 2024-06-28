@@ -43,10 +43,10 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     private void InstantiateTab()
     {
-        binaryMaskMap = new EnviroCase[_StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution, _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution];
-        for (int i = 0; i < _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution; i++)
+        binaryMaskMap = new EnviroCase[(int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution),(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution)];
+        for (int i = 0; i < (int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution); i++)
         {
-            for (int y = 0; y < _StaticEnvironement.mapLenght / _StaticEnvironement.tabResolution; y++)
+            for (int y = 0; y <(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution); y++)
                 binaryMaskMap[i, y] = new EnviroCase();
         }
     }
