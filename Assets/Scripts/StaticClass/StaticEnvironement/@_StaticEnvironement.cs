@@ -10,7 +10,7 @@ public static class _StaticEnvironement
     static public int height { get; private set; }
     static public int originX { get; private set; }
     static public int originY { get; private set; }
-    static public int tabResolution { get; private set; }
+    static public float tabResolution { get; private set; }
 
     //[Header("Fire")]
     static public float CDWDamageFire { get; private set; }
