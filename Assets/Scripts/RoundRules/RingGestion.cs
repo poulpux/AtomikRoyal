@@ -9,22 +9,14 @@ public class RingGestion : MonoBehaviour
     static public List<RingZone> theoreticalZone { get; private set; } = new List<RingZone>();
 
     [SerializeField] private List<GameObject> _concretZone;
-    [HideInInspector] public List<GameObject> concretZone { get { return _concretZone; } private set { _concretZone = value; } }
+    [HideInInspector] public List<GameObject> concretZoneconcretZone { get { return _concretZone; } private set { _concretZone = value; } }
+    public int nbZoneClosed {  get; private set; }
 
-    private List<ZoneMakeDamage> listDamageZone = new List<ZoneMakeDamage>();
-    private bool makeDamage;
-    private float timer;
-    private int nbZoneClosed;
     void Start()
     {
         InstantiateAll();
         SetZoneList();
         StartCoroutine(CloseRandomRingCoroutine());
-    }
-
-    private void FixedUpdate()
-    {
-        MakeDamegeRing();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,39 +47,8 @@ public class RingGestion : MonoBehaviour
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private void MakeDamegeRing()
-    {
-        timer = makeDamage ? timer + Time.deltaTime : 0f;
-        
-        if(timer > _StaticRound.CDWTicDamage)
-        {
-            timer = 0f;
-            GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(nbZoneClosed), null);
-        }
-    }
-
-    private void VerifTouchPlayer()
-    {
-        makeDamage = false;
-        foreach (var item in listDamageZone)
-        {
-            if (item.infos != null)
-            {
-                makeDamage = true;
-                return;
-            }
-        }
-    }
-
     private void InstantiateAll()
     {
-        foreach (var item in _concretZone)
-        {
-            ZoneMakeDamage damage = item.GetComponent<ZoneMakeDamage>();
-            damage.OnPlayerEnterOrExitEvent.AddListener(() => VerifTouchPlayer());
-            listDamageZone.Add(damage);
-        }
-
         _StaticRound.CloseRingEvent.AddListener((name) => CloseZone(name));
         _StaticRound.OpenRingEvent.AddListener((name) => OpenZone(name));
     }

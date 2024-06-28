@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnviroInteractionManager : SingletonMother<EnviroInteractionManager>
+public class EnviroManager : SingletonMother<EnviroManager>
 {
     public EnviroCase[,] binaryMaskMap { get; private set; }
     [SerializeField] private List<EnviroInteractPackage> allInteractionsList = new List<EnviroInteractPackage>((int)GF.GetMaxValue<ELEMENTS>());
@@ -64,10 +64,10 @@ public class EnviroInteractPackage
     [Serializable]
     public class ConditionEnviro
     {
-        public EnviroInteractionMother script;
+        public EnviroMother script;
         public ELEMENTS interactWith;
 
-        public ConditionEnviro(EnviroInteractionMother script, ELEMENTS interactWith)
+        public ConditionEnviro(EnviroMother script, ELEMENTS interactWith)
         {
             this.script = script;
             this.interactWith = interactWith;
@@ -75,18 +75,18 @@ public class EnviroInteractPackage
 
     }
     public ELEMENTS elementType;
-    public EnviroInteractionMother wallInteraction;
-    public EnviroInteractionMother fireWallInteraction ;
-    public EnviroInteractionMother waterInteraction ;
-    public EnviroInteractionMother bushInteraction ;
-    public EnviroInteractionMother glueInteraction ;
-    public EnviroInteractionMother smokeInteraction ;
-    public EnviroInteractionMother gazInteraction ;
-    public EnviroInteractionMother fireInteraction ;
-    public EnviroInteractionMother explosionInteraction ;
+    public EnviroMother wallInteraction;
+    public EnviroMother fireWallInteraction ;
+    public EnviroMother waterInteraction ;
+    public EnviroMother bushInteraction ;
+    public EnviroMother glueInteraction ;
+    public EnviroMother smokeInteraction ;
+    public EnviroMother gazInteraction ;
+    public EnviroMother fireInteraction ;
+    public EnviroMother explosionInteraction ;
 
 
-    /*[HideInInspector]*/ public List<ConditionEnviro> allEnableInteractions = new List<ConditionEnviro>();
+    [HideInInspector] public List<ConditionEnviro> allEnableInteractions = new List<ConditionEnviro>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -94,9 +94,9 @@ public class EnviroInteractPackage
     {
         foreach (var item in allEnableInteractions)
         {
-            if (!GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)elementType))
+            if (!GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[x, y].binaryMask, (int)elementType))
                 return;
-            if(GF.IsOnBinaryMask(EnviroInteractionManager.Instance.binaryMaskMap[x, y].binaryMask, (int)item.interactWith))
+            if(GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[x, y].binaryMask, (int)item.interactWith))
                 item.script.Interact(x, y);
         }
     }
@@ -105,17 +105,6 @@ public class EnviroInteractPackage
     {
         foreach (var item in _StaticEnvironement.elementsInteractionsPriority)
             AddToList(ReturnGoodMother((int)item), item);
-
-        //Priorités
-        //AddToList(wallInteraction, ELEMENTS.WALL);
-        //AddToList(fireWallInteraction, ELEMENTS.FLAMMABLEWALL);
-        //AddToList(explosionInteraction, ELEMENTS.EXPLOSION);
-        //AddToList(waterInteraction, ELEMENTS.WATER);
-        //AddToList(fireInteraction, ELEMENTS.FIRE);
-        //AddToList(gazInteraction, ELEMENTS.GAZ);
-        //AddToList(smokeInteraction, ELEMENTS.SMOKE);
-        //AddToList(glueInteraction, ELEMENTS.GLUE);
-        //AddToList(bushInteraction, ELEMENTS.BUSH);
 
         wallInteraction = null;
         fireWallInteraction = null;
@@ -128,7 +117,7 @@ public class EnviroInteractPackage
         bushInteraction = null;
     }
 
-    public EnviroInteractionMother ReturnGoodMother(int enumNumber)
+    public EnviroMother ReturnGoodMother(int enumNumber)
     {
         if (enumNumber == 0)
             return wallInteraction;
@@ -154,7 +143,7 @@ public class EnviroInteractPackage
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private void AddToList(EnviroInteractionMother interaction, ELEMENTS element)
+    private void AddToList(EnviroMother interaction, ELEMENTS element)
     {
         if (interaction != null)            
             allEnableInteractions.Add(new ConditionEnviro(interaction, element));
