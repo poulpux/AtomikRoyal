@@ -9,9 +9,28 @@ public class PlayerDectectEnviro : MonoBehaviour
     private int ringMakeDamage;
     private UnityEvent<bool> onRingEnterExitEvent = new UnityEvent<bool> ();
     private bool closeRingCoroutine;
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     private void Start()
     {
         onRingEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
+
+        if (collision.tag == "Ring")
+            onRingEnterExitEvent.Invoke(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
+
+        if (collision.tag == "Ring")
+            onRingEnterExitEvent.Invoke(false);
     }
 
     private void OnRingEnterExit(bool enter)
@@ -42,21 +61,5 @@ public class PlayerDectectEnviro : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
-
-        if (collision.tag == "Ring")
-            onRingEnterExitEvent.Invoke(true);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
-
-        if (collision.tag == "Ring")
-            onRingEnterExitEvent.Invoke(false);
     }
 }
