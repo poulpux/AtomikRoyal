@@ -11,12 +11,6 @@ public class EnviroPrefabSpawner : MonoBehaviour
         StartCoroutine(SecondStartCoroutine());
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-            EnviroManager.Instance.RemoveElementEvent.Invoke(5, 5, ELEMENTS.FIRE);            
-    }
-
     private IEnumerator SecondStartCoroutine()
     {
         yield return new WaitForEndOfFrame();
