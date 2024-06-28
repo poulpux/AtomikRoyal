@@ -5,9 +5,11 @@ using UnityEngine.Events;
 
 public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
 {
-    private MakeDamageEnviro ring, fire, gaz;
-    private EnviroSlowPlayer glue, water;
+    private DamageEnviro ring, fire, gaz;
+    private NoDamageEnviro glue, water, bush;
     public UnityEvent<float> changeSpdModifEvent = new UnityEvent<float>();
+
+    [HideInInspector] public bool isInBush;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -18,6 +20,7 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
         InstantiateGaz();
         InstantiateGlue();
         InstantiateWater();
+        InstantiateBush();
         //Exeption pour les dégâts du ring qui changent
         _StaticRound.CloseRingEvent.AddListener((ringName) => ring.damage = _StaticEnvironement.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed));
     }
@@ -36,6 +39,8 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
             glue.onEnterExitEvent.Invoke(true);
         else if (collision.tag == _StaticEnvironement.waterTag)
             water.onEnterExitEvent.Invoke(true);
+        else if (collision.tag == _StaticEnvironement.bushTag)
+            bush.onEnterExitEvent.Invoke(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -52,13 +57,15 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
             glue.onEnterExitEvent.Invoke(false);
         else if (collision.tag == _StaticEnvironement.waterTag)
             water.onEnterExitEvent.Invoke(false);
+        else if (collision.tag == _StaticEnvironement.bushTag)
+            bush.onEnterExitEvent.Invoke(false);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void InstantiateRing()
     {
-        ring = new MakeDamageEnviro();
+        ring = new DamageEnviro();
         ring.damage = _StaticEnvironement.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed);
         ring.onEnterExitEvent.AddListener((enter) => OnDamageEnviroEnterExit(enter, ref ring));
         ring.CDWTikDomage = _StaticEnvironement.CDWDamageRing;
@@ -67,7 +74,7 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
 
     private void InstantiateFire()
     {
-        fire = new MakeDamageEnviro();
+        fire = new DamageEnviro();
         fire.damage = _StaticEnvironement.damageFire;
         fire.onEnterExitEvent.AddListener((enter) => OnDamageEnviroEnterExit(enter, ref fire));
         fire.CDWTikDomage = _StaticEnvironement.CDWDamageFire;
@@ -75,38 +82,46 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
     
     private void InstantiateGaz()
     {
-        gaz = new MakeDamageEnviro();
+        gaz = new DamageEnviro();
         gaz.damage = _StaticEnvironement.damageGaz;
         gaz.onEnterExitEvent.AddListener((enter) => OnDamageEnviroEnterExit(enter, ref gaz));
         gaz.CDWTikDomage = _StaticEnvironement.CDWDamageGaz;
         gaz.attackLifeOnly = true;
     }
+
     private void InstantiateGlue()
     {
-        glue = new EnviroSlowPlayer();
+        glue = new NoDamageEnviro();
         glue.onEnterExitEvent.AddListener((enter) => OnSlowEnviroEnterExit(enter, ref glue));
     }
+
     private void InstantiateWater()
     {
-        water = new EnviroSlowPlayer();
+        water = new NoDamageEnviro();
         water.onEnterExitEvent.AddListener((enter) => OnSlowEnviroEnterExit(enter, ref water));
     }
+    
+    private void InstantiateBush()
+    {
+        bush = new NoDamageEnviro();
+        bush.onEnterExitEvent.AddListener((enter) => { bush.nbCollision += enter ? 1 : -1; isInBush = bush.nbCollision > 0; });
+    }
 
-    private void OnSlowEnviroEnterExit(bool enter, ref EnviroSlowPlayer enviro)
+    private void OnSlowEnviroEnterExit(bool enter, ref NoDamageEnviro enviro)
     {
         enviro.nbCollision += enter ? 1 : -1;
         changeSpdModifEvent.Invoke(calculateSpdModif());
     }
 
-    private void OnDamageEnviroEnterExit(bool enter,ref MakeDamageEnviro enviro)
+    private void OnDamageEnviroEnterExit(bool enter,ref DamageEnviro enviro)
     {
-        if (enviro.nbMakeDamage == 0)
+        if (enviro.nbCollision == 0)
         {
             enviro.stopCoroutine = false;
             StartCoroutine(enviro.MakeDamageRingCoroutine());
         }
-        enviro.nbMakeDamage += enter ? 1 : -1;
-        if (enviro.nbMakeDamage == 0)
+        enviro.nbCollision += enter ? 1 : -1;
+        if (enviro.nbCollision == 0)
             enviro.stopCoroutine = true;
     }
 
@@ -115,10 +130,14 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
         return glue.nbCollision > 0 ? _StaticPlayer.glueSpdModifier : water.nbCollision > 0 ? _StaticPlayer.waterSpdModifier : 1f;
     }
 
-    public class MakeDamageEnviro
+    public class NoDamageEnviro
     {
-        public int nbMakeDamage;
+        public int nbCollision;
         public UnityEvent<bool> onEnterExitEvent = new UnityEvent<bool>();
+    }
+
+    public class DamageEnviro : NoDamageEnviro
+    {
         public bool stopCoroutine, attackLifeOnly;
         public float CDWTikDomage;
         public int damage;
@@ -141,11 +160,4 @@ public class PlayerDectectEnviro : MonoBehaviour, IDesactiveWhenPlayerIsDead
             }
         }
     }
-
-    public class EnviroSlowPlayer
-    {
-        public int nbCollision;
-        public UnityEvent<bool> onEnterExitEvent = new UnityEvent<bool>();
-    }
-
 }
