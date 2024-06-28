@@ -18,17 +18,17 @@ public class PlayerDectectEnviro : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer(_StaticEnvironement.enviroLayerName)) return;
 
-        if (collision.tag == "Ring")
+        if (collision.tag == _StaticEnvironement.ringTag)
             ring.onEnterExitEvent.Invoke(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("EnviroPlayer")) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer(_StaticEnvironement.enviroLayerName)) return;
 
-        if (collision.tag == "Ring")
+        if (collision.tag == _StaticEnvironement.ringTag)
             ring.onEnterExitEvent.Invoke(false);
     }
 

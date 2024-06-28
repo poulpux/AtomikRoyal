@@ -42,6 +42,14 @@ MonoBehaviour:
   gazPrefab: {fileID: 2501052660582742787, guid: 067787daeb13a0c4a99d4dc1ee440b2a, type: 3}
   firePrefab: {fileID: 2501052660582742787, guid: 7833ee66bd49d3a41a98b0d5a39f8fe9, type: 3}
   explosionPrefab: {fileID: 2501052660582742787, guid: 47873555548b1034b8f0b226668520d0, type: 3}
+  enviroLayerName: EnviroPlayer
+  waterTag: Water
+  bushTag: Bush
+  glueTag: Glue
+  smokeTag: Smoke
+  gazTag: Gaz
+  fireTag: Fire
+  ringTag: Ring
   ATTENTION: "toutes les enums doivent etre prensente qu'une fois, c'est essentiel
     pour le d\xE9roulement des interactions"
   elementsInteractionsPriority: 000000000100000008000000020000000700000006000000050000000400000003000000

@@ -24,6 +24,12 @@ public class StaticEnvironementSO : ScriptableObject
     [Header("All prefabs")]
     public GameObject wallPrefab;
     public GameObject flammableWallPrefab, waterPrefab, bushPrefab, gluePrefab, smokePrefab, gazPrefab, firePrefab, explosionPrefab;
+
+    [Header("All tags")]
+    public string enviroLayerName;
+    public string waterTag;
+    public string bushTag, glueTag, smokeTag, gazTag, fireTag, ringTag;
+    
     [Header("All interactions")]
     [TextArea]
     public string ATTENTION = "toutes les enums doivent etre prensente qu'une fois, c'est essentiel pour le déroulement des interactions";

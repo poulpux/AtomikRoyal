@@ -8,15 +8,24 @@ public static class _StaticEnvironement
     static public int[] maskInteraction {  get; private set; }
     static public int mapLenght { get; private set; }
     static public int tabResolution { get; private set; }
-    static public GameObject wallPrefab;
-    static public GameObject flammableWallPrefab;
-    static public GameObject waterPrefab;
-    static public GameObject bushPrefab;
-    static public GameObject gluePrefab;
-    static public GameObject smokePrefab;
-    static public GameObject gazPrefab;
-    static public GameObject firePrefab;
-    static public GameObject explosionPrefab;
+    static public GameObject wallPrefab { get; private set; }
+    static public GameObject flammableWallPrefab { get; private set; }
+    static public GameObject waterPrefab { get; private set; }
+    static public GameObject bushPrefab { get; private set; }
+    static public GameObject gluePrefab { get; private set; }
+    static public GameObject smokePrefab { get; private set; }
+    static public GameObject gazPrefab { get; private set; }
+    static public GameObject firePrefab { get; private set; }
+    static public GameObject explosionPrefab { get; private set; }
+
+    static public string enviroLayerName{ get; private set; }
+    static public string waterTag { get; private set; }
+    static public string bushTag { get; private set; }
+    static public string glueTag { get; private set; }
+    static public string smokeTag { get; private set; }
+    static public string gazTag { get; private set; }
+    static public string fireTag { get; private set; }
+    static public string ringTag { get; private set; }
     static public List<ELEMENTS> elementsInteractionsPriority { get; private set; }
     static public void Init(StaticEnvironementSO SO)
     {
@@ -32,6 +41,16 @@ public static class _StaticEnvironement
         gazPrefab = SO.gazPrefab;
         firePrefab = SO.firePrefab;
         explosionPrefab = SO.explosionPrefab;
+        ringTag = SO.ringTag;
+
+        enviroLayerName = SO.enviroLayerName;
+        waterTag = SO.waterTag;
+        bushTag = SO.bushTag;
+        glueTag = SO.glueTag;
+        smokeTag = SO.smokeTag;
+        gazTag = SO.gazTag;
+        fireTag = SO.fireTag;
+
         maskInteraction = new int[(int)GF.GetMaxValue<ELEMENTS>()];
         for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)
         {
