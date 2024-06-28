@@ -14,6 +14,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerGetHit))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInteract))]
+[RequireComponent(typeof(PlayerDectectEnviro))]
 [RequireComponent(typeof(PlayerVisuel))]
 [RequireComponent(typeof(PlayerCard))]
 [RequireComponent(typeof(WhenPlayerDied))]
@@ -27,6 +28,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
     [HideInInspector] public PlayerMovement movement { get; private set; }
     [HideInInspector] public PlayerInventory inventory { get; private set; }
     [HideInInspector] public PlayerInteract interact { get; private set; }
+    [HideInInspector] public PlayerDectectEnviro detectEnviro { get; private set; }
     [HideInInspector] public PlayerVisuel visuel { get; private set; }
     [HideInInspector] public Rigidbody2D rb { get; private set; }
     [HideInInspector] public SpriteRenderer spriteRenderer { get; private set; }
@@ -197,6 +199,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
         visuel = GetComponent<PlayerVisuel>();
         inventory = GetComponent<PlayerInventory>();
         interact = GetComponent<PlayerInteract>();
+        detectEnviro = GetComponent<PlayerDectectEnviro>();
     }
 
     private void AllEvents()

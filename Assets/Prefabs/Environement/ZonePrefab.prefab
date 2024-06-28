@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7860383141397853038}
   m_Layer: 12
   m_Name: ZonePrefab
-  m_TagString: Untagged
+  m_TagString: Ring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a8919617d14a9469e4d60bee811b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infos: {fileID: 0}
   OnPlayerEnterOrExitEvent:
     m_PersistentCalls:
       m_Calls: []
