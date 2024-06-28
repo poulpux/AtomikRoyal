@@ -41,6 +41,6 @@ public class StaticManager : MonoBehaviour
         //Set gameManager
         GameManager gameManager = FindObjectOfType<GameManager>();
         GF.SetScripts<RoundManagerMother>(currentGameModeScript, gameManager.gameObject);
-        gameManager.GetRound();
+        gameManager.Init();
     }
 }
