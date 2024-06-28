@@ -13,7 +13,7 @@ public class PlayerGetHit : HitableByBombMother, IDesactiveWhenPlayerIsDead
     protected override void HitEffect(int damage, PlayerInfos offenser)
     {
         base.HitEffect(damage, offenser);
-        infos.TakeDomage(damage, offenser);
+        infos.TakeDamage(damage, offenser);
     }
 
     protected override bool HitCondtion()
