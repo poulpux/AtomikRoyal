@@ -146,7 +146,7 @@ public class PlayerInfos : MonoBehaviour, IActWhenPlayerIsDead, IActWhenPlayerSp
             isDeadEvent.Invoke(offenser);
     }
 
-    public void TakeDomage(int damage, PlayerInfos offenser)
+    public void TakeDamage(int damage, PlayerInfos offenser)
     {
         if (isInvincibleList.Count >= 1)
             return;

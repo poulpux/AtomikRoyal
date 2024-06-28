@@ -37,9 +37,10 @@ public class PlayerDectectEnviro : MonoBehaviour
     private void InstantiateRing()
     {
         ring = new MakeDamageEnviro();
-        ring.nbMakeDamage = _StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed);
+        ring.damage = _StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed);
         ring.onEnterExitEvent.AddListener((enter) => OnRingEnterExit(enter, ref ring));
         ring.CDWTikDomage = _StaticRound.CDWTicDamage;
+        ring.attackLifeOnly = true;
     }
 
     private void InstantiateFire()
@@ -63,7 +64,7 @@ public class PlayerDectectEnviro : MonoBehaviour
     {
         public int nbMakeDamage;
         public UnityEvent<bool> onEnterExitEvent = new UnityEvent<bool>();
-        public bool stopCoroutine;
+        public bool stopCoroutine, attackLifeOnly;
         public float CDWTikDomage;
         public int damage;
 
@@ -76,7 +77,10 @@ public class PlayerDectectEnviro : MonoBehaviour
                 if (timer > _StaticRound.CDWTicDamage)
                 {
                     timer = 0f;
-                    GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+                    if(attackLifeOnly)
+                        GameManager.Instance.currentPlayer.DecreaseLife(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
+                    else
+                        GameManager.Instance.currentPlayer.TakeDamage(_StaticRound.GetDamageOfZone(GameManager.Instance.ringGestion.nbZoneClosed), null);
                 }
                 yield return new WaitForEndOfFrame();
             }
