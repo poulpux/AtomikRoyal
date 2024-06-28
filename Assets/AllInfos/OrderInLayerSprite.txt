@@ -1,3 +1,5 @@
+ground = -30
+element = -20
 OnGroundItem = -10
 Explosion = 0
 ThrowedItem = 8
