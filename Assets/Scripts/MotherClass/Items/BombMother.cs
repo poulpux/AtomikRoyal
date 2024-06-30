@@ -11,7 +11,6 @@ public abstract class BombMother : HitableByBombMother
     protected Rigidbody2D rb;
     protected virtual void Start()
     {
-        print("passe");
         rb = GetComponent<Rigidbody2D>();
     }
 

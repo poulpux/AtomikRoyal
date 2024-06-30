@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Rendering.FilterWindow;
+using static UnityEditor.Progress;
+
+public enum ATTACKRANGE
+{
+    DAWN,
+    UP,
+    RIGHT,
+    LEFT
+}
 
 public class ElementalExplosion : MonoBehaviour
 {
@@ -13,7 +21,8 @@ public class ElementalExplosion : MonoBehaviour
     void Start()
     {
         InstanitateElement();
-        EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AFireIsRemoved(new Vector2Int(x, y), element));
+        //EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AFireIsRemoved(new Vector2Int(x, y), element));
+        StartCoroutine(DispertionCoroutine());
     }
 
     void Update()
@@ -23,13 +32,48 @@ public class ElementalExplosion : MonoBehaviour
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private void AFireIsRemoved(Vector2Int pos, ELEMENTS element)
+    private IEnumerator DispertionCoroutine()
     {
+        float timer = 0.0f;
+        int counter = 1;
+        while (timer < SO.lifeTime)
+        {
+            timer += Time.deltaTime;    
+            if(timer > counter + 1 * _StaticEnvironement.CDWFireFlammable)
+            {
+                foreach (var item in allInstantiatePrefab)
+                {
+                    Vector2Int pos = DecodeTagToCoordinates(item.Key);
+                    print("pos : " + item.Key + " currentPos : "+pos );
+                    ATTACKRANGE range = (ATTACKRANGE)Random.Range(0, (int)GF.GetMaxValue<ATTACKRANGE>());
+                    if(range == ATTACKRANGE.DAWN)
+                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x, pos.y - 1));
+                    else if(range == ATTACKRANGE.UP)
+                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x, pos.y + 1));
+                    else if(range == ATTACKRANGE.LEFT)
+                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x - 1, pos.y));
+                    else if(range == ATTACKRANGE.RIGHT)
+                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x + 1, pos.y));
+                }
+                counter++;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
         foreach (var item in allInstantiatePrefab)
         {
-            
+            Vector2Int pos = DecodeTagToCoordinates(item.Key);
+            EnviroManager.Instance.RemoveElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
         }
+        Destroy(gameObject);
     }
+
+    //private void AFireIsRemoved(Vector2Int pos, ELEMENTS element)
+    //{
+    //    string tag = CodateTagToDictionnary(pos.x, pos.y);
+    //    if (allInstantiatePrefab.ContainsKey(tag))
+    //        allInstantiatePrefab.Remove(tag);
+    //}
 
     private string CodateTagToDictionnary(int x, int y)
     {
@@ -54,6 +98,7 @@ public class ElementalExplosion : MonoBehaviour
         Vector2Int posInt = GF.EnterRealPositionInEnviroTab(transform.position);
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
         impaire.Add(posInt);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(posInt.x, posInt.y), false);
         for (int i = 1; i < SO.distOnStart; i++)
         {
             if (i % 2 == 1)

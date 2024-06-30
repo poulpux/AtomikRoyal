@@ -16,3 +16,4 @@ MonoBehaviour:
   dispertionType: 0
   distOnStart: 2
   maxDistanceDispertion: 5
+  lifeTime: 7
