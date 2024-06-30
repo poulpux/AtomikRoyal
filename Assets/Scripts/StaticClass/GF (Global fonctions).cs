@@ -11,6 +11,9 @@ public static class GF
     public static Vector2Int EnterRealPositionInEnviroTab(Vector2 position)
     {
         //TO TEST
+        //First : calculate position with the resolution modification
+        //Second : add the origin
+        //Third : +1 because of int convertion take the lower
         return new Vector2Int((int)((position.x / _StaticEnvironement.tabResolution) - _StaticEnvironement.originX) +1 , (int)((position.y / _StaticEnvironement.tabResolution) - _StaticEnvironement.originY)+ 1);
     }
 
