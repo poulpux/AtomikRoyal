@@ -75,6 +75,12 @@ public class EnviroManager : SingletonMother<EnviroManager>
             }
         }
     }
+
+    private void ResetFlammableHP(Vector2Int pos)
+    {
+        RemoveElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+        binaryMaskMap[pos.x, pos.y].flammableHp = _StaticEnvironement.flammablePvMax;
+    }
 }
 
 public class EnviroCase

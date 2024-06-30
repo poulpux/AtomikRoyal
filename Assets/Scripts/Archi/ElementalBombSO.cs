@@ -15,5 +15,5 @@ public class ElementalBombSO : ScriptableObject
     public ELEMENTS type;
     public DISPERTIONTYPE dispertionType;
     public int distOnStart;
-    public int maxDistanceDispertion;
+    public int maxDistanceDispertion, lifeTime;
 }

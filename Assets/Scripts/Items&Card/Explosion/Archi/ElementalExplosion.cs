@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class ElementalExplosion : MonoBehaviour
 {
@@ -8,10 +9,11 @@ public class ElementalExplosion : MonoBehaviour
     List<Vector2Int> pair = new List<Vector2Int>();
     List<Vector2Int> impaire = new List<Vector2Int>();
 
-    List<Vector2Int> listPossesedCases = new List<Vector2Int>();
+    Dictionary<string, bool> allInstantiatePrefab = new Dictionary<string, bool>();
     void Start()
     {
         InstanitateElement();
+        EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AFireIsRemoved(new Vector2Int(x, y), element));
     }
 
     void Update()
@@ -20,6 +22,31 @@ public class ElementalExplosion : MonoBehaviour
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void AFireIsRemoved(Vector2Int pos, ELEMENTS element)
+    {
+        foreach (var item in allInstantiatePrefab)
+        {
+            
+        }
+    }
+
+    private string CodateTagToDictionnary(int x, int y)
+    {
+        return x.ToString() + y.ToString();
+    }
+
+    private Vector2Int DecodeTagToCoordinates(string tag)
+    {
+        int halfLength = tag.Length / 2;
+        string xStr = tag.Substring(0, halfLength);
+        string yStr = tag.Substring(halfLength, halfLength);
+
+        int x = int.Parse(xStr);
+        int y = int.Parse(yStr);
+
+        return new Vector2Int(x, y);
+    }
 
     private void InstanitateElement()
     {
@@ -52,10 +79,11 @@ public class ElementalExplosion : MonoBehaviour
         EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y - 1, SO.type);
-        listPossesedCases.Add(new Vector2Int(item.x + 1, item.y));
-        listPossesedCases.Add(new Vector2Int(item.x - 1, item.y));
-        listPossesedCases.Add(new Vector2Int(item.x, item.y + 1));
-        listPossesedCases.Add(new Vector2Int(item.x, item.y - 1));
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x + 1, item.y), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x - 1, item.y), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y + 1), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y - 1), false);
+
         pair = new List<Vector2Int>
         {
             new Vector2Int(item.x + 1, item.y + 1),
@@ -76,6 +104,6 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeFill(Vector2Int item)
     {
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
-        listPossesedCases.Add(new Vector2Int(item.x, item.y));
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), false);
     }
 }
