@@ -61,9 +61,7 @@ public class ElementalExplosion : MonoBehaviour
 
         finish = true;
         foreach (var item in allInstantiatePrefab)
-        {
             EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, ELEMENTS.FIRE);
-        }
         Destroy(gameObject);
     }
 
@@ -80,12 +78,10 @@ public class ElementalExplosion : MonoBehaviour
         if (allInstantiatePrefab.ContainsKey(tag))
             allInstantiatePrefab.Remove(tag);
     }
-
     private string CodateTagToDictionnary(int x, int y)
     {
-        return x.ToString() + y.ToString();
+        return x.ToString() + " " + y.ToString();
     }
-
     private void InstanitateElement()
     {
         if (SO.distOnStart == 0) return;
@@ -115,15 +111,11 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeCross(Vector2Int item)
     {
         //C'est ici qu'on fait la sépare les deux patterns
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x + 1, item.y, SO.type);
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y - 1, SO.type);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x + 1, item.y),new Vector2Int(item.x + 1, item.y));
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x - 1, item.y),new Vector2Int(item.x - 1, item.y));
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y + 1),new Vector2Int(item.x, item.y + 1));
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y - 1),new Vector2Int(item.x, item.y + 1));
-
+        TryAddKey(new Vector2Int(item.x + 1, item.y));
+        TryAddKey(new Vector2Int(item.x - 1, item.y));
+        TryAddKey(new Vector2Int(item.x, item.y - 1));
+        TryAddKey(new Vector2Int(item.x, item.y + 1));
+       
         pair = new List<Vector2Int>
         {
             new Vector2Int(item.x + 1, item.y + 1),
@@ -143,6 +135,12 @@ public class ElementalExplosion : MonoBehaviour
 
     private void InvokeFill(Vector2Int item)
     {
+        TryAddKey(item);
+    }
+
+    private void TryAddKey(Vector2Int item)
+    {
+        if (allInstantiatePrefab.ContainsKey(CodateTagToDictionnary(item.x, item.y))) return;
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
     }

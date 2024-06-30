@@ -56,7 +56,7 @@ public class EnviroPrefabSpawner : MonoBehaviour
 
     private string CodateTagToDictionnary(int x, int y)
     {
-        return x.ToString() + y.ToString();
+        return x.ToString()+" "+ y.ToString();
     }
 
     private GameObject GetGoodPrefab(int enumNumber)
