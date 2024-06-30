@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   nbMaxInventory: 5
   nbRecolted: 5
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
   rarity: 0
   script: {fileID: 11500000, guid: 7b58d7eb798b9144babeed1da8b5a80c, type: 3}
   type: 4
@@ -29,6 +29,6 @@ MonoBehaviour:
   radius: 0
   lenght: 0
   thick: 0
-  spriteObjectToInstantiate: {fileID: 0}
+  spriteObjectToInstantiate: {fileID: 21300000, guid: d7927aeddbb751043bb97871e715823a, type: 3}
   explosionPrefab: {fileID: 1343048376486085372, guid: 7709f9fbb3e66994c9c90ac58d7d33ab, type: 3}
   otherScript: {fileID: 0}

@@ -11,12 +11,6 @@ public class EnviroPrefabSpawner : MonoBehaviour
         StartCoroutine(SecondStartCoroutine());
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.Space))
-            EnviroManager.Instance.AddElementEvent.Invoke(GF.EnterRealPositionInEnviroTab(new Vector2(5f,5f)).x, GF.EnterRealPositionInEnviroTab(new Vector2(5f, 5f)).y, ELEMENTS.BUSH);
-    }
-
     private IEnumerator SecondStartCoroutine()
     {
         yield return new WaitForEndOfFrame();
@@ -34,6 +28,11 @@ public class EnviroPrefabSpawner : MonoBehaviour
 
         EnviroManager.Instance.AddElementEvent.AddListener((x, y, element) => InstantiatePrefab(x, y, element));
         EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => RemovePrefab(x, y, element));
+
+        EnviroManager.Instance.AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
+       
+        EnviroManager.Instance.AddElementEvent.Invoke(5, 5, ELEMENTS.WATER);
+    
     }
 
     private void InstantiatePrefab(int x,int y, ELEMENTS element)
@@ -49,6 +48,7 @@ public class EnviroPrefabSpawner : MonoBehaviour
 
     private void RemovePrefab(int x, int y, ELEMENTS element)
     {
+        print("remove " + element);
         string tag = CodateTagToDictionnary(x, y);
         if (!allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
         Destroy(allInstantiatePrefab[(int)element][tag]);
