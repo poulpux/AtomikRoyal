@@ -1,39 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ElementalExplosion : MonoBehaviour
 {
     [SerializeField] private ElementalBombSO SO;
+    List<Vector2Int> pair = new List<Vector2Int>();
+    List<Vector2Int> impaire = new List<Vector2Int>();
     void Start()
     {
         if (SO.distOnStart == 0) return;
-        List<Vector2Int> listPosToExpend = new List<Vector2Int>();
         Vector2Int posInt = GF.EnterRealPositionInEnviroTab(transform.position);
-        listPosToExpend.Add(posInt);
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
+        impaire.Add(posInt);    
         for (int i = 1; i < SO.distOnStart; i++)
         {
-            List<Vector2Int> listPosToExpendTemp = new List<Vector2Int>();
-            foreach (var item in listPosToExpend)
+            if (i % 2 == 1)
             {
-                EnviroManager.Instance.AddElementEvent.Invoke(item.x+1, item.y, SO.type);
-                listPosToExpendTemp.Add(item + Vector2Int.right);
-                EnviroManager.Instance.AddElementEvent.Invoke(item.x-1, item.y, SO.type);
-                listPosToExpendTemp.Add(item + Vector2Int.left);
-                EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y +1, SO.type);
-                listPosToExpendTemp.Add(item + Vector2Int.up);
-                EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y -1, SO.type);
-                listPosToExpendTemp.Add(item + Vector2Int.down);
+                foreach (var item in impaire)
+                    InvokeCross(item);
             }
-
-            listPosToExpend = listPosToExpendTemp;
+            else
+            {
+                foreach (var item in pair)
+                    InvokeFill(item);
+            }
         }
     }
 
     void Update()
     {
         
+    }
+
+    private void InvokeCross(Vector2Int item)
+    {
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x + 1, item.y, SO.type);
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y - 1, SO.type);
+        pair = new List<Vector2Int>
+        {
+            new Vector2Int(item.x + 1, item.y + 1),
+            new Vector2Int(item.x + 1, item.y - 1),
+            new Vector2Int(item.x - 1, item.y - 1),
+            new Vector2Int(item.x - 1, item.y + 1)
+        };
+
+        impaire = new List<Vector2Int>
+        {
+            new Vector2Int(item.x + 1, item.y),
+            new Vector2Int(item.x - 1, item.y),
+            new Vector2Int(item.x, item.y - 1),
+            new Vector2Int(item.x, item.y + 1)
+        };
+    }
+
+    private void InvokeFill(Vector2Int item)
+    {
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
     }
 }

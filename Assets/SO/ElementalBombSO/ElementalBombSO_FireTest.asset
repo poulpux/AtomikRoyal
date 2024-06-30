@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   dispertionType: 0
-  distOnStart: 3
+  distOnStart: 4
   maxDistanceDispertion: 5
