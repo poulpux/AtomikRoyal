@@ -7,12 +7,26 @@ public class ElementalExplosion : MonoBehaviour
     [SerializeField] private ElementalBombSO SO;
     List<Vector2Int> pair = new List<Vector2Int>();
     List<Vector2Int> impaire = new List<Vector2Int>();
+
+    List<Vector2Int> listPossesedCases = new List<Vector2Int>();
     void Start()
+    {
+        InstanitateElement();
+    }
+
+    void Update()
+    {
+        
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void InstanitateElement()
     {
         if (SO.distOnStart == 0) return;
         Vector2Int posInt = GF.EnterRealPositionInEnviroTab(transform.position);
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
-        impaire.Add(posInt);    
+        impaire.Add(posInt);
         for (int i = 1; i < SO.distOnStart; i++)
         {
             if (i % 2 == 1)
@@ -26,11 +40,9 @@ public class ElementalExplosion : MonoBehaviour
                     InvokeFill(item);
             }
         }
-    }
 
-    void Update()
-    {
-        
+        pair = new List<Vector2Int>();
+        impaire = new List<Vector2Int>();
     }
 
     private void InvokeCross(Vector2Int item)
@@ -40,6 +52,10 @@ public class ElementalExplosion : MonoBehaviour
         EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y - 1, SO.type);
+        listPossesedCases.Add(new Vector2Int(item.x + 1, item.y));
+        listPossesedCases.Add(new Vector2Int(item.x - 1, item.y));
+        listPossesedCases.Add(new Vector2Int(item.x, item.y + 1));
+        listPossesedCases.Add(new Vector2Int(item.x, item.y - 1));
         pair = new List<Vector2Int>
         {
             new Vector2Int(item.x + 1, item.y + 1),
@@ -60,5 +76,6 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeFill(Vector2Int item)
     {
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
+        listPossesedCases.Add(new Vector2Int(item.x, item.y));
     }
 }

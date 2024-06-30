@@ -56,6 +56,11 @@ public class EnviroCase
 {
     public int binaryMask;
     public float flammableHp;
+
+    public void HitByFire()
+    {
+
+    }
 }
 
 [Serializable]
