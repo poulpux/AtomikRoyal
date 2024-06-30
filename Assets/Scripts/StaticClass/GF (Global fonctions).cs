@@ -4,21 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public static class GF 
 {
+    public static Vector2Int EnterRealPositionInEnviroTab(Vector2 position)
+    {
+        //TO TEST
+        //First : calculate position with the resolution modification
+        //Second : add the origin
+        //Third : +1 because of int convertion take the lower
+        return new Vector2Int((int)((position.x / _StaticEnvironement.tabResolution) - _StaticEnvironement.originX) +1 , (int)((position.y / _StaticEnvironement.tabResolution) - _StaticEnvironement.originY)+ 1);
+    }
+
     public static bool IsOnBinaryMask(int mask, int position) =>
     (mask & (1 << position)) != 0;
 
-public static void AddInBinaryMask(ref int mask, int position) 
-{
-    mask |= (1 << position);
-}
+    public static void AddInBinaryMask(ref int mask, int position) 
+    {
+        mask |= (1 << position);
+    }
 
-public static void RemoveInBinaryMask(ref int mask, int position)
-{
-    mask &= ~(1 << position);
-}
+    public static void RemoveInBinaryMask(ref int mask, int position)
+    {
+        mask &= ~(1 << position);
+    }
 
     public static T GetMaxValue<T>() where T : Enum =>
         Enum.GetValues(typeof(T)).Cast<T>().Max();

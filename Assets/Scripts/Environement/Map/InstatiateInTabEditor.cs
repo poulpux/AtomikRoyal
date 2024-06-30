@@ -6,9 +6,17 @@ public class InstatiateInTabEditor : MonoBehaviour
 {
     [SerializeField] private ELEMENTS type;
 
-    void Update()
+    void Start()
     {
-        EnviroManager.Instance.AddElementEvent.Invoke((int)transform.localPosition.x, (int)transform.localPosition.y, type);
+        StartCoroutine(Coroutine());
+    }
+
+    private IEnumerator Coroutine()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        Vector2Int positionInTab = GF.EnterRealPositionInEnviroTab(transform.position);
+        EnviroManager.Instance.AddElementEvent.Invoke(positionInTab.x, positionInTab.y, type);
         Destroy(gameObject, 0.1f);
     }
 }

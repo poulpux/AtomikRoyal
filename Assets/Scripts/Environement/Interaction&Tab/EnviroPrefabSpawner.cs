@@ -11,14 +11,20 @@ public class EnviroPrefabSpawner : MonoBehaviour
         StartCoroutine(SecondStartCoroutine());
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.Space))
+            EnviroManager.Instance.AddElementEvent.Invoke(GF.EnterRealPositionInEnviroTab(new Vector2(5f,5f)).x, GF.EnterRealPositionInEnviroTab(new Vector2(5f, 5f)).y, ELEMENTS.BUSH);
+    }
+
     private IEnumerator SecondStartCoroutine()
     {
         yield return new WaitForEndOfFrame();
         InstantiateAll();
-        EnviroManager.Instance.AddElementEvent.Invoke(2, 2, ELEMENTS.FIRE);
-        EnviroManager.Instance.AddElementEvent.Invoke(3, 3, ELEMENTS.GAZ);
-        EnviroManager.Instance.AddElementEvent.Invoke(3,1, ELEMENTS.BUSH);
-        EnviroManager.Instance.AddElementEvent.Invoke(4, 0, ELEMENTS.BUSH);
+        //EnviroManager.Instance.AddElementEvent.Invoke(2, 2, ELEMENTS.FIRE);
+        //EnviroManager.Instance.AddElementEvent.Invoke(3, 3, ELEMENTS.GAZ);
+        //EnviroManager.Instance.AddElementEvent.Invoke(3,1, ELEMENTS.BUSH);
+        //EnviroManager.Instance.AddElementEvent.Invoke(4, 0, ELEMENTS.BUSH);
     }
 
     private void InstantiateAll()
@@ -35,7 +41,8 @@ public class EnviroPrefabSpawner : MonoBehaviour
         string tag = CodateTagToDictionnary(x,y);
         if (allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
         GameObject currentPrefab = Instantiate(GetGoodPrefab((int)element));
-        currentPrefab.transform.position = new Vector2(x * _StaticEnvironement.tabResolution, y * _StaticEnvironement.tabResolution) +new Vector2(_StaticEnvironement.originX, _StaticEnvironement.originY);
+        Vector2 formuleToMakeSpawn = new Vector2(x * _StaticEnvironement.tabResolution, y * _StaticEnvironement.tabResolution) + new Vector2(_StaticEnvironement.originX, _StaticEnvironement.originY);
+        currentPrefab.transform.position = formuleToMakeSpawn;
         currentPrefab.transform.localScale = new Vector2(_StaticEnvironement.tabResolution, _StaticEnvironement.tabResolution) ;
         allInstantiatePrefab[(int)element].Add(tag, currentPrefab);
     }

@@ -8,8 +8,8 @@ public static class _StaticEnvironement
     static public int[] maskInteraction {  get; private set; }
     static public int lenght { get; private set; }
     static public int height { get; private set; }
-    static public int originX { get; private set; }
-    static public int originY { get; private set; }
+    static public float originX { get; private set; }
+    static public float originY { get; private set; }
     static public float tabResolution { get; private set; }
 
     //[Header("Fire")]
