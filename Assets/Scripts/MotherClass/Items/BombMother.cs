@@ -58,10 +58,12 @@ public abstract class BombMother : HitableByBombMother
     {
         GameObject explosion = Instantiate(explosionPrefab);
         explosion.transform.position = transform.position;
+        Explosion explosionScript = explosion.GetComponent<Explosion>();
+        if (explosionScript == null) return;
         if(shape == EXPLOSIONSHAPE.CIRCLE || shape == EXPLOSIONSHAPE.SQUARE)
-            explosion.GetComponent<Explosion>().Init(baseDamage, radius,shape, infos);
+            explosionScript.Init(baseDamage, radius,shape, infos);
         else
-            explosion.GetComponent<Explosion>().Init(baseDamage ,lenght ,thick ,shape, infos);
+            explosionScript.Init(baseDamage ,lenght ,thick ,shape, infos);
     }
 
     protected override void HitEffect(int damage, PlayerInfos offenser)
