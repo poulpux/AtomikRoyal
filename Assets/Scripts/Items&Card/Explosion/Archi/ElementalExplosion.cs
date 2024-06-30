@@ -17,7 +17,7 @@ public class ElementalExplosion : MonoBehaviour
     List<Vector2Int> pair = new List<Vector2Int>();
     List<Vector2Int> impaire = new List<Vector2Int>();
 
-    Dictionary<string, bool> allInstantiatePrefab = new Dictionary<string, bool>();
+    Dictionary<string, Vector2Int> allInstantiatePrefab = new Dictionary<string, Vector2Int>();
     void Start()
     {
         InstanitateElement();
@@ -43,17 +43,16 @@ public class ElementalExplosion : MonoBehaviour
             {
                 foreach (var item in allInstantiatePrefab)
                 {
-                    Vector2Int pos = DecodeTagToCoordinates(item.Key);
-                    print("pos : " + item.Key + " currentPos : "+pos );
+
                     ATTACKRANGE range = (ATTACKRANGE)Random.Range(0, (int)GF.GetMaxValue<ATTACKRANGE>());
                     if(range == ATTACKRANGE.DAWN)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x, pos.y - 1));
+                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x, item.Value.y - 1));
                     else if(range == ATTACKRANGE.UP)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x, pos.y + 1));
+                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x, item.Value.y + 1));
                     else if(range == ATTACKRANGE.LEFT)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x - 1, pos.y));
+                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x - 1, item.Value.y));
                     else if(range == ATTACKRANGE.RIGHT)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(pos.x + 1, pos.y));
+                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x + 1, item.Value.y));
                 }
                 counter++;
             }
@@ -62,8 +61,7 @@ public class ElementalExplosion : MonoBehaviour
 
         foreach (var item in allInstantiatePrefab)
         {
-            Vector2Int pos = DecodeTagToCoordinates(item.Key);
-            EnviroManager.Instance.RemoveElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+            EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, ELEMENTS.FIRE);
         }
         Destroy(gameObject);
     }
@@ -80,25 +78,13 @@ public class ElementalExplosion : MonoBehaviour
         return x.ToString() + y.ToString();
     }
 
-    private Vector2Int DecodeTagToCoordinates(string tag)
-    {
-        int halfLength = tag.Length / 2;
-        string xStr = tag.Substring(0, halfLength);
-        string yStr = tag.Substring(halfLength, halfLength);
-
-        int x = int.Parse(xStr);
-        int y = int.Parse(yStr);
-
-        return new Vector2Int(x, y);
-    }
-
     private void InstanitateElement()
     {
         if (SO.distOnStart == 0) return;
         Vector2Int posInt = GF.EnterRealPositionInEnviroTab(transform.position);
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
         impaire.Add(posInt);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(posInt.x, posInt.y), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(posInt.x, posInt.y), posInt);
         for (int i = 1; i < SO.distOnStart; i++)
         {
             if (i % 2 == 1)
@@ -124,10 +110,10 @@ public class ElementalExplosion : MonoBehaviour
         EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y - 1, SO.type);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x + 1, item.y), false);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x - 1, item.y), false);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y + 1), false);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y - 1), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x + 1, item.y),new Vector2Int(item.x + 1, item.y));
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x - 1, item.y),new Vector2Int(item.x - 1, item.y));
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y + 1),new Vector2Int(item.x, item.y + 1));
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y - 1),new Vector2Int(item.x, item.y + 1));
 
         pair = new List<Vector2Int>
         {
@@ -149,6 +135,6 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeFill(Vector2Int item)
     {
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
-        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), false);
+        allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
     }
 }
