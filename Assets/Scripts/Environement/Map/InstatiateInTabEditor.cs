@@ -15,7 +15,8 @@ public class InstatiateInTabEditor : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        EnviroManager.Instance.AddElementEvent.Invoke((int)(transform.localPosition.x - _StaticEnvironement.originX)+1, (int)(transform.localPosition.y - _StaticEnvironement.originY)+1, type);
+        Vector2Int positionInTab = GF.EnterRealPositionInEnviroTab(transform.position);
+        EnviroManager.Instance.AddElementEvent.Invoke(positionInTab.x, positionInTab.y, type);
         Destroy(gameObject, 0.1f);
     }
 }
