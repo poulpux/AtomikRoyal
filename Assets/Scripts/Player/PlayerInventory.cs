@@ -175,7 +175,6 @@ public class PlayerInventory : MonoBehaviour, IDesactiveWhenPlayerIsDead, IActWh
         nbInInventory[cursorPos] = nb <= SO.nbMaxInventory ? nb : SO.nbMaxInventory;
     }
 
-
     private void DestroyCurrentItem(int index)
     {
         Destroy(inventory[index]);

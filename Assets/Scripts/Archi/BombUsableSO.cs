@@ -42,7 +42,7 @@ public class BombUsableSO : UsableSOMother
     private void OnValidate()
     {
         script = AssetDatabase.LoadAssetAtPath<TextAsset>(bombScriptPath);
-        VerifExplosionPrefabComponent();
+        //VerifExplosionPrefabComponent();
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
