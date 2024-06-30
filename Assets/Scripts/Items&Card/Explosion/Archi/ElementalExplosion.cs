@@ -35,6 +35,7 @@ public class ElementalExplosion : MonoBehaviour
 
     private void InvokeCross(Vector2Int item)
     {
+        //C'est ici qu'on fait la sépare les deux patterns
         EnviroManager.Instance.AddElementEvent.Invoke(item.x + 1, item.y, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x - 1, item.y, SO.type);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y + 1, SO.type);
