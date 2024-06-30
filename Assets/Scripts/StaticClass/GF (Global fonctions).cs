@@ -4,10 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public static class GF 
 {
+    static public bool IsInDistDoubleTab(Vector2Int centerPos, Vector2Int target, int dist)
+    {
+        int x = Mathf.Abs(centerPos.x - target.x);
+        int y = Mathf.Abs(centerPos.y - target.y);
+
+        Debug.Log(x + y < dist);
+       return ( x + y  < dist );
+    }
     public static Vector2Int EnterRealPositionInEnviroTab(Vector2 position)
     {
         //TO TEST

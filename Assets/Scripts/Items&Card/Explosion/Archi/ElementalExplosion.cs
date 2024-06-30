@@ -16,6 +16,7 @@ public class ElementalExplosion : MonoBehaviour
     [SerializeField] private ElementalBombSO SO;
     List<Vector2Int> pair = new List<Vector2Int>();
     List<Vector2Int> impaire = new List<Vector2Int>();
+    Vector2Int centralPos;
 
     Dictionary<string, Vector2Int> allInstantiatePrefab = new Dictionary<string, Vector2Int>();
     bool finish;
@@ -67,7 +68,7 @@ public class ElementalExplosion : MonoBehaviour
 
     private void AttackAndAddFire(Vector2Int pos)
     {
-        if (EnviroManager.Instance.HitByFire(pos))
+        if (GF.IsInDistDoubleTab(centralPos, pos, SO.maxDistanceDispertion) && EnviroManager.Instance.HitByFire(pos))
             toAdd.Add(pos);
     }
 
@@ -89,6 +90,7 @@ public class ElementalExplosion : MonoBehaviour
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
         impaire.Add(posInt);
         allInstantiatePrefab.Add(CodateTagToDictionnary(posInt.x, posInt.y), posInt);
+        centralPos = posInt;
 
         for (int i = 1; i < SO.distOnStart; i++)
         {
