@@ -46,8 +46,12 @@ public class EnviroManager : SingletonMother<EnviroManager>
         binaryMaskMap = new EnviroCase[(int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution),(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution)];
         for (int i = 0; i < (int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution); i++)
         {
-            for (int y = 0; y <(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution); y++)
+            for (int y = 0; y < (int)(_StaticEnvironement.height / _StaticEnvironement.tabResolution); y++)
+            {
+                EnviroCase casee = new EnviroCase();
+                casee.flammableHp = _StaticEnvironement.flammablePvMax;
                 binaryMaskMap[i, y] = new EnviroCase();
+            }
         }
     }
 }

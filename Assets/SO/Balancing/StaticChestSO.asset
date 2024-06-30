@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToFindInChestUtility:
   - {fileID: 11400000, guid: d2b836f5ffd8b73408a046c18e24448e, type: 2}
-  - {fileID: 11400000, guid: c1ecaf926f2aa0c4381d004c903baea8, type: 2}
+  - {fileID: 11400000, guid: 28df795307947a945b77ed5696ac4191, type: 2}
   ToFindInChestBomb:
   - {fileID: 11400000, guid: 760d61783f3641f4f9537fd33da92539, type: 2}
   communLootPct: 60

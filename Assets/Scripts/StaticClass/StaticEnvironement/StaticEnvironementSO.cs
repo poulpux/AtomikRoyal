@@ -23,7 +23,8 @@ public class StaticEnvironementSO : ScriptableObject
     public float tabResolution;
 
     [Header("Fire")]
-    public float CDWDamageFire;
+    public int flammablePvMax;
+    public float CDWDamageFire, CDWFireFlammable;
     public int damageFire;
     
     [Header("GAZ")]
