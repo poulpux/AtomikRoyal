@@ -18,16 +18,13 @@ public class ElementalExplosion : MonoBehaviour
     List<Vector2Int> impaire = new List<Vector2Int>();
 
     Dictionary<string, Vector2Int> allInstantiatePrefab = new Dictionary<string, Vector2Int>();
+    bool finish;
+    List<Vector2Int> toAdd = new List<Vector2Int>();
     void Start()
     {
         InstanitateElement();
-        //EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AFireIsRemoved(new Vector2Int(x, y), element));
+        EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AFireIsRemoved(new Vector2Int(x, y), element));
         StartCoroutine(DispertionCoroutine());
-    }
-
-    void Update()
-    {
-        
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,22 +40,26 @@ public class ElementalExplosion : MonoBehaviour
             {
                 foreach (var item in allInstantiatePrefab)
                 {
-
-                    ATTACKRANGE range = (ATTACKRANGE)Random.Range(0, (int)GF.GetMaxValue<ATTACKRANGE>());
-                    if(range == ATTACKRANGE.DAWN)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x, item.Value.y - 1));
-                    else if(range == ATTACKRANGE.UP)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x, item.Value.y + 1));
-                    else if(range == ATTACKRANGE.LEFT)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x - 1, item.Value.y));
-                    else if(range == ATTACKRANGE.RIGHT)
-                        EnviroManager.Instance.HitByFire(new Vector2Int(item.Value.x + 1, item.Value.y));
+                    ATTACKRANGE range = (ATTACKRANGE)Random.Range(0, (int)GF.GetMaxValue<ATTACKRANGE>()+1);
+                    if (range == ATTACKRANGE.DAWN)
+                        AttackAndAddFire(new Vector2Int(item.Value.x, item.Value.y - 1));
+                    else if (range == ATTACKRANGE.UP)
+                        AttackAndAddFire(new Vector2Int(item.Value.x, item.Value.y + 1));
+                    else if (range == ATTACKRANGE.LEFT)
+                        AttackAndAddFire(new Vector2Int(item.Value.x - 1, item.Value.y));
+                    else if (range == ATTACKRANGE.RIGHT)
+                        AttackAndAddFire(new Vector2Int(item.Value.x + 1, item.Value.y));
                 }
+
+                foreach (var pos in toAdd)
+                    allInstantiatePrefab.Add(CodateTagToDictionnary(pos.x, pos.y), pos);
+                toAdd = new List<Vector2Int>();
                 counter++;
             }
             yield return new WaitForEndOfFrame();
         }
 
+        finish = true;
         foreach (var item in allInstantiatePrefab)
         {
             EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, ELEMENTS.FIRE);
@@ -66,12 +67,19 @@ public class ElementalExplosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //private void AFireIsRemoved(Vector2Int pos, ELEMENTS element)
-    //{
-    //    string tag = CodateTagToDictionnary(pos.x, pos.y);
-    //    if (allInstantiatePrefab.ContainsKey(tag))
-    //        allInstantiatePrefab.Remove(tag);
-    //}
+    private void AttackAndAddFire(Vector2Int pos)
+    {
+        if (EnviroManager.Instance.HitByFire(pos))
+            toAdd.Add(pos);
+    }
+
+    private void AFireIsRemoved(Vector2Int pos, ELEMENTS element)
+    {
+        if (finish) return;
+        string tag = CodateTagToDictionnary(pos.x, pos.y);
+        if (allInstantiatePrefab.ContainsKey(tag))
+            allInstantiatePrefab.Remove(tag);
+    }
 
     private string CodateTagToDictionnary(int x, int y)
     {
@@ -85,6 +93,7 @@ public class ElementalExplosion : MonoBehaviour
         EnviroManager.Instance.AddElementEvent.Invoke(posInt.x, posInt.y, SO.type);
         impaire.Add(posInt);
         allInstantiatePrefab.Add(CodateTagToDictionnary(posInt.x, posInt.y), posInt);
+
         for (int i = 1; i < SO.distOnStart; i++)
         {
             if (i % 2 == 1)
