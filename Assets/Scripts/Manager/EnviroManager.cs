@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.PlayerSettings;
 
 public class EnviroManager : SingletonMother<EnviroManager>
 {
@@ -24,6 +25,34 @@ public class EnviroManager : SingletonMother<EnviroManager>
         foreach (var item in allInteractionsList)
             item.Init();
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public bool HitByFire(Vector2Int pos)
+    {
+        //Le bool permet de savoir si la case a été tuée
+        if(GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.SMOKE)||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WATER) ||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FIRE) ||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WALL))
+        {
+            binaryMaskMap[pos.x, pos.y].flammableHp = _StaticEnvironement.flammablePvMax;
+            return false;
+        }
+
+            binaryMaskMap[pos.x, pos.y].flammableHp -- ;
+        if (binaryMaskMap[pos.x, pos.y].flammableHp < 0)
+        {
+            AddElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+            return true;
+        }
+        return false;
+    }
+
+    //public IEnumerator ResetCoroutine()
+    //{
+
+    //}
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -52,11 +81,6 @@ public class EnviroCase
 {
     public int binaryMask;
     public float flammableHp;
-
-    public void HitByFire()
-    {
-
-    }
 }
 
 [Serializable]
