@@ -48,7 +48,6 @@ public class EnviroPrefabSpawner : MonoBehaviour
 
     private void RemovePrefab(int x, int y, ELEMENTS element)
     {
-        print("remove " + element);
         string tag = CodateTagToDictionnary(x, y);
         if (!allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
         Destroy(allInstantiatePrefab[(int)element][tag]);
