@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ProjectileGrenadeImpulse : ProjectileBombMother
 {
+    Vector2 startDirection;
     protected override void Start()
     {
         base.Start();
+        startDirection =(posToGo - (Vector2) transform.position).normalized;
         StartCoroutine(TouchPosToGo());
     }
 
@@ -14,7 +16,8 @@ public class ProjectileGrenadeImpulse : ProjectileBombMother
     {
         while (true)
         {
-            if (Vector2.Distance(transform.position, posToGo) < 0.5f)
+            Vector2 currentDirection = (posToGo - (Vector2)transform.position).normalized;
+            if (currentDirection != startDirection)
                 Destroy(gameObject);
             yield return new WaitForEndOfFrame();
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.PlayerSettings;
 
 public class EnviroManager : SingletonMother<EnviroManager>
 {
@@ -23,15 +24,37 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
         foreach (var item in allInteractionsList)
             item.Init();
-
-        //AddElementEvent.Invoke(5, 5, ELEMENTS.GAZ);
-        //print(binaryMaskMap[5, 5].binaryMask);
-        //AddElementEvent.Invoke(6, 5, ELEMENTS.GAZ);
-        //print(binaryMaskMap[6, 5].binaryMask);
-        //AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
-        //print(binaryMaskMap[5, 5].binaryMask);
-        //print(binaryMaskMap[6, 5].binaryMask);
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public bool HitByFire(Vector2Int pos)
+    {
+        print("passe 1 ");
+        //Le bool permet de savoir si la case a été tuée
+        if(GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.SMOKE)||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WATER) ||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FIRE) ||
+            GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WALL))
+        {
+            binaryMaskMap[pos.x, pos.y].flammableHp = _StaticEnvironement.flammablePvMax;
+            return false;
+        }
+
+        print("passe 2 ");
+            binaryMaskMap[pos.x, pos.y].flammableHp -- ;
+        if (binaryMaskMap[pos.x, pos.y].flammableHp < 0)
+        {
+            AddElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+            return true;
+        }
+        return false;
+    }
+
+    //public IEnumerator ResetCoroutine()
+    //{
+
+    //}
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -46,9 +69,19 @@ public class EnviroManager : SingletonMother<EnviroManager>
         binaryMaskMap = new EnviroCase[(int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution),(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution)];
         for (int i = 0; i < (int)(_StaticEnvironement.lenght / _StaticEnvironement.tabResolution); i++)
         {
-            for (int y = 0; y <(int)( _StaticEnvironement.height / _StaticEnvironement.tabResolution); y++)
+            for (int y = 0; y < (int)(_StaticEnvironement.height / _StaticEnvironement.tabResolution); y++)
+            {
+                EnviroCase casee = new EnviroCase();
+                casee.flammableHp = _StaticEnvironement.flammablePvMax;
                 binaryMaskMap[i, y] = new EnviroCase();
+            }
         }
+    }
+
+    private void ResetFlammableHP(Vector2Int pos)
+    {
+        RemoveElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+        binaryMaskMap[pos.x, pos.y].flammableHp = _StaticEnvironement.flammablePvMax;
     }
 }
 
