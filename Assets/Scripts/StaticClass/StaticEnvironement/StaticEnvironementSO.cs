@@ -24,11 +24,12 @@ public class StaticEnvironementSO : ScriptableObject
 
     [Header("Fire")]
     public int flammablePvMax;
-    public float CDWDamageFire, CDWFireFlammable;
+    public float CDWDamageFire, CDWFireDispertion;
     public int damageFire;
     
     [Header("GAZ")]
     public float CDWDamageGaz;
+    public float CDWGazDispertion;
     public int damageGaz;
 
     [Header("Ring")]

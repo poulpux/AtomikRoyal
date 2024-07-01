@@ -14,12 +14,13 @@ public static class _StaticEnvironement
 
     //[Header("Fire")]
     static public float CDWDamageFire { get; private set; }
-    static public float CDWFireFlammable { get; private set; }
+    static public float CDWFireDispertion { get; private set; }
     static public int damageFire { get; private set; }
     static public int flammablePvMax { get; private set; }
 
     //[Header("GAZ")]
     static public float CDWDamageGaz { get; private set; }
+    static public float CDWGazDispertion { get; private set; }
     static public int damageGaz { get; private set; }
 
     //[Header("Ring")]
@@ -55,11 +56,13 @@ public static class _StaticEnvironement
 
         CDWDamageFire = SO.CDWDamageFire;
         damageFire = SO.damageFire;
-        CDWFireFlammable = SO.CDWFireFlammable;
+        CDWFireDispertion = SO.CDWFireDispertion;
         flammablePvMax = SO.flammablePvMax;
 
         CDWDamageGaz = SO.CDWDamageGaz;
+        CDWGazDispertion = SO.CDWGazDispertion;
         damageGaz = SO.damageGaz;
+
 
         CDWDamageRing = SO.CDWDamageRing;
         damageRingCurve = SO.damageRingCurve;
