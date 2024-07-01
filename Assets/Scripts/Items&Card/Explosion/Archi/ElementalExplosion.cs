@@ -57,6 +57,11 @@ public class ElementalExplosion : MonoBehaviour
             {
                 foreach (var item in impaire)
                     InvokeCross(item);
+                pair.Clear();
+                foreach (var item in toAddPair)
+                    pair.Add(item);
+                foreach (var item in toAddImpair)
+                    impaire.Add(item);
             }
             else
             {
@@ -158,21 +163,15 @@ public class ElementalExplosion : MonoBehaviour
         TryAddKey(new Vector2Int(item.x, item.y - 1));
         TryAddKey(new Vector2Int(item.x, item.y + 1));
        
-        pair = new List<Vector2Int>
-        {
-            new Vector2Int(item.x + 1, item.y + 1),
-            new Vector2Int(item.x + 1, item.y - 1),
-            new Vector2Int(item.x - 1, item.y - 1),
-            new Vector2Int(item.x - 1, item.y + 1)
-        };
+        toAddPair.Add(new Vector2Int(item.x + 1, item.y + 1));
+        toAddPair.Add(new Vector2Int(item.x + 1, item.y - 1));
+        toAddPair.Add(new Vector2Int(item.x - 1, item.y - 1));
+        toAddPair.Add(new Vector2Int(item.x - 1, item.y + 1));
 
-        impaire = new List<Vector2Int>
-        {
-            new Vector2Int(item.x + 1, item.y),
-            new Vector2Int(item.x - 1, item.y),
-            new Vector2Int(item.x, item.y - 1),
-            new Vector2Int(item.x, item.y + 1)
-        };
+        toAddImpair.Add(new Vector2Int(item.x + 1, item.y));
+        toAddImpair.Add(new Vector2Int(item.x - 1, item.y));
+        toAddImpair.Add(new Vector2Int(item.x, item.y + 1));
+        toAddImpair.Add(new Vector2Int(item.x, item.y - 1));
     }
 
     private void InvokeFill(Vector2Int item)=>
