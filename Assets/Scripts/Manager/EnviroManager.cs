@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
 
 public class EnviroManager : SingletonMother<EnviroManager>
 {
@@ -12,11 +11,12 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     [HideInInspector] public UnityEvent<int, int, ELEMENTS> AddElementEvent = new UnityEvent<int, int, ELEMENTS>();
     [HideInInspector] public UnityEvent<int, int, ELEMENTS> RemoveElementEvent = new UnityEvent<int, int, ELEMENTS>();
-
+    private EnviroPrefabSpawner spawner;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void Start()
     {
+        spawner = GetComponentInChildren<EnviroPrefabSpawner>();
         InstantiateTab();
 
         AddElementEvent.AddListener((x, y, element) => AddElement(x, y, element));
@@ -30,7 +30,7 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     public bool HitByFire(Vector2Int pos)
     {
-        //Le bool permet de savoir si la case a été tuée
+        //Le bool permet de savoir si la case a été tuée? ATTENTION : le feu ne se pose pas tout seul
         if(GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.SMOKE)||
             GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WATER) ||
             GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FIRE) ||
@@ -42,11 +42,8 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
         binaryMaskMap[pos.x, pos.y].flammableHp -- ;
 
-        if (binaryMaskMap[pos.x, pos.y].flammableHp < 0)
-        {
-            AddElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+        if (binaryMaskMap[pos.x, pos.y].flammableHp <= 0)
             return true;
-        }
         return false;
     }
 
@@ -54,6 +51,7 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     private void AddElement(int x, int y, ELEMENTS element)
     {
+        spawner.InstantiatePrefab(x, y, element);
         GF.AddInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element);
         allInteractionsList[(int)element].PlayInteractions(x, y);
     }
