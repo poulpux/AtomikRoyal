@@ -9,6 +9,7 @@ public class DestructionInteraction : EnviroMother
     public override void Interact(int x, int y)
     {
         base.Interact(x, y);
+        print("removeFire");
         EnviroManager.Instance.RemoveElementEvent.Invoke(x, y, elementToDestruct);
     }
 }

@@ -27,11 +27,13 @@ public class ElementalExplosion : MonoBehaviour
     {
         EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AnElementIsRemoved(new Vector2Int(x, y), element));
         InstanitateElement();
+        StartCoroutine(DestroyCoroutine());
 
-        if(SO.dispertionType == DISPERTIONTYPE.FIRE)
+        if (SO.dispertionType == DISPERTIONTYPE.FIRE)
             StartCoroutine(FireDispertionCoroutine());
         else if(SO.dispertionType == DISPERTIONTYPE.GAZ)
             StartCoroutine(GazDispertionCoroutine());
+
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -64,7 +66,7 @@ public class ElementalExplosion : MonoBehaviour
     {
         timer = 0.0f;
         int counter = 1;
-        while (timer < SO.lifeTime)
+        while (true)
         {
             timer += Time.deltaTime;    
             if(timer > (counter + 1) * _StaticEnvironement.CDWFireFlammable)
@@ -87,17 +89,22 @@ public class ElementalExplosion : MonoBehaviour
                 toAdd = new List<Vector2Int>();
                 counter++;
             }
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
-
-        foreach (var item in allInstantiatePrefab)
-            EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, ELEMENTS.FIRE);
-        Destroy(gameObject);
     }
 
     private IEnumerator GazDispertionCoroutine()
     {
         yield return new WaitForEndOfFrame();
+    }
+
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(SO.lifeTime);
+        timer = SO.lifeTime;
+        foreach (var item in allInstantiatePrefab)
+            EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, SO.type);
+        Destroy(gameObject);
     }
 
     private void AttackAndAddFire(Vector2Int pos)
@@ -158,7 +165,8 @@ public class ElementalExplosion : MonoBehaviour
 
     private void TryAddKey(Vector2Int item)
     {
-        if (allInstantiatePrefab.ContainsKey(CodateTagToDictionnary(item.x, item.y))) return;
+        if (allInstantiatePrefab.ContainsKey(CodateTagToDictionnary(item.x, item.y))
+            ||GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[item.x, item.y].binaryMask, (int)SO.type)) return;
 
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);

@@ -17,7 +17,8 @@ public class ProjectileGrenadeImpulse : ProjectileBombMother
         while (true)
         {
             Vector2 currentDirection = (posToGo - (Vector2)transform.position).normalized;
-            if (currentDirection != startDirection)
+            float angle = Vector2.Angle(startDirection, currentDirection);
+            if (angle > 5f)
                 Destroy(gameObject);
             yield return new WaitForEndOfFrame();
         }
