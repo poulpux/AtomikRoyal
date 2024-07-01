@@ -133,8 +133,11 @@ public class ElementalExplosion : MonoBehaviour
                     TryExpendGaz(new Vector2Int(item.Value.x + 1, item.Value.y));
             }
 
-            foreach (var pos in toAdd)
-                TryAddKey(pos);
+            if (life > 0)
+            {
+                foreach (var pos in toAdd)
+                    TryAddKey(pos);
+            }
             toAdd = new List<Vector2Int>();
         }
     }
@@ -201,7 +204,6 @@ public class ElementalExplosion : MonoBehaviour
             ||GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[item.x, item.y].binaryMask, (int)SO.type)) return;
 
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
-        print(item);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
     }
 
@@ -214,9 +216,7 @@ public class ElementalExplosion : MonoBehaviour
 
         life--;
         if (life == 0)
-        {
             DestroyWithDictionnary();
-        }
         toAdd.Add(pos);
     }
 
