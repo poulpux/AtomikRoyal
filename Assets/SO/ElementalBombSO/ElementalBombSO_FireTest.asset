@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e7ff1ffc8f7174ba29d0747cf1fa79, type: 3}
   m_Name: ElementalBombSO_FireTest
   m_EditorClassIdentifier: 
-  type: 7
+  type: 0
   dispertionType: 1
   distOnStart: 2
   maxDistanceDispertion: 5

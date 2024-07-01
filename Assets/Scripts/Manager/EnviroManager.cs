@@ -30,7 +30,7 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     public bool HitByFire(Vector2Int pos)
     {
-        //Le bool permet de savoir si la case a été tuée
+        //Le bool permet de savoir si la case a été tuée? ATTENTION : le feu ne se pose pas tout seul
         if(GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.SMOKE)||
             GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WATER) ||
             GF.IsOnBinaryMask(binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FIRE) ||
