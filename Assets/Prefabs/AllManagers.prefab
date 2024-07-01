@@ -49,6 +49,8 @@ MonoBehaviour:
   _cinemachineCam: {fileID: 0}
   gameRules: {fileID: 0}
   ringGestion: {fileID: 0}
+  pilierNorthWest: {fileID: 0}
+  pilierSouthEast: {fileID: 0}
 --- !u!114 &804754767928561805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741188068294676129}
   - component: {fileID: 8832900044776956020}
+  - component: {fileID: 4580873649767477281}
   - component: {fileID: 8107415864641394506}
   - component: {fileID: 823855202557551633}
   - component: {fileID: 8951916279698697191}
@@ -148,11 +151,11 @@ MonoBehaviour:
     wallInteraction: {fileID: 0}
     fireWallInteraction: {fileID: 0}
     waterInteraction: {fileID: 0}
-    bushInteraction: {fileID: 0}
-    glueInteraction: {fileID: 0}
+    bushInteraction: {fileID: 823855202557551633}
+    glueInteraction: {fileID: 8107415864641394506}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
-    fireInteraction: {fileID: 0}
+    fireInteraction: {fileID: 8951916279698697191}
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 3
@@ -189,15 +192,15 @@ MonoBehaviour:
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 6
-    wallInteraction: {fileID: 0}
-    fireWallInteraction: {fileID: 0}
+    wallInteraction: {fileID: 4580873649767477281}
+    fireWallInteraction: {fileID: 4580873649767477281}
     waterInteraction: {fileID: 0}
     bushInteraction: {fileID: 0}
     glueInteraction: {fileID: 0}
     smokeInteraction: {fileID: 0}
     gazInteraction: {fileID: 0}
     fireInteraction: {fileID: 4364504649107326098}
-    explosionInteraction: {fileID: 3042027317551101569}
+    explosionInteraction: {fileID: 4580873649767477281}
     allEnableInteractions: []
   - elementType: 7
     wallInteraction: {fileID: 8951916279698697191}
@@ -227,6 +230,19 @@ MonoBehaviour:
   RemoveElementEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4580873649767477281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251419846336392585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementToDestruct: 6
 --- !u!114 &8107415864641394506
 MonoBehaviour:
   m_ObjectHideFlags: 0

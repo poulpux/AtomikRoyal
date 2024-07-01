@@ -987,11 +987,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8490923999991507013, guid: 4df46068608c48c4186070899a5d3189, type: 3}
   m_PrefabInstance: {fileID: 646139841}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &657430563 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6251419846336392585, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-  m_PrefabInstance: {fileID: 8452443427716552690}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &689985510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1734,63 +1729,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf677fd76caaab4f8dece7f521c31c1, type: 3}
---- !u!114 &1202826004 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8951916279698697191, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-  m_PrefabInstance: {fileID: 8452443427716552690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657430563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1202826005 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 823855202557551633, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-  m_PrefabInstance: {fileID: 8452443427716552690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657430563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1202826006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8107415864641394506, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-  m_PrefabInstance: {fileID: 8452443427716552690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657430563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1202826009 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3042027317551101569, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-  m_PrefabInstance: {fileID: 8452443427716552690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657430563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1202826011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657430563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementToDestruct: 6
 --- !u!1001 &1278409575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3205,33 +3143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AllManagers
       objectReference: {fileID: 0}
-    - target: {fileID: 8832900044776956020, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      propertyPath: allInteractionsList.Array.data[2].bushInteraction
-      value: 
-      objectReference: {fileID: 1202826005}
-    - target: {fileID: 8832900044776956020, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      propertyPath: allInteractionsList.Array.data[2].fireInteraction
-      value: 
-      objectReference: {fileID: 1202826004}
-    - target: {fileID: 8832900044776956020, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      propertyPath: allInteractionsList.Array.data[2].glueInteraction
-      value: 
-      objectReference: {fileID: 1202826006}
-    - target: {fileID: 8832900044776956020, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      propertyPath: allInteractionsList.Array.data[6].wallInteraction
-      value: 
-      objectReference: {fileID: 1202826009}
-    - target: {fileID: 8832900044776956020, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      propertyPath: allInteractionsList.Array.data[6].fireWallInteraction
-      value: 
-      objectReference: {fileID: 1202826009}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6251419846336392585, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1202826011}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22cf2ab2e9ab02b4ab8edcb4939e5269, type: 3}
 --- !u!114 &8795141147371163133
 MonoBehaviour:

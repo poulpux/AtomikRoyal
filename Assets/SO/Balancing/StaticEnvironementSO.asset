@@ -37,7 +37,7 @@ MonoBehaviour:
   CDWFireDispertion: 0.3
   damageFire: 3
   CDWDamageGaz: 0.9
-  CDWGazDispertion: 2
+  CDWGazDispertion: 1
   damageGaz: 5
   CDWDamageRing: 1.2
   damageRingCurve:

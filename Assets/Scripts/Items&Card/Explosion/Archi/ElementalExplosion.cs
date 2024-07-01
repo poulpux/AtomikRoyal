@@ -57,11 +57,21 @@ public class ElementalExplosion : MonoBehaviour
             {
                 foreach (var item in impaire)
                     InvokeCross(item);
+                
                 pair.Clear();
+                impaire.Clear();
+
                 foreach (var item in toAddPair)
                     pair.Add(item);
                 foreach (var item in toAddImpair)
                     impaire.Add(item);
+                foreach (var item in toAdd)
+                    TryAddKey(item);
+
+                toAdd.Clear();
+                toAddImpair.Clear();
+                toAddPair.Clear();
+
             }
             else
             {
@@ -158,10 +168,10 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeCross(Vector2Int item)
     {
         //C'est ici qu'on fait la sépare les deux patterns
-        TryAddKey(new Vector2Int(item.x + 1, item.y));
-        TryAddKey(new Vector2Int(item.x - 1, item.y));
-        TryAddKey(new Vector2Int(item.x, item.y - 1));
-        TryAddKey(new Vector2Int(item.x, item.y + 1));
+        toAdd.Add(new Vector2Int(item.x + 1, item.y));
+        toAdd.Add(new Vector2Int(item.x - 1, item.y));
+        toAdd.Add(new Vector2Int(item.x, item.y - 1));
+        toAdd.Add(new Vector2Int(item.x, item.y + 1));
        
         toAddPair.Add(new Vector2Int(item.x + 1, item.y + 1));
         toAddPair.Add(new Vector2Int(item.x + 1, item.y - 1));
@@ -191,6 +201,7 @@ public class ElementalExplosion : MonoBehaviour
             ||GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[item.x, item.y].binaryMask, (int)SO.type)) return;
 
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
+        print(item);
         EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
     }
 

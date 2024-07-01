@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e7ff1ffc8f7174ba29d0747cf1fa79, type: 3}
   m_Name: ElementalBombSO_Gaz
   m_EditorClassIdentifier: 
-  type: 7
-  dispertionType: 1
-  distOnStart: 5
+  type: 6
+  dispertionType: 2
+  distOnStart: 2
   maxDistanceDispertion: 5
-  lifeTime: 80
+  lifeTime: 30
