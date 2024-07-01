@@ -42,11 +42,8 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
         binaryMaskMap[pos.x, pos.y].flammableHp -- ;
 
-        if (binaryMaskMap[pos.x, pos.y].flammableHp < 0)
-        {
-            AddElementEvent.Invoke(pos.x, pos.y, ELEMENTS.FIRE);
+        if (binaryMaskMap[pos.x, pos.y].flammableHp <= 0)
             return true;
-        }
         return false;
     }
 
