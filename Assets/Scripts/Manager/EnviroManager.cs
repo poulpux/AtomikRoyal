@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
 
 public class EnviroManager : SingletonMother<EnviroManager>
 {
@@ -12,11 +11,12 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     [HideInInspector] public UnityEvent<int, int, ELEMENTS> AddElementEvent = new UnityEvent<int, int, ELEMENTS>();
     [HideInInspector] public UnityEvent<int, int, ELEMENTS> RemoveElementEvent = new UnityEvent<int, int, ELEMENTS>();
-
+    private EnviroPrefabSpawner spawner;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public void Start()
     {
+        spawner = GetComponentInChildren<EnviroPrefabSpawner>();
         InstantiateTab();
 
         AddElementEvent.AddListener((x, y, element) => AddElement(x, y, element));
@@ -54,6 +54,7 @@ public class EnviroManager : SingletonMother<EnviroManager>
 
     private void AddElement(int x, int y, ELEMENTS element)
     {
+        spawner.InstantiatePrefab(x, y, element);
         GF.AddInBinaryMask(ref binaryMaskMap[x, y].binaryMask, (int)element);
         allInteractionsList[(int)element].PlayInteractions(x, y);
     }
