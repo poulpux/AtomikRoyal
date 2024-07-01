@@ -1240,6 +1240,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 310916594}
     m_Modifications:
+    - target: {fileID: 3549759004053821036, guid: 4df46068608c48c4186070899a5d3189, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6664657224497292658, guid: 4df46068608c48c4186070899a5d3189, type: 3}
       propertyPath: m_Name
       value: WallPrefab

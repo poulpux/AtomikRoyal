@@ -32,9 +32,9 @@ MonoBehaviour:
   - currentElement: 8
     interactions: 06000000
   tabResolution: 0.9
-  flammablePvMax: 3
+  flammablePvMax: 15
   CDWDamageFire: 0.7
-  CDWFireFlammable: 0.4
+  CDWFireFlammable: 0.2
   damageFire: 3
   CDWDamageGaz: 0.9
   damageGaz: 5

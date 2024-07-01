@@ -11,9 +11,7 @@ public static class GF
     {
         int x = Mathf.Abs(centerPos.x - target.x);
         int y = Mathf.Abs(centerPos.y - target.y);
-
-        Debug.Log(x + y < dist);
-       return ( x + y  < dist );
+        return ( x + y  < dist );
     }
     public static Vector2Int EnterRealPositionInEnviroTab(Vector2 position)
     {

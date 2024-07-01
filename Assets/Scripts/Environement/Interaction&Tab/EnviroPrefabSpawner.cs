@@ -26,7 +26,6 @@ public class EnviroPrefabSpawner : MonoBehaviour
         for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)
             allInstantiatePrefab.Add(new Dictionary<string, GameObject>());
 
-        EnviroManager.Instance.AddElementEvent.AddListener((x, y, element) => InstantiatePrefab(x, y, element));
         EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => RemovePrefab(x, y, element));
 
         EnviroManager.Instance.AddElementEvent.Invoke(5, 5, ELEMENTS.FIRE);
@@ -35,10 +34,11 @@ public class EnviroPrefabSpawner : MonoBehaviour
     
     }
 
-    private void InstantiatePrefab(int x,int y, ELEMENTS element)
+    public void InstantiatePrefab(int x,int y, ELEMENTS element)
     {
         string tag = CodateTagToDictionnary(x,y);
         if (allInstantiatePrefab[(int)element].ContainsKey(tag)) return;
+
         GameObject currentPrefab = Instantiate(GetGoodPrefab((int)element));
         Vector2 formuleToMakeSpawn = new Vector2(x * _StaticEnvironement.tabResolution, y * _StaticEnvironement.tabResolution) + new Vector2(_StaticEnvironement.originX, _StaticEnvironement.originY);
         currentPrefab.transform.position = formuleToMakeSpawn;
