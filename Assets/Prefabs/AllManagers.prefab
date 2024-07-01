@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741188068294676129}
   - component: {fileID: 8832900044776956020}
+  - component: {fileID: 2880121308674024377}
   - component: {fileID: 4580873649767477281}
   - component: {fileID: 8107415864641394506}
   - component: {fileID: 823855202557551633}
@@ -181,8 +182,8 @@ MonoBehaviour:
     explosionInteraction: {fileID: 0}
     allEnableInteractions: []
   - elementType: 5
-    wallInteraction: {fileID: 0}
-    fireWallInteraction: {fileID: 0}
+    wallInteraction: {fileID: 2880121308674024377}
+    fireWallInteraction: {fileID: 2880121308674024377}
     waterInteraction: {fileID: 0}
     bushInteraction: {fileID: 0}
     glueInteraction: {fileID: 0}
@@ -230,6 +231,19 @@ MonoBehaviour:
   RemoveElementEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2880121308674024377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251419846336392585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1162d117c6956094f8eeef0a7ebc3a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementToDestruct: 5
 --- !u!114 &4580873649767477281
 MonoBehaviour:
   m_ObjectHideFlags: 0
