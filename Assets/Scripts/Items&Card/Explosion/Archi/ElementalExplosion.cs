@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public enum ATTACKRANGE
 {
@@ -19,7 +20,10 @@ public class ElementalExplosion : MonoBehaviour
 
     Dictionary<string, Vector2Int> allInstantiatePrefab = new Dictionary<string, Vector2Int>();
     float timer = 0f;
+    int life;
     List<Vector2Int> toAdd = new List<Vector2Int>();
+    List<Vector2Int> toAddPair = new List<Vector2Int>();
+    List<Vector2Int> toAddImpair = new List<Vector2Int>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -27,13 +31,16 @@ public class ElementalExplosion : MonoBehaviour
     {
         EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => AnElementIsRemoved(new Vector2Int(x, y), element));
         InstanitateElement();
-        StartCoroutine(DestroyCoroutine());
+
+        if(SO.dispertionType != DISPERTIONTYPE.GAZ)
+            StartCoroutine(DestroyCoroutine());
 
         if (SO.dispertionType == DISPERTIONTYPE.FIRE)
             StartCoroutine(FireDispertionCoroutine());
         else if(SO.dispertionType == DISPERTIONTYPE.GAZ)
             StartCoroutine(GazDispertionCoroutine());
 
+        life = SO.lifeTime;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,6 +57,21 @@ public class ElementalExplosion : MonoBehaviour
             {
                 foreach (var item in impaire)
                     InvokeCross(item);
+                
+                pair.Clear();
+                impaire.Clear();
+
+                foreach (var item in toAddPair)
+                    pair.Add(item);
+                foreach (var item in toAddImpair)
+                    impaire.Add(item);
+                foreach (var item in toAdd)
+                    TryAddKey(item);
+
+                toAdd.Clear();
+                toAddImpair.Clear();
+                toAddPair.Clear();
+
             }
             else
             {
@@ -69,7 +91,7 @@ public class ElementalExplosion : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;    
-            if(timer > (counter + 1) * _StaticEnvironement.CDWFireFlammable)
+            if(timer > (counter + 1) * _StaticEnvironement.CDWFireDispertion)
             {
                 foreach (var item in allInstantiatePrefab)
                 {
@@ -95,16 +117,32 @@ public class ElementalExplosion : MonoBehaviour
 
     private IEnumerator GazDispertionCoroutine()
     {
-        yield return new WaitForEndOfFrame();
+        while (true)
+        {
+            yield return new WaitForSeconds(_StaticEnvironement.CDWGazDispertion);
+            foreach (var item in allInstantiatePrefab)
+            {
+                ATTACKRANGE range = (ATTACKRANGE)Random.Range(0, (int)GF.GetMaxValue<ATTACKRANGE>() + 1);
+                if (range == ATTACKRANGE.DAWN)
+                    TryExpendGaz(new Vector2Int(item.Value.x, item.Value.y - 1));
+                else if (range == ATTACKRANGE.UP)
+                    TryExpendGaz(new Vector2Int(item.Value.x, item.Value.y + 1));
+                else if (range == ATTACKRANGE.LEFT)
+                    TryExpendGaz(new Vector2Int(item.Value.x - 1, item.Value.y));
+                else if (range == ATTACKRANGE.RIGHT)
+                    TryExpendGaz(new Vector2Int(item.Value.x + 1, item.Value.y));
+            }
+
+            foreach (var pos in toAdd)
+                TryAddKey(pos);
+            toAdd = new List<Vector2Int>();
+        }
     }
 
     private IEnumerator DestroyCoroutine()
     {
         yield return new WaitForSeconds(SO.lifeTime);
-        timer = SO.lifeTime;
-        foreach (var item in allInstantiatePrefab)
-            EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, SO.type);
-        Destroy(gameObject);
+        DestroyWithDictionnary();
     }
 
     private void AttackAndAddFire(Vector2Int pos)
@@ -130,26 +168,20 @@ public class ElementalExplosion : MonoBehaviour
     private void InvokeCross(Vector2Int item)
     {
         //C'est ici qu'on fait la sépare les deux patterns
-        TryAddKey(new Vector2Int(item.x + 1, item.y));
-        TryAddKey(new Vector2Int(item.x - 1, item.y));
-        TryAddKey(new Vector2Int(item.x, item.y - 1));
-        TryAddKey(new Vector2Int(item.x, item.y + 1));
+        toAdd.Add(new Vector2Int(item.x + 1, item.y));
+        toAdd.Add(new Vector2Int(item.x - 1, item.y));
+        toAdd.Add(new Vector2Int(item.x, item.y - 1));
+        toAdd.Add(new Vector2Int(item.x, item.y + 1));
        
-        pair = new List<Vector2Int>
-        {
-            new Vector2Int(item.x + 1, item.y + 1),
-            new Vector2Int(item.x + 1, item.y - 1),
-            new Vector2Int(item.x - 1, item.y - 1),
-            new Vector2Int(item.x - 1, item.y + 1)
-        };
+        toAddPair.Add(new Vector2Int(item.x + 1, item.y + 1));
+        toAddPair.Add(new Vector2Int(item.x + 1, item.y - 1));
+        toAddPair.Add(new Vector2Int(item.x - 1, item.y - 1));
+        toAddPair.Add(new Vector2Int(item.x - 1, item.y + 1));
 
-        impaire = new List<Vector2Int>
-        {
-            new Vector2Int(item.x + 1, item.y),
-            new Vector2Int(item.x - 1, item.y),
-            new Vector2Int(item.x, item.y - 1),
-            new Vector2Int(item.x, item.y + 1)
-        };
+        toAddImpair.Add(new Vector2Int(item.x + 1, item.y));
+        toAddImpair.Add(new Vector2Int(item.x - 1, item.y));
+        toAddImpair.Add(new Vector2Int(item.x, item.y + 1));
+        toAddImpair.Add(new Vector2Int(item.x, item.y - 1));
     }
 
     private void InvokeFill(Vector2Int item)=>
@@ -168,7 +200,31 @@ public class ElementalExplosion : MonoBehaviour
         if (allInstantiatePrefab.ContainsKey(CodateTagToDictionnary(item.x, item.y))
             ||GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[item.x, item.y].binaryMask, (int)SO.type)) return;
 
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
+        print(item);
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
+    }
+
+    private void TryExpendGaz(Vector2Int pos)
+    {
+        if (GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)SO.type)
+           || GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WALL)
+           || GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FLAMMABLEWALL))
+            return;
+
+        life--;
+        if (life == 0)
+        {
+            DestroyWithDictionnary();
+        }
+        toAdd.Add(pos);
+    }
+
+    private void DestroyWithDictionnary()
+    {
+        timer = SO.lifeTime;
+        foreach (var item in allInstantiatePrefab)
+            EnviroManager.Instance.RemoveElementEvent.Invoke(item.Value.x, item.Value.y, SO.type);
+        Destroy(gameObject);
     }
 }

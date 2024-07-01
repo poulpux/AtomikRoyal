@@ -23,7 +23,7 @@ public class EnviroPrefabSpawner : MonoBehaviour
 
     private void InstantiateAll()
     {
-        for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>(); i++)
+        for (int i = 0; i < (int)GF.GetMaxValue<ELEMENTS>() + 1; i++)
             allInstantiatePrefab.Add(new Dictionary<string, GameObject>());
 
         EnviroManager.Instance.RemoveElementEvent.AddListener((x, y, element) => RemovePrefab(x, y, element));
