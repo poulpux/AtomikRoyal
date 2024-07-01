@@ -209,7 +209,8 @@ public class ElementalExplosion : MonoBehaviour
 
     private void TryExpendGaz(Vector2Int pos)
     {
-        if (GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)SO.type)
+        if (!GF.IsInDistDoubleTab(centralPos, pos, SO.maxDistanceDispertion)
+           || GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)SO.type)
            || GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.WALL)
            || GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[pos.x, pos.y].binaryMask, (int)ELEMENTS.FLAMMABLEWALL))
             return;
