@@ -22,6 +22,8 @@ public class ElementalExplosion : MonoBehaviour
     float timer = 0f;
     int life;
     List<Vector2Int> toAdd = new List<Vector2Int>();
+    List<Vector2Int> toAddPair = new List<Vector2Int>();
+    List<Vector2Int> toAddImpair = new List<Vector2Int>();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -189,8 +191,8 @@ public class ElementalExplosion : MonoBehaviour
         if (allInstantiatePrefab.ContainsKey(CodateTagToDictionnary(item.x, item.y))
             ||GF.IsOnBinaryMask(EnviroManager.Instance.binaryMaskMap[item.x, item.y].binaryMask, (int)SO.type)) return;
 
-        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
         allInstantiatePrefab.Add(CodateTagToDictionnary(item.x, item.y), item);
+        EnviroManager.Instance.AddElementEvent.Invoke(item.x, item.y, SO.type);
     }
 
     private void TryExpendGaz(Vector2Int pos)

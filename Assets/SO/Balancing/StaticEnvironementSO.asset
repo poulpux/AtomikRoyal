@@ -34,7 +34,7 @@ MonoBehaviour:
   tabResolution: 0.9
   flammablePvMax: 15
   CDWDamageFire: 0.7
-  CDWFireDispertion: 0
+  CDWFireDispertion: 0.3
   damageFire: 3
   CDWDamageGaz: 0.9
   CDWGazDispertion: 2
