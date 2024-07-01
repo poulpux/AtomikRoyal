@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ElementalBombSO_FireTest
   m_EditorClassIdentifier: 
   type: 7
-  dispertionType: 0
+  dispertionType: 1
   distOnStart: 2
   maxDistanceDispertion: 5
   lifeTime: 17
